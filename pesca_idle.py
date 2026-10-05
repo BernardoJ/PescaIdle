@@ -1,5 +1,5 @@
 """
-Pesca Idle - v0.6  (pixel art HD-2D)
+Pesca Idle - v0.7  (pixel art HD-2D)
 Novidades:
   - Visual em pixel art com iluminação estilo HD-2D (brilho da lanterna, reflexos,
     bokeh, vaga-lumes e juncos desfocados em primeiro plano).
@@ -177,8 +177,15 @@ CATALOGO = [
     ("chapeu_cartola",  "chapeu",   "Cartola",            1200),
     ("chapeu_coroa",    "chapeu",   "Coroa dourada",      5000),
     ("chapeu_pikachu",  "chapeu",   "Gorro do Pikachu",   9999),
-    ("chapeu_ninja",    "chapeu",   "Capuz de ninja",     1800),
+    ("chapeu_ninja",    "chapeu",   "Touca ninja",        1800),
     ("chapeu_samurai",  "chapeu",   "Elmo de samurai",    2600),
+    ("chapeu_cowboy",   "chapeu",   "Chapéu de xerife",    950),
+    ("chapeu_mago",     "chapeu",   "Chapéu de arquimago", 3200),
+    ("chapeu_astronauta", "chapeu", "Capacete espacial",   4100),
+    ("chapeu_folhas",   "chapeu",   "Coroa de folhas",     750),
+    ("chapeu_marinheiro", "chapeu", "Boina de marinheiro", 650),
+    ("chapeu_raposa",   "chapeu",   "Capuz de raposa",    2100),
+    ("chapeu_corais",   "chapeu",   "Coroa de corais",    2900),
 
     ("roupa_vermelha",  "roupa",    "Camisa vermelha",    0),
     ("roupa_azul",      "roupa",    "Camisa azul",        100),
@@ -189,6 +196,13 @@ CATALOGO = [
     ("roupa_gala",      "roupa",    "Traje de gala",      3000),
     ("roupa_ninja",     "roupa",    "Traje de ninja",     2200),
     ("roupa_astral",    "roupa",    "Manto estelar",      3500),
+    ("roupa_mergulhador", "roupa",  "Traje de mergulho",   2800),
+    ("roupa_fenix",     "roupa",    "Manto da fênix",      5200),
+    ("roupa_cyber",     "roupa",    "Jaqueta cyberpunk",  4600),
+    ("roupa_mago",      "roupa",    "Túnica de arquimago", 3900),
+    ("roupa_marinheiro", "roupa",   "Uniforme de convés",  850),
+    ("roupa_aurora",    "roupa",    "Manto da aurora",    4800),
+    ("roupa_abisso",    "roupa",    "Armadura abissal",   6800),
 
     ("bandeira_nenhum",   "bandeira", "Sem bandeira",       0),
     ("bandeira_vermelha", "bandeira", "Bandeirinha vermelha", 100),
@@ -197,6 +211,13 @@ CATALOGO = [
     ("bandeira_pirata",   "bandeira", "Bandeira pirata",    1000),
     ("bandeira_dragao",   "bandeira", "Bandeira do dragão", 1300),
     ("bandeira_nebulosa", "bandeira", "Bandeira nebulosa",  1700),
+    ("bandeira_sol",      "bandeira", "Bandeira do sol nascente", 1400),
+    ("bandeira_kraken",   "bandeira", "Bandeira do kraken", 2100),
+    ("bandeira_galaxia",  "bandeira", "Bandeira galáctica", 2400),
+    ("bandeira_folhas",   "bandeira", "Bandeira da floresta", 950),
+    ("bandeira_sakura", "bandeira", "Bandeira de sakura",  1150),
+    ("bandeira_tempestade", "bandeira", "Bandeira da tempestade", 1850),
+    ("bandeira_compasso", "bandeira", "Bandeira do explorador", 2750),
 
     ("boia_vermelha",   "boia",     "Boia vermelha",      0),
     ("boia_amarela",    "boia",     "Boia amarela",       100),
@@ -205,6 +226,13 @@ CATALOGO = [
     ("boia_estrela",    "boia",     "Boia estrela",       1500),
     ("boia_planeta",    "boia",     "Boia planeta",       2200),
     ("boia_bolha",      "boia",     "Boia de bolha",      1200),
+    ("boia_donut",      "boia",     "Boia de rosquinha",   900),
+    ("boia_abacaxi",    "boia",     "Boia de abacaxi",    1300),
+    ("boia_kraken",     "boia",     "Boia do kraken",     2400),
+    ("boia_foguete",    "boia",     "Boia foguete",       1800),
+    ("boia_lotus",      "boia",     "Boia de lótus",       700),
+    ("boia_limao",      "boia",     "Boia de limão",       1050),
+    ("boia_perola",     "boia",     "Boia pérola lunar",   2800),
 
     ("boneco_nenhum",     "boneco", "Sem boneco",         0),
     ("boneco_pato",       "boneco", "Patinho de borracha", 300),
@@ -214,6 +242,13 @@ CATALOGO = [
     ("boneco_agumon",     "boneco", "Agumon",             9999),
     ("boneco_robot",      "boneco", "Robô explorador",    6000),
     ("boneco_slime",      "boneco", "Mascote gelatinoso", 4500),
+    ("boneco_raposa",     "boneco", "Raposa mística",     3800),
+    ("boneco_polvo",      "boneco", "Polvo de pelúcia",   2600),
+    ("boneco_capivara",   "boneco", "Capivara aventureira", 3300),
+    ("boneco_fantasma",   "boneco", "Fantasma camarada",  2200),
+    ("boneco_tartaruga", "boneco", "Tartaruguinha",       1800),
+    ("boneco_axolote",   "boneco", "Axolote sorridente",  2700),
+    ("boneco_baleia",    "boneco", "Baleia viajante",     4100),
 
     ("acessorio_nenhum", "acessorio", "Sem acessório",          0),
     ("anel_verde_esmeralda", "acessorio", "Anel Verde-Esmeralda", 12000),
@@ -222,6 +257,13 @@ CATALOGO = [
     ("orbe_dragon", "acessorio", "Orbe do Dragão",                14000),
     ("broche_lunar", "acessorio", "Broche Lunar",                 11500),
     ("sabre_energia", "acessorio", "Sabre de Energia",             16000),
+    ("asas_fenix", "acessorio", "Asas da Fênix",                    22000),
+    ("aura_cyber", "acessorio", "Aura Cyberpunk",                   18500),
+    ("estrelas_orbitais", "acessorio", "Constelação Orbital",       20000),
+    ("chama_yokai", "acessorio", "Chamas de Yokai",                 23500),
+    ("cajado_tempestade", "acessorio", "Cajado da Tempestade",       17000),
+    ("escudo_bolhas", "acessorio", "Escudo de Bolhas",               19000),
+    ("asas_boreais", "acessorio", "Asas Boreais",                     25000),
 ]
 CAT = {c[0]: c for c in CATALOGO}
 
@@ -473,6 +515,41 @@ ROUPAS = {
         "overlay": [_ov("........", ".g......", "........", "......g.",
                         "...g....", "........", ".g......", "........", ".....g..", "........")],
     },
+    "roupa_mergulhador": {
+        "pal": {"c": (36, 142, 166), "C": (22, 76, 108), "w": (220, 245, 245)},
+        "overlay": [_ov("........", "..wwww..", "..w..w..", "........", "..ww....",
+                        "........", "........", "........", "........", "........")],
+    },
+    "roupa_fenix": {
+        "pal": {"c": (192, 55, 34), "C": (104, 38, 45), "g": (255, 190, 50)},
+        "overlay": [_ov("........", ".g....g.", "..g..g..", "...gg...", "........",
+                        "..g..g..", ".g....g.", "........", "........", "........")],
+    },
+    "roupa_cyber": {
+        "pal": {"c": (38, 42, 68), "C": (22, 24, 40), "p": (246, 56, 176), "b": (40, 220, 246)},
+        "overlay": [_ov("........", ".pp..bb.", "........", "..b..p..", "........",
+                        ".pp..bb.", "........", "........", "........", "........")],
+    },
+    "roupa_mago": {
+        "pal": {"c": (102, 58, 150), "C": (52, 36, 98), "g": (255, 220, 92)},
+        "overlay": [_ov("........", "...g....", "........", ".g......", "........",
+                        "......g.", "........", "...g....", "........", "........")],
+    },
+    "roupa_marinheiro": {
+        "pal": {"c": (42, 94, 156), "C": (24, 54, 104), "w": (240, 240, 245), "g": (240, 194, 72)},
+        "overlay": [_ov("........", ".ww..ww.", "..wwww..", "...gg...", "........",
+                        "..wwww..", "........", "........", "........", "........")],
+    },
+    "roupa_aurora": {
+        "pal": {"c": (64, 102, 142), "C": (38, 58, 112), "p": (190, 110, 220), "g": (100, 238, 210)},
+        "overlay": [_ov("........", ".p....g.", "..p..g..", "...pg...", "...pg...",
+                        "..g..p..", ".g....p.", "........", "........", "........")],
+    },
+    "roupa_abisso": {
+        "pal": {"c": (34, 62, 94), "C": (18, 34, 62), "b": (42, 212, 220), "g": (238, 188, 74)},
+        "overlay": [_ov("........", ".b....b.", "..bbbb..", "...gg...", "...bb...",
+                        "...bb...", "........", ".b....b.", "........", "........")],
+    },
 }
 
 # Chapéus: a última linha fica em y=27 e o centro em x=35 (cabeça em x=32..38)
@@ -505,11 +582,46 @@ HATS = {
          ".yyyyyyyyy.", "yyyyyyyyyyy", "ryyyyyyyyyr", "YYYYYYYYYYY"],
         {"y": (252, 218, 50), "Y": (226, 180, 30), "k": (34, 28, 32), "r": (232, 70, 60)}),
     "chapeu_ninja": (
-        ["...kkkkk...", "..kkkkkkk..", ".rrrrrrrrr.", "kkkkkkkkkkk", ".kkkkkkkkk."],
-        {"k": (40, 38, 58), "r": (176, 48, 66)}),
+        ["...kkkkk...", "..kkkkkkk..", ".kkkkkkkkk.", "kkkkkkkkkkk",
+         "kkkkkkkkkkk", "kkkkkkkkkkk", "kkkkkkkkkkk", "kkkkkkkkkkk",
+         "kkk....kkkk", "kkk....kkkk", "kkkkkkkkkkk", "kkkkkkkkkkk",
+         ".kkkkkkkkk.", "..kkkkkkk..", "...kkkkk..."],
+        {"k": (20, 20, 30), "K": (38, 39, 52)}),
     "chapeu_samurai": (
-        ["...gg.ggg...", "..ggggggg..", ".rrrrrrrrr.", "ggggggggggg", ".kkkkkkkkk."],
-        {"g": (238, 190, 58), "r": (172, 52, 58), "k": (38, 34, 46)}),
+        ["..y...........y..", "..yy.........yy..", ".yy...........yy.",
+         ".y.............y.", "..yy.........yy..", "...yyyyyyyyyyy...",
+         "..ygggggggggggy..", ".ggggrrrrrgggggg.", "ggggggggggggggggg",
+         ".kkkkkkkkkkkkkkk."],
+        {"y": (255, 221, 112), "g": (220, 166, 55), "r": (154, 42, 52),
+         "k": (33, 32, 42)}),
+    "chapeu_cowboy": (
+        [".....ggg.....", "...ggggggg...", ".ggggggggggg.", "..kkkkkkkkk..",
+         "...kkkkkkk..."],
+        {"g": (178, 112, 54), "k": (80, 49, 34)}),
+    "chapeu_mago": (
+        ["......p......", ".....ppp.....", "....ppppp....", "...ppppppp...",
+         "..ppppppppp..", ".pppppgppppp.", "ppppppppppppp", "...ggggggg..."],
+        {"p": (92, 54, 156), "g": (255, 218, 82)}),
+    "chapeu_astronauta": (
+        ["...wwwwwww...", ".wwwwwwwwwww.", "wwwwwwwwwwwww", "wwbbbbbbbbbww",
+         "wwbbbbbbbbbww", "wwwwwwwwwwwww", ".wwwwwwwwwww.", "..wwwwwwwww..",
+         "...ggggggg..."],
+        {"w": (220, 230, 239), "b": (52, 152, 205), "g": (205, 166, 78)}),
+    "chapeu_folhas": (
+        ["..gg..gg..", ".gggggggg.", "gggggggggg", ".gggggggg.", "..gggggg.."],
+        {"g": (70, 154, 74)}),
+    "chapeu_marinheiro": (
+        ["...wwwwww...", "..wwwwwwww..", ".bbbbbbbbbb.", "bbbbbbbbbbbb",
+         "..gggggggg.."],
+        {"w": (242, 243, 247), "b": (38, 66, 128), "g": (242, 196, 70)}),
+    "chapeu_raposa": (
+        ["y........y", "yy......yy", ".yy....yy.", "..yyyyyy..", ".yywwwwyy.",
+         "yywwwwwwyy", ".yyyyyyyy."],
+        {"y": (222, 112, 43), "w": (245, 232, 208)}),
+    "chapeu_corais": (
+        ["..rr.g..bb..", ".rrrgg..bbb.", ".rrrrgggbbb.", ".rrrrrrrrrr.",
+         "rrrrrrrrrrrr"],
+        {"r": (236, 108, 120), "g": (255, 201, 82), "b": (86, 202, 210)}),
 }
 
 
@@ -528,7 +640,11 @@ def montar_personagem(roupa_id, chapeu_id):
     chapeu = HATS.get(chapeu_id)
     if chapeu:
         grade, pal_h = chapeu
-        cam.sprite(grade, pal_h, 35 - len(grade[0]) // 2, 28 - len(grade))
+        if chapeu_id == "chapeu_ninja":
+            # Touca cobre toda a cabeça e a nuca; a abertura deixa apenas os olhos visíveis.
+            cam.sprite(grade, pal_h, 35 - len(grade[0]) // 2, 20)
+        else:
+            cam.sprite(grade, pal_h, 35 - len(grade[0]) // 2, 28 - len(grade))
     cam.luz_borda()
     cam.contorno()
     return cam
@@ -564,6 +680,19 @@ BANDEIRAS = {
          "bbppppggppbb", "bbbppppppbbb", "bbbbppppbbbb"],
         {"b": (42, 68, 150), "p": (136, 74, 190), "w": (245, 236, 255),
          "g": (120, 224, 255)}),
+    "bandeira_sakura": (
+        ["pppppppppppp", "ppppwwpppppp", "pppwwwwppppp", "ppppwwpppppp",
+         "ppppggpppppp", "pppppppppppp", "pppppppppppp"],
+        {"p": (202, 88, 142), "w": (255, 225, 237), "g": (91, 177, 111)}),
+    "bandeira_tempestade": (
+        ["bbbbbbbbbbbb", "bbbbyybbbbbb", "bbbbbyybbbbb", "bbbbyybbbbbb",
+         "bbbbbyybbbbb", "bbbbbbbyyyyy", "bbbbbbbbbbbb"],
+        {"b": (35, 53, 91), "y": (248, 222, 116)}),
+    "bandeira_compasso": (
+        ["wwwwwwwwwwww", "wwwwwyywwwww", "wwwwyyyywwww", "wwwyybbyywww",
+         "wwyybbbbyyww", "wwwyybbyywww", "wwwwyyyywwww",
+         "wwwwwyywwwww"],
+        {"w": (44, 118, 112), "y": (247, 214, 117), "b": (252, 241, 213)}),
 }
 
 
@@ -621,6 +750,19 @@ BONECOS = {
         ["....ggg....", "..ggggggg..", ".ggggggggg.", ".ggkgggkgg.",
          ".ggggggggg.", "..ggggggg..", "...ggggg..."],
         {"g": (94, 220, 146), "k": (38, 46, 66)}),
+    "boneco_tartaruga": (
+        ["...gggg...", ".gggggggg.", "ggkgggkggg", "gggggggggg",
+         ".ggGGGGgg.", "..gggggg..", ".gg....gg."],
+        {"g": (100, 190, 112), "G": (62, 133, 89), "k": (35, 37, 42)}),
+    "boneco_axolote": (
+        ["r..yyyy..r", "rryyyyyyrr", ".yyyyyyyy.", "yykgyygkyy",
+         "yyyyyyyyyy", ".yyyyyyyy.", "..yyyyyy.."],
+        {"y": (244, 164, 178), "r": (228, 99, 150), "g": (242, 110, 130),
+         "k": (42, 36, 48)}),
+    "boneco_baleia": (
+        ["...bbbb....", ".bbbbbbbb..", "bbbbkbbbbbb", "bbwwwwbbbb.",
+         ".bbbbbbbb..", "..bbbbbb...", "..bb..bb..."],
+        {"b": (71, 133, 200), "w": (204, 231, 243), "k": (37, 43, 56)}),
 }
 
 
@@ -656,6 +798,15 @@ BOIAS = {
     "boia_bolha": (
         ["...ccc...", ".ccccccc.", "cccwwcccc", "ccccccccc", ".ccccccc.", "...ccc..."],
         {"c": (118, 220, 242), "w": (245, 255, 255)}),
+    "boia_lotus": (
+        ["...ppp...", ".ppp.ppp.", "ppppppppp", ".ppp.ppp.", "..ppwpp.."],
+        {"p": (222, 105, 174), "w": (255, 235, 245)}),
+    "boia_limao": (
+        ["....g....", "..ggggg..", ".ggggggg.", "ggggggggg", ".ggggggg.", "..ggggg.."],
+        {"g": (170, 220, 74)}),
+    "boia_perola": (
+        ["...ww...", ".wwggww.", "wwgggwww", "wwwwwwww", ".wwwwww.", "..wwww.."],
+        {"w": (235, 246, 255), "g": (154, 226, 235)}),
 }
 
 
@@ -932,9 +1083,9 @@ class LojaDialog(QDialog):
             lista.blockSignals(True)
             lista.clear()
             linha_equipada = 0
-            for id_, s, nome, preco in CATALOGO:
-                if s != slot:
-                    continue
+            for id_, s, nome, preco in sorted(
+                    (item for item in CATALOGO if item[1] == slot),
+                    key=lambda item: (item[3], item[2].casefold())):
                 if e["equipados"][slot] == id_:
                     status = "✔ equipado"
                     linha_equipada = lista.count()
@@ -1527,22 +1678,150 @@ class JogoPesca(QWidget):
             p.drawEllipse(QPointF(47, 48), 1.5, 1.5)
             p.drawEllipse(QPointF(69, 67), 1, 1)
 
+        elif id_ == "asas_fenix":
+            pulso = 0.5 + 0.5 * math.sin(fase * 4.0)
+            for lado in (-1, 1):
+                chama = QPainterPath(QPointF(69, 76))
+                chama.cubicTo(69 + lado * 20, 63, 69 + lado * 29, 36 - 5 * pulso, 69 + lado * 34, 28)
+                chama.cubicTo(69 + lado * 33, 50, 69 + lado * 20, 75, 69, 76)
+                p.setCompositionMode(QPainter.CompositionMode_Plus)
+                p.setBrush(QColor(255, 117, 34, 65))
+                p.setPen(QPen(QColor(255, 167, 55, 170), 2))
+                p.drawPath(chama)
+                p.setPen(QPen(QColor(255, 237, 137, 190), 1))
+                p.drawLine(QPointF(69, 72), QPointF(69 + lado * 27, 38))
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
+        elif id_ == "aura_cyber":
+            pulso = 0.5 + 0.5 * math.sin(fase * 5.0)
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(Qt.NoBrush)
+            p.setPen(QPen(QColor(32, 238, 255, 155), 1.5))
+            p.drawRoundedRect(QRectF(48, 42, 42, 62), 8, 8)
+            p.setPen(QPen(QColor(255, 54, 202, int(90 + 100 * pulso)), 1))
+            p.drawLine(QPointF(47, 57), QPointF(55, 57))
+            p.drawLine(QPointF(83, 88), QPointF(91, 88))
+            p.drawEllipse(QPointF(50, 48), 2, 2)
+            p.drawEllipse(QPointF(87, 98), 2, 2)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
+        elif id_ == "estrelas_orbitais":
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            for i in range(7):
+                ang = fase * 0.8 + i * math.tau / 7
+                x = 69 + 31 * math.cos(ang)
+                y = 73 + 42 * math.sin(ang)
+                raio = 1.4 + 0.6 * (0.5 + 0.5 * math.sin(fase * 3 + i))
+                p.setPen(QPen(QColor(255, 235, 160, 210), 1))
+                p.drawLine(QPointF(x - raio, y), QPointF(x + raio, y))
+                p.drawLine(QPointF(x, y - raio), QPointF(x, y + raio))
+                p.setBrush(QColor(165, 221, 255, 200))
+                p.setPen(Qt.NoPen)
+                p.drawEllipse(QPointF(x, y), raio * 0.65, raio * 0.65)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
+        elif id_ == "chama_yokai":
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            for i, x in enumerate((48, 90)):
+                sobe = (fase * 0.65 + i * 0.5) % 1.0
+                y = 81 - sobe * 27
+                fogo = QPainterPath(QPointF(x, y + 8))
+                fogo.cubicTo(x - 5, y + 2, x + 4, y - 1, x, y - 8)
+                fogo.cubicTo(x + 9, y - 1, x + 5, y + 8, x, y + 8)
+                p.setBrush(QColor(163, 90, 255, 125))
+                p.setPen(QPen(QColor(210, 160, 255, 200), 1))
+                p.drawPath(fogo)
+                p.setBrush(QColor(255, 197, 88, 190))
+                p.setPen(Qt.NoPen)
+                p.drawEllipse(QPointF(x, y + 2), 1.5, 2)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
         elif id_ == "sabre_energia":
             tremor = 2 * math.sin(fase * 2.4)
-            base = QPointF(82, 91)
-            ponta = QPointF(116 + tremor, 37)
+            # O punho começa na mão do pescador; a lâmina segue para cima.
+            base = QPointF(91, 78)
+            punho = QPointF(99, 68)
+            ponta = QPointF(112 + tremor, 38)
             p.setCompositionMode(QPainter.CompositionMode_Plus)
             p.setPen(QPen(QColor(35, 190, 255, 95), 12, Qt.SolidLine, Qt.RoundCap))
-            p.drawLine(base, ponta)
+            p.drawLine(punho, ponta)
             p.setPen(QPen(QColor(78, 221, 255, 220), 5, Qt.SolidLine, Qt.RoundCap))
-            p.drawLine(base, ponta)
+            p.drawLine(punho, ponta)
             p.setPen(QPen(QColor(240, 255, 255, 245), 1.8, Qt.SolidLine, Qt.RoundCap))
-            p.drawLine(base, ponta)
+            p.drawLine(punho, ponta)
             p.setCompositionMode(QPainter.CompositionMode_SourceOver)
             p.setPen(QPen(QColor(60, 54, 72), 4, Qt.SolidLine, Qt.RoundCap))
-            p.drawLine(base, QPointF(78, 96))
+            p.drawLine(base, punho)
             p.setPen(QPen(QColor(230, 178, 74), 2))
-            p.drawLine(QPointF(77, 89), QPointF(85, 94))
+            p.drawLine(QPointF(88, 75), QPointF(96, 81))
+
+        elif id_ == "cajado_tempestade":
+            brilho = QRadialGradient(QPointF(107, 41), 24)
+            brilho.setColorAt(0, QColor(163, 246, 255, 210))
+            brilho.setColorAt(0.35, QColor(76, 163, 255, 125))
+            brilho.setColorAt(1, QColor(72, 142, 255, 0))
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(QBrush(brilho))
+            p.setPen(Qt.NoPen)
+            p.drawEllipse(QPointF(107, 41), 24, 24)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+            p.setPen(QPen(QColor(116, 75, 43), 4, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(QPointF(91, 79), QPointF(107, 42))
+            p.setPen(QPen(QColor(244, 211, 111), 2))
+            p.drawLine(QPointF(91, 79), QPointF(107, 42))
+            p.setBrush(QColor(99, 225, 255))
+            p.setPen(QPen(QColor(231, 253, 255), 1))
+            p.drawEllipse(QPointF(107, 41), 4, 4)
+
+        elif id_ == "escudo_bolhas":
+            pulso = 1 + 0.04 * math.sin(fase * 3.0)
+            centro = QPointF(69, 73)
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(QColor(84, 219, 255, 22))
+            p.setPen(QPen(QColor(128, 237, 255, 175), 2))
+            p.drawEllipse(centro, 24 * pulso, 35 * pulso)
+            for i in range(5):
+                ang = fase * 1.4 + i * math.tau / 5
+                x = centro.x() + 22 * math.cos(ang)
+                y = centro.y() + 32 * math.sin(ang)
+                p.setBrush(QColor(190, 248, 255, 185))
+                p.setPen(QPen(QColor(255, 255, 255, 210), 1))
+                p.drawEllipse(QPointF(x, y), 2.3, 2.3)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
+        elif id_ == "asas_boreais":
+            brilho = 0.5 + 0.5 * math.sin(fase * 2.4)
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            for lado in (-1, 1):
+                asa = QPainterPath(QPointF(69, 69))
+                asa.cubicTo(69 + lado * 18, 37, 69 + lado * 42, 43, 69 + lado * 37, 77)
+                asa.cubicTo(69 + lado * 30, 66, 69 + lado * 20, 64, 69, 69)
+                cor = QColor(126, 244, 223, int(120 + brilho * 85))
+                p.setPen(QPen(cor, 2, Qt.SolidLine, Qt.RoundCap))
+                p.setBrush(QColor(80, 215, 225, 24))
+                p.drawPath(asa)
+                p.setPen(QPen(QColor(237, 177, 255, int(95 + brilho * 60)), 1))
+                p.drawLine(QPointF(69, 69), QPointF(69 + lado * 31, 49))
+
+        # Ferramentas cosméticas aparecem presas à mão direita do pescador.
+        if id_ == "martelo_pesado":
+            p.save()
+            p.translate(91, 78)
+            p.rotate(40)
+            p.setPen(QPen(QColor(42, 36, 43), 7, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(QPointF(0, 0), QPointF(0, -22))
+            p.setPen(QPen(QColor(143, 91, 50), 4, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(QPointF(0, 0), QPointF(0, -22))
+            p.setBrush(QColor(101, 112, 133))
+            p.setPen(QPen(QColor(38, 42, 57), 2))
+            p.drawRoundedRect(QRectF(-9, -28, 18, 9), 2, 2)
+            p.setPen(QPen(QColor(195, 211, 230), 1))
+            p.drawLine(QPointF(-6, -25), QPointF(5, -25))
+            p.restore()
+        elif id_ == "sabre_energia":
+            p.setBrush(QColor(58, 51, 68))
+            p.setPen(QPen(QColor(224, 177, 80), 1))
+            p.drawEllipse(QPointF(91, 78), 3.2, 3.2)
 
         p.restore()
 

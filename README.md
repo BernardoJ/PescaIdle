@@ -8,6 +8,8 @@ A opção **Enciclopédia** do menu registra cada espécie. O valor é revelado 
 
 Na Enciclopédia, escolha ordenar alfabeticamente ou por quantidade pescada. Ela lista apenas espécies já descobertas. A loja também inclui novos cosméticos e acessórios com efeitos visuais próprios.
 
+Os itens da loja aparecem em ordem crescente de preço dentro de cada categoria. Chapéus, roupas, bandeiras, boias, mascotes e acessórios têm várias opções visuais desbloqueáveis.
+
 ## Jogar
 
 Baixe `PescaIdle.exe` e dê dois cliques para abrir. O executável inclui o runtime necessário e não requer uma instalação separada de Python.
