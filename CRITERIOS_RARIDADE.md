@@ -14,3 +14,5 @@ Alguns exemplos que orientaram os extremos da tabela:
 - A IUCN explica as categorias de risco e ressalta que “Data Deficient” significa que faltam dados adequados para avaliar a espécie: [IUCN Red List — categorias](https://nrl.iucnredlist.org/).
 
 A lista inclui mamíferos, tartaruga, moluscos e organismos planctônicos, além de peixes. Todos aparecem como encontros abstratos do jogo; isso não significa que sejam apropriados para pesca com vara na vida real. Os menores valores-base são 0,1 moeda. O multiplicador de nível do barco continua sendo aplicado ao valor de cada captura.
+
+As curiosidades da Enciclopédia resumem traços de história natural consultados em perfis institucionais. Exemplos: [vaquita](https://www.fisheries.noaa.gov/species/vaquita/overview), [peixe-mão-vermelho](https://www.dcceew.gov.au/environment/biodiversity/threatened/action-plan/red-handfish), [narval](https://oceanexplorer.noaa.gov/ocean-fact/narwhal/), [manta-gigante](https://www.fisheries.noaa.gov/species/giant-manta-ray), [tartaruga-verde](https://www.fisheries.noaa.gov/species/green-turtle/science) e [baleia-azul](https://www.fisheries.noaa.gov/species/blue-whale).

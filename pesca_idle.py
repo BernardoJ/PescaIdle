@@ -1,5 +1,5 @@
 """
-Pesca Idle - v0.4  (pixel art HD-2D)
+Pesca Idle - v0.5  (pixel art HD-2D)
 Novidades:
   - Visual em pixel art com iluminação estilo HD-2D (brilho da lanterna, reflexos,
     bokeh, vaga-lumes e juncos desfocados em primeiro plano).
@@ -22,7 +22,7 @@ from PySide6.QtGui import (
     QPainter, QColor, QPen, QFont, QImage, QRadialGradient, QLinearGradient, QBrush, qRgba,
 )
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QMenu, QMessageBox, QDialog, QVBoxLayout,
+    QApplication, QWidget, QMenu, QMessageBox, QDialog, QVBoxLayout, QHBoxLayout,
     QLabel, QTabWidget, QListWidget, QListWidgetItem, QPushButton,
 )
 
@@ -93,6 +93,58 @@ LOOT = [
     {"nome": "Tambaqui", "cientifico": "Colossoma macropomum", "tipo": "peixe", "valor": 0.8, "peso": 1.5},
     {"nome": "Pacu", "cientifico": "Piaractus mesopotamicus", "tipo": "peixe", "valor": 0.5, "peso": 1.5},
 ]
+
+CURIOSIDADES = {
+    "Tubarão-lagarto": "Seu corpo alongado e as seis fendas branquiais lembram fósseis de antigos tubarões.",
+    "Vaquita": "Vive somente no norte do Golfo da Califórnia. É uma pequena toninha e costuma evitar barcos.",
+    "Celacanto-comorense": "Suas nadadeiras lobadas se movem alternadamente, como membros durante um nado lento.",
+    "Peixe-mão-vermelho": "Usa as nadadeiras peitorais parecidas com mãos para caminhar pelo fundo do mar.",
+    "Cavalinho-do-mar-pigmeu": "Camufla-se em corais gorgônias; sua coloração pode combinar com o coral que o abriga.",
+    "Lula-magnapinna": "Seus braços e tentáculos muito longos criam uma silhueta incomum nas filmagens de águas profundas.",
+    "Tubarão-boca-grande": "É um tubarão filtrador: nada com a boca aberta para capturar pequenos organismos.",
+    "Peixe-ogro": "Seus dentes grandes ajudam a capturar presas num ambiente profundo onde alimento é escasso.",
+    "Narval": "A famosa “presa” é, na verdade, um dente que pode crescer vários metros para fora da mandíbula.",
+    "Baleia-azul": "É o maior animal conhecido; alimenta-se principalmente de krill, filtrado com placas de barbas.",
+    "Tubarão-branco": "Seu dorso escuro e ventre claro ajudam a camuflá-lo quando visto de cima ou de baixo.",
+    "Manta-gigante": "Apesar do tamanho, alimenta-se filtrando zooplâncton da água.",
+    "Peixe-lua": "Seu corpo alto e achatado termina numa estrutura curta no lugar de uma cauda típica.",
+    "Garoupa-verdadeira": "Como várias garoupas, pode mudar de sexo ao longo da vida; em geral, fêmeas tornam-se machos.",
+    "Tartaruga-verde": "Adultos comem principalmente algas e capim-marinho; o nome vem da gordura esverdeada, não do casco.",
+    "Mero-preto": "Juvenis costumam usar manguezais e estuários como abrigo antes de viverem em recifes e naufrágios.",
+    "Orca": "É o maior membro da família dos golfinhos, e diferentes grupos têm vocalizações e hábitos próprios.",
+    "Peixe-papagaio-azul": "Seu bico raspa algas da superfície dos recifes; peixes-papagaio também ajudam a produzir areia.",
+    "Polvo-comum": "Tem três corações e sangue azulado, adaptados à circulação de oxigênio no corpo e nas brânquias.",
+    "Linguado-comum": "Quando adulto, repousa de lado no fundo e mantém os dois olhos voltados para cima.",
+    "Golfinho-nariz-de-garrafa": "Produz assobios característicos que ajudam indivíduos a reconhecer e localizar uns aos outros.",
+    "Barracuda-grande": "Seus dentes afiados e corpo hidrodinâmico favorecem ataques rápidos contra peixes menores.",
+    "Atum-azul": "É altamente migratório e pode cruzar grandes trechos do Atlântico durante suas viagens.",
+    "Peixe-palhaço": "Vive entre os tentáculos de anêmonas; uma camada de muco ajuda a evitar suas ferroadas.",
+    "Lagosta-americana": "Usa suas antenas para explorar o ambiente e detectar sinais químicos na água.",
+    "Água-viva-juba-de-leão": "Seus tentáculos finos ficam suspensos sob o sino e capturam pequenas presas à deriva.",
+    "Lula-de-humboldt": "Muda rapidamente de cor com células pigmentares, usando padrões para sinalizar a outras lulas.",
+    "Salmão-rosa": "Seu ciclo de vida costuma durar dois anos; muitos adultos retornam juntos aos rios para desovar.",
+    "Bacalhau-do-atlântico": "Uma fêmea pode liberar milhões de ovos, embora apenas uma pequena parte chegue à fase adulta.",
+    "Cavala": "Forma cardumes velozes e costuma migrar conforme a temperatura e a disponibilidade de alimento.",
+    "Sardinha-do-pacífico": "Seus grandes cardumes podem se deslocar e mudar de tamanho conforme as condições do oceano.",
+    "Anchoveta-peruana": "A corrente fria e rica em nutrientes de Humboldt sustenta uma das maiores pescarias de uma única espécie.",
+    "Arenque-atlântico": "Seus ovos pegajosos aderem a algas, pedras e outras superfícies submersas.",
+    "Polaca-do-alasca": "Vive em cardumes no Pacífico Norte e sustenta uma das maiores pescarias comerciais do mundo.",
+    "Camarão-cinza": "Pode variar a coloração e se enterrar na areia, o que ajuda a escapar de predadores.",
+    "Mexilhão-azul": "Prende-se a rochas e outras superfícies com fios resistentes chamados bissos.",
+    "Caranguejo-falso": "Apesar do nome, é um crustáceo aparentado às lagostas e pode formar enormes concentrações.",
+    "Calano": "Este copépode acumula reservas de energia e é alimento importante para peixes e baleias em mares frios.",
+    "Salpa-antártica": "Pode formar longas cadeias de indivíduos clonados que filtram partículas da água.",
+    "Peixe-lanterna-glaciar": "Faz parte do grupo de peixes que sobe à superfície à noite para se alimentar e desce de dia.",
+    "Peixe-lanterna-de-müller": "Pequeno e mesopelágico, ajuda a transferir energia do plâncton para predadores maiores.",
+    "Krill-do-pacífico": "Forma enxames e é uma fonte essencial de alimento para peixes, aves e mamíferos marinhos.",
+    "Krill-antártico": "Esses pequenos crustáceos vivem em grandes enxames e são a base alimentar de muitos animais antárticos.",
+    "Copépode-comum": "É minúsculo, mas serve de alimento a larvas de peixes e participa da base das cadeias marinhas.",
+    "Peixe-lanterna-comum": "Os fotóforos do corpo produzem luz e ajudam a quebrar sua silhueta na penumbra oceânica.",
+    "Lambari": "O nome reúne pequenos peixes de água doce; muitos vivem em cardumes e são importantes para predadores locais.",
+    "Tilápia-do-nilo": "A fêmea protege ovos e filhotes na boca, comportamento conhecido como incubação bucal.",
+    "Tambaqui": "Seus dentes fortes conseguem triturar frutos e sementes que caem na água durante a cheia.",
+    "Pacu": "Seus dentes achatados lembram os humanos e ajudam a quebrar sementes e frutos duros.",
+}
 
 # Cor do casco do barco por nível
 CORES_BARCO = [
@@ -190,6 +242,20 @@ def fmt_moedas(valor):
         return f"{int(valor):,}".replace(",", ".")
     texto = f"{valor:,.2f}".rstrip("0").rstrip(".")
     return texto.replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def raridade_da_especie(item):
+    """Converte o peso relativo de encontro em uma faixa para a enciclopédia."""
+    peso = item["peso"]
+    if peso >= 8:
+        return "Comum"
+    if peso >= 3:
+        return "Incomum"
+    if peso >= 1:
+        return "Raro"
+    if peso >= 0.1:
+        return "Muito raro"
+    return "Lendário"
 
 
 # ============================================================================
@@ -587,6 +653,83 @@ VAGALUMES = [(70, 46), (160, 58), (24, 78)]
 # ============================================================================
 # === JOGO (Qt) ==============================================================
 # ============================================================================
+
+
+class EnciclopediaDialog(QDialog):
+    def __init__(self, jogo):
+        super().__init__(jogo, Qt.Dialog | Qt.WindowStaysOnTopHint)
+        self.jogo = jogo
+        self.especies = [item for item in LOOT if item["tipo"] == "peixe"]
+        self.setWindowTitle("Enciclopédia")
+        self.setFixedSize(740, 500)
+
+        layout = QVBoxLayout(self)
+        instrucao = QLabel(
+            "Pesque 1 vez para revelar o valor, 5 vezes para revelar a raridade "
+            "e 10 vezes para revelar a curiosidade.")
+        instrucao.setWordWrap(True)
+        layout.addWidget(instrucao)
+
+        self.progresso = QLabel()
+        self.progresso.setStyleSheet("font-weight: bold;")
+        layout.addWidget(self.progresso)
+
+        colunas = QHBoxLayout()
+        self.lista = QListWidget()
+        self.lista.setMinimumWidth(270)
+        for especie in self.especies:
+            linha = QListWidgetItem(especie["nome"])
+            linha.setData(Qt.UserRole, especie["nome"])
+            self.lista.addItem(linha)
+        self.lista.currentItemChanged.connect(self.mostrar_detalhes)
+        colunas.addWidget(self.lista, 2)
+
+        self.detalhes = QLabel()
+        self.detalhes.setWordWrap(True)
+        self.detalhes.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+        colunas.addWidget(self.detalhes, 3)
+        layout.addLayout(colunas, 1)
+
+        fechar = QPushButton("Fechar")
+        fechar.clicked.connect(self.accept)
+        layout.addWidget(fechar)
+
+        self.lista.setCurrentRow(0)
+        self.atualizar_progresso()
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.atualizar_progresso)
+        self.timer.start(750)
+
+    def atualizar_progresso(self):
+        inventario = self.jogo.estado["inventario"]
+        registradas = sum(inventario.get(i["nome"], 0) >= 1 for i in self.especies)
+        self.progresso.setText(
+            f"Espécies registradas: {registradas} / {len(self.especies)}")
+        for indice, especie in enumerate(self.especies):
+            quantidade = inventario.get(especie["nome"], 0)
+            self.lista.item(indice).setText(f'{especie["nome"]}  ·  {quantidade}x')
+        self.mostrar_detalhes()
+
+    def mostrar_detalhes(self, *_):
+        linha = self.lista.currentItem()
+        if not linha:
+            self.detalhes.clear()
+            return
+        nome = linha.data(Qt.UserRole)
+        especie = next(item for item in self.especies if item["nome"] == nome)
+        quantidade = self.jogo.estado["inventario"].get(nome, 0)
+        valor = (f'{fmt_moedas(especie["valor"])} moedas-base por captura'
+                 if quantidade >= 1 else "Bloqueado — pesque esta espécie 1 vez.")
+        raridade = (raridade_da_especie(especie)
+                    if quantidade >= 5 else "Bloqueado — pesque esta espécie 5 vezes.")
+        curiosidade = (CURIOSIDADES[nome]
+                       if quantidade >= 10 else "Bloqueada — pesque esta espécie 10 vezes.")
+        self.detalhes.setText(
+            f"{nome}\n{especie['cientifico']}\nRegistrada {quantidade} vez(es)\n\n"
+            f"VALOR EM MOEDAS\n{valor}\n\n"
+            f"RARIDADE\n{raridade}\n\n"
+            f"CURIOSIDADE\n{curiosidade}\n\n"
+            "O valor mostrado é a base; o bônus do barco é aplicado na pesca.")
 
 
 class LojaDialog(QDialog):
@@ -1031,7 +1174,7 @@ class JogoPesca(QWidget):
             ("rei_piratas", "Rei dos piratas?", "Compre todos os itens de pirata na loja."),
         ]
         linhas = [f'{"🏆" if id_ in e["conquistas"] else "○"} {titulo}\n   {descricao}' for id_, titulo, descricao in definicoes]
-        self.caixa("Achievements", "\n\n".join(linhas))
+        self.caixa("Conquistas", "\n\n".join(linhas))
 
     def equipado(self, slot):
         return self.previa.get(slot, self.estado["equipados"][slot])
@@ -1063,7 +1206,8 @@ class JogoPesca(QWidget):
         m = QMenu(self)
         m.addAction("Loja", self.abrir_loja)
         m.addAction("Status e inventário", self.mostrar_status)
-        m.addAction("Achievements", self.mostrar_conquistas)
+        m.addAction("Enciclopédia", self.abrir_enciclopedia)
+        m.addAction("Conquistas", self.mostrar_conquistas)
         m.addSeparator()
         m.addAction("Retomar" if self.pausado else "Pausar", self.alternar_pausa)
         m.addAction("Sair", self.sair)
@@ -1077,6 +1221,9 @@ class JogoPesca(QWidget):
         dlg.exec()
         self.previa = {}
         self.update()
+
+    def abrir_enciclopedia(self):
+        EnciclopediaDialog(self).exec()
 
     def caixa(self, titulo, texto):
         m = QMessageBox(None)
