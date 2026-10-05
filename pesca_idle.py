@@ -1,5 +1,5 @@
 """
-Pesca Idle - v0.3  (pixel art HD-2D)
+Pesca Idle - v0.4  (pixel art HD-2D)
 Novidades:
   - Visual em pixel art com iluminação estilo HD-2D (brilho da lanterna, reflexos,
     bokeh, vaga-lumes e juncos desfocados em primeiro plano).
@@ -34,17 +34,64 @@ NIVEL_MAX = 10
 LIMITE_OFFLINE = 4 * 3600      # máximo de segundos de progresso offline (4 horas)
 SAVE_PATH = Path(os.getenv("APPDATA", str(Path.home()))) / "PescaIdle" / "save.json"
 
-# Tabela de itens que podem ser pescados
+# Tabela de capturas. O peso é relativo: maior peso significa encontro mais
+# frequente. Fauna protegida e organismos microscópicos são tratados como
+# encontros abstratos do jogo, não como orientação de pesca real.
 LOOT = [
-    {"nome": "Bota velha",      "tipo": "lixo",  "valor": 0,   "peso": 8},
-    {"nome": "Sardinha",        "tipo": "peixe", "valor": 3,   "peso": 30},
-    {"nome": "Tilápia",         "tipo": "peixe", "valor": 5,   "peso": 25},
-    {"nome": "Robalo",          "tipo": "peixe", "valor": 12,  "peso": 14},
-    {"nome": "Atum",            "tipo": "peixe", "valor": 25,  "peso": 6},
-    {"nome": "Peixe-espada",    "tipo": "peixe", "valor": 60,  "peso": 2},
-    {"nome": "Peixe dourado",   "tipo": "peixe", "valor": 150, "peso": 0.5},
-    {"nome": "Peça de vara",    "tipo": "vara",  "valor": 0,   "peso": 4},
-    {"nome": "Tábua de barco",  "tipo": "barco", "valor": 0,   "peso": 4},
+    {"nome": "Bota velha", "tipo": "lixo", "valor": 0, "peso": 8},
+    # Espécies raras, endêmicas, ameaçadas ou de observação excepcional.
+    {"nome": "Tubarão-lagarto", "cientifico": "Chlamydoselachus anguineus", "tipo": "peixe", "valor": 250, "peso": 0.18},
+    {"nome": "Vaquita", "cientifico": "Phocoena sinus", "tipo": "peixe", "valor": 5000, "peso": 0.04},
+    {"nome": "Celacanto-comorense", "cientifico": "Latimeria chalumnae", "tipo": "peixe", "valor": 2000, "peso": 0.08},
+    {"nome": "Peixe-mão-vermelho", "cientifico": "Thymichthys politus", "tipo": "peixe", "valor": 5000, "peso": 0.025},
+    {"nome": "Cavalinho-do-mar-pigmeu", "cientifico": "Hippocampus bargibanti", "tipo": "peixe", "valor": 120, "peso": 0.35},
+    {"nome": "Lula-magnapinna", "cientifico": "Magnapinna spp.", "tipo": "peixe", "valor": 1800, "peso": 0.05},
+    {"nome": "Tubarão-boca-grande", "cientifico": "Megachasma pelagios", "tipo": "peixe", "valor": 800, "peso": 0.10},
+    {"nome": "Peixe-ogro", "cientifico": "Anoplogaster cornuta", "tipo": "peixe", "valor": 80, "peso": 0.5},
+    {"nome": "Narval", "cientifico": "Monodon monoceros", "tipo": "peixe", "valor": 700, "peso": 0.12},
+    {"nome": "Baleia-azul", "cientifico": "Balaenoptera musculus", "tipo": "peixe", "valor": 1000, "peso": 0.10},
+    # Fauna de ocorrência moderada a alta, com capturabilidade reduzida.
+    {"nome": "Tubarão-branco", "cientifico": "Carcharodon carcharias", "tipo": "peixe", "valor": 250, "peso": 0.20},
+    {"nome": "Manta-gigante", "cientifico": "Mobula birostris", "tipo": "peixe", "valor": 180, "peso": 0.30},
+    {"nome": "Peixe-lua", "cientifico": "Mola mola", "tipo": "peixe", "valor": 80, "peso": 0.60},
+    {"nome": "Garoupa-verdadeira", "cientifico": "Epinephelus marginatus", "tipo": "peixe", "valor": 35, "peso": 1.0},
+    {"nome": "Tartaruga-verde", "cientifico": "Chelonia mydas", "tipo": "peixe", "valor": 500, "peso": 0.08},
+    {"nome": "Mero-preto", "cientifico": "Epinephelus itajara", "tipo": "peixe", "valor": 90, "peso": 0.40},
+    {"nome": "Orca", "cientifico": "Orcinus orca", "tipo": "peixe", "valor": 650, "peso": 0.10},
+    {"nome": "Peixe-papagaio-azul", "cientifico": "Scarus coeruleus", "tipo": "peixe", "valor": 8, "peso": 2.0},
+    {"nome": "Polvo-comum", "cientifico": "Octopus vulgaris", "tipo": "peixe", "valor": 5, "peso": 2.5},
+    {"nome": "Linguado-comum", "cientifico": "Solea solea", "tipo": "peixe", "valor": 4, "peso": 2.0},
+    {"nome": "Golfinho-nariz-de-garrafa", "cientifico": "Tursiops truncatus", "tipo": "peixe", "valor": 150, "peso": 0.20},
+    {"nome": "Barracuda-grande", "cientifico": "Sphyraena barracuda", "tipo": "peixe", "valor": 10, "peso": 1.7},
+    {"nome": "Atum-azul", "cientifico": "Thunnus thynnus", "tipo": "peixe", "valor": 100, "peso": 0.20},
+    {"nome": "Peixe-palhaço", "cientifico": "Amphiprion ocellaris", "tipo": "peixe", "valor": 2, "peso": 3.0},
+    {"nome": "Lagosta-americana", "cientifico": "Homarus americanus", "tipo": "peixe", "valor": 3, "peso": 2.4},
+    {"nome": "Água-viva-juba-de-leão", "cientifico": "Cyanea capillata", "tipo": "peixe", "valor": 1, "peso": 1.0},
+    {"nome": "Lula-de-humboldt", "cientifico": "Dosidicus gigas", "tipo": "peixe", "valor": 2, "peso": 1.8},
+    {"nome": "Salmão-rosa", "cientifico": "Oncorhynchus gorbuscha", "tipo": "peixe", "valor": 1.5, "peso": 3.0},
+    {"nome": "Bacalhau-do-atlântico", "cientifico": "Gadus morhua", "tipo": "peixe", "valor": 2, "peso": 0.8},
+    {"nome": "Cavala", "cientifico": "Scomber scombrus", "tipo": "peixe", "valor": 1, "peso": 4.5},
+    # Cardumes, espécies de alta biomassa e organismos planctônicos.
+    {"nome": "Sardinha-do-pacífico", "cientifico": "Sardinops sagax", "tipo": "peixe", "valor": 0.5, "peso": 7},
+    {"nome": "Anchoveta-peruana", "cientifico": "Engraulis ringens", "tipo": "peixe", "valor": 0.25, "peso": 12},
+    {"nome": "Arenque-atlântico", "cientifico": "Clupea harengus", "tipo": "peixe", "valor": 0.25, "peso": 9},
+    {"nome": "Polaca-do-alasca", "cientifico": "Gadus chalcogrammus", "tipo": "peixe", "valor": 0.3, "peso": 10},
+    {"nome": "Camarão-cinza", "cientifico": "Crangon crangon", "tipo": "peixe", "valor": 0.2, "peso": 9},
+    {"nome": "Mexilhão-azul", "cientifico": "Mytilus edulis", "tipo": "peixe", "valor": 0.1, "peso": 10},
+    {"nome": "Caranguejo-falso", "cientifico": "Munida gregaria", "tipo": "peixe", "valor": 0.15, "peso": 7},
+    {"nome": "Calano", "cientifico": "Calanus finmarchicus", "tipo": "peixe", "valor": 0.1, "peso": 10},
+    {"nome": "Salpa-antártica", "cientifico": "Salpa thompsoni", "tipo": "peixe", "valor": 0.1, "peso": 8},
+    {"nome": "Peixe-lanterna-glaciar", "cientifico": "Benthosema glaciale", "tipo": "peixe", "valor": 0.1, "peso": 9},
+    {"nome": "Peixe-lanterna-de-müller", "cientifico": "Maurolicus muelleri", "tipo": "peixe", "valor": 0.1, "peso": 10},
+    {"nome": "Krill-do-pacífico", "cientifico": "Euphausia pacifica", "tipo": "peixe", "valor": 0.1, "peso": 9},
+    {"nome": "Krill-antártico", "cientifico": "Euphausia superba", "tipo": "peixe", "valor": 0.1, "peso": 12},
+    {"nome": "Copépode-comum", "cientifico": "Acartia tonsa", "tipo": "peixe", "valor": 0.1, "peso": 12},
+    {"nome": "Peixe-lanterna-comum", "cientifico": "Symbolophorus barnardi", "tipo": "peixe", "valor": 0.1, "peso": 7},
+    # Espécies extras comuns em pescarias tropicais e de água doce.
+    {"nome": "Lambari", "cientifico": "Astyanax lacustris", "tipo": "peixe", "valor": 0.1, "peso": 8},
+    {"nome": "Tilápia-do-nilo", "cientifico": "Oreochromis niloticus", "tipo": "peixe", "valor": 0.2, "peso": 4},
+    {"nome": "Tambaqui", "cientifico": "Colossoma macropomum", "tipo": "peixe", "valor": 0.8, "peso": 1.5},
+    {"nome": "Pacu", "cientifico": "Piaractus mesopotamicus", "tipo": "peixe", "valor": 0.5, "peso": 1.5},
 ]
 
 # Cor do casco do barco por nível
@@ -134,6 +181,15 @@ def fmt_tempo(seg):
     m = int(seg // 60)
     h, m = divmod(m, 60)
     return f"{h}h {m:02d}min" if h else f"{m}min"
+
+
+def fmt_moedas(valor):
+    """Mostra até duas casas decimais usando separadores pt-BR."""
+    valor = round(float(valor), 2)
+    if valor.is_integer():
+        return f"{int(valor):,}".replace(",", ".")
+    texto = f"{valor:,.2f}".rstrip("0").rstrip(".")
+    return texto.replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 # ============================================================================
@@ -690,7 +746,8 @@ class LojaDialog(QDialog):
             self.btn.setEnabled(e["moedas"] >= preco)
 
     def atualizar_moedas(self):
-        self.lbl_moedas.setText(f'Suas moedas: {self.jogo.estado["moedas"]}')
+        self.lbl_moedas.setText(
+            f'Suas moedas: {fmt_moedas(self.jogo.estado["moedas"])}')
         self.atualizar_equipamento()
         self.atualizar_botao()
 
@@ -868,29 +925,16 @@ class JogoPesca(QWidget):
         tipo = item["tipo"]
         r = {"tipo": tipo, "texto": "", "cor": "#ffffff"}
         if tipo == "peixe":
-            ganho = round(item["valor"] * (1 + 0.2 * e["barco"]))
+            ganho = round(item["valor"] * (1 + 0.2 * e["barco"]), 2)
             e["moedas"] += ganho
             e["total_pescados"] += 1
             e["inventario"][item["nome"]] = e["inventario"].get(item["nome"], 0) + 1
             self.verificar_conquistas()
-            r["texto"] = f'{item["nome"]}  +{ganho} moedas'
+            r["texto"] = f'{item["nome"]}  +{fmt_moedas(ganho)} moedas'
             r["cor"] = "#ffd54f" if item["valor"] >= 25 else "#ffffff"
         elif tipo == "lixo":
             r["texto"] = f'{item["nome"]}... nada de útil'
             r["cor"] = "#b0b0b0"
-        else:  # peça de vara ou de barco
-            nome = "Vara" if tipo == "vara" else "Barco"
-            e["pecas_" + tipo] += 1
-            if self.aplicar_upgrade(tipo):
-                r["texto"] = f"{nome} melhorada! Nv {e[tipo]}"
-                r["cor"] = "#80ff80"
-            elif e[tipo] >= NIVEL_MAX:
-                r["texto"] = f'{item["nome"]} (nível máximo)'
-                r["cor"] = "#80d8ff"
-            else:
-                r["texto"] = (f'{item["nome"]}! '
-                              f'({e["pecas_" + tipo]}/{self.pecas_necessarias(tipo)})')
-                r["cor"] = "#80d8ff"
         return r
 
     def simular_offline(self):
@@ -919,7 +963,7 @@ class JogoPesca(QWidget):
             contado += f" (limite de {fmt_tempo(LIMITE_OFFLINE)})"
         linhas.append(contado)
         linhas.append(f"Pescarias: {pescas}")
-        linhas.append(f'Moedas ganhas: +{e["moedas"] - moedas0}')
+        linhas.append(f'Moedas ganhas: +{fmt_moedas(e["moedas"] - moedas0)}')
         if e["vara"] > vara0:
             linhas.append(f'Vara: Nv {vara0} → Nv {e["vara"]}')
         if e["barco"] > barco0:
@@ -953,7 +997,7 @@ class JogoPesca(QWidget):
     def atualizar_tooltip(self):
         e = self.estado
         self.setToolTip(
-            f'Moedas: {e["moedas"]}  |  Vara Nv {e["vara"]}  |  Barco Nv {e["barco"]}'
+            f'Moedas: {fmt_moedas(e["moedas"])}  |  Vara Nv {e["vara"]}  |  Barco Nv {e["barco"]}'
         )
 
     def verificar_conquistas(self):
@@ -961,7 +1005,7 @@ class JogoPesca(QWidget):
         definicoes = [
             ("vestir_todos", "Temos que vestir todos!", "Compre o Gorro do Pikachu na loja.", "chapeu_pikachu" in e["cosmeticos"]),
             ("criatura_digital", "Criatura Digital.", "Compre o Boneco Agumon na loja.", "boneco_agumon" in e["cosmeticos"]),
-            ("rei_pesca", "Rei da pesca.", "Pesque todos os tipos de peixes pelo menos uma vez.", all(e["inventario"].get(i["nome"], 0) > 0 for i in LOOT if i["tipo"] == "peixe")),
+            ("rei_pesca", "Rei da pesca.", "Registre todas as espécies aquáticas pelo menos uma vez.", all(e["inventario"].get(i["nome"], 0) > 0 for i in LOOT if i["tipo"] == "peixe")),
             ("mestre_vara", "Mestre da vara.", "Coloque a vara de pesca no nível máximo.", e["vara"] >= NIVEL_MAX),
             ("mestre_barco", "Mestre do barco.", "Coloque o barco de pesca no nível máximo.", e["barco"] >= NIVEL_MAX),
             ("rei_piratas", "Rei dos piratas?", "Compre todos os itens de pirata na loja.", all(i[0] in e["cosmeticos"] for i in CATALOGO if "pirata" in i[0])),
@@ -981,7 +1025,7 @@ class JogoPesca(QWidget):
         definicoes = [
             ("vestir_todos", "Temos que vestir todos!", "Compre o Gorro do Pikachu na loja."),
             ("criatura_digital", "Criatura Digital.", "Compre o Boneco Agumon na loja."),
-            ("rei_pesca", "Rei da pesca.", "Pesque todos os tipos de peixes pelo menos uma vez."),
+            ("rei_pesca", "Rei da pesca.", "Registre todas as espécies aquáticas pelo menos uma vez."),
             ("mestre_vara", "Mestre da vara.", "Coloque a vara de pesca no nível máximo."),
             ("mestre_barco", "Mestre do barco.", "Coloque o barco de pesca no nível máximo."),
             ("rei_piratas", "Rei dos piratas?", "Compre todos os itens de pirata na loja."),
@@ -1012,7 +1056,7 @@ class JogoPesca(QWidget):
 
     def _texto_tooltip(self):
         e = self.estado
-        return (f'Moedas: {e["moedas"]}  |  Vara Nv {e["vara"]}  |  '
+        return (f'Moedas: {fmt_moedas(e["moedas"])}  |  Vara Nv {e["vara"]}  |  '
                 f'Barco Nv {e["barco"]}')
 
     def abrir_menu(self):
@@ -1046,11 +1090,11 @@ class JogoPesca(QWidget):
         e = self.estado
         inv = "\n".join(f"  {n}: {q}" for n, q in sorted(e["inventario"].items())) or "  (vazio)"
         texto = (
-            f'Moedas: {e["moedas"]}\n'
+            f'Moedas: {fmt_moedas(e["moedas"])}\n'
             f'Vara: Nv {e["vara"]}  (peças {e["pecas_vara"]}/{self.pecas_necessarias("vara")})\n'
             f'Barco: Nv {e["barco"]}  (tábuas {e["pecas_barco"]}/{self.pecas_necessarias("barco")})\n'
             f'Total pescado: {e["total_pescados"]}\n\n'
-            f'Peixes:\n{inv}'
+            f'Espécies registradas:\n{inv}'
         )
         self.caixa("Pesca Idle", texto)
 

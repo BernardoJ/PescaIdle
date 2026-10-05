@@ -2,6 +2,8 @@
 
 Jogo idle de pesca para Windows, feito em Python com PySide6.
 
+A tabela de capturas reúne peixes e outras espécies aquáticas; os critérios e as fontes usados para ajustar raridade e recompensa estão em [`CRITERIOS_RARIDADE.md`](CRITERIOS_RARIDADE.md).
+
 ## Jogar
 
 Baixe `PescaIdle.exe` e dê dois cliques para abrir. O executável inclui o runtime necessário e não requer uma instalação separada de Python.
