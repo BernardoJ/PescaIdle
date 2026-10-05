@@ -1,5 +1,5 @@
 """
-Pesca Idle - v0.5  (pixel art HD-2D)
+Pesca Idle - v0.6  (pixel art HD-2D)
 Novidades:
   - Visual em pixel art com iluminação estilo HD-2D (brilho da lanterna, reflexos,
     bokeh, vaga-lumes e juncos desfocados em primeiro plano).
@@ -17,13 +17,14 @@ import random
 import time
 from pathlib import Path
 
-from PySide6.QtCore import Qt, QTimer, QRect, QPoint, QPointF
+from PySide6.QtCore import Qt, QTimer, QRect, QRectF, QPoint, QPointF
 from PySide6.QtGui import (
-    QPainter, QColor, QPen, QFont, QImage, QRadialGradient, QLinearGradient, QBrush, qRgba,
+    QPainter, QColor, QPen, QFont, QImage, QRadialGradient, QLinearGradient,
+    QBrush, QPainterPath, qRgba,
 )
 from PySide6.QtWidgets import (
     QApplication, QWidget, QMenu, QMessageBox, QDialog, QVBoxLayout, QHBoxLayout,
-    QLabel, QTabWidget, QListWidget, QListWidgetItem, QPushButton,
+    QLabel, QTabWidget, QListWidget, QListWidgetItem, QPushButton, QComboBox,
 )
 
 # ----------------------------------------------------------------------------
@@ -163,6 +164,7 @@ SLOTS = {
     "bandeira": "Bandeiras",
     "boia": "Boias",
     "boneco": "Bonecos",
+    "acessorio": "Acessórios",
 }
 
 CATALOGO = [
@@ -175,6 +177,8 @@ CATALOGO = [
     ("chapeu_cartola",  "chapeu",   "Cartola",            1200),
     ("chapeu_coroa",    "chapeu",   "Coroa dourada",      5000),
     ("chapeu_pikachu",  "chapeu",   "Gorro do Pikachu",   9999),
+    ("chapeu_ninja",    "chapeu",   "Capuz de ninja",     1800),
+    ("chapeu_samurai",  "chapeu",   "Elmo de samurai",    2600),
 
     ("roupa_vermelha",  "roupa",    "Camisa vermelha",    0),
     ("roupa_azul",      "roupa",    "Camisa azul",        100),
@@ -183,18 +187,24 @@ CATALOGO = [
     ("roupa_capa",      "roupa",    "Capa de chuva",      700),
     ("roupa_capitao",   "roupa",    "Casaco de capitão",  1500),
     ("roupa_gala",      "roupa",    "Traje de gala",      3000),
+    ("roupa_ninja",     "roupa",    "Traje de ninja",     2200),
+    ("roupa_astral",    "roupa",    "Manto estelar",      3500),
 
     ("bandeira_nenhum",   "bandeira", "Sem bandeira",       0),
     ("bandeira_vermelha", "bandeira", "Bandeirinha vermelha", 100),
     ("bandeira_brasil",   "bandeira", "Bandeira do Brasil", 300),
     ("bandeira_arco",     "bandeira", "Bandeira arco-íris", 500),
     ("bandeira_pirata",   "bandeira", "Bandeira pirata",    1000),
+    ("bandeira_dragao",   "bandeira", "Bandeira do dragão", 1300),
+    ("bandeira_nebulosa", "bandeira", "Bandeira nebulosa",  1700),
 
     ("boia_vermelha",   "boia",     "Boia vermelha",      0),
     ("boia_amarela",    "boia",     "Boia amarela",       100),
     ("boia_listrada",   "boia",     "Boia listrada",      250),
     ("boia_coracao",    "boia",     "Boia coração",       600),
     ("boia_estrela",    "boia",     "Boia estrela",       1500),
+    ("boia_planeta",    "boia",     "Boia planeta",       2200),
+    ("boia_bolha",      "boia",     "Boia de bolha",      1200),
 
     ("boneco_nenhum",     "boneco", "Sem boneco",         0),
     ("boneco_pato",       "boneco", "Patinho de borracha", 300),
@@ -202,6 +212,16 @@ CATALOGO = [
     ("boneco_gato",       "boneco", "Gatinho",            1500),
     ("boneco_pinguim",    "boneco", "Pinguim",            3000),
     ("boneco_agumon",     "boneco", "Agumon",             9999),
+    ("boneco_robot",      "boneco", "Robô explorador",    6000),
+    ("boneco_slime",      "boneco", "Mascote gelatinoso", 4500),
+
+    ("acessorio_nenhum", "acessorio", "Sem acessório",          0),
+    ("anel_verde_esmeralda", "acessorio", "Anel Verde-Esmeralda", 12000),
+    ("martelo_pesado", "acessorio", "Martelo Pesado",            15000),
+    ("teia_aracnidea", "acessorio", "Lançador de Teia",           10500),
+    ("orbe_dragon", "acessorio", "Orbe do Dragão",                14000),
+    ("broche_lunar", "acessorio", "Broche Lunar",                 11500),
+    ("sabre_energia", "acessorio", "Sabre de Energia",             16000),
 ]
 CAT = {c[0]: c for c in CATALOGO}
 
@@ -218,6 +238,7 @@ ESTADO_PADRAO = {
     "cosmeticos": [
         "chapeu_palha", "chapeu_nenhum", "roupa_vermelha",
         "bandeira_nenhum", "boia_vermelha", "boneco_nenhum",
+        "acessorio_nenhum",
     ],
     "equipados": {
         "chapeu": "chapeu_palha",
@@ -225,6 +246,7 @@ ESTADO_PADRAO = {
         "bandeira": "bandeira_nenhum",
         "boia": "boia_vermelha",
         "boneco": "boneco_nenhum",
+        "acessorio": "acessorio_nenhum",
     },
 }
 
@@ -441,6 +463,16 @@ ROUPAS = {
         "overlay": [_ov("........", "..wrrw..", "...ww...", "...ww...", "...w....",
                         "........", "........", "........", "........", "........")],
     },
+    "roupa_ninja": {
+        "pal": {"c": (54, 48, 76), "C": (28, 26, 42), "r": (190, 42, 62)},
+        "overlay": [_ov("........", "........", "..rrrr..", "...rr...", "...rr...",
+                        "...rr...", "...rr...", "........", "........", "........")],
+    },
+    "roupa_astral": {
+        "pal": {"c": (66, 62, 160), "C": (38, 36, 108), "g": (255, 224, 110)},
+        "overlay": [_ov("........", ".g......", "........", "......g.",
+                        "...g....", "........", ".g......", "........", ".....g..", "........")],
+    },
 }
 
 # Chapéus: a última linha fica em y=27 e o centro em x=35 (cabeça em x=32..38)
@@ -472,6 +504,12 @@ HATS = {
         [".kk.....kk.", ".kk.....kk.", ".yy.....yy.", ".yyy...yyy.", "..yyyyyyy..",
          ".yyyyyyyyy.", "yyyyyyyyyyy", "ryyyyyyyyyr", "YYYYYYYYYYY"],
         {"y": (252, 218, 50), "Y": (226, 180, 30), "k": (34, 28, 32), "r": (232, 70, 60)}),
+    "chapeu_ninja": (
+        ["...kkkkk...", "..kkkkkkk..", ".rrrrrrrrr.", "kkkkkkkkkkk", ".kkkkkkkkk."],
+        {"k": (40, 38, 58), "r": (176, 48, 66)}),
+    "chapeu_samurai": (
+        ["...gg.ggg...", "..ggggggg..", ".rrrrrrrrr.", "ggggggggggg", ".kkkkkkkkk."],
+        {"g": (238, 190, 58), "r": (172, 52, 58), "k": (38, 34, 46)}),
 }
 
 
@@ -517,6 +555,15 @@ BANDEIRAS = {
          "gyyybbbbyyyg", "ggyyybbyyygg", "gggyyyyyyggg", "gggggyyggggg",
          "gggggggggggg"],
         {"g": (40, 150, 70), "y": (250, 215, 40), "b": (40, 70, 170)}),
+    "bandeira_dragao": (
+        ["kkkkrrrrkkkk", "kkkrrrrrrkkk", "kkrrrrrrrrkk", "krrrggggrrrk",
+         "kkrrrrrrrrkk", "kkkrrrrrrkkk", "kkkkrrrrkkkk"],
+        {"k": (34, 30, 46), "r": (190, 48, 52), "g": (245, 205, 82)}),
+    "bandeira_nebulosa": (
+        ["bbbbppppbbbb", "bbbppppppbbb", "bbppwwppppbb", "pppwwppppppp",
+         "bbppppggppbb", "bbbppppppbbb", "bbbbppppbbbb"],
+        {"b": (42, 68, 150), "p": (136, 74, 190), "w": (245, 236, 255),
+         "g": (120, 224, 255)}),
 }
 
 
@@ -566,6 +613,14 @@ BONECOS = {
          "..ww....ww.."],
         {"o": (250, 140, 30), "c": (255, 226, 150), "w": (245, 245, 250),
          "g": (40, 170, 90)}),
+    "boneco_robot": (
+        ["..sssss..", ".swwswws.", ".sssssss.", "..srrrs..", ".sssssss.",
+         "..s...s..", ".ss...ss."],
+        {"s": (142, 166, 190), "w": (100, 228, 255), "r": (230, 80, 88)}),
+    "boneco_slime": (
+        ["....ggg....", "..ggggggg..", ".ggggggggg.", ".ggkgggkgg.",
+         ".ggggggggg.", "..ggggggg..", "...ggggg..."],
+        {"g": (94, 220, 146), "k": (38, 46, 66)}),
 }
 
 
@@ -595,6 +650,12 @@ BOIAS = {
     "boia_estrela": (
         ["...y...", "...y...", "yyyyyyy", ".yyyyy.", "..yyy..", ".yy.yy.", ".y...y."],
         {"y": (250, 204, 44)}),
+    "boia_planeta": (
+        ["...bbb...", ".bbbbbbb.", "bbgggbbbb", "bbbbbbbbb", ".bbbbbbb.", "...bbb..."],
+        {"b": (78, 126, 234), "g": (74, 220, 152)}),
+    "boia_bolha": (
+        ["...ccc...", ".ccccccc.", "cccwwcccc", "ccccccccc", ".ccccccc.", "...ccc..."],
+        {"c": (118, 220, 242), "w": (245, 255, 255)}),
 }
 
 
@@ -675,14 +736,18 @@ class EnciclopediaDialog(QDialog):
         layout.addWidget(self.progresso)
 
         colunas = QHBoxLayout()
+        painel_lista = QVBoxLayout()
+        self.ordenacao = QComboBox()
+        self.ordenacao.addItem("Ordem alfabética", "alfabetica")
+        self.ordenacao.addItem("Quantidade pescada (maior primeiro)", "quantidade")
+        self.ordenacao.currentIndexChanged.connect(self.atualizar_lista)
+        painel_lista.addWidget(self.ordenacao)
+
         self.lista = QListWidget()
         self.lista.setMinimumWidth(270)
-        for especie in self.especies:
-            linha = QListWidgetItem(especie["nome"])
-            linha.setData(Qt.UserRole, especie["nome"])
-            self.lista.addItem(linha)
         self.lista.currentItemChanged.connect(self.mostrar_detalhes)
-        colunas.addWidget(self.lista, 2)
+        painel_lista.addWidget(self.lista, 1)
+        colunas.addLayout(painel_lista, 2)
 
         self.detalhes = QLabel()
         self.detalhes.setWordWrap(True)
@@ -694,7 +759,6 @@ class EnciclopediaDialog(QDialog):
         fechar.clicked.connect(self.accept)
         layout.addWidget(fechar)
 
-        self.lista.setCurrentRow(0)
         self.atualizar_progresso()
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.atualizar_progresso)
@@ -705,7 +769,33 @@ class EnciclopediaDialog(QDialog):
         registradas = sum(inventario.get(i["nome"], 0) >= 1 for i in self.especies)
         self.progresso.setText(
             f"Espécies registradas: {registradas} / {len(self.especies)}")
-        for indice, especie in enumerate(self.especies):
+        self.atualizar_lista()
+
+    def atualizar_lista(self, *_):
+        inventario = self.jogo.estado["inventario"]
+        capturadas = [i for i in self.especies if inventario.get(i["nome"], 0) >= 1]
+        if self.ordenacao.currentData() == "quantidade":
+            capturadas.sort(key=lambda i: (-inventario.get(i["nome"], 0), i["nome"].casefold()))
+        else:
+            capturadas.sort(key=lambda i: i["nome"].casefold())
+
+        nomes = [i["nome"] for i in capturadas]
+        atuais = [self.lista.item(n).data(Qt.UserRole) for n in range(self.lista.count())]
+        selecionado = (self.lista.currentItem().data(Qt.UserRole)
+                       if self.lista.currentItem() else None)
+        if nomes != atuais:
+            self.lista.blockSignals(True)
+            self.lista.clear()
+            for especie in capturadas:
+                linha = QListWidgetItem()
+                linha.setData(Qt.UserRole, especie["nome"])
+                self.lista.addItem(linha)
+            if nomes:
+                self.lista.setCurrentRow(nomes.index(selecionado)
+                                         if selecionado in nomes else 0)
+            self.lista.blockSignals(False)
+
+        for indice, especie in enumerate(capturadas):
             quantidade = inventario.get(especie["nome"], 0)
             self.lista.item(indice).setText(f'{especie["nome"]}  ·  {quantidade}x')
         self.mostrar_detalhes()
@@ -713,7 +803,7 @@ class EnciclopediaDialog(QDialog):
     def mostrar_detalhes(self, *_):
         linha = self.lista.currentItem()
         if not linha:
-            self.detalhes.clear()
+            self.detalhes.setText("Pesque uma espécie para adicioná-la à Enciclopédia.")
             return
         nome = linha.data(Qt.UserRole)
         especie = next(item for item in self.especies if item["nome"] == nome)
@@ -1341,6 +1431,121 @@ class JogoPesca(QWidget):
         sp.end()
         return cena, dy
 
+    def desenhar_acessorio(self, p, fase):
+        id_ = self.equipado("acessorio")
+        centro_pescador = QPointF(69, 75)
+        p.save()
+
+        if id_ == "anel_verde_esmeralda":
+            pulso = 1 + 0.08 * math.sin(fase * 3.2)
+            brilho = QRadialGradient(centro_pescador, 45 * pulso)
+            brilho.setColorAt(0.0, QColor(50, 255, 115, 85))
+            brilho.setColorAt(0.55, QColor(20, 240, 95, 38))
+            brilho.setColorAt(1.0, QColor(0, 230, 80, 0))
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(QBrush(brilho))
+            p.setPen(Qt.NoPen)
+            p.drawEllipse(centro_pescador, 45 * pulso, 45 * pulso)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+            p.setBrush(Qt.NoBrush)
+            p.setPen(QPen(QColor(95, 255, 145, 220), 2))
+            p.drawEllipse(centro_pescador, 24 * pulso, 34 * pulso)
+
+        elif id_ == "martelo_pesado":
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            for i, x in enumerate((43, 119)):
+                pulso = (fase * 0.9 + i * 0.48) % 1.0
+                if pulso > 0.24:
+                    continue
+                alfa = int(230 * (1 - pulso / 0.24))
+                caminho = QPainterPath(QPointF(x, -4))
+                for passo in range(1, 8):
+                    y = passo * 13
+                    desvio = math.sin(fase * 13 + passo * 2.1 + i) * (5 + passo)
+                    caminho.lineTo(x + desvio, y)
+                caminho.lineTo(x - 3, 97)
+                p.setPen(QPen(QColor(45, 145, 255, alfa // 2), 9,
+                              Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
+                p.drawPath(caminho)
+                p.setPen(QPen(QColor(220, 246, 255, alfa), 2.4,
+                              Qt.SolidLine, Qt.RoundCap, Qt.RoundJoin))
+                p.drawPath(caminho)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+
+        elif id_ == "teia_aracnidea":
+            p.setPen(QPen(QColor(225, 244, 255, 190), 1.2))
+            ancora = QPointF(236, 2)
+            pontas = [QPointF(177, 2), QPointF(236, 57),
+                      QPointF(193, 43), QPointF(211, 17)]
+            for ponta in pontas:
+                p.drawLine(ancora, ponta)
+            p.drawArc(QRectF(183, 2, 54, 54), 180 * 16, 90 * 16)
+            p.drawArc(QRectF(195, 2, 42, 42), 180 * 16, 90 * 16)
+            p.drawArc(QRectF(207, 2, 30, 30), 180 * 16, 90 * 16)
+            p.drawArc(QRectF(219, 2, 18, 18), 180 * 16, 90 * 16)
+
+        elif id_ == "orbe_dragon":
+            x = 112 + 5 * math.sin(fase * 1.7)
+            y = 55 + 5 * math.cos(fase * 1.4)
+            brilho = QRadialGradient(QPointF(x, y), 29)
+            brilho.setColorAt(0.0, QColor(255, 244, 170, 205))
+            brilho.setColorAt(0.28, QColor(255, 138, 28, 135))
+            brilho.setColorAt(1.0, QColor(255, 82, 12, 0))
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(QBrush(brilho))
+            p.setPen(Qt.NoPen)
+            p.drawEllipse(QPointF(x, y), 29, 29)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+            p.setBrush(QColor(244, 121, 28, 225))
+            p.setPen(QPen(QColor(255, 218, 104), 1))
+            p.drawEllipse(QPointF(x, y), 8, 8)
+            p.setBrush(QColor(255, 236, 152))
+            p.setPen(Qt.NoPen)
+            p.drawEllipse(QPointF(x - 2, y - 3), 2, 2)
+            for i in range(3):
+                ang = fase * 1.8 + i * math.tau / 3
+                p.fillRect(int(x + 14 * math.cos(ang)),
+                           int(y + 14 * math.sin(ang)), 2, 2,
+                           QColor(255, 190, 66, 230))
+
+        elif id_ == "broche_lunar":
+            pulso = 0.5 + 0.5 * math.sin(fase * 3.8)
+            brilho = QRadialGradient(QPointF(56, 55), 25)
+            brilho.setColorAt(0, QColor(255, 222, 92, int(90 + 75 * pulso)))
+            brilho.setColorAt(1, QColor(255, 198, 50, 0))
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setBrush(QBrush(brilho))
+            p.setPen(Qt.NoPen)
+            p.drawEllipse(QPointF(56, 55), 25, 25)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+            lua = QPainterPath()
+            lua.addEllipse(QRectF(49, 48, 18, 18))
+            recorte = QPainterPath()
+            recorte.addEllipse(QRectF(56, 44, 18, 18))
+            p.fillPath(lua.subtracted(recorte), QBrush(QColor(255, 218, 88)))
+            p.setBrush(QColor(255, 248, 201))
+            p.drawEllipse(QPointF(47, 48), 1.5, 1.5)
+            p.drawEllipse(QPointF(69, 67), 1, 1)
+
+        elif id_ == "sabre_energia":
+            tremor = 2 * math.sin(fase * 2.4)
+            base = QPointF(82, 91)
+            ponta = QPointF(116 + tremor, 37)
+            p.setCompositionMode(QPainter.CompositionMode_Plus)
+            p.setPen(QPen(QColor(35, 190, 255, 95), 12, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(base, ponta)
+            p.setPen(QPen(QColor(78, 221, 255, 220), 5, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(base, ponta)
+            p.setPen(QPen(QColor(240, 255, 255, 245), 1.8, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(base, ponta)
+            p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+            p.setPen(QPen(QColor(60, 54, 72), 4, Qt.SolidLine, Qt.RoundCap))
+            p.drawLine(base, QPointF(78, 96))
+            p.setPen(QPen(QColor(230, 178, 74), 2))
+            p.drawLine(QPointF(77, 89), QPointF(85, 94))
+
+        p.restore()
+
     def paintEvent(self, _):
         f = self.fase
         cena, dy = self.desenhar_cena()
@@ -1394,6 +1599,8 @@ class JogoPesca(QWidget):
                           dire.width() * 3, dire.height() * 3), dire)
         p.setOpacity(1.0)
         p.setRenderHint(QPainter.SmoothPixmapTransform, False)
+
+        self.desenhar_acessorio(p, f)
 
         # popup do que foi pescado
         if self.popup:
