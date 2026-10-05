@@ -1,9 +1,10 @@
 """
-Pesca Idle - v0.7  (pixel art HD-2D)
+Pesca Idle - v0.8  (pixel art 16-bit de aventura)
 Novidades:
-  - Visual em pixel art com iluminação estilo HD-2D (brilho da lanterna, reflexos,
-    bokeh, vaga-lumes e juncos desfocados em primeiro plano).
-  - Menu acessado pelo ícone do baú no canto superior direito (sem botão direito).
+  - Cenário, sprites e interface com paleta viva de RPGs 16-bit, serras em pixels,
+    mar turquesa e céu de fim de tarde em faixas de cor.
+  - Janela sem moldura arrastável; abre no canto inferior direito como antes.
+  - Menu hambúrguer no canto superior direito e janela que pode ser arrastada.
   - "Loja" única: upgrades de vara e barco + acessórios cosméticos.
 
 Requisitos:  pip install PySide6
@@ -19,7 +20,7 @@ from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QRect, QRectF, QPoint, QPointF
 from PySide6.QtGui import (
-    QPainter, QColor, QPen, QFont, QImage, QRadialGradient, QLinearGradient,
+    QPainter, QColor, QPen, QFont, QImage, QRadialGradient,
     QBrush, QPainterPath, qRgba,
 )
 from PySide6.QtWidgets import (
@@ -147,11 +148,11 @@ CURIOSIDADES = {
     "Pacu": "Seus dentes achatados lembram os humanos e ajudam a quebrar sementes e frutos duros.",
 }
 
-# Cor do casco do barco por nível
+# Paleta viva de aventura em 16-bit; cada nível do barco ganha uma cor própria.
 CORES_BARCO = [
-    (150, 95, 55), (170, 110, 60), (120, 130, 140), (90, 150, 190),
-    (200, 170, 70), (210, 90, 90), (140, 90, 190), (60, 170, 130),
-    (230, 140, 50), (240, 220, 120), (250, 250, 250),
+    (177, 91, 53), (207, 126, 61), (93, 129, 153), (53, 138, 191),
+    (222, 174, 68), (210, 77, 73), (148, 89, 190), (54, 165, 131),
+    (236, 128, 48), (250, 209, 96), (250, 238, 194),
 ]
 
 # ----------------------------------------------------------------------------
@@ -336,8 +337,8 @@ LANT_X, LANT_Y = 54, 40          # canto da lanterna (5x6)
 ROD_ORIGEM = (46, 38)
 ROD_PONTA = (100, 20)
 BOIA_X = 100
-COR_CONTORNO = (36, 28, 48)
-COR_LUZ = (255, 198, 120)
+COR_CONTORNO = (35, 31, 68)
+COR_LUZ = (255, 218, 133)
 
 
 def misturar(c1, c2, k):
@@ -693,6 +694,23 @@ BANDEIRAS = {
          "wwyybbbbyyww", "wwwyybbyywww", "wwwwyyyywwww",
          "wwwwwyywwwww"],
         {"w": (44, 118, 112), "y": (247, 214, 117), "b": (252, 241, 213)}),
+    "bandeira_folhas": (
+        ["gggggggggggg", "gggggggggggg", "gggtggggtggg", "gggttgggttgg",
+         "gggtggggtggg", "gggggggggggg", "gggggggggggg"],
+        {"g": (38, 105, 73), "t": (241, 196, 111)}),
+    "bandeira_sol": (
+        ["wwwwwwwwwwww", "wwwrrwwwwwww", "wwrrrrwwwwww", "wrrroorrrwww",
+         "wwrrrrwwwwww", "wwwrrwwwwwww", "wwwwwwwwwwww"],
+        {"w": (246, 215, 166), "r": (183, 54, 62), "o": (250, 183, 84)}),
+    "bandeira_kraken": (
+        ["nnnnnnnnnnnn", "nnpppppppnnn", "nppnnnnnppnn", "ppnncpcnnppp",
+         "nppnpppnnppn", "nnpppnnpppnn", "nnnnnnnnnnnn"],
+        {"n": (33, 48, 92), "p": (152, 83, 191), "c": (117, 228, 219)}),
+    "bandeira_galaxia": (
+        ["nnnnnynnnnnn", "nnnppnnnnncn", "nnpppnnnyynn", "nnppppnnnnnn",
+         "nnnpppcnnnnn", "nnnnnnnnnppn", "nnynnnnpppnn"],
+        {"n": (28, 39, 91), "p": (112, 77, 181), "c": (105, 214, 228),
+         "y": (255, 218, 131)}),
 }
 
 
@@ -763,6 +781,24 @@ BONECOS = {
         ["...bbbb....", ".bbbbbbbb..", "bbbbkbbbbbb", "bbwwwwbbbb.",
          ".bbbbbbbb..", "..bbbbbb...", "..bb..bb..."],
         {"b": (71, 133, 200), "w": (204, 231, 243), "k": (37, 43, 56)}),
+    "boneco_fantasma": (
+        ["....wwww....", "..wwwwwwww..", ".wwwwwwwwww.", "wwkw.ww.kwww",
+         "wwwwwwwwwwww", "wwwwwwwwwwww", ".wwwwwwwwww.", "..wwwwwwww..",
+         "...wwwwww...", "...ww..ww..."],
+        {"w": (239, 243, 255), "k": (45, 48, 77)}),
+    "boneco_polvo": (
+        ["....pppp....", "..pppppppp..", ".pppppppppp.", "ppkppppkpppp",
+         "pppppppppppp", ".pppppppppp.", "p.pp.pp.pp.p", "pp..pp..pppp"],
+        {"p": (164, 101, 207), "k": (38, 36, 57)}),
+    "boneco_capivara": (
+        ["..tt....tt..", ".tttt..tttt.", ".tttttttttt.", "ttkttttktttt",
+         "tttttttttttt", ".tttttwwttt.", "..ttwwwwtt..", "...tttttt..."],
+        {"t": (174, 112, 70), "w": (235, 207, 168), "k": (39, 34, 36)}),
+    "boneco_raposa": (
+        ["r..rrrrrr..r", "rr.rrrrrr.rr", ".rrrrrrrrrr.", "rrrrrrrrrrrr",
+         "rrkrrwwkrrr.", "rrrrwwwwrrrr", ".rrrwwwwrrr.", "..rrrwwrrr..",
+         "...rrrrrr..."],
+        {"r": (214, 91, 48), "w": (248, 231, 197), "k": (42, 34, 40)}),
 }
 
 
@@ -807,6 +843,24 @@ BOIAS = {
     "boia_perola": (
         ["...ww...", ".wwggww.", "wwgggwww", "wwwwwwww", ".wwwwww.", "..wwww.."],
         {"w": (235, 246, 255), "g": (154, 226, 235)}),
+    "boia_donut": (
+        ["...rrr...", ".rrrrrrr.", "rrr...rrr", "rr.....rr",
+         "rr.....rr", "rrr...rrr", ".rrrrrrr.", "...rrr..."],
+        {"r": (238, 121, 97)}),
+    "boia_abacaxi": (
+        ["...ggg...", "..ggggg..", "...yyyy..", "..yyyyyy.", ".yyzyzyy.",
+         ".yyyyyyy.", "..yyyyy..", "...yyy..."],
+        {"g": (77, 173, 91), "y": (248, 193, 69), "z": (211, 140, 47)}),
+    "boia_foguete": (
+        ["....rr....", "...rrrr...", "...rwwr...", "...rccr...",
+         "..rrrrrr..", ".rrrwwrrr.", "..rr..rr..", ".oo....oo.",
+         "..o......o"],
+        {"r": (217, 69, 66), "w": (243, 238, 219), "c": (101, 211, 233),
+         "o": (255, 177, 70)}),
+    "boia_kraken": (
+        ["...ppp...", ".ppppppp.", "pppcccppp", "ppppppppp", ".ppppppp.",
+         "p..p.p..p", ".p.p.p.p."],
+        {"p": (133, 79, 177), "c": (120, 232, 215)}),
 }
 
 
@@ -1181,9 +1235,12 @@ class JogoPesca(QWidget):
         self.popup = None            # [texto, cor, tempo_restante]
         self.hover = False
         self._cache = {}
+        self._arrastando = False
+        self._offset_arraste = QPoint()
         self.rect_icone = QRect(self.ICONE_X - 5, self.ICONE_Y - 4, 30, 26)
         self.fonte = QFont("Consolas", 9, QFont.Bold)
         self.fonte.setStyleStrategy(QFont.NoAntialias)
+        self.setCursor(Qt.OpenHandCursor)
 
         # Progresso offline: calculado antes de começar a pescar
         resumo = self.simular_offline()
@@ -1198,10 +1255,6 @@ class JogoPesca(QWidget):
         self.relogio = QTimer(self)
         self.relogio.timeout.connect(self.tick)
         self.relogio.start(66)       # ~15 fps (visual pixel art, leve na CPU)
-
-        self.timer_pos = QTimer(self)
-        self.timer_pos.timeout.connect(self.posicionar)
-        self.timer_pos.start(5000)
 
         self.timer_save = QTimer(self)
         self.timer_save.timeout.connect(self.salvar)
@@ -1422,10 +1475,15 @@ class JogoPesca(QWidget):
 
     # ---------------------------------------------------------- menu (ícone)
     def mouseMoveEvent(self, ev):
+        if self._arrastando and (ev.buttons() & Qt.LeftButton):
+            self.move(ev.globalPosition().toPoint() - self._offset_arraste)
+            ev.accept()
+            return
         sobre = self.rect_icone.contains(ev.position().toPoint())
         if sobre != self.hover:
             self.hover = sobre
             self.update()
+        self.setCursor(Qt.PointingHandCursor if sobre else Qt.OpenHandCursor)
         self.setToolTip("Menu" if sobre else self._texto_tooltip())
 
     def leaveEvent(self, ev):
@@ -1434,14 +1492,26 @@ class JogoPesca(QWidget):
             self.update()
 
     def mousePressEvent(self, ev):
-        if (ev.button() == Qt.LeftButton
-                and self.rect_icone.contains(ev.position().toPoint())):
-            self.abrir_menu()
+        if ev.button() == Qt.LeftButton:
+            if self.rect_icone.contains(ev.position().toPoint()):
+                self.abrir_menu()
+            else:
+                self._arrastando = True
+                self._offset_arraste = ev.globalPosition().toPoint() - self.frameGeometry().topLeft()
+                self.setCursor(Qt.ClosedHandCursor)
+                ev.accept()
+
+    def mouseReleaseEvent(self, ev):
+        if ev.button() == Qt.LeftButton and self._arrastando:
+            self._arrastando = False
+            sobre = self.rect_icone.contains(ev.position().toPoint())
+            self.setCursor(Qt.PointingHandCursor if sobre else Qt.OpenHandCursor)
+            ev.accept()
 
     def _texto_tooltip(self):
         e = self.estado
         return (f'Moedas: {fmt_moedas(e["moedas"])}  |  Vara Nv {e["vara"]}  |  '
-                f'Barco Nv {e["barco"]}')
+                f'Barco Nv {e["barco"]}  •  Arraste para mover')
 
     def abrir_menu(self):
         m = QMenu(self)
@@ -1511,19 +1581,50 @@ class JogoPesca(QWidget):
         cena.fill(Qt.transparent)
         sp = QPainter(cena)
 
-        # Céu de entardecer e silhuetas distantes para dar profundidade HD-2D.
-        ceu = QLinearGradient(0, 0, 0, AGUA_Y)
-        ceu.setColorAt(0.0, QColor(27, 32, 67, 238))
-        ceu.setColorAt(0.55, QColor(81, 63, 99, 226))
-        ceu.setColorAt(1.0, QColor(220, 132, 103, 214))
-        sp.fillRect(0, 0, ART_W, AGUA_Y, QBrush(ceu))
+        # Céu em faixas de cor e montanhas em pixels, como um cenário de RPG 16-bit.
+        sp.setRenderHint(QPainter.Antialiasing, False)
+        faixas_ceu = [
+            (0, 9, (34, 45, 106)), (9, 18, (48, 68, 137)),
+            (18, 27, (76, 96, 158)), (27, 35, (126, 117, 163)),
+            (35, 43, (193, 132, 134)), (43, AGUA_Y, (239, 178, 119)),
+        ]
+        for topo, fim, rgb in faixas_ceu:
+            sp.fillRect(0, topo, ART_W, fim - topo, QColor(*rgb))
+
+        # Nuvens em blocos com sombra colorida.
         sp.setPen(Qt.NoPen)
-        sp.setBrush(QColor(37, 49, 76, 230))
-        sp.drawEllipse(-24, 27, 82, 33)
-        sp.drawEllipse(24, 31, 75, 27)
-        sp.setBrush(QColor(48, 55, 82, 220))
-        sp.drawEllipse(73, 29, 72, 31)
-        sp.drawEllipse(104, 33, 56, 25)
+        for x, y, largura in ((9, 12, 20), (47, 8, 17), (75, 15, 15)):
+            sp.fillRect(x + 2, y + 2, largura, 3, QColor(111, 102, 165))
+            sp.fillRect(x + 4, y, largura - 7, 3, QColor(244, 196, 183))
+            sp.fillRect(x, y + 3, largura, 3, QColor(255, 219, 188))
+
+        # Sol em mosaico e pequenos pontos de luz no céu.
+        sp.fillRect(91, 17, 10, 10, QColor(255, 211, 119))
+        sp.fillRect(93, 15, 6, 14, QColor(255, 226, 147))
+        sp.fillRect(89, 19, 14, 6, QColor(255, 226, 147))
+        sp.fillRect(94, 19, 4, 4, QColor(255, 244, 187))
+        for sx, sy in ((5, 7), (31, 14), (39, 5), (67, 9), (110, 8), (114, 27)):
+            sp.fillRect(sx, sy, 1, 1, QColor(255, 238, 181))
+            if (sx + sy) % 2 == 0:
+                sp.fillRect(sx - 1, sy, 3, 1, QColor(255, 220, 167))
+
+        # Ilhas e serras sobrepostas em índigo e verde-azulado.
+        serras = [
+            ([(0, 42), (0, 37), (9, 31), (16, 36), (26, 30), (35, 37),
+              (46, 33), (57, 41), (57, 52), (0, 52)], (74, 86, 143)),
+            ([(49, 47), (61, 39), (70, 42), (83, 32), (94, 39), (105, 31),
+              (120, 37), (120, 52), (49, 52)], (54, 111, 132)),
+        ]
+        for pontos, rgb in serras:
+            forma = QPainterPath(QPointF(*pontos[0]))
+            for ponto in pontos[1:]:
+                forma.lineTo(*ponto)
+            forma.closeSubpath()
+            sp.fillPath(forma, QColor(*rgb))
+        # Filetes de luz nas encostas dão volume sem desfoque.
+        for x, y in ((8, 38), (17, 39), (27, 34), (39, 40), (64, 43),
+                     (84, 36), (97, 42), (108, 36)):
+            sp.fillRect(x, y, 3, 1, QColor(125, 143, 178))
 
         # barco e tudo que está nele
         self.blit(sp, self.sprite(("casco", e["barco"]),
@@ -1553,32 +1654,38 @@ class JogoPesca(QWidget):
         boia = self.equipado("boia")
         self.blit(sp, self.sprite(("boia", boia), lambda: montar_boia(boia)), BOIA_X, boia_y)
 
-        # água (camadas translúcidas por cima do casco e da boia)
+        # Água azul-turquesa opaca, com cristas curtas e faixas de profundidade.
         topos = [AGUA_Y + int(round(math.sin(x * 0.45 + f * 2.0))) for x in range(ART_W)]
-        cor_agua = QColor(58, 140, 214, 205)
+        sp.fillRect(0, AGUA_Y, ART_W, ART_H - AGUA_Y, QColor(49, 153, 185))
+        sp.fillRect(0, 57, ART_W, 5, QColor(35, 130, 176))
+        sp.fillRect(0, 62, ART_W, ART_H - 62, QColor(30, 103, 157))
         for x, topo in enumerate(topos):
-            sp.fillRect(x, topo, 1, ART_H - topo, cor_agua)
-        sp.fillRect(0, 58, ART_W, 5, QColor(28, 92, 170, 95))
-        sp.fillRect(0, 63, ART_W, 5, QColor(18, 56, 124, 120))
-        crista = QColor(170, 225, 255, 230)
-        for x, topo in enumerate(topos):
-            sp.fillRect(x, topo, 1, 1, crista)
+            sp.fillRect(x, topo, 1, 1, QColor(147, 222, 215))
+
+        # Ondas em marcas de 16-bit, animadas em pequenos passos.
+        deslocamento = int(f * 7) % 24
+        for faixa in range(7):
+            y = 54 + faixa * 2
+            x0 = (deslocamento + faixa * 9) % 24 - 24
+            cor_onda = QColor(162, 231, 215) if faixa < 3 else QColor(70, 180, 201)
+            for x in range(x0, ART_W, 24):
+                sp.fillRect(x, y, 6 + faixa % 3, 1, cor_onda)
 
         # reflexo da lanterna na água
         for i, yy in enumerate(range(AGUA_Y + 3, AGUA_Y + 15, 2)):
             desl = int(round(1.3 * math.sin(yy * 0.8 + f * 3)))
             larg = max(1, 5 - i // 2)
             sp.fillRect(LANT_X + 2 - larg // 2 + desl, yy + dy, larg, 1,
-                        QColor(255, 204, 120, max(30, 150 - i * 20)))
+                        QColor(255, 220, 134, max(70, 230 - i * 24)))
 
         # faíscas na água
         for k, (sx, sy) in enumerate(FAISCAS):
             ph = (f * 0.7 + k * 0.31) % 1.0
             if ph < 0.35:
-                sp.fillRect(sx, sy, 1, 1, QColor(255, 255, 255, 210))
+                sp.fillRect(sx, sy, 1, 1, QColor(210, 249, 235))
                 if 0.1 < ph < 0.25:
-                    sp.fillRect(sx - 1, sy, 1, 1, QColor(255, 255, 255, 110))
-                    sp.fillRect(sx + 1, sy, 1, 1, QColor(255, 255, 255, 110))
+                    sp.fillRect(sx - 1, sy, 1, 1, QColor(255, 239, 178))
+                    sp.fillRect(sx + 1, sy, 1, 1, QColor(255, 239, 178))
         sp.end()
         return cena, dy
 
@@ -1831,46 +1938,35 @@ class JogoPesca(QWidget):
 
         p = QPainter(self)
         p.drawImage(QRect(0, 0, self.W, self.H), cena)   # ampliação sem suavização
-        p.setRenderHint(QPainter.Antialiasing)
+        p.setRenderHint(QPainter.Antialiasing, False)
+        p.setRenderHint(QPainter.SmoothPixmapTransform, False)
         p.setPen(Qt.NoPen)
 
-        # brilho (bloom) quente da lanterna, com leve tremulação
+        # Reflexo em pequenos pixels luminosos, sem bloom desfocado.
         flick = 0.82 + 0.18 * math.sin(f * 6.3) * math.sin(f * 2.7 + 1)
         cx, cy = (LANT_X + 2.5) * ESCALA, (LANT_Y + 3) * ESCALA + dy * ESCALA
-        g = QRadialGradient(QPointF(cx, cy), 40)
-        g.setColorAt(0.0, QColor(255, 205, 120, int(95 * flick)))
-        g.setColorAt(0.35, QColor(255, 170, 80, int(40 * flick)))
-        g.setColorAt(1.0, QColor(255, 140, 50, 0))
         p.setCompositionMode(QPainter.CompositionMode_Plus)
-        p.setBrush(QBrush(g))
-        p.drawEllipse(QPointF(cx, cy), 40, 40)
+        p.fillRect(int(cx - 3), int(cy - 3), 6, 6, QColor(255, 196, 93, int(115 * flick)))
+        p.fillRect(int(cx - 1), int(cy - 5), 2, 10, QColor(255, 226, 143, int(105 * flick)))
+        p.fillRect(int(cx - 5), int(cy - 1), 10, 2, QColor(255, 226, 143, int(105 * flick)))
         p.setCompositionMode(QPainter.CompositionMode_SourceOver)
 
-        # bokeh: discos de luz fora de foco
-        for k, (bx, by, r) in enumerate(BOKEH):
-            x = bx + 5 * math.sin(f * 0.3 + k * 1.7)
-            y = by + 3 * math.cos(f * 0.25 + k * 2.3)
-            p.setBrush(QColor(255, 232, 190, 22))
-            p.setPen(QPen(QColor(255, 244, 214, 44), 1))
-            p.drawEllipse(QPointF(x, y), r, r)
-        p.setPen(Qt.NoPen)
-
-        # vaga-lumes
+        # Vaga-lumes viram pequenos cruzamentos de pixels dourados e verdes.
+        p.setCompositionMode(QPainter.CompositionMode_Plus)
         for k, (bx, by) in enumerate(VAGALUMES):
             x = bx + 7 * math.sin(f * 0.6 + k * 2.1)
             y = by + 4 * math.sin(f * 0.8 + k * 1.3)
             a = 0.5 + 0.5 * math.sin(f * 2.2 + k * 1.7)
-            gv = QRadialGradient(QPointF(x, y), 8)
-            gv.setColorAt(0.0, QColor(255, 244, 160, int(120 * a)))
-            gv.setColorAt(1.0, QColor(255, 244, 160, 0))
-            p.setBrush(QBrush(gv))
-            p.drawEllipse(QPointF(x, y), 8, 8)
-            p.fillRect(int(x) // 2 * 2, int(y) // 2 * 2, 2, 2,
-                       QColor(255, 246, 180, int(200 * a) + 40))
+            cor = QColor(255, 236, 150, int(130 + 120 * a))
+            p.fillRect(int(x), int(y), 2, 2, cor)
+            p.fillRect(int(x), int(y) - 2, 1, 6, cor)
+            p.fillRect(int(x) - 2, int(y), 6, 1, cor)
+        p.setCompositionMode(QPainter.CompositionMode_SourceOver)
+        p.setPen(Qt.NoPen)
 
-        # juncos desfocados em primeiro plano (profundidade de campo)
-        p.setRenderHint(QPainter.SmoothPixmapTransform, True)
-        p.setOpacity(0.85)
+        # Juncos em primeiro plano com contorno de pixel nítido.
+        p.setRenderHint(QPainter.SmoothPixmapTransform, False)
+        p.setOpacity(1.0)
         esq, ox, oy = self.sprite("juncos_esq", lambda: montar_juncos(14, 12, JUNCOS_ESQ))
         p.drawImage(QRect(ox * 3, self.H - 12 * 3 + oy * 3, esq.width() * 3, esq.height() * 3), esq)
         dire, ox, oy = self.sprite("juncos_dir", lambda: montar_juncos(10, 11, JUNCOS_DIR))
@@ -1891,9 +1987,9 @@ class JogoPesca(QWidget):
             largura = p.fontMetrics().horizontalAdvance(texto) + 16
             x = (self.W - largura) // 2
             p.setBrush(QColor(20, 16, 34, int(alpha * 0.82)))
-            p.setPen(QPen(QColor(255, 255, 255, int(alpha * 0.35)), 1))
+            p.setPen(QPen(QColor(255, 218, 133, int(alpha * 0.9)), 2))
             p.drawRect(x, y - 12, largura, 22)
-            p.setPen(QColor(0, 0, 0, int(alpha * 0.7)))
+            p.setPen(QColor(20, 29, 64, int(alpha * 0.85)))
             p.drawText(x + 1, y - 12 + 1, largura, 22, Qt.AlignCenter, texto)
             c = QColor(cor)
             c.setAlpha(alpha)
@@ -1910,10 +2006,10 @@ class JogoPesca(QWidget):
             p.setBrush(QBrush(gi))
             p.drawEllipse(QPointF(self.ICONE_X + 10, self.ICONE_Y + 8), 24, 24)
             p.setCompositionMode(QPainter.CompositionMode_SourceOver)
-        p.setPen(QPen(QColor(24, 28, 44, 225), 2))
-        p.setBrush(QColor(245, 232, 202, 235) if self.hover else QColor(28, 42, 66, 220))
-        p.drawRoundedRect(self.ICONE_X, self.ICONE_Y, 22, 20, 4, 4)
-        p.setPen(QPen(QColor(35, 43, 55) if self.hover else QColor(245, 232, 202), 2))
+        p.setPen(QPen(QColor(35, 31, 68), 2))
+        p.setBrush(QColor(246, 219, 155) if self.hover else QColor(30, 54, 101))
+        p.drawRect(self.ICONE_X, self.ICONE_Y, 22, 20)
+        p.setPen(QPen(QColor(112, 75, 53) if self.hover else QColor(255, 225, 147), 2))
         for yy in (self.ICONE_Y + 5, self.ICONE_Y + 10, self.ICONE_Y + 15):
             p.drawLine(self.ICONE_X + 5, yy, self.ICONE_X + 17, yy)
         p.end()
@@ -1922,6 +2018,27 @@ class JogoPesca(QWidget):
 def main():
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
+    app.setStyle("Fusion")
+    app.setStyleSheet("""
+        QWidget { color: #f7e9c7; font-family: Consolas; font-size: 9pt; }
+        QDialog { background: #1e3158; border: 2px solid #d7ae5b; }
+        QLabel { color: #f7e9c7; }
+        QTabWidget::pane { background: #263f69; border: 2px solid #bd9854; }
+        QTabBar::tab { background: #26375f; color: #e9d7a6; padding: 6px 10px;
+                       border: 1px solid #675181; }
+        QTabBar::tab:selected { background: #497b90; color: #fff1c5;
+                                 border: 1px solid #f0ce77; }
+        QListWidget, QComboBox { background: #14294b; color: #fff0cb;
+                                 border: 1px solid #d7ae5b;
+                                 selection-background-color: #4e8193; }
+        QPushButton { background: #39577d; color: #ffebae;
+                      border: 2px solid #d7ae5b; padding: 5px 10px; }
+        QPushButton:hover { background: #557d91; color: #ffffff; }
+        QPushButton:disabled { color: #9e9a8b; border-color: #736d68; }
+        QMenu { background: #20365e; color: #ffebae; border: 2px solid #d7ae5b; }
+        QMenu::item:selected { background: #4e8193; }
+        QMessageBox { background: #1e3158; }
+    """)
     jogo = JogoPesca()
     jogo.show()
     sys.exit(app.exec())

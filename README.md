@@ -10,6 +10,8 @@ Na Enciclopédia, escolha ordenar alfabeticamente ou por quantidade pescada. Ela
 
 Os itens da loja aparecem em ordem crescente de preço dentro de cada categoria. Chapéus, roupas, bandeiras, boias, mascotes e acessórios têm várias opções visuais desbloqueáveis.
 
+A arte usa cenários e interface originais em pixel art 16-bit, com cores vivas de RPG clássico. A janela abre na posição padrão do canto inferior direito e pode ser arrastada para qualquer ponto da tela.
+
 ## Jogar
 
 Baixe `PescaIdle.exe` e dê dois cliques para abrir. O executável inclui o runtime necessário e não requer uma instalação separada de Python.
