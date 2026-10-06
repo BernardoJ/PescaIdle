@@ -128,15 +128,16 @@ class GameView(private val ctx: Context) : View(ctx) {
     private fun measure(s:String,z:Float):Float{p.textSize=z;p.typeface=mono;return p.measureText(s)}
     override fun onTouchEvent(e:MotionEvent):Boolean{if(e.action!=MotionEvent.ACTION_UP)return true;if(e.y>height-105){val third=(width-40)/3;when{e.x<16+third->shop();e.x<20+2*third->encyclopedia();else->{paused=!paused;invalidate()}}};return true}
     private fun shop(){
-        val d=Dialog(ctx);d.window?.setBackgroundDrawable(ColorDrawable(Color.rgb(20,27,60)));val l=LinearLayout(ctx);l.orientation=LinearLayout.VERTICAL;l.setPadding(32,28,32,20)
-        val title=TextView(ctx);title.text="LOJA";title.textSize=24f;title.setTextColor(Color.rgb(255,218,133));l.addView(title)
-        val info=TextView(ctx);info.setTextColor(Color.WHITE);l.addView(info)
-        fun refresh(){info.text="Moedas: ${fmt(coins)}\n\nVara Nv ${rod} — peças ${parts("rod")}/${2+rod}\nBarco Nv ${boat} — peças ${parts("boat")}/${2+boat}"}
-        refresh()
-        val vr=Button(ctx);vr.text="Comprar peça da vara";vr.setOnClickListener{buy("rod");refresh();invalidate()};l.addView(vr)
-        val br=Button(ctx);br.text="Comprar peça do barco";br.setOnClickListener{buy("boat");refresh();invalidate()};l.addView(br)
-        val close=Button(ctx);close.text="Fechar";close.setOnClickListener{d.dismiss()};l.addView(close)
-        d.setContentView(l);d.show();d.window?.setLayout(-1,-2)
+        CosmeticStore.show(
+            ctx,
+            coins = { coins },
+            spend = { amount -> if(coins >= amount){ coins -= amount; true } else false },
+            isOwned = { id -> prefs.getBoolean("cos_owned_"+id, id in setOf("chapeu_palha","chapeu_nenhum","roupa_vermelha","bandeira_nenhum","boia_vermelha","boneco_nenhum","acessorio_nenhum")) },
+            equipped = { slot -> prefs.getString("cos_equipped_"+slot, null) ?: when(slot){"Chapéus"->"chapeu_palha";"Roupas"->"roupa_vermelha";"Bandeiras"->"bandeira_nenhum";"Boias"->"boia_vermelha";"Bonecos"->"boneco_nenhum";else->"acessorio_nenhum"} },
+            equip = { slot,id -> prefs.edit().putBoolean("cos_owned_"+id,true).putString("cos_equipped_"+slot,id).apply(); invalidate() },
+            save = { save() },
+            format = { fmt(it) }
+        )
     }
     private fun parts(kind:String):Int=prefs.getInt(if(kind=="rod")"rod_parts" else "boat_parts",0)
     private fun buy(kind:String){val level=if(kind=="rod")rod else boat;if(level>=MAX)return;val cost=30+20*level;if(coins<cost)return;coins-=cost;val key=if(kind=="rod")"rod_parts" else "boat_parts";var q=prefs.getInt(key,0)+1;if(q>=2+level){q-=2+level;if(kind=="rod")rod++ else boat++};prefs.edit().putInt(key,q).apply();save()}
