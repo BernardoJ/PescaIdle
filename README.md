@@ -18,13 +18,15 @@ A iluminação acompanha **o relógio local do dispositivo**: amanhecer das 5h �
 
 ## Jogar
 
-Abra **`dist/PescaIdle.exe`**. O executável inclui Python, PySide6 e todos os assets finais. O `PescaIdle.exe` na raiz é a versão anterior; esta entrega fica em `dist/`.
+Gere `dist/PescaIdle.exe` seguindo **Gerar o executável** abaixo. A pasta `dist/` é saída de build e não é commitada; o `PescaIdle.exe` na raiz é a versão anterior.
 
 ## Executar pelo código-fonte
 
-O ambiente `.venv` desta entrega está preparado. Na pasta do projeto:
+Na pasta do projeto, crie o ambiente, instale as dependências e execute:
 
 ```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe pesca_idle.py
 ```
 

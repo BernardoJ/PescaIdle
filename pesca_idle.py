@@ -1432,71 +1432,29 @@ class JogoPesca(QWidget):
         QApplication.quit()
 
 
-def main():
-    if "--smoke-test" in sys.argv and not os.getenv("PESCA_IDLE_SAVE_PATH"):
-        raise RuntimeError("Defina PESCA_IDLE_SAVE_PATH para não tocar o progresso real.")
+def main(dev_access):
+    dev_access.validate_launch()
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     configure_app(app)
     jogo = JogoPesca()
-    if "--smoke-test" in sys.argv:
-        jogo.setAttribute(Qt.WA_DontShowOnScreen, True)
+    dev_access.prepare_window(jogo)
     jogo.show()
-    if "--smoke-test" in sys.argv:
-        if not os.getenv("PESCA_IDLE_SAVE_PATH") or not os.getenv("PESCA_IDLE_SMOKE_DIR"):
-            raise RuntimeError("Smoke test requer save e diretório de saída isolados.")
-        output = Path(os.environ["PESCA_IDLE_SMOKE_DIR"])
-        output.mkdir(parents=True, exist_ok=True)
-        def snapshot():
-            from datetime import datetime
-            jogo.fase = 2.0
-            jogo.grab().save(str(output / "executavel.png"))
-            current=jogo._render.lighting.at()
-            for hour in (0,6,9,12,18,22):
-                jogo._preview_clock=datetime(2026,10,6,hour)
-                jogo.grab().save(str(output / f"horario-{hour:02d}-executavel.png"))
-            jogo._preview_clock=None
-            loja = LojaDialog(jogo)
-            loja.setAttribute(Qt.WA_DontShowOnScreen, True)
-            loja.show()
-            loja.grab().save(str(output / "loja-executavel.png"))
-            loja.accept()
-            encyclopedia = EnciclopediaDialog(jogo)
-            encyclopedia.setAttribute(Qt.WA_DontShowOnScreen, True)
-            encyclopedia.show()
-            encyclopedia.grab().save(str(output / "enciclopedia-executavel.png"))
-            encyclopedia.accept()
-            (output / "resultado.json").write_text(json.dumps({
-                "assets": not jogo._render.background.isNull(),
-                "scene": [ART_W, ART_H], "window": [jogo.W, jogo.H],
-                "save": str(SAVE_PATH), "frozen": bool(getattr(sys, "frozen", False)),
-                "ui_icon": not rpg_icon("livro").isNull(),
-                "cosmetic_sprites": len(jogo._render.cosmetics),
-                "physical_scale": jogo.physical_scale,
-                "device_pixel_ratio": jogo.devicePixelRatioF(),
-                "clock_source": "device_local",
-                "clock_position": current.position,
-                "clock_label": current.label,
-                "light_plates": len(jogo._render.lighting.frames),
-                "animated_pets": sum(jogo._render.pet(id_,0)!=jogo._render.pet(id_,1) for id_ in BONECOS),
-                "animated_flags": sum(jogo._render.flag(id_,0)!=jogo._render.flag(id_,1) for id_ in BANDEIRAS),
-            }), encoding="utf-8")
-            jogo.sair()
-        QTimer.singleShot(250, snapshot)
+    dev_access.schedule_smoke_test(
+        jogo, LojaDialog, EnciclopediaDialog, rpg_icon,
+        BONECOS, BANDEIRAS, (ART_W, ART_H),
+    )
     sys.exit(app.exec())
 
 
 if __name__ == "__main__":
-    if "--smoke-test" in sys.argv:
-        try:
-            main()
-        except Exception:
-            import traceback
-            diagnostic_dir = os.getenv("PESCA_IDLE_SMOKE_DIR")
-            if diagnostic_dir:
-                diagnostic_path = Path(diagnostic_dir)
-                diagnostic_path.mkdir(parents=True, exist_ok=True)
-                (diagnostic_path / "error.txt").write_text(traceback.format_exc(), encoding="utf-8")
+    from tools.dev_access import DevAccess
+
+    dev_access = DevAccess()
+    try:
+        main(dev_access)
+    except Exception:
+        if dev_access.enabled:
+            dev_access.write_failure()
             sys.exit(1)
-    else:
-        main()
+        raise
