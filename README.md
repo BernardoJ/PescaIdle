@@ -18,7 +18,11 @@ A iluminação acompanha **o relógio local do dispositivo**: amanhecer das 5h �
 
 ## Jogar
 
-Gere `dist/PescaIdle.exe` seguindo **Gerar o executável** abaixo. A pasta `dist/` é saída de build e não é commitada; o `PescaIdle.exe` na raiz é a versão anterior.
+Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/main/PescaIdle.exe), salve no computador e abra com dois cliques. O executável na raiz já inclui o upgrade gráfico integrado e os recursos necessários; não é preciso instalar Python para jogar.
+
+O executável publicado foi gerado do código integrado em [`db87f23`](https://github.com/BernardoJ/PescaIdle/commit/db87f23becc26795ec83bdbad7e339ac93b47bba), com a mesma árvore de código validada em `fdc293f0`. Seu SHA256 é `229a920c91be789b06c6f125a8f6e17a0bbd5261bd9a5b5a888a31488c981e16`.
+
+Para gerar outro build a partir do código, siga **Gerar o executável** abaixo. A pasta `dist/` é saída local de build e não é commitada.
 
 ## Executar pelo código-fonte
 
