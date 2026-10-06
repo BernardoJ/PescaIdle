@@ -1,0 +1,53 @@
+{
+  "chapeus": [
+    "chapeu_palha",
+    "chapeu_bone",
+    "chapeu_gorro",
+    "chapeu_quepe",
+    "chapeu_pirata",
+    "chapeu_cartola",
+    "chapeu_coroa",
+    "chapeu_pikachu",
+    "chapeu_ninja",
+    "chapeu_samurai",
+    "chapeu_cowboy",
+    "chapeu_mago",
+    "chapeu_astronauta",
+    "chapeu_folhas",
+    "chapeu_marinheiro",
+    "chapeu_raposa",
+    "chapeu_corais"
+  ],
+  "mascotes": [
+    "boneco_pato",
+    "boneco_gato",
+    "boneco_caranguejo",
+    "boneco_pinguim",
+    "boneco_agumon",
+    "boneco_robot",
+    "boneco_slime",
+    "boneco_tartaruga",
+    "boneco_axolote",
+    "boneco_baleia",
+    "boneco_fantasma",
+    "boneco_polvo",
+    "boneco_capivara",
+    "boneco_raposa"
+  ],
+  "boias": [
+    "boia_vermelha",
+    "boia_amarela",
+    "boia_listrada",
+    "boia_coracao",
+    "boia_estrela",
+    "boia_planeta",
+    "boia_bolha",
+    "boia_lotus",
+    "boia_limao",
+    "boia_perola",
+    "boia_donut",
+    "boia_abacaxi",
+    "boia_foguete",
+    "boia_kraken"
+  ]
+}
