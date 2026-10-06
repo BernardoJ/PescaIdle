@@ -118,8 +118,18 @@ class GameView(private val ctx: Context) : View(ctx) {
         val bx=w*.08f; val by=h*.61f; val bw=w*.50f
         p.color=Color.rgb((177+rod*7).coerceAtMost(255),(91+rod*8).coerceAtMost(255),(53+rod*5).coerceAtMost(255));val hull=Path();hull.moveTo(bx,by);hull.lineTo(bx+bw,by);hull.lineTo(bx+bw*.86f,by+42);hull.lineTo(bx+bw*.12f,by+42);hull.close();c.drawPath(hull,p)
         box(c,bx+18,by-8,bx+bw-18,by+4,Color.rgb(245,204,91)); box(c,bx+28,by-105,bx+33,by-5,Color.rgb(72,48,43))
-        p.color=Color.rgb(222,76,73);box(c,bx+35,by-70,bx+53,by-40,p.color);c.drawCircle(bx+44,by-82,11f,p)
-        p.color=Color.rgb(50,35,44);p.strokeWidth=5f;c.drawLine(bx+48,by-55,w*.72f,h*.34f,p);p.strokeWidth=2f;p.color=Color.WHITE;c.drawLine(w*.72f,h*.34f,w*.72f,h*.59f,p);p.color=Color.rgb(255,91,103);c.drawCircle(w*.72f,h*.60f,9f,p)
+        val outfit=prefs.getString("cos_equipped_Roupas","roupa_vermelha")!!
+        val bodyColor=when(outfit){"roupa_azul"->Color.rgb(66,110,214);"roupa_verde"->Color.rgb(72,160,92);"roupa_listrada"->Color.LTGRAY;"roupa_capitao"->Color.rgb(36,58,124);"roupa_gala"->Color.DKGRAY;"roupa_ninja"->Color.rgb(54,48,76);"roupa_astral"->Color.rgb(66,62,160);"roupa_mergulhador"->Color.rgb(36,142,166);"roupa_fenix"->Color.rgb(192,55,34);"roupa_cyber"->Color.rgb(38,42,68);"roupa_mago"->Color.rgb(102,58,150);"roupa_marinheiro"->Color.rgb(42,94,156);"roupa_aurora"->Color.rgb(64,102,142);"roupa_abisso"->Color.rgb(34,62,94);else->Color.rgb(214,66,58)}
+        p.color=bodyColor;box(c,bx+35,by-70,bx+53,by-40,p.color);p.color=Color.rgb(226,177,135);c.drawCircle(bx+44,by-82,11f,p)
+        val hat=prefs.getString("cos_equipped_Chapéus","chapeu_palha")!!
+        if(hat!="chapeu_nenhum"){p.color=when(hat){"chapeu_bone"->Color.rgb(60,110,220);"chapeu_gorro"->Color.rgb(212,70,100);"chapeu_pirata"->Color.rgb(46,40,58);"chapeu_coroa"->Color.rgb(250,205,60);"chapeu_pikachu"->Color.rgb(252,218,50);"chapeu_ninja"->Color.rgb(20,20,30);"chapeu_mago"->Color.rgb(92,54,156);else->Color.rgb(240,200,90)};c.drawRect(bx+29,by-98,bx+59,by-91,p);c.drawRect(bx+34,by-106,bx+54,by-98,p)}
+        val doll=prefs.getString("cos_equipped_Bonecos","boneco_nenhum")!!
+        if(doll!="boneco_nenhum"){p.color=when(doll){"boneco_pato"->Color.YELLOW;"boneco_caranguejo"->Color.RED;"boneco_gato"->Color.GRAY;"boneco_pinguim"->Color.DKGRAY;"boneco_agumon"->Color.rgb(250,140,30);"boneco_robot"->Color.LTGRAY;"boneco_slime"->Color.rgb(94,220,146);"boneco_polvo"->Color.rgb(164,101,207);else->Color.rgb(174,112,70)};c.drawCircle(bx+67,by-30,8f,p)}
+        val flag=prefs.getString("cos_equipped_Bandeiras","bandeira_nenhum")!!
+        if(flag!="bandeira_nenhum"){p.color=when(flag){"bandeira_brasil"->Color.rgb(30,150,70);"bandeira_arco"->Color.MAGENTA;"bandeira_pirata"->Color.DKGRAY;"bandeira_sakura"->Color.rgb(245,150,190);else->Color.rgb(220,60,60)};c.drawRect(bx+33,by-104,bx+58,by-88,p)}
+        p.color=Color.rgb(50,35,44);p.strokeWidth=5f;c.drawLine(bx+48,by-55,w*.72f,h*.34f,p);p.strokeWidth=2f;p.color=Color.WHITE;c.drawLine(w*.72f,h*.34f,w*.72f,h*.59f,p)
+        val buoy=prefs.getString("cos_equipped_Boias","boia_vermelha")!!
+        p.color=when(buoy){"boia_amarela"->Color.YELLOW;"boia_coracao"->Color.rgb(245,80,120);"boia_planeta"->Color.rgb(80,130,220);"boia_lotus"->Color.rgb(245,130,190);"boia_perola"->Color.WHITE;else->Color.rgb(255,91,103)};c.drawCircle(w*.72f,h*.60f,9f,p)
         box(c,16f,18f,w-16f,94f,Color.argb(210,12,19,52)); text(c,"PESCA IDLE",28f,45f,22f,Color.rgb(255,218,133)); text(c,"Moedas: ${fmt(coins)}",28f,70f,16f); text(c,"Vara Nv ${rod}   Barco Nv ${boat}   Pescados ${total}",28f,90f,13f,Color.LTGRAY)
         if(popupUntil>System.currentTimeMillis()){box(c,20f,h*.48f,w-20f,h*.56f,Color.argb(225,20,25,50));text(c,popup,32f,h*.535f,15f,Color.rgb(255,218,133))}
         button(c,16f,h-88f,(w-40f)/3,h-24f,"LOJA");button(c,20f+(w-40f)/3,h-88f,20f+2*(w-40f)/3,h-24f,"ENCICLOPÉDIA");button(c,24f+2*(w-40f)/3,h-88f,w-16f,h-24f,if(paused)"▶" else "Ⅱ")
