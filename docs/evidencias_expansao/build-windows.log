@@ -1,0 +1,73 @@
+430 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.8
+430 INFO: Python: 3.14.8
+456 INFO: Platform: Windows-11-10.0.26100-SP0
+456 INFO: Python environment: C:\Users\berna\.codex\visualizations\2026\10\05\01a10c72-a799-7b40-b2e1-13c17985406b\PescaIdle-integracao-20261006\.venv
+471 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-expansao-20261006',
+ 'C:\\Users\\berna\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\berna\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\berna\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\berna\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv',
+ 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages',
+ 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-expansao-20261006']
+893 INFO: Appending 'datas' from .spec
+896 INFO: checking Analysis
+919 INFO: Building because C:\Users\berna\.codex\visualizations\2026\10\05\01a10c72-a799-7b40-b2e1-13c17985406b\PescaIdle-expansao-20261006\pesca_ui.py changed
+919 INFO: Looking for Python shared library...
+919 INFO: Using Python shared library: C:\Users\berna\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+919 INFO: Running Analysis Analysis-00.toc
+920 INFO: Target bytecode optimization level: 0
+920 INFO: Initializing module dependency graph...
+925 INFO: Initializing module graph hook caches...
+1077 INFO: Analyzing modules for base_library.zip ...
+3099 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+3638 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5200 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5216 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5342 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7130 INFO: Caching module dependency graph...
+7163 INFO: Analyzing C:\Users\berna\.codex\visualizations\2026\10\05\01a10c72-a799-7b40-b2e1-13c17985406b\PescaIdle-expansao-20261006\pesca_idle.py
+7326 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7378 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7385 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7513 INFO: Processing standard module hook 'hook-PySide6.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7876 INFO: Processing standard module hook 'hook-shiboken6.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8225 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+12121 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+16810 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+36086 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39293 INFO: Processing module hooks (post-graph stage)...
+39311 INFO: Performing binary vs. data reclassification (182 entries)
+39406 INFO: Looking for ctypes DLLs
+39420 INFO: Analyzing run-time hooks ...
+39421 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+39425 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+39427 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+39430 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+39440 INFO: Creating base_library.zip...
+39460 INFO: Looking for dynamic libraries
+39753 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\shiboken6']
+39753 INFO: Extra DLL search directories (PATH): ['C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006\\.venv\\Lib\\site-packages\\PySide6']
+41439 INFO: Warnings written to C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\build-work\PescaIdle\warn-PescaIdle.txt
+41457 INFO: Graph cross-reference written to C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\build-work\PescaIdle\xref-PescaIdle.html
+41484 INFO: checking PYZ
+41510 INFO: Building because C:\Users\berna\.codex\visualizations\2026\10\05\01a10c72-a799-7b40-b2e1-13c17985406b\PescaIdle-expansao-20261006\pesca_ui.py changed
+41511 INFO: Building PYZ (ZlibArchive) C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\build-work\PescaIdle\PYZ-00.pyz
+41623 INFO: Building PYZ (ZlibArchive) C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\build-work\PescaIdle\PYZ-00.pyz completed successfully.
+41634 INFO: checking PKG
+41646 INFO: Building because toc changed
+41646 INFO: Building PKG (CArchive) PescaIdle.pkg
+47102 INFO: Building PKG (CArchive) PescaIdle.pkg completed successfully.
+47108 INFO: Bootloader C:\Users\berna\.codex\visualizations\2026\10\05\01a10c72-a799-7b40-b2e1-13c17985406b\PescaIdle-integracao-20261006\.venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+47108 INFO: checking EXE
+47136 INFO: Building because toc changed
+47136 INFO: Building EXE from EXE-00.toc
+47136 INFO: Copying bootloader EXE to C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\dist\PescaIdle.exe
+47201 INFO: Copying icon to EXE
+47257 INFO: Copying 0 resources to EXE
+47257 INFO: Embedding manifest in EXE
+47293 INFO: Appending PKG archive to EXE
+47362 INFO: Fixing EXE headers
+48215 INFO: Building EXE from EXE-00.toc completed successfully.
+48221 INFO: Build complete! The results are available in: C:\Users\berna\AppData\Local\Temp\PescaIdle-expansao-d7fb0997518d43c28193c03191c6b1e4\dist

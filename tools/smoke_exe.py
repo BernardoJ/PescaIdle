@@ -7,12 +7,17 @@ import tempfile
 from pathlib import Path
 
 root=Path(__file__).resolve().parents[1]
-out=root/'docs'/'visual'/'executavel'
+out=Path(os.environ.get('PESCA_IDLE_QA_DIR',str(root/'docs'/'visual'/'executavel')))
 with tempfile.TemporaryDirectory(prefix='pesca-exe-') as tmp:
     env=os.environ.copy()
     env['PESCA_IDLE_SAVE_PATH']=str(Path(tmp)/'save.json')
     env['PESCA_IDLE_SMOKE_DIR']=str(out)
     env['QT_QPA_PLATFORM']='windows'
+    env['APPDATA']=str(Path(tmp)/'appdata');env['LOCALAPPDATA']=str(Path(tmp)/'localappdata')
+    # Valid v1 fixture proves the frozen binary performs migration, not just a
+    # fresh startup. Old catches have no fabricated location/period context.
+    (Path(tmp)/'save.json').write_text(json.dumps({'moedas':12.34,'vara':0,'barco':0,
+        'total_pescados':10,'inventario':{'Lambari':10},'ultimo_salvo':__import__('time').time()}),encoding='utf-8')
     exe=Path(sys.argv[1]) if len(sys.argv)>1 else root/'dist'/'PescaIdle.exe'
     process=subprocess.run([str(exe),'--smoke-test'],
                            cwd=tmp,env=env,timeout=60,capture_output=True,text=True)
@@ -22,6 +27,11 @@ with tempfile.TemporaryDirectory(prefix='pesca-exe-') as tmp:
     assert process.returncode==0,process.returncode
     report=json.loads((out/'resultado.json').read_text(encoding='utf-8'))
     assert report['frozen'] and report['assets'] and report['ui_icon'],report
+    assert report['maps']==8 and report['schema']==2 and report['legacy_inventory']==10,report
+    assert Path(tmp,'save.pre-expansao-v1.json').exists(),report
+    assert all((out/(id_+'-executavel.png')).exists() for id_ in (
+        'enseada_do_poente','rio_das_vitorias','mangue_das_raizes','pier_da_brisa',
+        'recife_das_cores','mar_dos_ventos','mar_das_auroras','fossa_das_lanternas')),report
     assert report['cosmetic_sprites']==45,report
     assert isinstance(report['physical_scale'],int),report
     assert report['scene']==[256,144] and Path(tmp,'save.json').exists(),report

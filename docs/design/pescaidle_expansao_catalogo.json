@@ -1,0 +1,1105 @@
+{
+  "nota": "Proposta de design não implementada; horários e distribuição por mapas são convenções de jogo, não afirmações biológicas.",
+  "base_commit": "5c2e4651f8af2f98cfb5fd83c5e3024232217f96",
+  "periodos": [
+    {
+      "nome": "amanhecer",
+      "inicio": "05:00",
+      "fim": "07:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "manhã",
+      "inicio": "07:00",
+      "fim": "09:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "dia",
+      "inicio": "09:00",
+      "fim": "11:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "meio-dia",
+      "inicio": "11:00",
+      "fim": "14:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "tarde",
+      "inicio": "14:00",
+      "fim": "17:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "anoitecer",
+      "inicio": "17:00",
+      "fim": "20:00",
+      "atravessa_meia_noite": false
+    },
+    {
+      "nome": "noite",
+      "inicio": "20:00",
+      "fim": "05:00",
+      "atravessa_meia_noite": true
+    }
+  ],
+  "catalogos_peixes": {
+    "Enseada do Poente": [
+      {
+        "nome": "Lambari",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Tilápia-do-nilo",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Pacu",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Carpa-comum",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Carpa-capim",
+        "novo": true,
+        "periodos": [
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Acará",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Traíra",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Jundiá",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      }
+    ],
+    "Rio das Vitórias": [
+      {
+        "nome": "Lambari",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Pacu",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Tambaqui",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Curimbatá",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Matrinxã",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã"
+        ]
+      },
+      {
+        "nome": "Piabanha",
+        "novo": true,
+        "periodos": [
+          "amanhecer"
+        ]
+      },
+      {
+        "nome": "Piraputanga",
+        "novo": true,
+        "periodos": [
+          "manhã"
+        ]
+      },
+      {
+        "nome": "Piapara",
+        "novo": true,
+        "periodos": [
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Dourado",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Pintado",
+        "novo": true,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Pirarara",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      },
+      {
+        "nome": "Jaú",
+        "novo": true,
+        "periodos": [
+          "anoitecer"
+        ]
+      }
+    ],
+    "Mangue das Raízes": [
+      {
+        "nome": "Tainha",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Carapeba",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Robalo-flecha",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Robalo-peva",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "tarde",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Parati",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Corvina",
+        "novo": true,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Bagre-amarelo",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      },
+      {
+        "nome": "Mero-preto",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "tarde"
+        ]
+      }
+    ],
+    "Píer da Brisa": [
+      {
+        "nome": "Sardinha-do-pacífico",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Cavala",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Anchoveta-peruana",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia"
+        ]
+      },
+      {
+        "nome": "Linguado-comum",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-rei",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Peixe-agulha",
+        "novo": true,
+        "periodos": [
+          "dia",
+          "meio-dia"
+        ]
+      },
+      {
+        "nome": "Betara",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "tarde",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Sargo",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      }
+    ],
+    "Recife das Cores": [
+      {
+        "nome": "Peixe-palhaço",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Sargentinho",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-papagaio-azul",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Cavalinho-do-mar-pigmeu",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Garoupa-verdadeira",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Barracuda-grande",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Peixe-borboleta",
+        "novo": true,
+        "periodos": [
+          "dia"
+        ]
+      },
+      {
+        "nome": "Cirurgião-patela",
+        "novo": true,
+        "periodos": [
+          "meio-dia"
+        ]
+      },
+      {
+        "nome": "Moreia-verde",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      }
+    ],
+    "Mar dos Ventos": [
+      {
+        "nome": "Albacora-laje",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-voador",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Atum-azul",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Peixe-lua",
+        "novo": false,
+        "periodos": [
+          "dia",
+          "meio-dia"
+        ]
+      },
+      {
+        "nome": "Dourado-do-mar",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Peixe-vela",
+        "novo": true,
+        "periodos": [
+          "manhã",
+          "dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Tubarão-branco",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "anoitecer"
+        ]
+      },
+      {
+        "nome": "Tubarão-boca-grande",
+        "novo": false,
+        "periodos": [
+          "noite"
+        ]
+      }
+    ],
+    "Mar das Auroras": [
+      {
+        "nome": "Arenque-atlântico",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Polaca-do-alasca",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Bacalhau-polar",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Bacalhau-do-atlântico",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "tarde",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Salmão-rosa",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Halibute-do-atlântico",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Peixe-lobo",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-lanterna-glaciar",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-mão-vermelho",
+        "novo": false,
+        "periodos": [
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      }
+    ],
+    "Fossa das Lanternas": [
+      {
+        "nome": "Peixe-lanterna-de-müller",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-lanterna-comum",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-ogro",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-pescador-abissal",
+        "novo": true,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Tubarão-lagarto",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Peixe-víbora",
+        "novo": true,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Enguia-pelicano",
+        "novo": true,
+        "periodos": [
+          "noite"
+        ]
+      },
+      {
+        "nome": "Celacanto-comorense",
+        "novo": false,
+        "periodos": [
+          "noite"
+        ]
+      }
+    ]
+  },
+  "encontros_especiais": {
+    "Píer da Brisa": [
+      {
+        "nome": "Camarão-cinza",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Mexilhão-azul",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Copépode-comum",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Vaquita",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã"
+        ]
+      }
+    ],
+    "Recife das Cores": [
+      {
+        "nome": "Polvo-comum",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Tartaruga-verde",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Manta-gigante",
+        "novo": false,
+        "periodos": [
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde"
+        ]
+      }
+    ],
+    "Mar dos Ventos": [
+      {
+        "nome": "Baleia-azul",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Golfinho-nariz-de-garrafa",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Lula-de-humboldt",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Krill-do-pacífico",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      }
+    ],
+    "Mar das Auroras": [
+      {
+        "nome": "Narval",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã"
+        ]
+      },
+      {
+        "nome": "Orca",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "tarde"
+        ]
+      },
+      {
+        "nome": "Lagosta-americana",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Água-viva-juba-de-leão",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Caranguejo-falso",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Calano",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Salpa-antártica",
+        "novo": false,
+        "periodos": [
+          "amanhecer",
+          "manhã",
+          "dia",
+          "meio-dia",
+          "tarde",
+          "anoitecer",
+          "noite"
+        ]
+      },
+      {
+        "nome": "Krill-antártico",
+        "novo": false,
+        "periodos": [
+          "anoitecer",
+          "noite"
+        ]
+      }
+    ],
+    "Fossa das Lanternas": [
+      {
+        "nome": "Lula-magnapinna",
+        "novo": false,
+        "periodos": [
+          "noite"
+        ]
+      }
+    ]
+  },
+  "status": "Proposta de design. Não implementada e não compatível diretamente com o formato atual do jogo.",
+  "convencao_horaria": "Relógio local do dispositivo. Início inclusivo e fim exclusivo. Dia significa apenas a faixa de luz plena entre 09:00 e 11:00, não todos os períodos com sol.",
+  "locais": {
+    "Enseada do Poente": {
+      "nivel_barco_desbloqueio": 0,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Lago acolhedor com floresta, cabana e vaga-lumes; preserva o cenário atual."
+    },
+    "Rio das Vitórias": {
+      "nivel_barco_desbloqueio": 1,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Rio largo com correnteza suave, mata, troncos e vitórias-régias."
+    },
+    "Mangue das Raízes": {
+      "nivel_barco_desbloqueio": 2,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Canais de mangue, raízes aparentes, passarela de madeira e reflexos sombreados."
+    },
+    "Píer da Brisa": {
+      "nivel_barco_desbloqueio": 3,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Píer costeiro, espuma suave, gaivotas e pequenas embarcações distantes."
+    },
+    "Recife das Cores": {
+      "nivel_barco_desbloqueio": 4,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Água transparente, recifes coloridos e cardumes visíveis sob a superfície."
+    },
+    "Mar dos Ventos": {
+      "nivel_barco_desbloqueio": 6,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Horizonte aberto, ondas longas, nuvens e embarcações distantes."
+    },
+    "Mar das Auroras": {
+      "nivel_barco_desbloqueio": 8,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Rota fictícia de águas frias e costas temperadas, com auroras e diferentes pontos de observação."
+    },
+    "Fossa das Lanternas": {
+      "nivel_barco_desbloqueio": 10,
+      "desbloqueio_permanente": true,
+      "viagem_gratuita_apos_desbloqueio": true,
+      "direcao_visual": "Plataforma sobre águas profundas, silhuetas abissais e bioluminescência; a superfície ainda acompanha o relógio."
+    }
+  },
+  "resumo": {
+    "mapas_totais": 8,
+    "mapas_novos": 7,
+    "entradas_unicas_catalogos_peixes": 68,
+    "entradas_unicas_encontros_especiais": 20,
+    "entradas_aquaticas_unicas_totais": 88,
+    "entradas_originais_preservadas": 49,
+    "entradas_novas": 39,
+    "combinacoes_mapa_periodo_validadas": 56,
+    "menor_numero_de_peixes_disponiveis_por_combinacao": 3,
+    "lixo_existente_separado": "Bota velha"
+  },
+  "observacoes": [
+    "As listas de períodos representam disponibilidade estrita: fora delas a chance é zero. Todos significa os sete períodos.",
+    "A categoria encontro especial é de interface/jogabilidade, não taxonômica: inclui a manta-gigante, que é um peixe.",
+    "Os mapas agregam biomas fictícios. A distribuição e os horários não afirmam coexistência geográfica nem hábitos biológicos exatos.",
+    "Nomes comuns genéricos de novas entradas precisam ser vinculados a táxons e fontes antes de publicar curiosidades científicas.",
+    "Pesos, raridades e valores ainda devem ser balanceados; copiar pesos globais para tabelas menores muda as probabilidades.",
+    "Bota velha não está contada nas 88 entradas aquáticas. A incidência de lixo deve ser balanceada separadamente.",
+    "Disponibilidade pertence à ocorrência espécie-local: o pacu, por exemplo, tem janelas diferentes na enseada e no rio.",
+    "Preservar inventário, moedas, cosméticos e conquistas antigas na migração; não inventar local ou horário de capturas passadas.",
+    "As validações deste arquivo verificam a proposta de catálogo, não a execução do jogo nem testes do repositório."
+  ],
+  "validacao_cobertura": {
+    "Enseada do Poente": {
+      "amanhecer": 4,
+      "manhã": 5,
+      "dia": 5,
+      "meio-dia": 6,
+      "tarde": 6,
+      "anoitecer": 4,
+      "noite": 5
+    },
+    "Rio das Vitórias": {
+      "amanhecer": 5,
+      "manhã": 6,
+      "dia": 4,
+      "meio-dia": 3,
+      "tarde": 5,
+      "anoitecer": 5,
+      "noite": 4
+    },
+    "Mangue das Raízes": {
+      "amanhecer": 4,
+      "manhã": 5,
+      "dia": 3,
+      "meio-dia": 3,
+      "tarde": 5,
+      "anoitecer": 5,
+      "noite": 4
+    },
+    "Píer da Brisa": {
+      "amanhecer": 5,
+      "manhã": 5,
+      "dia": 6,
+      "meio-dia": 5,
+      "tarde": 5,
+      "anoitecer": 5,
+      "noite": 4
+    },
+    "Recife das Cores": {
+      "amanhecer": 4,
+      "manhã": 4,
+      "dia": 5,
+      "meio-dia": 4,
+      "tarde": 4,
+      "anoitecer": 4,
+      "noite": 4
+    },
+    "Mar dos Ventos": {
+      "amanhecer": 4,
+      "manhã": 5,
+      "dia": 5,
+      "meio-dia": 4,
+      "tarde": 5,
+      "anoitecer": 3,
+      "noite": 3
+    },
+    "Mar das Auroras": {
+      "amanhecer": 5,
+      "manhã": 6,
+      "dia": 4,
+      "meio-dia": 4,
+      "tarde": 7,
+      "anoitecer": 4,
+      "noite": 6
+    },
+    "Fossa das Lanternas": {
+      "amanhecer": 5,
+      "manhã": 4,
+      "dia": 4,
+      "meio-dia": 4,
+      "tarde": 4,
+      "anoitecer": 6,
+      "noite": 8
+    }
+  }
+}
