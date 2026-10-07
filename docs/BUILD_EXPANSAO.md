@@ -1,5 +1,8 @@
 # Executável Windows da expansão
 
+Código e assets registrados em
+[`86f3b2a4740aeefa8533d980d76a6084b7c61bc1`](https://github.com/BernardoJ/PescaIdle/commit/86f3b2a4740aeefa8533d980d76a6084b7c61bc1).
+
 Build novo concluído com Python 3.14.8 / PyInstaller 6.22.3 no Windows 11.
 Artefato: `PescaIdle.exe`, 50,151,105 bytes.
 SHA256: `2fea9bb9d6fd35888010450723957345312e393ba2d2ca2f1484fdaf131cce1e`.

@@ -112,5 +112,6 @@
     "animated_pets": 14,
     "animated_flags": 13
   },
-  "build_command": "python -m PyInstaller --noconfirm --distpath <QA>/dist --workpath <QA>/build-work PescaIdle.spec"
+  "build_command": "python -m PyInstaller --noconfirm --distpath <QA>/dist --workpath <QA>/build-work PescaIdle.spec",
+  "source_commit": "86f3b2a4740aeefa8533d980d76a6084b7c61bc1"
 }
