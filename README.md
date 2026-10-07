@@ -20,7 +20,7 @@ A iluminação acompanha **o relógio local do dispositivo**: amanhecer das 5h �
 
 Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/main/PescaIdle.exe), salve no computador e abra com dois cliques. O executável na raiz já inclui o upgrade gráfico integrado e os recursos necessários; não é preciso instalar Python para jogar.
 
-O executável publicado foi gerado do código integrado em [`db87f23`](https://github.com/BernardoJ/PescaIdle/commit/db87f23becc26795ec83bdbad7e339ac93b47bba), com a mesma árvore de código validada em `fdc293f0`. Seu SHA256 é `229a920c91be789b06c6f125a8f6e17a0bbd5261bd9a5b5a888a31488c981e16`.
+O executável publicado foi gerado do código corrigido em [`343f597`](https://github.com/BernardoJ/PescaIdle/commit/343f597fd85ce4ed7fe8b97402e1154fa348a3c4), incluindo os encaixes dos chapéus, a visibilidade dos mascotes e os efeitos luminosos dos acessórios e do Martelo Pesado. Seu SHA256 é `760485c4ef0aff690af37831b1d8fb95a576b37343d84ee6aa81f23053a6ac0f`.
 
 Para gerar outro build a partir do código, siga **Gerar o executável** abaixo. A pasta `dist/` é saída local de build e não é commitada.
 
