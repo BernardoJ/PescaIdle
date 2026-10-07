@@ -6,8 +6,10 @@ a = Analysis(
     ['pesca_idle.py'],
     pathex=[],
     binaries=[],
-    datas=[(str(p), 'assets') for p in (Path(SPECPATH) / 'assets').iterdir()
-           if p.suffix in ('.png', '.json')],
+    datas=[(str(p), str(Path('assets') / p.parent.relative_to(Path(SPECPATH) / 'assets')))
+           for p in (Path(SPECPATH) / 'assets').rglob('*')
+           if p.suffix in ('.png', '.json')
+           and 'source' not in p.relative_to(Path(SPECPATH) / 'assets').parts],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

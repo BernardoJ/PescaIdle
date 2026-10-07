@@ -5,6 +5,8 @@ from pathlib import Path
 from PySide6.QtGui import QColor, QFont, QFontDatabase, QPainter, QPen, QIcon, QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea, QPushButton
 from pesca_visual import resource_path
+from pesca_catalogo import LOCAIS
+from pesca_tempo import snapshot
 
 
 def configure_app(app):
@@ -102,6 +104,10 @@ QListWidget::item { padding: 8px 5px; border-bottom: 1px solid #304651; }
 QListWidget::item:selected { color: #fff1cf; background: #486967; border-left: 3px solid #e6b96b; }
 QListWidget::item:hover { background: #354d58; }
 QComboBox { min-height: 24px; }
+QAbstractSpinBox, QLineEdit { background: #1b2b3c; color: #f4e7ca; border: 1px solid #697d80; padding: 5px; min-height: 24px; }
+QAbstractSpinBox::up-button, QAbstractSpinBox::down-button { background: #38535b; border: 1px solid #697d80; }
+QCalendarWidget QWidget { background: #253647; color: #f4e7ca; }
+QCalendarWidget QAbstractItemView { background: #1b2b3c; color: #f4e7ca; selection-background-color: #486967; }
 QComboBox QAbstractItemView { background: #253647; selection-background-color: #486967; }
 QPushButton { background: #38535b; color: #ffe3ac; border: 2px solid #b69a68; padding: 8px 14px; min-height: 20px; }
 QPushButton:hover { background: #506c69; border-color: #f3d39a; }
@@ -139,11 +145,17 @@ def paint_overlay(game):
     font.setPixelSize(12)
     font.setWeight(QFont.DemiBold)
     p.setFont(font)
-    title='ENSEADA DO POENTE · '+game._render.current_light.label
+    clock=game._clock_snapshot
+    title=LOCAIS[game.estado['local_atual_id']]['nome'].upper()+' · '+clock['rotulo'].upper()
     p.setPen(QColor('#253647'))
+    title=p.fontMetrics().elidedText(title,Qt.ElideRight,game.W-72)
     p.drawText(13,23,title)
     p.setPen(QColor('#f6dfb4'))
     p.drawText(12,22,title)
+    p.setPen(QColor('#c6d4cd'))
+    from datetime import datetime
+    next_time=datetime.fromtimestamp(clock['proxima_utc']).strftime('%H:%M')
+    p.drawText(12,36,'Próximo período às '+next_time)
     info=f'{game.fmt_currency(game.estado["moedas"])} moedas'
     panel(p,QRect(12,game.H-30,146,23))
     p.fillRect(20,game.H-22,7,7,QColor('#c09554'))

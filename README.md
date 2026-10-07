@@ -1,109 +1,84 @@
-# Pesca Idle — Enseada do Poente
+# Pesca Idle — Oito Águas
 
-Jogo idle de pesca para Windows, feito em Python com PySide6.
+Jogo idle de pesca para Windows, em Python/PySide6, com arte original em pixels.
 
-A tabela de capturas reúne peixes e outras espécies aquáticas; os critérios e as fontes usados para ajustar raridade e recompensa estão em [`CRITERIOS_RARIDADE.md`](CRITERIOS_RARIDADE.md).
+## Jogar com dois cliques
 
-A opção **Enciclopédia** do menu registra cada espécie. O valor é revelado após 1 captura, a raridade após 5 e a curiosidade após 10.
+Baixe o [PescaIdle.exe desta expansão](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/expansao-mapas-periodos/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.
 
-Na Enciclopédia, escolha ordenar alfabeticamente ou por quantidade pescada. Ela lista apenas espécies já descobertas. A loja também inclui novos cosméticos e acessórios com efeitos visuais próprios.
+Build Windows: **50.151.105 bytes**. SHA256: `2fea9bb9d6fd35888010450723957345312e393ba2d2ca2f1484fdaf131cce1e`.
+[Proveniência e smoke test](docs/BUILD_EXPANSAO.md) · [manifesto de entradas](docs/evidencias_expansao/build-windows.json).
 
-Os itens da loja aparecem em ordem crescente de preço dentro de cada categoria. Chapéus, roupas, bandeiras, boias, mascotes e acessórios têm várias opções visuais desbloqueáveis.
+## O que mudou
 
-A arte original usa um lago acolhedor com floresta, cabana, sprites e painéis inspirados no acabamento dos RPGs de SNES. A cena tem 256×144 pixels lógicos, ampliados a 2× com nearest-neighbor, numa janela base de 512×288. Em escalas fracionárias do Windows, a janela ajusta o tamanho para manter ampliação inteira em pixels físicos; a 125%, por exemplo, usa 3×. A janela abre no canto inferior direito, pode ser arrastada e continua sempre no topo. O jogo funciona totalmente offline.
+- Oito mapas, com sete cenários inéditos, desbloqueados permanentemente por nível de barco. Viagem gratuita pelo menu **Viajar**.
+- 88 espécies aquáticas: 49 antigas preservadas e 39 novas; 68 peixes e 20 encontros especiais. Baleias e semelhantes são avistamentos, e plâncton é registrado por amostra.
+- Sete períodos pelo relógio local: Amanhecer 05–07, Manhã 07–09, Dia 09–11, Meio-dia 11–14, Tarde 14–17, Anoitecer 17–20, Noite 20–05. Fim exclusivo.
+- **Enciclopédia** com ordem alfabética/quantidade e filtros por local, período e disponível agora. Valor em 1 registro, raridade em 5, curiosidade em 10. Mostra descobertas por padrão; pistas opcionais de desconhecidas não revelam a identidade.
+- Coleção global e regional separadas. Conquista original **Rei da pesca** conserva a meta de 49; **Explorador das oito águas** usa as 88 da expansão.
+- **Fashionista**: todos os cosméticos vendidos. **Enciclopédia Viva**: todas as informações reveladas, com acessório de livro flutuante grátis como recompensa.
+- Capuz de raposa/elmo corrigidos, cabo de martelo menor, nuvens e chuva no cajado, mais teias, broche lunar luminoso, dragão verde orbitando a esfera laranja, brilho no sabre/constelação/chamas e asas mais vivas.
+- Rótulos **Dragão Digital**, **Gorro de Rato Elétrico**, **Eu escolho você!** e **Mostre-me seu Coração Valente**, com IDs anteriores preservados.
 
-A iluminação acompanha **o relógio local do dispositivo**: amanhecer das 5h às 8h, dia, luz de meio-dia das 11h às 14h, entardecer das 17h às 20h e noite. As cores se interpolam ao longo dessas faixas. Não usa localização, rede ou cálculo astronômico de nascer/pôr do sol. Mudanças de hora ou fuso no dispositivo aparecem na próxima renderização, inclusive após suspensão. Pausar a pesca mantém o relógio visual e os movimentos ambientais.
+A janela compacta abre no canto inferior direito, fica no topo e pode ser arrastada. A cena conserva 256×144 pixels lógicos, com ampliação inteira em pixels físicos e tipografia legível. Todos os cosméticos, os 11 níveis de barco/vara e a prévia da loja permanecem. Itens são ordenados por preço em cada categoria. Peças de upgrade são compradas na loja.
 
-![Comparação antes/depois](docs/visual/comparacao.png)
+![Novos mapas e períodos](docs/visual/expansao/mapas-2.png)
+![Efeitos dos acessórios](docs/visual/expansao/efeitos.png)
 
-## Jogar
+## Progresso e ausência
 
-Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/main/PescaIdle.exe), salve no computador e abra com dois cliques. O executável na raiz já inclui o upgrade gráfico integrado e os recursos necessários; não é preciso instalar Python para jogar.
+O save normal continua em `%APPDATA%\PescaIdle\save.json`. A atualização migra para schema 2 com backup válido anterior e escrita atômica. Preserva saldo, inventário, compras, equipamentos e conquistas. Capturas antigas continuam globais, sem atribuir local/horário desconhecido. Saves corrompidos ou futuros não são substituídos silenciosamente. Duas instâncias não podem gravar no mesmo perfil.
 
-O executável publicado foi gerado do código corrigido em [`343f597`](https://github.com/BernardoJ/PescaIdle/commit/343f597fd85ce4ed7fe8b97402e1154fa348a3c4), incluindo os encaixes dos chapéus, a visibilidade dos mascotes e os efeitos luminosos dos acessórios e do Martelo Pesado. Seu SHA256 é `760485c4ef0aff690af37831b1d8fb95a576b37343d84ee6aa81f23053a6ac0f`.
+Fisgadas congelam o resultado no início, inclusive ao viajar, pausar ou reabrir. O offline normal conta o **primeiro trecho de até quatro horas** da ausência, pescando em cada horário histórico; excesso é descartado uma vez. A pausa intencional persiste sem renda offline até retomar.
 
-Para gerar outro build a partir do código, siga **Gerar o executável** abaixo. A pasta `dist/` é saída local de build e não é commitada.
+**Expedição offline** permite agendar um mapa liberado, nas próximas 24 h, por até 4 h. Substitui a renda normal daquela ausência. Paga somente a parte decorrida enquanto o jogo esteve fechado/suspenso; retornar consome a janela parcial. Não acorda o computador, não executa serviços e não paga tempo futuro. Se o jogo estiver aberto no início, o plano expira.
 
-## Executar pelo código-fonte
+O replay usa UTC e offset salvo. Mudanças históricas de horário de verão durante a ausência não são reconstruídas. O jogo funciona offline, sem localização ou rede.
 
-Na pasta do projeto, crie o ambiente, instale as dependências e execute:
+## Executar pelo código
 
 ```powershell
-py -3.12 -m venv .venv
+py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe pesca_idle.py
 ```
 
-## Gerar o executável
-
-Em um checkout novo, prepare o ambiente com Python 3.12 e as dependências. Para empacotar:
+Ambiente efetivamente validado: Python 3.14.8, PySide6 6.11.2, Windows 11. Dependências estão fixadas nos arquivos de requirements. Para uma sessão manual de QA, configure o perfil **antes** de iniciar:
 
 ```powershell
-py -3.12 -m venv .venv
+$qa = Join-Path $env:TEMP ('pesca-manual-' + [guid]::NewGuid())
+$env:PESCA_IDLE_SAVE_PATH = Join-Path $qa 'save.json'
+.\.venv\Scripts\python.exe pesca_idle.py
+```
+
+## Build e validação
+
+```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-build.txt
 .\.venv\Scripts\python.exe -m PyInstaller --noconfirm PescaIdle.spec
 ```
 
-O executável é gerado em `dist/PescaIdle.exe`.
-
-O spec inclui os PNGs de produção e o manifesto dos cosméticos, sem os masters de arte. Os caminhos são resolvidos pelo diretório do módulo ou por `sys._MEIPASS`, independentemente da pasta de trabalho. Para apenas jogar pelo código, instale `requirements.txt`.
-
-## Arte e manutenção
-
-- `pesca_idle.py`: sistemas de jogo, catálogo e fluxos Qt.
-- `pesca_visual.py`: composição, assento, mãos, sprites, animações e cache LRU de até 192 imagens.
-- `pesca_ambiente.py`: nuvens, pássaros, meteoros, sombras de peixes e vegetação; máscaras e sprites de vento preparados uma vez.
-- `pesca_luz.py`: paletas por material, 96 camadas fixas de iluminação, interpolação pelo horário local e luzes noturnas.
-- `pesca_equipamentos.py`: 11 varas com rampas próprias, carretilha, argolas e anzol com isca animada.
-- `pesca_ui.py`: molduras, ícones, tipografia e notificações com quebra de linha.
-- `assets/*.png`: cenário, primeiro plano, pescador, casco, moldura e ícones finais.
-- `assets/cosmeticos.json`: ordem das células dos atlases e os identificadores originais dos itens.
-- `assets/source/`: masters originais produzidos pela ferramenta integrada image_gen. [Direção e prompts completos](assets/ART_DIRECTION.md).
-
-Os 17 chapéus, 14 mascotes e 14 boias têm sprites redesenhados em atlases locais, com encaixes próprios para elmos e capuzes. Todos os mascotes respiram, piscam e movimentam orelhas, caudas ou nadadeiras em poses curtas, mantendo os pés apoiados. As roupas mantêm o volume do pescador; as 13 bandeiras têm dobras animadas e acessórios usam efeitos em pixels. Os ícones da loja mostram a arte do item equipado. O casco tem camadas traseira e dianteira, banco e sombras de contato. Textos são renderizados na resolução da interface para preservar acentos e valores; status, inventário e conquistas têm painéis com rolagem. A prévia da loja usa o renderer real a 2×, ou 1× em telas menores. Escolher um item não o compra; a prévia é descartada ao fechar.
-
-Cada chapéu tem seu próprio ponto de encaixe na cabeça, mantido durante as poses de pesca. Os mascotes ficam apoiados na popa, à frente da borda e dos objetos do barco. O Anel Verde-Esmeralda, a Aura Cyberpunk e o Escudo de Bolhas têm contornos luminosos, partículas e pulsação visíveis durante o dia e à noite. A Chama Yokai também emite luz. O Martelo Pesado mantém o martelo na mão e produz descargas do céu na água próxima ao barco, em ciclos de 3,2 segundos.
-
-O barco oscila com o pescador e seus equipamentos ancorados ao casco; o reflexo fragmentado se desloca abaixo dele. Nuvens passam lentamente, sombras de peixes nadam sob as ondulações e folhas e samambaias balançam nas margens. Durante o dia, bandos de pássaros e borboletas visitam a enseada. No escuro, surgem vaga-lumes, uma coruja sonolenta, estrelas e reflexos da lua; uma estrela cadente passa brevemente após cerca de 8 segundos de animação e a cada 83 segundos, somente com iluminação noturna. Efeitos de acessórios têm movimentos lentos e pequenos brilhos. A isca é um detalhe visual do equipamento existente; não cria consumíveis ou novas regras de pesca.
-
-Movimentos usam uma fase visual independente do relógio civil. Não consomem a aleatoriedade da pesca nem afetam economia ou saves. Cenário e primeiro plano preservam os mesmos grupos de pixels em todos os horários; a noite combina sombras frias e luz quente de cabana e lanterna.
-
-Para preparar novamente os PNGs a partir dos masters e gerar a moldura e os ícones:
+Gera `dist/PescaIdle.exe`. O spec inclui PNG/JSON de produção recursivamente, preservando caminhos relativos; exclui masters de `assets/source`. Não inclui fontes, saves, ZIP, .git ou QA. Módulos e recursos são resolvidos pelo módulo/`sys._MEIPASS`, sem depender do cwd.
 
 ```powershell
-.\.venv\Scripts\python.exe tools\prepare_art.py
-.\.venv\Scripts\python.exe tools\prepare_cosmetics.py
-.\.venv\Scripts\python.exe tools\build_ui.py
-```
-
-A preparação limita as paletas, elimina dithering e produz transparência binária. Pillow é usado apenas na produção e nos testes; o jogo depende somente de PySide6.
-
-## Saves, testes e imagens
-
-O save continua em `%APPDATA%\PescaIdle\save.json`. Identificadores, inventário, economia, probabilidades, progressão, conquistas e limite de 4 horas offline foram preservados. A fisgada continua durando 1,5 segundo; a animação de captura não altera a espera nem o resultado seguinte.
-
-```powershell
+$env:PESCA_IDLE_QA_DIR = Join-Path $env:TEMP ('pesca-qa-' + [guid]::NewGuid())
 .\.venv\Scripts\python.exe tools\validate_game.py
-.\.venv\Scripts\python.exe tools\validate_cosmetics.py
-.\.venv\Scripts\python.exe tools\capture_animation.py
-.\.venv\Scripts\python.exe tools\smoke_exe.py
+.\.venv\Scripts\python.exe tools\smoke_exe.py dist\PescaIdle.exe
 ```
 
-Esses comandos usam saves temporários isolados, incluindo a inicialização que salva automaticamente. O teste integrado compara economia e simulação offline à revisão original `b4ef8c7` do Git. O smoke test do executável roda de outra pasta e verifica o carregamento dos assets empacotados.
+Os testes criam saves sintéticos e isolam APPDATA/LOCALAPPDATA antes de importar o jogo. O smoke usa plugin Windows, cwd estrangeiro e migra uma fixture v1. `validate_game` executa matriz da expansão, regressão cosmética e balanceamento. Relatórios e imagens usam a pasta de QA, sem sobrescrever referências.
 
-`validate_cosmetics.py` verifica os 17 encaixes, as poses dos chapéus, a visibilidade integral dos 14 mascotes em todos os níveis do barco e os efeitos luminosos e raios. Seu relatório usa uma pasta temporária por padrão; defina `PESCA_IDLE_QA_DIR` para preservar as saídas em uma pasta exclusiva de QA.
+Resultados observados: **5.920** verificações da matriz e **1.359** de cosméticos; 56 cenas inspecionadas; 168 pools matemáticos e 7 inícios ×30 sementes de progressão. [Detalhes e limites](docs/VALIDACAO_EXPANSAO.md). O conjunto global antigo foi preservado como fixture de comparação, com seus 337 checks executados antes da expansão.
 
-Para uma sessão manual isolada:
+## Arquitetura e referências
 
-```powershell
-$env:PESCA_IDLE_SAVE_PATH = Join-Path $env:TEMP 'PescaIdle-teste\save.json'
-.\.venv\Scripts\python.exe pesca_idle.py
-Remove-Item Env:PESCA_IDLE_SAVE_PATH
-```
+- `pesca_catalogo.py` / `assets/catalogo_expansao.json`: única fonte de conteúdo no runtime, IDs e ocorrências regionais.
+- `pesca_tempo.py`, `pesca_pescaria.py`, `pesca_offline.py`: relógio central, resultado pendente, RNG e replay histórico.
+- `pesca_save.py`, `pesca_conquistas.py`: migração, persistência exclusiva/atômica, metas e recompensa.
+- `pesca_idle.py`, `pesca_viagens_ui.py`, `pesca_ui.py`: janela, loja, coleção, viagem, expedição e diálogos.
+- `pesca_visual.py`, `pesca_luz.py`, `pesca_regional_visual.py`, `pesca_efeitos.py`, `pesca_especies_visual.py`: composição, máscaras, iluminação, cosméticos e espécies.
+- `assets/source/mapas`: masters inéditos do imagegen e prompts. `tools/prepare_maps.py --records <prompts.json>` prepara PNGs/máscaras finais; Pillow é só dependência de desenvolvimento.
 
-[Comparação](docs/visual/comparacao.png), [repouso](docs/visual/depois.png), [fisgada](docs/visual/fisgada.png), [captura](docs/visual/captura.png), [animação](docs/visual/animacao.gif), [dia animado](docs/visual/ambiente.gif), [noite animada](docs/visual/noite-animada.gif), [horários](docs/visual/ciclo-horarios.png), [loja](docs/visual/loja.png), [enciclopédia](docs/visual/enciclopedia.png) e [menu](docs/visual/menu.png). Há galerias dos 91 cosméticos, 11 níveis de barco e vara, e poses dos mascotes em `docs/visual/`.
+[Expansão e arte](docs/EXPANSAO_MAPAS.md) · [Save e offline](docs/MIGRACAO_SAVE.md) · [Balanceamento](docs/BALANCEAMENTO_EXPANSAO.md) · [Fontes das 39 novas identidades](docs/FONTES_ESPECIES.md) · [Critérios antigos](CRITERIOS_RARIDADE.md).
 
-[Timelapse de 24 horas](docs/visual/ciclo-dia-noite.gif): acelera o relógio **apenas na exportação de QA** para demonstrar as transições. No jogo, o ciclo acompanha o horário real do dispositivo.
-
-[Relatório de validação e limites](docs/VALIDACAO.md).
-[Auditoria do objetivo completo](docs/UPGRADE_AUDIT.md).
+A arte é própria, com personagem e barco existentes preservados e linguagem de RPG em pixels. Horários/ambientes são convenções do jogo; não representam coocorrência ou abundância científica exata. Curiosidades novas usam fatos taxonômicos verificados; as antigas foram preservadas e identificadas como legado.

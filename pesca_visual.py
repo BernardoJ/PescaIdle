@@ -11,6 +11,11 @@ from pathlib import Path
 from pesca_ambiente import Environment
 from pesca_luz import Lighting
 from pesca_equipamentos import rod, bait
+from pesca_regional_visual import RegionalEnvironment
+from pesca_especies_visual import species_image
+from pesca_catalogo import INICIAL
+from datetime import datetime
+from pesca_efeitos import extra
 
 from PySide6.QtCore import Qt, QPoint, QRect, QRectF
 from PySide6.QtGui import QColor, QImage, QPainter, QPolygon, QPen
@@ -148,6 +153,26 @@ class SceneRenderer:
             raise RuntimeError('Sprites barco.png / pescador.png ausentes ou inválidos.')
         self.environment=Environment(self.background)
         self.lighting=Lighting(self.background,self.foreground)
+        self.map_cache=OrderedDict([(INICIAL,(self.background,self.foreground,self.environment,self.lighting))])
+        self.map_manifest=json.loads(resource_path('mapas/manifesto.json').read_text(encoding='utf-8'))
+
+    def select_map(self,map_id):
+        if map_id not in self.map_cache:
+            if map_id==INICIAL:
+                background=QImage(str(resource_path('enseada.png')))
+                foreground=QImage(str(resource_path('margem.png')))
+                materials=None;environment=Environment(background)
+            else:
+                root=resource_path('mapas');background=QImage(str(root/(map_id+'.png')))
+                foreground=QImage(str(root/(map_id+'-margem.png')))
+                materials=QImage(str(root/(map_id+'-materiais.png')))
+                if background.width()!=WIDTH or background.height()!=HEIGHT or materials.isNull():
+                    raise RuntimeError('Cenário incompleto: '+map_id)
+                environment=RegionalEnvironment(map_id,root,self.map_manifest[map_id])
+            self.map_cache[map_id]=(background,foreground,environment,Lighting(background,foreground,materials))
+            if len(self.map_cache)>2:self.map_cache.popitem(last=False)
+        self.map_cache.move_to_end(map_id)
+        self.background,self.foreground,self.environment,self.lighting=self.map_cache[map_id]
 
     def cached(self, key, builder):
         if key not in self.cache:
@@ -253,8 +278,11 @@ class SceneRenderer:
             if hat=='chapeu_ninja':
                 rect(p,17,28,2,1,'#ddc099')
                 rect(p,18,28,1,1,'#fff0cb')
-            elif hat=='chapeu_raposa':
-                p.drawImage(14,27,compact.copy(14,11,7,7))
+            elif hat in ('chapeu_raposa','chapeu_samurai'):
+                # The dark interior lies behind the face; the top rim/ears/horns
+                # remain foreground, instead of painting a flat plate over it.
+                p.drawImage(13,26,compact.copy(13,10,8,9))
+                line(p,(12,25),(20,25),'#965c43' if hat=='chapeu_raposa' else '#b4b6bb')
         p.end()
         return img
 
@@ -370,27 +398,30 @@ class SceneRenderer:
         wings=id_ in ('asas_fenix','asas_boreais')
         if behind!=wings:
             return
-        warm='#ffb36b' if id_=='asas_fenix' else '#9cd8c4'
+        warm='#ffd153' if id_=='asas_fenix' else '#56ffcd'
         if wings:
             for side in (-1,1):
                 yy=y+round(math.sin(f*1.3))
                 pts=[(x,yy),(x+side*9,yy-11),(x+side*23,yy-23),(x+side*19,yy-9),
                      (x+side*14,yy-1),(x+side*7,yy+3)]
-                poly(p,pts,'#9b5761' if id_=='asas_fenix' else '#497782')
+                poly(p,pts,'#e96338' if id_=='asas_fenix' else '#687fe0')
                 for k in range(4):
                     line(p,(x+side*(4+k*3),yy-k*2),(x+side*(19-k*2),yy-18+k*4),warm)
             return
         if id_ in ('sabre_energia','cajado_tempestade','martelo_pesado'):
             hand=hand or (HAND_X,HAND_Y+dy)
             tip=(148,69+dy)
+            if id_=='martelo_pesado':tip=(hand[0]+5,hand[1]-11)
             line(p,hand,tip,'#453e46',3)
             line(p,hand,tip,'#c09b68')
             if id_=='martelo_pesado':
+                p.save();p.translate(tip[0]-148,tip[1]-(69+dy))
                 poly(p,[(142,65+dy),(151,68+dy),(152,73+dy),(143,71+dy)],'#43495b')
                 line(p,(143,66+dy),(150,68+dy),'#c2ced0',2)
                 if math.sin(f*.9)>.85:
                     rect(p,146,67+dy,2,1,'#e0c694')
                     rect(p,147,66+dy,1,3,'#e0c694')
+                p.restore()
             elif id_=='sabre_energia':
                 line(p,(138,88+dy),tip,'#367d99',5)
                 line(p,(138,88+dy),tip,'#85d9dc',3)
@@ -409,11 +440,16 @@ class SceneRenderer:
             xx=x+23+round(3*math.sin(f*.8)); yy=y-15+round(2*math.cos(f*.8))
             if id_=='broche_lunar':
                 poly(p,[(xx,yy-5),(xx-4,yy-2),(xx-4,yy+3),(xx,yy+5),(xx+4,yy+3),
-                        (xx,yy+2),(xx-1,yy-1)],'#f3d08b')
+                        (xx,yy+2),(xx-1,yy-1)],'#f1faff')
+                line(p,(xx-3,yy-2),(xx-3,yy+2),'#c2dbef')
             else:
                 color='#b58aca' if id_=='chama_yokai' else '#e69e55'
                 cluster(p,xx-4,yy-4,8,7,color)
                 rect(p,xx-2,yy-3,3,2,'#ffe4a5')
+                if id_=='orbe_dragon':
+                    poly(p,[(xx,yy-3),(xx+1,yy-1),(xx+3,yy-1),(xx+1,yy+1),
+                            (xx+2,yy+3),(xx,yy+2),(xx-2,yy+3),(xx-1,yy+1),
+                            (xx-3,yy-1),(xx-1,yy-1)],'#b64029')
                 if id_=='chama_yokai':
                     poly(p,[(xx-3,yy),(xx,yy-9),(xx+1,yy-3),(xx+4,yy)],color)
         elif id_=='estrelas_orbitais':
@@ -436,6 +472,7 @@ class SceneRenderer:
         """
         x,y=CHARACTER_X+14,CHARACTER_Y+19+dy
         hx,hy=hand or (HAND_X,HAND_Y+dy)
+        extra(p,id_,f,dy,behind,hand)
         auras={
             'anel_verde_esmeralda':('#12683e','#42f579','#e2ffc0'),
             'aura_cyber':('#26506f','#51e7ff','#e1fcff'),
@@ -522,11 +559,14 @@ class SceneRenderer:
                         line(p,start,end,'#eeffff')
             elif not behind:
                 # The held hammer also has a permanent rune and a pulsing charge.
+                p.save();p.translate(hx+5-148,hy-11-(69+dy))
                 rect(p,146,67+dy,3,1,'#b8efff')
                 rect(p,147,66+dy,1,3,'#efffff')
                 if active:
                     line(p,(143,64+dy),(139,69+dy),'#83dfff')
                     line(p,(151,68+dy),(154,73+dy),'#efffff')
+                p.restore()
+                if active:
                     width=5+int((f%3.2)*10)
                     line(p,(end_x-width,115),(end_x+width,115),'#7fdcff')
                     for side in (-1,1):
@@ -542,14 +582,21 @@ class SceneRenderer:
             for i in range(3):
                 rect(p,xx-7+i*6,yy-9-(int(f*7)+i*4)%10,1,2,'#e5bdff')
 
-    def render(self, game):
+    def render(self, game, map_id=None):
+        map_id=map_id or game.estado['local_atual_id']
+        self.select_map(map_id)
         f=game.fase
         dy=round(1.5*math.sin(f*1.4)+.5*math.sin(f*.65))
-        pose=1 if game.fisgando>0 else 2 if game.capturando>0 else 0
+        result=getattr(game,'_last_result',None)
+        observing=bool(result and result['categoria']=='especial')
+        pose=1 if game.fisgando>0 else 2 if game.capturando>0 and not observing else 0
         sprite_pose=3 if pose==0 and int(f*3)%17==16 else pose
         breath=0  # The pelvis and boots stay anchored to the seat during idle.
         hand=(HAND_X,HAND_Y+dy+breath-(2 if pose==1 else 4 if pose==2 else 0))
-        lighting=self.lighting.at(getattr(game,'_preview_clock',None))
+        moment=getattr(game,'_preview_clock',None)
+        if moment is None and hasattr(game,'_clock_snapshot'):
+            moment=datetime.fromisoformat(game._clock_snapshot['local_iso'])
+        lighting=self.lighting.at(moment)
         self.current_light=lighting
         img=lighting.background.copy()
         p=QPainter(img)
@@ -652,14 +699,15 @@ class SceneRenderer:
         if game.fisgando>0:
             rect(p,141,64+dy,2,7,'#ffe7a0')
             rect(p,141,73+dy,2,2,'#ffe7a0')
-        if game.capturando>0:
+        result=getattr(game,'_last_result',None)
+        if game.capturando>0 and result and result['categoria']=='peixe':
             t=1-game.capturando/1.2
             xx=193-round(t*43); yy=108-round(math.sin(t*math.pi)*31)
-            poly(p,[(xx-5,yy),(xx-2,yy-3),(xx+3,yy-2),(xx+5,yy),
-                    (xx+3,yy+2),(xx-2,yy+2)],'#c4cbb1')
-            poly(p,[(xx-4,yy),(xx-8,yy-3),(xx-8,yy+3)],'#deac73')
-            rect(p,xx+3,yy-1,1,1,INK)
-            line(p,(xx-2,yy-2),(xx+2,yy-2),'#fff0c5')
+            p.drawImage(xx-12,yy-8,species_image(result['species_id']).scaled(24,16,Qt.IgnoreAspectRatio,Qt.FastTransformation))
+        elif game.capturando>0 and result and result['categoria']=='especial':
+            # Observations and samples stay at the surface, detached from the hook.
+            p.drawImage(182,101,species_image(result['species_id']).scaled(64,42,Qt.IgnoreAspectRatio,Qt.FastTransformation))
+            line(p,(205,137),(229,137),'#b7ddcd')
         self.accessories(p,game.equipado('acessorio'),f,dy,False,hand)
         p.end()
         self.lighting.actors(actors,lighting)
@@ -672,12 +720,13 @@ class SceneRenderer:
         self.environment.foreground(fp,f)
         self.environment.events(fp,f,lighting.night)
         fp.end();self.lighting.actors(foliage,lighting);p.drawImage(0,0,foliage)
-        self.lighting.emissive(p,f,dy,lighting)
+        if map_id==INICIAL:self.lighting.emissive(p,f,dy,lighting)
+        else:self.environment.emissive(p,f,dy,lighting)
         # Animated flower tips match the foreground's warm/cool pixel ramps.
-        for xx,yy in ((17,123),(244,119)):
+        for xx,yy in (((17,123),(244,119)) if map_id==INICIAL else ()):
             rect(p,xx+round(math.sin(f*.8+xx)),yy,1,1,'#e6c895')
         # Tiny moths and fireflies in the near bank, below the UI.
-        for i,(xx,yy) in enumerate(((33,91),(73,68),(230,104))):
+        for i,(xx,yy) in enumerate(((33,91),(73,68),(230,104)) if map_id==INICIAL else ()):
             if lighting.night>.6 and math.sin(f*1.2+i)>-.2:
                 xx+=round(2*math.sin(f*.7+i)); yy+=round(2*math.cos(f+i))
                 rect(p,xx,yy,1,1,'#f6d493')
