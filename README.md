@@ -62,6 +62,8 @@ O spec inclui os PNGs de produção e o manifesto dos cosméticos, sem os master
 
 Os 17 chapéus, 14 mascotes e 14 boias têm sprites redesenhados em atlases locais, com encaixes próprios para elmos e capuzes. Todos os mascotes respiram, piscam e movimentam orelhas, caudas ou nadadeiras em poses curtas, mantendo os pés apoiados. As roupas mantêm o volume do pescador; as 13 bandeiras têm dobras animadas e acessórios usam efeitos em pixels. Os ícones da loja mostram a arte do item equipado. O casco tem camadas traseira e dianteira, banco e sombras de contato. Textos são renderizados na resolução da interface para preservar acentos e valores; status, inventário e conquistas têm painéis com rolagem. A prévia da loja usa o renderer real a 2×, ou 1× em telas menores. Escolher um item não o compra; a prévia é descartada ao fechar.
 
+Cada chapéu tem seu próprio ponto de encaixe na cabeça, mantido durante as poses de pesca. Os mascotes ficam apoiados na popa, à frente da borda e dos objetos do barco. O Anel Verde-Esmeralda, a Aura Cyberpunk e o Escudo de Bolhas têm contornos luminosos, partículas e pulsação visíveis durante o dia e à noite. A Chama Yokai também emite luz. O Martelo Pesado mantém o martelo na mão e produz descargas do céu na água próxima ao barco, em ciclos de 3,2 segundos.
+
 O barco oscila com o pescador e seus equipamentos ancorados ao casco; o reflexo fragmentado se desloca abaixo dele. Nuvens passam lentamente, sombras de peixes nadam sob as ondulações e folhas e samambaias balançam nas margens. Durante o dia, bandos de pássaros e borboletas visitam a enseada. No escuro, surgem vaga-lumes, uma coruja sonolenta, estrelas e reflexos da lua; uma estrela cadente passa brevemente após cerca de 8 segundos de animação e a cada 83 segundos, somente com iluminação noturna. Efeitos de acessórios têm movimentos lentos e pequenos brilhos. A isca é um detalhe visual do equipamento existente; não cria consumíveis ou novas regras de pesca.
 
 Movimentos usam uma fase visual independente do relógio civil. Não consomem a aleatoriedade da pesca nem afetam economia ou saves. Cenário e primeiro plano preservam os mesmos grupos de pixels em todos os horários; a noite combina sombras frias e luz quente de cabana e lanterna.
@@ -82,11 +84,14 @@ O save continua em `%APPDATA%\PescaIdle\save.json`. Identificadores, inventário
 
 ```powershell
 .\.venv\Scripts\python.exe tools\validate_game.py
+.\.venv\Scripts\python.exe tools\validate_cosmetics.py
 .\.venv\Scripts\python.exe tools\capture_animation.py
 .\.venv\Scripts\python.exe tools\smoke_exe.py
 ```
 
 Esses comandos usam saves temporários isolados, incluindo a inicialização que salva automaticamente. O teste integrado compara economia e simulação offline à revisão original `b4ef8c7` do Git. O smoke test do executável roda de outra pasta e verifica o carregamento dos assets empacotados.
+
+`validate_cosmetics.py` verifica os 17 encaixes, as poses dos chapéus, a visibilidade integral dos 14 mascotes em todos os níveis do barco e os efeitos luminosos e raios. Seu relatório usa uma pasta temporária por padrão; defina `PESCA_IDLE_QA_DIR` para preservar as saídas em uma pasta exclusiva de QA.
 
 Para uma sessão manual isolada:
 

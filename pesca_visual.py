@@ -21,6 +21,21 @@ BOAT_Y = 96
 CHARACTER_X, CHARACTER_Y = 105, 69
 BENCH_Y = CHARACTER_Y + 34  # Directly below the lowest rear-thigh pixel.
 HAND_X, HAND_Y = CHARACTER_X + 30, CHARACTER_Y + 25
+HEADBAND_X, HEADBAND_Y = 14, 22
+# Attachment pixels in each cropped atlas sprite, rather than its bounding box.
+# Brims/headbands share the hairline; enclosing helmets use their forehead seam.
+HAT_ANCHORS = {
+    'chapeu_palha': (12, 10), 'chapeu_bone': (10, 10),
+    'chapeu_gorro': (8, 14), 'chapeu_quepe': (11, 11),
+    'chapeu_pirata': (12, 11), 'chapeu_cartola': (10, 13),
+    'chapeu_coroa': (10, 13), 'chapeu_pikachu': (10, 16),
+    'chapeu_ninja': (10, 7), 'chapeu_samurai': (11, 9),
+    'chapeu_cowboy': (12, 11), 'chapeu_mago': (12, 18),
+    'chapeu_astronauta': (11, 10), 'chapeu_folhas': (11, 11),
+    'chapeu_marinheiro': (11, 12), 'chapeu_raposa': (11, 9),
+    'chapeu_corais': (11, 14),
+}
+PET_X, PET_Y = 83, DECK_Y - 23
 FLOAT_X, WATER_Y = 193, 111
 INK = '#202b3f'
 GOLD = '#e6b96b'
@@ -233,15 +248,13 @@ class SceneRenderer:
         p.drawImage(0,16,compact)
         if hat in self.cosmetics:
             sprite=self.cosmetics[hat]
-            # Helmets/hoods enclose the whole head; brims sit on the hairline.
-            full_head=hat in ('chapeu_ninja','chapeu_astronauta','chapeu_raposa','chapeu_samurai')
-            bottom=35 if full_head else 26
-            p.drawImage(13-sprite.width()//2,bottom-sprite.height(),sprite)
+            anchor_x,anchor_y=HAT_ANCHORS[hat]
+            p.drawImage(HEADBAND_X-anchor_x,HEADBAND_Y-anchor_y,sprite)
             if hat=='chapeu_ninja':
                 rect(p,17,28,2,1,'#ddc099')
                 rect(p,18,28,1,1,'#fff0cb')
             elif hat=='chapeu_raposa':
-                p.drawImage(14,29,compact.copy(14,13,7,6))
+                p.drawImage(14,27,compact.copy(14,11,7,7))
         p.end()
         return img
 
@@ -337,8 +350,10 @@ class SceneRenderer:
             img=blank(96,80)
             p=QPainter(img)
             p.translate(-181,-26) if id_=='teia_aracnidea' else p.translate(-80,-50)
+            self.accessory_effects(p,id_,.3,0,True)
             self.accessories(p,id_,.3,0,True)
             self.accessories(p,id_,.3,0,False)
+            self.accessory_effects(p,id_,.3,0,False)
             p.end()
             xs,ys=[],[]
             for y in range(img.height()):
@@ -401,22 +416,131 @@ class SceneRenderer:
                 rect(p,xx-2,yy-3,3,2,'#ffe4a5')
                 if id_=='chama_yokai':
                     poly(p,[(xx-3,yy),(xx,yy-9),(xx+1,yy-3),(xx+4,yy)],color)
-        elif id_ in ('aura_cyber','escudo_bolhas','anel_verde_esmeralda'):
-            color={'aura_cyber':'#74c9d1','escudo_bolhas':'#92cdd1','anel_verde_esmeralda':'#84c99a'}[id_]
-            for i in range(12):
-                a=math.tau*i/12
-                xx=x+round(19*math.cos(a)); yy=y+round(23*math.sin(a))
-                if (i+int(f*.8))%3:
-                    rect(p,xx,yy,2,1,color)
-                    rect(p,xx,yy-1,1,3,color)
-            hx,hy=hand or (HAND_X,HAND_Y+dy)
-            rect(p,hx,hy,2,2,color)
         elif id_=='estrelas_orbitais':
             for i in range(5):
                 a=f*.35+i*math.tau/5
                 xx=x+round(22*math.cos(a)); yy=y+round(23*math.sin(a))
                 rect(p,xx-1,yy,3,1,'#f7d99b')
                 rect(p,xx,yy-1,1,3,'#f7d99b')
+
+    @staticmethod
+    def lightning_active(seconds):
+        phase=seconds%3.2
+        return phase<.55 or .72<=phase<.92
+
+    def accessory_effects(self,p,id_,f,dy,behind=False,hand=None):
+        """Emissive pixel effects stay readable in daylight and after night tinting.
+
+        Rear halos sit behind the actors; front arcs and impact sparks wrap around
+        them. These phases never consume the fishing RNG or modify the save.
+        """
+        x,y=CHARACTER_X+14,CHARACTER_Y+19+dy
+        hx,hy=hand or (HAND_X,HAND_Y+dy)
+        auras={
+            'anel_verde_esmeralda':('#12683e','#42f579','#e2ffc0'),
+            'aura_cyber':('#26506f','#51e7ff','#e1fcff'),
+            'escudo_bolhas':('#356c92','#8be8ff','#f0ffff'),
+        }
+        if id_ in auras:
+            dark,color,bright=auras[id_]
+            pulse=round(math.sin(f*2.1))
+            rx,ry=22+pulse,25+pulse
+            points=[(x+round(rx*math.cos(i*math.tau/32)),
+                     y+round(ry*math.sin(i*math.tau/32))) for i in range(33)]
+            if behind:
+                if id_=='escudo_bolhas':
+                    poly(p,points,QColor(90,202,244,32))
+                for i in range(32):
+                    if id_=='aura_cyber' and i%4==3:
+                        continue
+                    line(p,points[i],points[i+1],dark,3)
+                    line(p,points[i],points[i+1],color)
+                    if (i-int(f*5))%8<2:
+                        line(p,points[i],points[i+1],bright)
+                for i in range(4):
+                    angle=f*.55+i*math.tau/4
+                    xx=x+round((rx+3)*math.cos(angle))
+                    yy=y+round((ry+3)*math.sin(angle))
+                    poly(p,[(xx,yy-2),(xx+2,yy),(xx,yy+2),(xx-2,yy)],dark)
+                    rect(p,xx-1,yy,3,1,bright)
+                    rect(p,xx,yy-1,1,3,color)
+                if id_=='aura_cyber':
+                    for side in (-1,1):
+                        xx=x+side*(rx+4)
+                        line(p,(xx,y-9),(xx,y+8),color)
+                        line(p,(xx,y-9),(xx-side*4,y-9),bright)
+                        rect(p,xx-1,y+7,3,3,bright)
+            else:
+                # Only the lower, foreground arc crosses the hull, not the face.
+                for i in range(2,15):
+                    if id_=='aura_cyber' and i%4==3:
+                        continue
+                    line(p,points[i],points[i+1],dark,3)
+                    line(p,points[i],points[i+1],color)
+                    if (i-int(f*5))%8<2:
+                        line(p,points[i],points[i+1],bright)
+                if id_=='anel_verde_esmeralda':
+                    poly(p,[(hx,hy-3),(hx+3,hy),(hx,hy+3),(hx-3,hy)],dark)
+                    rect(p,hx-2,hy-1,4,3,color)
+                    rect(p,hx,hy-1,1,2,bright)
+                    for i in range(3):
+                        yy=y-10-(int(f*7)+i*8)%27
+                        xx=x-18+i*17+round(2*math.sin(f+i))
+                        rect(p,xx,yy,2,2,color)
+                        rect(p,xx,yy-1,1,1,bright)
+                elif id_=='aura_cyber':
+                    for i in range(3):
+                        xx=x-14+i*14
+                        yy=y+19-(int(f*8)+i*7)%35
+                        line(p,(xx,yy),(xx,yy+4),color)
+                        rect(p,xx-1,yy,3,2,bright)
+                else:
+                    for i in range(3):
+                        xx=x-17+i*16+round(2*math.sin(f+i))
+                        yy=y+16-(int(f*5)+i*13)%45
+                        p.setPen(QPen(QColor(color),1));p.setBrush(Qt.NoBrush)
+                        p.drawEllipse(xx-2,yy-2,5,5)
+                        rect(p,xx-1,yy-2,2,1,bright)
+            return
+        if id_=='martelo_pesado':
+            active=self.lightning_active(f)
+            end_x=176+((int(f//3.2)%3)-1)*4
+            if behind and active:
+                wobble=int(f*18)%2
+                points=[(end_x-3,10),(end_x-8,26),(end_x,37),
+                        (end_x-7,51),(end_x+2,64),(end_x-6,79),
+                        (end_x+3,92),(end_x,113)]
+                points=[(xx+wobble,yy) for xx,yy in points]
+                for start,end in zip(points,points[1:]):
+                    line(p,start,end,'#24456d',5)
+                    line(p,start,end,'#5fcfff',3)
+                    line(p,start,end,'#eeffff')
+                for branch in (((end_x-7,51),(end_x-18,57),(end_x-14,70)),
+                               ((end_x+2,64),(end_x+13,71),(end_x+9,83))):
+                    for start,end in zip(branch,branch[1:]):
+                        line(p,start,end,'#5fcfff',3)
+                        line(p,start,end,'#eeffff')
+            elif not behind:
+                # The held hammer also has a permanent rune and a pulsing charge.
+                rect(p,146,67+dy,3,1,'#b8efff')
+                rect(p,147,66+dy,1,3,'#efffff')
+                if active:
+                    line(p,(143,64+dy),(139,69+dy),'#83dfff')
+                    line(p,(151,68+dy),(154,73+dy),'#efffff')
+                    width=5+int((f%3.2)*10)
+                    line(p,(end_x-width,115),(end_x+width,115),'#7fdcff')
+                    for side in (-1,1):
+                        line(p,(end_x+side*3,113),(end_x+side*8,107),'#eeffff')
+                        rect(p,end_x+side*11,110,2,2,'#70cfff')
+        elif id_=='chama_yokai' and not behind:
+            xx=x+22+round(3*math.sin(f*.8));yy=y-13+round(2*math.cos(f*.8))
+            poly(p,[(xx-5,yy+3),(xx-5,yy-2),(xx-2,yy-6),(xx,yy-11),
+                    (xx+2,yy-5),(xx+5,yy-2),(xx+5,yy+3),(xx,yy+6)],'#633d98')
+            poly(p,[(xx-3,yy+2),(xx-2,yy-4),(xx,yy-8),
+                    (xx+1,yy-2),(xx+3,yy+2),(xx,yy+4)],'#db99ff')
+            rect(p,xx-1,yy-2,2,5,'#fff0ff')
+            for i in range(3):
+                rect(p,xx-7+i*6,yy-9-(int(f*7)+i*4)%10,1,2,'#e5bdff')
 
     def render(self, game):
         f=game.fase
@@ -473,10 +597,6 @@ class SceneRenderer:
         self.accessories(p,game.equipado('acessorio'),f,dy,True,hand)
         ch,hat=game.equipado('roupa'),game.equipado('chapeu')
         p.drawImage(CHARACTER_X,CHARACTER_Y-16+dy,self.cached(('person',ch,hat,sprite_pose),lambda:self.character(ch,hat,sprite_pose)))
-        pet=game.equipado('boneco')
-        if pet in self.pets:
-            frame=self.pet_frame(f)
-            p.drawImage(83,DECK_Y-23+dy,self.cached(('pet',pet,frame),lambda:self.pet(pet,frame)))
         p.drawImage(BOAT_X,BOAT_Y+dy,self.cached(('front',game.estado['barco']),lambda:self.boat_front(game.estado['barco'])))
         # Coiled rope, fishing basket and a physical lantern on the bow.
         for xx,yy,w in ((144,103,8),(145,101,6),(146,100,4)):
@@ -492,6 +612,13 @@ class SceneRenderer:
         rect(p,156,98+dy,3,3,'#f4c87a')
         rect(p,157,98+dy,1,2,'#ffedba' if int(f*7)%3 else '#ffda94')
         rect(p,155,104+dy,6,1,'#e7bd76')
+        # Mascots sit on the stern ledge, in front of the rail/post and basket.
+        # Keep their shared foot anchor while letting the whole body remain visible.
+        pet=game.equipado('boneco')
+        if pet in self.pets:
+            frame=self.pet_frame(f)
+            rect(p,PET_X+6,DECK_Y+1+dy,12,1,'#423834')
+            p.drawImage(PET_X,PET_Y+dy,self.cached(('pet',pet,frame),lambda:self.pet(pet,frame)))
         for k in range(6):
             yy=124+k*3; w=max(2,9-k)
             rect(p,157-w//2+round(math.sin(f*3+k)),yy,w,1,'#b7a17a' if k<3 else '#748d7c')
@@ -536,7 +663,10 @@ class SceneRenderer:
         self.accessories(p,game.equipado('acessorio'),f,dy,False,hand)
         p.end()
         self.lighting.actors(actors,lighting)
-        p=QPainter(img);p.drawImage(0,0,actors)
+        p=QPainter(img)
+        self.accessory_effects(p,game.equipado('acessorio'),f,dy,True,hand)
+        p.drawImage(0,0,actors)
+        self.accessory_effects(p,game.equipado('acessorio'),f,dy,False,hand)
         p.drawImage(0,0,lighting.foreground)
         foliage=blank();fp=QPainter(foliage)
         self.environment.foreground(fp,f)
