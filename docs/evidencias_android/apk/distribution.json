@@ -1,0 +1,30 @@
+{
+  "source_commit": "35a2483f140b64075befe249a44be8bc9ab1e10d",
+  "build_run": "https://github.com/BernardoJ/PescaIdle/actions/runs/37722759610",
+  "production": {
+    "artifact_id": 11526725942,
+    "architecture": "arm64-v8a",
+    "package": "br.com.bernardoj.pescaidle",
+    "version": "2.1.0",
+    "version_code": 21000,
+    "min_api": 28,
+    "target_api": 36,
+    "debuggable": false,
+    "permissions": [],
+    "bytes": 151170080,
+    "sha256": "beeaeb7354b4215572e15151b1270384fee124645d68dc63c687b8e1b4adc279",
+    "certificate_sha256": "3b0c2615f5b32c0a05b8eca81a95c1c282f00639d8fdb40264c3d20613310e31",
+    "signature_verified": true,
+    "zipalign_16kb_verified": true,
+    "elf_native_16kb_compatible": false
+  },
+  "qa": {
+    "artifact_id": 11527203228,
+    "architecture": "x86_64",
+    "package": "br.com.bernardoj.pescaidle.qa",
+    "sha256": "8100f6e32fdd91bda532e76cdcee69a7e0d770f61281c3266db301fcf2aa1865",
+    "source_commit": "24e4055911e5d4360faebfdab1b3aaedac5207b4",
+    "test_run": "https://github.com/BernardoJ/PescaIdle/actions/runs/37725337560",
+    "emulator_artifact_id": 11527389802
+  }
+}

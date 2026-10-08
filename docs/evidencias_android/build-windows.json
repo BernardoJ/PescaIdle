@@ -1,0 +1,17 @@
+{
+  "source_commit": "35a2483f140b64075befe249a44be8bc9ab1e10d",
+  "executable": "PescaIdle.exe",
+  "bytes": 50164461,
+  "sha256": "be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9",
+  "python": "3.14.8",
+  "qt": "6.11.2",
+  "pyinstaller": "6.22.3",
+  "os": "Windows 11 26100",
+  "entrypoint": "pesca_idle.py",
+  "spec": "PescaIdle.spec",
+  "smoke_scales": [1, 1.25],
+  "native_close_messages": ["WM_CLOSE", "WM_SYSCOMMAND/SC_CLOSE"],
+  "temporary_profiles_only": true,
+  "personal_save_read": false,
+  "android_device_test": false
+}

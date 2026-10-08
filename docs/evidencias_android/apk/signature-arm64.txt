@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): false
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: O=BernardoJ, CN=PescaIdle Release
+Signer #1 certificate SHA-256 digest: 3b0c2615f5b32c0a05b8eca81a95c1c282f00639d8fdb40264c3d20613310e31
+Signer #1 certificate SHA-1 digest: 251378775c453086faacbfb6d4838cbffbe25b16
+Signer #1 certificate MD5 digest: 512d2a417a1b979d4d8c349857f70fe9
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 3072
+Signer #1 public key SHA-256 digest: 7b3afddd516f952ab42040e908ffb408abd91aad3c651aca5bf29a0a3a66434d
+Signer #1 public key SHA-1 digest: 09bc09fa001dbf3013e8bb39e04f45a29474747b
+Signer #1 public key MD5 digest: 4b0b399fca998a06d30e43a310e05088

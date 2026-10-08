@@ -1,6 +1,6 @@
 """Deterministic event core shared by active time and historical offline replay."""
 import copy
-from decimal import Decimal
+from pesca_moedas import reward, credit
 import math
 import random
 from pesca_catalogo import ESPECIES, LOCAIS, VERSION, probabilities, legacy_view, desbloquear
@@ -37,10 +37,11 @@ class FishingEngine:
         species_id = self.rng.choices(list(probs), weights=list(probs.values()))[0]
         self.state['contador_eventos'] += 1
         event = {'id': f"{self.state['perfil_id']}:{self.state['contador_eventos']}",
-                 'species_id': species_id, 'context': context, 'gain': 0,
+                 'species_id': species_id, 'context': context, 'gain': 0, 'gain_cents': 0,
                  'categoria': 'lixo' if species_id == 'bota_velha' else ESPECIES[species_id]['categoria']}
         if species_id in ESPECIES:
-            event['gain'] = round(ESPECIES[species_id]['valor']*(1+.2*context['barco']), 2)
+            event['gain_cents'] = reward(ESPECIES[species_id]['valor'], context['barco'])
+            event['gain'] = event['gain_cents']/100
         self.state['pesca_pendente'] = event
         self.state['pesca'] = {'etapa': 'fisgando', 'restante': 1.5}
         return event
@@ -51,7 +52,7 @@ class FishingEngine:
             raise ValueError('Fisgada sem resultado persistido.')
         if event['id'] != self.state['ultimo_evento_aplicado']:
             if event['species_id'] in ESPECIES:
-                self.state['moedas'] = float(Decimal(str(self.state['moedas'])) + Decimal(str(event['gain'])))
+                credit(self.state, event['gain_cents'])
                 self.state['total_pescados'] += 1
                 inv = self.state['inventario_por_id']; id_ = event['species_id']
                 inv[id_] = inv.get(id_, 0)+1

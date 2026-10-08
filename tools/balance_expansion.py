@@ -22,12 +22,13 @@ def run(out):
     from pesca_catalogo import DATA,ESPECIES,LOCAIS,probabilities
     from pesca_tempo import PERIODOS
     from pesca_save import migrate
+    from pesca_moedas import can_buy,debit,reward
     from pesca_pescaria import FishingEngine
     tree=ast.parse((ROOT/'docs/design/pesca_idle_base_6b29b4a.py.txt').read_text(encoding='utf-8-sig'))
     literals={node.targets[0].id:ast.literal_eval(node.value) for node in tree.body
         if isinstance(node,ast.Assign) and isinstance(node.targets[0],ast.Name) and node.targets[0].id in ('LOOT','ESTADO_PADRAO')}
     old=literals['LOOT'];defaults=literals['ESTADO_PADRAO'];seeds=list(range(30));rows=[]
-    def earnings(id_,boat):return round(ESPECIES[id_]['valor']*(1+.2*boat),2) if id_ in ESPECIES else 0
+    def earnings(id_,boat):return reward(ESPECIES[id_]['valor'],boat)/100 if id_ in ESPECIES else 0
     lengths=[2,2,2,3,3,3,9];daily={}
     for map_id in LOCAIS:
         for level in (0,3,10):
@@ -62,7 +63,7 @@ def run(out):
             engine=FishingEngine(state,random.Random(seed));duration=0;pieces=0
             while pieces<2 and duration<259200:
                 step=engine.state['pesca']['restante'];engine.advance(step,start+duration,0);duration+=step
-                while engine.state['moedas']>=30 and pieces<2:engine.state['moedas']-=30;pieces+=1
+                while can_buy(engine.state,30) and pieces<2:debit(engine.state,30);pieces+=1
             b.append(duration)
         ratio=statistics.median(b)/statistics.median(a)
         progression.append({'start_period':period_id,'seeds':seeds,'baseline_seconds':a,'expansion_seconds':b,

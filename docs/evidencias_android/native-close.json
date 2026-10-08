@@ -1,0 +1,7 @@
+{
+  "checks": [
+    "WM_CLOSE: process exited, valid save, lock released",
+    "SC_CLOSE (Alt+F4 path): process exited, valid save, lock released"
+  ],
+  "profile_isolated": true
+}

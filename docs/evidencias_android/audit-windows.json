@@ -1,0 +1,8 @@
+{
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "schema": 3,
+  "profile_isolated": true,
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]"
+}

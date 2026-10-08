@@ -1,13 +1,21 @@
 # Pesca Idle — Oito Águas
 
-Jogo idle de pesca para Windows, em Python/PySide6, com arte original em pixels.
+Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
 
 ## Jogar com dois cliques
 
-Baixe o [PescaIdle.exe desta expansão](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/expansao-mapas-periodos/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.
+Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/android-auditoria/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.
 
-Build Windows: **50.151.105 bytes**. SHA256: `2fea9bb9d6fd35888010450723957345312e393ba2d2ca2f1484fdaf131cce1e`.
-[Proveniência e smoke test](docs/BUILD_EXPANSAO.md) · [manifesto de entradas](docs/evidencias_expansao/build-windows.json).
+Build Windows: **50.164.461 bytes**. SHA256: `be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9`.
+[Correções e validação atual](docs/AUDITORIA_ANDROID.md) · [Android](ANDROID.md).
+
+## Jogar no Android
+
+Baixe o [PescaIdle-Android.apk — beta ARM64](https://github.com/BernardoJ/PescaIdle/releases/download/v2.1.0-android-beta.1/PescaIdle-Android.apk) e abra para instalar. O Android pode pedir permissão para instalar por esse navegador/gerenciador. O pacote inclui o jogo, o runtime e os recursos; não requer outro aplicativo.
+
+Alvo desta beta: **Android 9+, ARM64, páginas de memória de 4 KB**. Compatibilidade com páginas de 16 KB e teste em telefone físico permanecem pendentes. Instalação, funcionamento e rotação foram testados em emulador Android 15 x86_64 com o mesmo código/arte. [Relatório e limitações](docs/AUDITORIA_ANDROID.md).
+
+APK: **151.170.080 bytes**. SHA256: `beeaeb7354b4215572e15151b1270384fee124645d68dc63c687b8e1b4adc279`.
 
 ## O que mudou
 
@@ -16,7 +24,7 @@ Build Windows: **50.151.105 bytes**. SHA256: `2fea9bb9d6fd3588801045072395734531
 - Sete períodos pelo relógio local: Amanhecer 05–07, Manhã 07–09, Dia 09–11, Meio-dia 11–14, Tarde 14–17, Anoitecer 17–20, Noite 20–05. Fim exclusivo.
 - **Enciclopédia** com ordem alfabética/quantidade e filtros por local, período e disponível agora. Valor em 1 registro, raridade em 5, curiosidade em 10. Mostra descobertas por padrão; pistas opcionais de desconhecidas não revelam a identidade.
 - Coleção global e regional separadas. Conquista original **Rei da pesca** conserva a meta de 49; **Explorador das oito águas** usa as 88 da expansão.
-- **Fashionista**: todos os cosméticos vendidos. **Enciclopédia Viva**: todas as informações reveladas, com acessório de livro flutuante grátis como recompensa.
+- **Fashionista**: somente cosméticos vendidos, excluindo o livro Enciclopédia Viva, opções grátis e peças de upgrade. A tela mostra progresso e nomes que faltam; recalcula ao abrir e comprar. **Enciclopédia Viva**: todas as informações reveladas, com acessório de livro flutuante grátis como recompensa.
 - Capuz de raposa/elmo corrigidos, cabo de martelo menor, nuvens e chuva no cajado, mais teias, broche lunar luminoso, dragão verde orbitando a esfera laranja, brilho no sabre/constelação/chamas e asas mais vivas.
 - Rótulos **Dragão Digital**, **Gorro de Rato Elétrico**, **Eu escolho você!** e **Mostre-me seu Coração Valente**, com IDs anteriores preservados.
 
@@ -27,7 +35,7 @@ A janela compacta abre no canto inferior direito, fica no topo e pode ser arrast
 
 ## Progresso e ausência
 
-O save normal continua em `%APPDATA%\PescaIdle\save.json`. A atualização migra para schema 2 com backup válido anterior e escrita atômica. Preserva saldo, inventário, compras, equipamentos e conquistas. Capturas antigas continuam globais, sem atribuir local/horário desconhecido. Saves corrompidos ou futuros não são substituídos silenciosamente. Duas instâncias não podem gravar no mesmo perfil.
+O save normal Windows continua em `%APPDATA%\PescaIdle\save.json`. A atualização migra para schema 3, com moedas em centésimos inteiros, backup anterior e escrita atômica. Preserva inventário, compras, equipamentos e conquistas. Normaliza o saldo antigo a duas casas, guardando o número original no backup. Capturas antigas continuam globais, sem atribuir local/horário desconhecido. Saves corrompidos ou futuros não são substituídos silenciosamente; um backup válido pode ser recuperado com confirmação. Duas instâncias não podem gravar no mesmo perfil. Android usa seu diretório privado.
 
 Fisgadas congelam o resultado no início, inclusive ao viajar, pausar ou reabrir. O offline normal conta o **primeiro trecho de até quatro horas** da ausência, pescando em cada horário histórico; excesso é descartado uma vez. A pausa intencional persiste sem renda offline até retomar.
 
@@ -66,7 +74,7 @@ $env:PESCA_IDLE_QA_DIR = Join-Path $env:TEMP ('pesca-qa-' + [guid]::NewGuid())
 .\.venv\Scripts\python.exe tools\smoke_exe.py dist\PescaIdle.exe
 ```
 
-Os testes criam saves sintéticos e isolam APPDATA/LOCALAPPDATA antes de importar o jogo. O smoke usa plugin Windows, cwd estrangeiro e migra uma fixture v1. `validate_game` executa matriz da expansão, regressão cosmética e balanceamento. Relatórios e imagens usam a pasta de QA, sem sobrescrever referências.
+Os testes criam saves sintéticos e isolam APPDATA/LOCALAPPDATA antes de importar o jogo. O smoke usa plugin Windows, cwd estrangeiro e migra uma fixture v1. `validate_game` executa auditoria, matriz da expansão, regressão cosmética e balanceamento. `tools/test_windows_close.py <exe> --output <qa>` verifica saída nativa do processo e liberação do lock. `tools/validate_mobile.py` é uma prévia desktop, distinta do teste real do APK. Relatórios e imagens usam a pasta de QA, sem sobrescrever referências.
 
 Resultados observados: **5.920** verificações da matriz e **1.359** de cosméticos; 56 cenas inspecionadas; 168 pools matemáticos e 7 inícios ×30 sementes de progressão. [Detalhes e limites](docs/VALIDACAO_EXPANSAO.md). O conjunto global antigo foi preservado como fixture de comparação, com seus 337 checks executados antes da expansão.
 
