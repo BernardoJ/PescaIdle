@@ -39,7 +39,7 @@ def build(output,arch):
         'android.api':'36','android.minapi':'28','android.ndk':'27c','android.ndk_api':'28',
         'android.accept_sdk_license':'False','android.skip_update':'True','android.permissions':'',
         'android.numeric_version':'21000','android.debug_artifact':'apk','android.release_artifact':'apk',
-        'orientation':'all','fullscreen':'0','p4a.branch':'develop',
+        'orientation':'portrait,landscape','android.manifest.orientation':'fullSensor','fullscreen':'0','p4a.branch':'develop',
         'p4a.commit':'94ffd5f31d816414ad1fe66c0fe587c61daac757'}
     for key,value in options.items():cfg.set('app',key,value)
     if qa:

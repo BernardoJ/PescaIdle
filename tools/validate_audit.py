@@ -141,6 +141,45 @@ class Audit(unittest.TestCase):
         finally:g.close();g.deleteLater();APP.sendPostedEvents(None,QEvent.DeferredDelete)
         self.assertIsNone(g._store.lock)
 
+    def test_F7_last_catch_upgrade_and_purchase_flows(self):
+        from pesca_catalogo import ESPECIES,desbloquear
+        from pesca_loja import SLOTS
+        clock={'wall':1800000000.,'mono':0.}
+        g=game.JogoPesca(wall_clock=lambda:clock['wall'],monotonic_clock=lambda:clock['mono'])
+        g.setAttribute(Qt.WA_DontShowOnScreen,True)
+        def messages():return [x[0] for x in ([g.popup] if g.popup else [])+g._popup_queue]
+        def clear():g.popup=None;g._popup_queue=[]
+        try:
+            candidate=copy.deepcopy(g.estado);candidate['conquistas']=[]
+            candidate['inventario_por_id']={id_:1 for id_ in ESPECIES if id_!='lambari'}
+            engine=FishingEngine(candidate)
+            with patch.object(engine.rng,'choices',return_value=['lambari']):engine.begin_strike(clock['wall'],0)
+            self.assertTrue(g._commit(engine.advance(0,clock['wall'],0)));clear()
+            clock['wall']+=2;clock['mono']+=2;g.tick()
+            self.assertIn('rei_pesca',g.estado['conquistas']);self.assertIn('colecao_expansao_88',g.estado['conquistas'])
+            self.assertTrue(any(x.startswith('Captura:') for x in messages()))
+            self.assertIn('Conquista desbloqueada: Rei da pesca.',messages())
+            self.assertIn('Conquista desbloqueada: Explorador das oito águas',messages())
+            candidate=copy.deepcopy(g.estado);candidate['vara']=9;candidate['pecas_vara']=10
+            set_balance(candidate,100000);self.assertTrue(g._commit(candidate));clear()
+            g.comprar_peca('vara');self.assertEqual(g.estado['vara'],10)
+            self.assertIn('Conquista desbloqueada: Mestre da vara.',messages())
+            self.assertTrue(any(x.startswith('Vara melhorada!') for x in messages()))
+            items=sold_items();last=items[-1];candidate=copy.deepcopy(g.estado)
+            candidate['cosmeticos']=list(dict.fromkeys([*game.ESTADO_PADRAO['cosmeticos'],*(x[0] for x in items[:-1])]))
+            candidate['conquistas']=[x for x in candidate['conquistas'] if x!='fashionista']
+            self.assertTrue(g._commit(candidate));clear();shop=game.LojaDialog(g)
+            shop.abas.setCurrentIndex(1+list(SLOTS).index(last[1]));lst=shop.listas[last[1]]
+            for row in range(lst.count()):
+                if lst.item(row).data(Qt.UserRole)==last[0]:lst.setCurrentRow(row);break
+            shop.btn.click();self.assertIn('fashionista',g.estado['conquistas'])
+            self.assertNotIn('enciclopedia_viva',g.estado['cosmeticos'])
+            self.assertIn('Conquista desbloqueada: Fashionista',messages())
+            shop.accept();shop.deleteLater()
+            persisted=g._store.load(game.ESTADO_PADRAO,clock['wall'])
+            self.assertTrue({'rei_pesca','colecao_expansao_88','mestre_vara','fashionista'}<=set(persisted['conquistas']))
+        finally:g.close();g.deleteLater();APP.sendPostedEvents(None,QEvent.DeferredDelete)
+
 
 if __name__=='__main__':
     result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Audit))
