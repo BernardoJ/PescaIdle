@@ -14,16 +14,26 @@ def test(apk,out):
         if len(candidates)!=1:raise RuntimeError('QA APK unique file not found')
         apk=candidates[0]
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
+    # avdmanager and emulator disagree about the runner's default AVD directory.
+    # Both must use this task's disposable directory, without changing ~/.android.
+    avd_home=out/'avd';avd_home.mkdir()
+    os.environ['ANDROID_AVD_HOME']=str(avd_home)
     sdk=Path(os.environ['ANDROID_HOME']);adb=str(sdk/'platform-tools/adb')
     image='system-images;android-35;google_apis;x86_64'
     call(str(sdk/'cmdline-tools/latest/bin/sdkmanager'),'--install','emulator',image,timeout=300)
     avd='pesca-'+uuid.uuid4().hex
     subprocess.run([str(sdk/'cmdline-tools/latest/bin/avdmanager'),'create','avd','-n',avd,'-k',image,'--device','pixel_2'],input='no\n',text=True,check=True,timeout=60)
+    assert avd in call(str(sdk/'emulator/emulator'),'-list-avds')
     log=(out/'emulator.log').open('w')
     emu=subprocess.Popen([str(sdk/'emulator/emulator'),'-avd',avd,'-no-window','-no-audio','-no-boot-anim','-no-snapshot','-gpu','swiftshader_indirect'],stdout=log,stderr=subprocess.STDOUT)
     package='br.com.bernardoj.pescaidle.qa'
     try:
-        call(adb,'wait-for-device',timeout=180)
+        deadline=time.monotonic()+180
+        while time.monotonic()<deadline:
+            if emu.poll() is not None:raise RuntimeError('Emulator exited; see emulator.log')
+            if '\tdevice' in call(adb,'devices'):break
+            time.sleep(2)
+        else:raise RuntimeError('Emulator did not connect; see emulator.log')
         deadline=time.monotonic()+240
         while time.monotonic()<deadline:
             if call(adb,'shell','getprop','sys.boot_completed').strip()=='1':break
@@ -62,8 +72,12 @@ def test(apk,out):
         (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
         print('On-device Android checks passed:',len(report['checks']),'+',len(report['host_checks']))
     finally:
-        subprocess.run([adb,'shell','am','force-stop',package],timeout=20)
-        subprocess.run([adb,'emu','kill'],timeout=20);emu.wait(timeout=30);log.close()
+        if emu.poll() is None:
+            subprocess.run([adb,'shell','am','force-stop',package],timeout=20)
+            subprocess.run([adb,'emu','kill'],timeout=20)
+            try:emu.wait(timeout=30)
+            except subprocess.TimeoutExpired:emu.terminate();emu.wait(timeout=10)
+        log.close()
 
 
 if __name__=='__main__':
