@@ -9,6 +9,14 @@ Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/re
 Build Windows: **50.164.461 bytes**. SHA256: `be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9`.
 [Correções e validação atual](docs/AUDITORIA_ANDROID.md) · [Android](ANDROID.md).
 
+## Jogar no Android
+
+Baixe o [PescaIdle-Android.apk — beta ARM64](https://github.com/BernardoJ/PescaIdle/releases/download/v2.1.0-android-beta.1/PescaIdle-Android.apk) e abra para instalar. O Android pode pedir permissão para instalar por esse navegador/gerenciador. O pacote inclui o jogo, o runtime e os recursos; não requer outro aplicativo.
+
+Alvo desta beta: **Android 9+, ARM64, páginas de memória de 4 KB**. Compatibilidade com páginas de 16 KB e teste em telefone físico permanecem pendentes. Instalação, funcionamento e rotação foram testados em emulador Android 15 x86_64 com o mesmo código/arte. [Relatório e limitações](docs/AUDITORIA_ANDROID.md).
+
+APK: **151.170.080 bytes**. SHA256: `beeaeb7354b4215572e15151b1270384fee124645d68dc63c687b8e1b4adc279`.
+
 ## O que mudou
 
 - Oito mapas, com sete cenários inéditos, desbloqueados permanentemente por nível de barco. Viagem gratuita pelo menu **Viajar**.
