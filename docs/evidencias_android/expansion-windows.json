@@ -5924,52 +5924,52 @@
   ],
   "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
   "qt": "6.11.2",
-  "render_median_ms": 1.4421666667961592,
-  "render_p95_ms": 1.610466665927864,
-  "travel_median_ms": 315.8022000006895,
-  "travel_p95_ms": 335.3696999984095,
+  "render_median_ms": 1.4380666671058862,
+  "render_p95_ms": 1.5816666673345026,
+  "travel_median_ms": 312.86234999970475,
+  "travel_p95_ms": 329.8442999985127,
   "heavy_cache_max": 2,
   "cosmetics_cache": 54,
   "ram_samples": [
     {
       "travel": 0,
-      "working_set_mb": 151.1796875
+      "working_set_mb": 150.63671875
     },
     {
       "travel": 10,
-      "working_set_mb": 154.75390625
+      "working_set_mb": 155.30859375
     },
     {
       "travel": 20,
-      "working_set_mb": 155.2578125
+      "working_set_mb": 155.22265625
     },
     {
       "travel": 30,
-      "working_set_mb": 153.828125
+      "working_set_mb": 154.12109375
     },
     {
       "travel": 40,
-      "working_set_mb": 154.19921875
+      "working_set_mb": 155.09375
     },
     {
       "travel": 50,
-      "working_set_mb": 153.0625
+      "working_set_mb": 154.46875
     },
     {
       "travel": 60,
-      "working_set_mb": 151.37890625
+      "working_set_mb": 152.125
     },
     {
       "travel": 70,
-      "working_set_mb": 175.234375
+      "working_set_mb": 153.83984375
     },
     {
       "travel": 80,
-      "working_set_mb": 170.65625
+      "working_set_mb": 172.0078125
     },
     {
       "travel": 90,
-      "working_set_mb": 151.1015625
+      "working_set_mb": 169.1796875
     }
   ],
   "gui": "Qt real widgets rendered offscreen; screenshots need explicit visual inspection; not interactive human play."

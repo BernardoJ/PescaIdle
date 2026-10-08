@@ -42,16 +42,16 @@ python tools/test_windows_close.py <exe> --output <qa>/windows-native
   WM_CLOSE e SC_CLOSE: saída 0, save v3 válido e lock liberado.
 ```
 
-Medições de renderização desktop: mediana 1,44 ms; p95 1,61 ms.
-Troca de mapa: mediana 315,8 ms; p95 335,4 ms. Medições offscreen do computador
+Medições de renderização desktop: mediana 1,44 ms; p95 1,58 ms.
+Troca de mapa: mediana 312,9 ms; p95 329,8 ms. Medições offscreen do computador
 de desenvolvimento, não promessa de desempenho em celulares.
 
 ## Distribuição Windows
 
-Build produzido do snapshot `27e7e20` (SHA completo no manifesto), que contém
-as correções Windows; ajustes posteriores em Android/testes/documentação não
-alteram os módulos empacotados. Binário novo: 50.163.246 bytes; SHA256
-`fa5ebad96d5ae616b429636543e9b9e338deaece2040e720a4949e86016bfc11`.
+Build produzido do snapshot `35a2483` (SHA completo no manifesto), que contém
+as correções Windows e os ajustes condicionais da interface Android.
+Binário novo: 50.164.461 bytes; SHA256
+`be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9`.
 O binário anterior segue no histórico; a pasta Desktop em uso não foi substituída.
 
 ## Android

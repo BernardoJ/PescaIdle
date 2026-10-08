@@ -6,7 +6,7 @@ Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação 
 
 Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/android-auditoria/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.
 
-Build Windows: **50.163.246 bytes**. SHA256: `fa5ebad96d5ae616b429636543e9b9e338deaece2040e720a4949e86016bfc11`.
+Build Windows: **50.164.461 bytes**. SHA256: `be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9`.
 [Correções e validação atual](docs/AUDITORIA_ANDROID.md) · [Android](ANDROID.md).
 
 ## O que mudou
