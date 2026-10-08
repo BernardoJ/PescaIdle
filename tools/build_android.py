@@ -14,6 +14,10 @@ def build(output,arch):
     stage=output/'stage';stage.mkdir()
     for source in ROOT.glob('*.py'):shutil.copy2(source,stage/source.name)
     (stage/'tools').mkdir();shutil.copy2(ROOT/'tools/dev_access.py',stage/'tools/dev_access.py')
+    qa=arch=='x86_64'
+    if qa:
+        shutil.copy2(ROOT/'tools/android_smoke.py',stage/'tools/android_smoke.py')
+        (stage/'main.py').write_text("import os\nos.environ['PESCA_IDLE_ANDROID_QA']='1'\nfrom pesca_android import run\nrun()\n",encoding='utf-8')
     for source in (ROOT/'assets').rglob('*'):
         relative=source.relative_to(ROOT/'assets')
         if source.is_file() and source.suffix in ('.png','.json') and 'source' not in relative.parts:
@@ -38,6 +42,9 @@ def build(output,arch):
         'orientation':'all','fullscreen':'0','p4a.branch':'develop',
         'p4a.commit':'94ffd5f31d816414ad1fe66c0fe587c61daac757'}
     for key,value in options.items():cfg.set('app',key,value)
+    if qa:
+        cfg.set('app','package.domain','br.com.bernardoj.pescaidle')
+        cfg.set('app','package.name','qa')
     cfg.set('buildozer','bin_dir',str(output/'bin'))
     with spec.open('w') as f:cfg.write(f)
     mode='release' if arch=='aarch64' else 'debug'
@@ -46,7 +53,7 @@ def build(output,arch):
     if len(apk)!=1:raise RuntimeError('APK único não encontrado após compilação.')
     target=output/f'PescaIdle-{arch}-unsigned.apk';shutil.copy2(apk[0],target)
     source_sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    (output/'build.json').write_text(json.dumps({'source_commit':source_sha,'qt':VERSION,'arch':arch,
+    (output/'build.json').write_text(json.dumps({'source_commit':source_sha,'qt':VERSION,'arch':arch,'mode':mode,'qa_package':qa,
         'wheels':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
         'apk_sha256':hashlib.sha256(target.read_bytes()).hexdigest()},indent=2),encoding='utf-8')
     print('APK gerado:',target)
