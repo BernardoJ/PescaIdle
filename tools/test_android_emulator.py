@@ -1,5 +1,5 @@
 """Install the QA APK on a disposable AVD; collect on-device results and pixels."""
-import argparse,json,os,subprocess,time,uuid,xml.etree.ElementTree as ET
+import argparse,getpass,json,os,subprocess,time,uuid
 from pathlib import Path
 
 
@@ -18,6 +18,8 @@ def test(apk,out):
     # Both must use this task's disposable directory, without changing ~/.android.
     avd_home=out/'avd';avd_home.mkdir()
     os.environ['ANDROID_AVD_HOME']=str(avd_home)
+    user_home=out/'android-user';user_home.mkdir()
+    os.environ['ANDROID_USER_HOME']=str(user_home)
     sdk=Path(os.environ['ANDROID_HOME']);adb=str(sdk/'platform-tools/adb')
     image='system-images;android-35;google_apis;x86_64'
     call(str(sdk/'cmdline-tools/latest/bin/sdkmanager'),'--install','emulator',image,timeout=300)
@@ -25,7 +27,14 @@ def test(apk,out):
     subprocess.run([str(sdk/'cmdline-tools/latest/bin/avdmanager'),'create','avd','-n',avd,'-k',image,'--device','pixel_2'],input='no\n',text=True,check=True,timeout=60)
     assert avd in call(str(sdk/'emulator/emulator'),'-list-avds')
     log=(out/'emulator.log').open('w')
-    emu=subprocess.Popen([str(sdk/'emulator/emulator'),'-avd',avd,'-no-window','-no-audio','-no-boot-anim','-no-snapshot','-gpu','swiftshader_indirect'],stdout=log,stderr=subprocess.STDOUT)
+    command=[str(sdk/'emulator/emulator'),'-avd',avd,'-no-window','-no-audio','-no-boot-anim','-no-snapshot','-no-metrics','-gpu','swiftshader_indirect']
+    if not os.access('/dev/kvm',os.R_OK|os.W_OK):
+        # Existing runner privilege, scoped to this process and the same UID.
+        # No chmod, udev rule, group membership or system configuration changes.
+        command=['sudo','-n','-u',getpass.getuser(),'-g','kvm','--','env',
+                 'ANDROID_AVD_HOME='+str(avd_home),'ANDROID_USER_HOME='+str(user_home),
+                 'ANDROID_HOME='+str(sdk),*command]
+    emu=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT)
     package='br.com.bernardoj.pescaidle.qa'
     try:
         deadline=time.monotonic()+180
