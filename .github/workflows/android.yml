@@ -9,6 +9,11 @@ on:
         description: 'Run com APK QA já compilado (vazio para compilar tudo)'
         required: false
         default: ''
+      qa_only:
+        description: 'Compilar só o APK descartável de teste'
+        type: boolean
+        required: false
+        default: false
 permissions:
   contents: read
   actions: read
@@ -20,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [aarch64, x86_64]
+        arch: ${{ inputs.qa_only && fromJSON('["x86_64"]') || fromJSON('["aarch64", "x86_64"]') }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
