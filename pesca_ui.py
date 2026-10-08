@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QHBoxLayout, Q
 from pesca_visual import resource_path
 from pesca_catalogo import LOCAIS
 from pesca_tempo import snapshot
+from pesca_plataforma import mobile
 
 
 def configure_app(app):
@@ -25,6 +26,10 @@ QMenu::icon {{ margin-left: 8px; }}
 QListWidget {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-width: 8px; }}
 QLabel[panel="true"] {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-width: 8px; }}
 ''')
+    if mobile():
+        app.setStyleSheet(app.styleSheet()+'''QWidget { font-family: sans-serif; font-size: 16px; }
+QPushButton,QComboBox,QDateTimeEdit,QDoubleSpinBox { min-height: 44px; padding: 6px; }
+QCheckBox { min-height: 40px; } QListWidget::item { min-height: 54px; }''')
 
 
 _ICONS = {}
@@ -137,12 +142,13 @@ def panel(p, r, bright=False):
 
 def paint_overlay(game):
     p=QPainter(game)
+    if mobile():p.fillRect(game.rect(),QColor('#142334'))
     p.setRenderHint(QPainter.SmoothPixmapTransform,False)
     scene,_=game.desenhar_cena()
     p.drawImage(game.scene_rect,scene)
     # Text renders at screen resolution to preserve Portuguese and DPI readability.
-    font=QFont('Segoe UI')
-    font.setPixelSize(12)
+    font=QFont(QApplication.font()) if mobile() else QFont('Segoe UI')
+    font.setPixelSize(14 if mobile() else 12)
     font.setWeight(QFont.DemiBold)
     p.setFont(font)
     clock=game._clock_snapshot

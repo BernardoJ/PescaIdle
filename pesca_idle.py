@@ -16,6 +16,8 @@ from pesca_save import SaveStore, SaveError, migrate
 from pesca_pescaria import FishingEngine, travel
 from pesca_offline import replay, schedule, cancel, expire_active
 from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
+from pesca_moedas import can_buy, debit
+from pesca_plataforma import mobile, fit_dialog
 import os
 import json
 import random
@@ -26,7 +28,7 @@ from pathlib import Path
 from pesca_visual import SceneRenderer, WIDTH, HEIGHT, SCALE, integer_viewport
 from pesca_ui import configure_app, paint_overlay, rpg_icon, cosmetic_icon, InfoDialog
 
-from PySide6.QtCore import Qt, QTimer, QRect, QPoint, QSize, QEvent
+from PySide6.QtCore import Qt, QTimer, QRect, QRectF, QPoint, QSize, QEvent
 from PySide6.QtGui import QPainter
 
 from PySide6.QtWidgets import (
@@ -64,115 +66,7 @@ CORES_BARCO = [
 # Loja de cosméticos: (id, slot, nome, preço em moedas)
 # Os itens são apenas visuais e não alteram nada na pescaria.
 # ----------------------------------------------------------------------------
-SLOTS = {
-    "chapeu": "Chapéus",
-    "roupa": "Roupas",
-    "bandeira": "Bandeiras",
-    "boia": "Boias",
-    "boneco": "Bonecos",
-    "acessorio": "Acessórios",
-}
-
-CATALOGO = [
-    ("chapeu_palha",    "chapeu",   "Chapéu de palha",    0),
-    ("chapeu_nenhum",   "chapeu",   "Sem chapéu",         0),
-    ("chapeu_bone",     "chapeu",   "Boné azul",          150),
-    ("chapeu_gorro",    "chapeu",   "Gorro de lã",        200),
-    ("chapeu_quepe",    "chapeu",   "Quepe de capitão",   500),
-    ("chapeu_pirata",   "chapeu",   "Chapéu de pirata",   800),
-    ("chapeu_cartola",  "chapeu",   "Cartola",            1200),
-    ("chapeu_coroa",    "chapeu",   "Coroa dourada",      5000),
-    ("chapeu_pikachu",  "chapeu",   "Gorro de Rato Elétrico",   9999),
-    ("chapeu_ninja",    "chapeu",   "Touca ninja",        1800),
-    ("chapeu_samurai",  "chapeu",   "Elmo de samurai",    2600),
-    ("chapeu_cowboy",   "chapeu",   "Chapéu de xerife",    950),
-    ("chapeu_mago",     "chapeu",   "Chapéu de arquimago", 3200),
-    ("chapeu_astronauta", "chapeu", "Capacete espacial",   4100),
-    ("chapeu_folhas",   "chapeu",   "Coroa de folhas",     750),
-    ("chapeu_marinheiro", "chapeu", "Boina de marinheiro", 650),
-    ("chapeu_raposa",   "chapeu",   "Capuz de raposa",    2100),
-    ("chapeu_corais",   "chapeu",   "Coroa de corais",    2900),
-
-    ("roupa_vermelha",  "roupa",    "Camisa vermelha",    0),
-    ("roupa_azul",      "roupa",    "Camisa azul",        100),
-    ("roupa_verde",     "roupa",    "Colete verde",       250),
-    ("roupa_listrada",  "roupa",    "Camisa listrada",    400),
-    ("roupa_capa",      "roupa",    "Capa de chuva",      700),
-    ("roupa_capitao",   "roupa",    "Casaco de capitão",  1500),
-    ("roupa_gala",      "roupa",    "Traje de gala",      3000),
-    ("roupa_ninja",     "roupa",    "Traje de ninja",     2200),
-    ("roupa_astral",    "roupa",    "Manto estelar",      3500),
-    ("roupa_mergulhador", "roupa",  "Traje de mergulho",   2800),
-    ("roupa_fenix",     "roupa",    "Manto da fênix",      5200),
-    ("roupa_cyber",     "roupa",    "Jaqueta cyberpunk",  4600),
-    ("roupa_mago",      "roupa",    "Túnica de arquimago", 3900),
-    ("roupa_marinheiro", "roupa",   "Uniforme de convés",  850),
-    ("roupa_aurora",    "roupa",    "Manto da aurora",    4800),
-    ("roupa_abisso",    "roupa",    "Armadura abissal",   6800),
-
-    ("bandeira_nenhum",   "bandeira", "Sem bandeira",       0),
-    ("bandeira_vermelha", "bandeira", "Bandeirinha vermelha", 100),
-    ("bandeira_brasil",   "bandeira", "Bandeira do Brasil", 300),
-    ("bandeira_arco",     "bandeira", "Bandeira arco-íris", 500),
-    ("bandeira_pirata",   "bandeira", "Bandeira pirata",    1000),
-    ("bandeira_dragao",   "bandeira", "Bandeira do dragão", 1300),
-    ("bandeira_nebulosa", "bandeira", "Bandeira nebulosa",  1700),
-    ("bandeira_sol",      "bandeira", "Bandeira do sol nascente", 1400),
-    ("bandeira_kraken",   "bandeira", "Bandeira do kraken", 2100),
-    ("bandeira_galaxia",  "bandeira", "Bandeira galáctica", 2400),
-    ("bandeira_folhas",   "bandeira", "Bandeira da floresta", 950),
-    ("bandeira_sakura", "bandeira", "Bandeira de sakura",  1150),
-    ("bandeira_tempestade", "bandeira", "Bandeira da tempestade", 1850),
-    ("bandeira_compasso", "bandeira", "Bandeira do explorador", 2750),
-
-    ("boia_vermelha",   "boia",     "Boia vermelha",      0),
-    ("boia_amarela",    "boia",     "Boia amarela",       100),
-    ("boia_listrada",   "boia",     "Boia listrada",      250),
-    ("boia_coracao",    "boia",     "Boia coração",       600),
-    ("boia_estrela",    "boia",     "Boia estrela",       1500),
-    ("boia_planeta",    "boia",     "Boia planeta",       2200),
-    ("boia_bolha",      "boia",     "Boia de bolha",      1200),
-    ("boia_donut",      "boia",     "Boia de rosquinha",   900),
-    ("boia_abacaxi",    "boia",     "Boia de abacaxi",    1300),
-    ("boia_kraken",     "boia",     "Boia do kraken",     2400),
-    ("boia_foguete",    "boia",     "Boia foguete",       1800),
-    ("boia_lotus",      "boia",     "Boia de lótus",       700),
-    ("boia_limao",      "boia",     "Boia de limão",       1050),
-    ("boia_perola",     "boia",     "Boia pérola lunar",   2800),
-
-    ("boneco_nenhum",     "boneco", "Sem boneco",         0),
-    ("boneco_pato",       "boneco", "Patinho de borracha", 300),
-    ("boneco_caranguejo", "boneco", "Caranguejo",         700),
-    ("boneco_gato",       "boneco", "Gatinho",            1500),
-    ("boneco_pinguim",    "boneco", "Pinguim",            3000),
-    ("boneco_agumon",     "boneco", "Dragão Digital",             9999),
-    ("boneco_robot",      "boneco", "Robô explorador",    6000),
-    ("boneco_slime",      "boneco", "Mascote gelatinoso", 4500),
-    ("boneco_raposa",     "boneco", "Raposa mística",     3800),
-    ("boneco_polvo",      "boneco", "Polvo de pelúcia",   2600),
-    ("boneco_capivara",   "boneco", "Capivara aventureira", 3300),
-    ("boneco_fantasma",   "boneco", "Fantasma camarada",  2200),
-    ("boneco_tartaruga", "boneco", "Tartaruguinha",       1800),
-    ("boneco_axolote",   "boneco", "Axolote sorridente",  2700),
-    ("boneco_baleia",    "boneco", "Baleia viajante",     4100),
-
-    ("acessorio_nenhum", "acessorio", "Sem acessório",          0),
-    ("anel_verde_esmeralda", "acessorio", "Anel Verde-Esmeralda", 12000),
-    ("martelo_pesado", "acessorio", "Martelo Pesado",            15000),
-    ("teia_aracnidea", "acessorio", "Lançador de Teia",           10500),
-    ("orbe_dragon", "acessorio", "Orbe do Dragão",                14000),
-    ("broche_lunar", "acessorio", "Broche Lunar",                 11500),
-    ("sabre_energia", "acessorio", "Sabre de Energia",             16000),
-    ("asas_fenix", "acessorio", "Asas da Fênix",                    22000),
-    ("aura_cyber", "acessorio", "Aura Cyberpunk",                   18500),
-    ("estrelas_orbitais", "acessorio", "Constelação Orbital",       20000),
-    ("chama_yokai", "acessorio", "Chamas de Yokai",                 23500),
-    ("cajado_tempestade", "acessorio", "Cajado da Tempestade",       17000),
-    ("escudo_bolhas", "acessorio", "Escudo de Bolhas",               19000),
-    ("asas_boreais", "acessorio", "Asas Boreais",                     25000),
-]
-CATALOGO.append(('enciclopedia_viva','acessorio','Enciclopédia Viva',0))
-CAT = {c[0]: c for c in CATALOGO}
+from pesca_loja import SLOTS, CATALOGO, CAT, sold_items
 
 ESTADO_PADRAO = {
     "moedas": 0,
@@ -735,7 +629,7 @@ class PreviaCena(QWidget):
 
 class LojaDialog(QDialog):
     def __init__(self, jogo):
-        super().__init__(None, Qt.Dialog | Qt.WindowStaysOnTopHint)
+        super().__init__(jogo if mobile() else None, Qt.Dialog | Qt.WindowStaysOnTopHint)
         self.jogo = jogo
         self.setWindowTitle("Loja")
         geo = QApplication.primaryScreen().availableGeometry()
@@ -750,7 +644,7 @@ class LojaDialog(QDialog):
         heading = QLabel("Armazém da enseada")
         heading.setProperty("heading", True)
         lay.addWidget(heading)
-        body = QHBoxLayout()
+        body = QVBoxLayout() if mobile() else QHBoxLayout()
         controls = QVBoxLayout()
         self.lbl_moedas = QLabel()
         self.lbl_moedas.setStyleSheet("font-weight: bold;")
@@ -798,6 +692,7 @@ class LojaDialog(QDialog):
             lista.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             lista.currentItemChanged.connect(self.ao_selecionar)
             self.listas[slot] = lista
+            if mobile():lista.setMinimumHeight(200)
             self.abas.addTab(lista, titulo)
         self.abas.currentChanged.connect(self.ao_selecionar)
         controls.addWidget(self.abas, 1)
@@ -862,7 +757,7 @@ class LojaDialog(QDialog):
                     f'(peças {e["pecas_" + tipo]}/{self.jogo.pecas_necessarias(tipo)})'
                     f'<br>{desc}')
                 btn.setText(f"{botao} ({custo} moedas)")
-                btn.setEnabled(e["moedas"] >= custo)
+                btn.setEnabled(can_buy(e, custo))
 
     # ---- cosméticos
     def slot_atual(self):
@@ -932,7 +827,7 @@ class LojaDialog(QDialog):
         else:
             preco = CAT[id_][3]
             self.btn.setText(f"Comprar e equipar ({preco} moedas)")
-            self.btn.setEnabled(e["moedas"] >= preco)
+            self.btn.setEnabled(can_buy(e, preco))
 
     def atualizar_moedas(self):
         self.lbl_moedas.setText(
@@ -951,9 +846,9 @@ class LojaDialog(QDialog):
             return
         if id_ not in e["cosmeticos"]:
             preco = CAT[id_][3]
-            if e["moedas"] < preco:
+            if not can_buy(e, preco):
                 return
-            e["moedas"] -= preco
+            debit(e, preco)
             e["cosmeticos"].append(id_)
         awards = grant(e, CATALOGO)
         e["equipados"][slot] = id_
@@ -975,12 +870,13 @@ class JogoPesca(QWidget):
     DURACAO_POPUP = 3.5
     ICONE_X, ICONE_Y = ART_W * ESCALA - 44, 10
 
-    def __init__(self, wall_clock=None, monotonic_clock=None):
+    def __init__(self, wall_clock=None, monotonic_clock=None, recovery_decision=None):
         super().__init__()
         self._wall = wall_clock or time.time
         self._monotonic = monotonic_clock or time.monotonic
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self._recovery_decision = recovery_decision
+        self.setWindowFlags(Qt.Window if mobile() else Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
+        self.setAttribute(Qt.WA_TranslucentBackground,not mobile())
         self.setMouseTracking(True)
         self.resize_viewport()
         self._store = SaveStore(SAVE_PATH)
@@ -1023,6 +919,15 @@ class JogoPesca(QWidget):
             self.mostrar_popup(resumo, '#ffe3ac')
 
     def resize_viewport(self):
+        if mobile():
+            geo=QApplication.primaryScreen().availableGeometry()
+            self.W,self.H=geo.width(),geo.height()
+            self.physical_scale=max(1,int(min(self.W*self.devicePixelRatioF()/ART_W,self.H*self.devicePixelRatioF()/ART_H)))
+            sw,sh=ART_W*self.physical_scale/self.devicePixelRatioF(),ART_H*self.physical_scale/self.devicePixelRatioF()
+            self.scene_rect=QRectF((self.W-sw)/2,(self.H-sh)/2,sw,sh)
+            self.rect_icone=QRect(self.W-60,10,48,48)
+            self.setMinimumSize(0,0);self.resize(self.W,self.H)
+            return
         self.scene_rect,self.physical_scale=integer_viewport(self.devicePixelRatioF())
         self.W,self.H=math.ceil(self.scene_rect.width()),math.ceil(self.scene_rect.height())
         self.ICONE_X=self.W-44
@@ -1035,9 +940,32 @@ class JogoPesca(QWidget):
             self.resize_viewport()
         return result
 
+    def resizeEvent(self,event):
+        if mobile():
+            self.W,self.H=event.size().width(),event.size().height()
+            ratio=self.devicePixelRatioF()
+            self.physical_scale=max(1,int(min(self.W*ratio/ART_W,self.H*ratio/ART_H)))
+            sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
+            self.scene_rect=QRectF((self.W-sw)/2,(self.H-sh)/2,sw,sh)
+            self.rect_icone=QRect(self.W-60,10,48,48)
+        super().resizeEvent(event)
+
+    def keyPressEvent(self,event):
+        if mobile() and event.key() in (Qt.Key_Back,Qt.Key_Escape):
+            self.abrir_menu();event.accept();return
+        super().keyPressEvent(event)
+
     # ------------------------------------------------------------------ save
     def carregar(self):
-        return self._store.load(ESTADO_PADRAO, self._wall())
+        try:
+            return self._store.load(ESTADO_PADRAO, self._wall())
+        except SaveError:
+            if not self._store.backup_available(ESTADO_PADRAO, self._wall()):
+                raise
+            decision = (self._recovery_decision() if self._recovery_decision else
+                QMessageBox.question(self,'Recuperar progresso','O save não pôde ser lido. Há um backup válido. Restaurar? O arquivo rejeitado será preservado separadamente.',QMessageBox.Yes|QMessageBox.No)==QMessageBox.Yes)
+            if not decision:raise
+            return self._store.recover(ESTADO_PADRAO, self._wall())
 
     def salvar(self):
         if not self._closed:
@@ -1057,6 +985,8 @@ class JogoPesca(QWidget):
                 self.estado = copy.deepcopy(self._store.last_good)
             self.pausado = True
             self._save_error = str(exc)
+            if self.popup and ('Conquista' in self.popup[0]):
+                self._popup_queue.insert(0,self.popup)
             self.popup = [str(exc), '#ffb08a', 12]
             return False
 
@@ -1067,6 +997,7 @@ class JogoPesca(QWidget):
 
     # ------------------------------------------------------------- posição
     def posicionar(self):
+        if mobile():return
         geo = QApplication.primaryScreen().availableGeometry()
         x = geo.x() + geo.width() - self.width()
         y = geo.y() + geo.height() - self.height()
@@ -1136,7 +1067,12 @@ class JogoPesca(QWidget):
         message = [texto, cor, self.DURACAO_POPUP]
         if self.popup:
             self._popup_queue.append(message)
-            self._popup_queue = self._popup_queue[-32:]
+            # Achievements must survive catch bursts (including offline replay).
+            if len(self._popup_queue)>32:
+                for i,item in enumerate(self._popup_queue):
+                    if 'Conquista' not in item[0]:
+                        del self._popup_queue[i]
+                        break
         else:
             self.popup = message
 
@@ -1178,7 +1114,7 @@ class JogoPesca(QWidget):
             return self._save_error
         self._last_offline = report
         if not report['count']:
-            return None
+            return 'Conquistas: '+', '.join(awards) if awards else None
         messages = [f"Retorno: {report['count']} registros, +{fmt_moedas(report['gain'])} moedas.",
                     f"Tempo contado: {fmt_tempo(report['paid_seconds'])} (limite de 4h)."]
         if report['mode']=='expedicao': messages.append('Expedição: substituiu o offline normal.')
@@ -1197,10 +1133,10 @@ class JogoPesca(QWidget):
             self.mostrar_popup(f"{nome} já está no nível máximo", "#80d8ff")
             return
         custo = self.custo_peca(tipo)
-        if e["moedas"] < custo:
+        if not can_buy(e, custo):
             self.mostrar_popup("Moedas insuficientes", "#ff8080")
             return
-        e["moedas"] -= custo
+        debit(e, custo)
         e["pecas_" + tipo] += 1
         subiu=False
         while e['pecas_'+tipo]>=2+e[tipo] and e[tipo]<NIVEL_MAX:
@@ -1262,6 +1198,7 @@ class JogoPesca(QWidget):
             if self.rect_icone.contains(ev.position().toPoint()):
                 self.abrir_menu()
             else:
+                if mobile():ev.accept();return
                 self._arrastando = True
                 self._offset_arraste = ev.globalPosition().toPoint() - self.frameGeometry().topLeft()
                 self.setCursor(Qt.ClosedHandCursor)
@@ -1280,6 +1217,12 @@ class JogoPesca(QWidget):
                 f'Barco Nv {e["barco"]}  •  Arraste para mover')
 
     def abrir_menu(self):
+        if mobile():
+            dlg=QDialog(self);layout=QVBoxLayout(dlg)
+            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
+                button=QPushButton(title);button.clicked.connect(lambda checked=False,f=action:(dlg.accept(),QTimer.singleShot(0,f)));layout.addWidget(button)
+            button=QPushButton('Voltar à pescaria');button.clicked.connect(dlg.accept);layout.addWidget(button)
+            fit_dialog(dlg).exec();dlg.deleteLater();return
         m = QMenu(self)
         m.addAction(rpg_icon("loja"), "Loja", self.abrir_loja)
         m.addAction(rpg_icon("barco"), "Status e inventário", self.mostrar_status)
@@ -1302,6 +1245,7 @@ class JogoPesca(QWidget):
 
     def abrir_loja(self):
         dlg = LojaDialog(self)
+        fit_dialog(dlg)
         dlg.exec()
         dlg.deleteLater()
         self.previa = {}
@@ -1310,6 +1254,7 @@ class JogoPesca(QWidget):
     def abrir_enciclopedia(self):
         from pesca_viagens_ui import ColecaoDialog
         dlg = ColecaoDialog(self)
+        fit_dialog(dlg)
         dlg.exec(); dlg.deleteLater()
 
     def viajar(self, map_id):
@@ -1324,15 +1269,15 @@ class JogoPesca(QWidget):
 
     def abrir_viagens(self):
         from pesca_viagens_ui import ViajarDialog
-        dlg = ViajarDialog(self); dlg.exec(); dlg.deleteLater()
+        dlg = ViajarDialog(self); fit_dialog(dlg).exec(); dlg.deleteLater()
 
     def abrir_expedicao(self):
         from pesca_viagens_ui import ExpedicaoDialog
-        dlg = ExpedicaoDialog(self); dlg.exec(); dlg.deleteLater()
+        dlg = ExpedicaoDialog(self); fit_dialog(dlg).exec(); dlg.deleteLater()
 
     def caixa(self, titulo, texto):
         dlg = InfoDialog(self,titulo,texto)
-        dlg.exec(); dlg.deleteLater()
+        fit_dialog(dlg).exec(); dlg.deleteLater()
 
     def mostrar_status(self):
         e = self.estado
@@ -1361,7 +1306,10 @@ class JogoPesca(QWidget):
     def closeEvent(self, event):
         if not self._closed:
             self.tick()
-            self.salvar()
+            if not self.salvar():
+                event.ignore()
+                QMessageBox.warning(self,'Progresso não salvo','Não foi possível confirmar a gravação. O jogo ficou aberto e pausado. Confira a pasta e tente sair novamente.\n'+str(self._save_error))
+                return
             self.relogio.stop(); self.timer_save.stop()
             self._store.close(); self._closed = True
         event.accept()

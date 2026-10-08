@@ -1,12 +1,23 @@
 """Stable collection goals and cosmetic rewards, independent of Qt."""
 from pesca_catalogo import ESPECIES, LEGADO_49, EXPANSAO_88
+from pesca_loja import sold_items
 
 RECOMPENSA_LIVRO = 'enciclopedia_viva'
 
 
+def fashionista_progress(state):
+    owned = set(state['cosmeticos'])
+    sold = sold_items()
+    missing = sorted((item[2] for item in sold if item[0] not in owned), key=str.casefold)
+    return {'owned': len(sold)-len(missing), 'total': len(sold), 'missing': missing}
+
+
 def definitions(state, catalogue):
     owned=set(state['cosmeticos']); inv=state['inventario_por_id']
-    sold={id_ for id_,_,_,price in catalogue if price>0 and id_!=RECOMPENSA_LIVRO}
+    progress = fashionista_progress(state)
+    fashionista_text = f"Cosméticos vendidos: {progress['owned']}/{progress['total']}."
+    if progress['missing']:
+        fashionista_text += '\nFaltam: ' + ', '.join(progress['missing'])
     return [
       ('vestir_todos','Eu escolho você!','Compre o Gorro de Rato Elétrico na loja.','chapeu_pikachu' in owned),
       ('criatura_digital','Mostre-me seu Coração Valente','Compre o Dragão Digital na loja.','boneco_agumon' in owned),
@@ -15,7 +26,7 @@ def definitions(state, catalogue):
       ('mestre_vara','Mestre da vara.','Coloque a vara no nível máximo.',state['vara']>=10),
       ('mestre_barco','Mestre do barco.','Coloque o barco no nível máximo.',state['barco']>=10),
       ('rei_piratas','Rei dos piratas?','Compre todos os itens de pirata na loja.',all(id_ in owned for id_,_,_,_ in catalogue if 'pirata' in id_)),
-      ('fashionista','Fashionista','Compre todos os cosméticos vendidos na loja.',sold<=owned),
+      ('fashionista','Fashionista',fashionista_text,not progress['missing']),
       ('enciclopedia_viva','Enciclopédia Viva','Libere todas as informações de todas as espécies; concede o livro flutuante.',all(inv.get(id_,0)>=10 for id_ in ESPECIES)),
     ]
 

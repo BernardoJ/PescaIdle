@@ -9,6 +9,7 @@ from pesca_catalogo import ESPECIES,LOCAIS,OCORRENCIAS,eligible
 from pesca_tempo import LABELS,snapshot
 from pesca_offline import schedule,cancel
 from pesca_especies_visual import species_image
+from pesca_plataforma import mobile
 
 
 class Page(QDialog):
@@ -24,7 +25,7 @@ class Page(QDialog):
 class ColecaoDialog(Page):
     def __init__(self,game):
         super().__init__(game,'Enciclopédia')
-        row=QHBoxLayout();self.local=QComboBox();self.period=QComboBox();self.ordem=QComboBox()
+        row=QVBoxLayout() if mobile() else QHBoxLayout();self.local=QComboBox();self.period=QComboBox();self.ordem=QComboBox()
         self.local.addItem('Todos os locais',None)
         for id_,m in LOCAIS.items():self.local.addItem(m['nome'],id_)
         self.period.addItem('Todos os períodos',None)
@@ -32,10 +33,11 @@ class ColecaoDialog(Page):
         self.ordem.addItem('Ordem alfabética','alpha');self.ordem.addItem('Quantidade registrada','count')
         for widget in (self.local,self.period,self.ordem):row.addWidget(widget)
         self.layout.addLayout(row)
-        flags=QHBoxLayout();self.agora=QCheckBox('Disponível agora');self.pistas=QCheckBox('Mostrar pistas de desconhecidas')
+        flags=QVBoxLayout() if mobile() else QHBoxLayout();self.agora=QCheckBox('Disponível agora');self.pistas=QCheckBox('Mostrar pistas de desconhecidas')
         flags.addWidget(self.agora);flags.addWidget(self.pistas);self.layout.addLayout(flags)
         self.summary=QLabel();self.layout.addWidget(self.summary)
-        body=QHBoxLayout();self.lista=QListWidget();self.lista.setIconSize(QSize(54,36))
+        body=QVBoxLayout() if mobile() else QHBoxLayout();self.lista=QListWidget();self.lista.setIconSize(QSize(54,36))
+        if mobile():self.lista.setMinimumHeight(200)
         self.detail=QLabel();self.detail.setWordWrap(True);self.detail.setTextFormat(Qt.PlainText)
         self.detail.setAlignment(Qt.AlignTop);self.detail.setProperty('panel',True)
         self.detail.setTextInteractionFlags(Qt.TextSelectableByMouse)

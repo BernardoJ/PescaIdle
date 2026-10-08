@@ -27,7 +27,7 @@ with tempfile.TemporaryDirectory(prefix='pesca-exe-') as tmp:
     assert process.returncode==0,process.returncode
     report=json.loads((out/'resultado.json').read_text(encoding='utf-8'))
     assert report['frozen'] and report['assets'] and report['ui_icon'],report
-    assert report['maps']==8 and report['schema']==2 and report['legacy_inventory']==10,report
+    assert report['maps']==8 and report['schema']==3 and report['legacy_inventory']==10,report
     assert Path(tmp,'save.pre-expansao-v1.json').exists(),report
     assert all((out/(id_+'-executavel.png')).exists() for id_ in (
         'enseada_do_poente','rio_das_vitorias','mangue_das_raizes','pier_da_brisa',
