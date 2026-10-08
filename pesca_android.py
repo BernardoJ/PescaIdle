@@ -52,6 +52,8 @@ def run():
         return 1
     lifecycle=MobileLifecycle(app,game)
     game.showMaximized()
+    game.windowHandle().safeAreaMarginsChanged.connect(game._fit_mobile_viewport)
+    game._fit_mobile_viewport()
     if qa:
         from tools.android_smoke import schedule
         schedule(app,game,lifecycle)

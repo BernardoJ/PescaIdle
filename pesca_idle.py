@@ -17,7 +17,7 @@ from pesca_pescaria import FishingEngine, travel
 from pesca_offline import replay, schedule, cancel, expire_active
 from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
 from pesca_moedas import can_buy, debit
-from pesca_plataforma import mobile, fit_dialog
+from pesca_plataforma import mobile, fit_dialog, safe_rect
 import os
 import json
 import random
@@ -921,12 +921,8 @@ class JogoPesca(QWidget):
     def resize_viewport(self):
         if mobile():
             geo=QApplication.primaryScreen().availableGeometry()
-            self.W,self.H=geo.width(),geo.height()
-            self.physical_scale=max(1,int(min(self.W*self.devicePixelRatioF()/ART_W,self.H*self.devicePixelRatioF()/ART_H)))
-            sw,sh=ART_W*self.physical_scale/self.devicePixelRatioF(),ART_H*self.physical_scale/self.devicePixelRatioF()
-            self.scene_rect=QRectF((self.W-sw)/2,(self.H-sh)/2,sw,sh)
-            self.rect_icone=QRect(self.W-60,10,48,48)
-            self.setMinimumSize(0,0);self.resize(self.W,self.H)
+            self.setMinimumSize(0,0);self.resize(geo.size())
+            self._fit_mobile_viewport()
             return
         self.scene_rect,self.physical_scale=integer_viewport(self.devicePixelRatioF())
         self.W,self.H=math.ceil(self.scene_rect.width()),math.ceil(self.scene_rect.height())
@@ -942,13 +938,17 @@ class JogoPesca(QWidget):
 
     def resizeEvent(self,event):
         if mobile():
-            self.W,self.H=event.size().width(),event.size().height()
-            ratio=self.devicePixelRatioF()
-            self.physical_scale=max(1,int(min(self.W*ratio/ART_W,self.H*ratio/ART_H)))
-            sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
-            self.scene_rect=QRectF((self.W-sw)/2,(self.H-sh)/2,sw,sh)
-            self.rect_icone=QRect(self.W-60,10,48,48)
+            self._fit_mobile_viewport()
         super().resizeEvent(event)
+
+    def _fit_mobile_viewport(self,*_):
+        self.W,self.H=self.width(),self.height()
+        area=safe_rect(self);ratio=self.devicePixelRatioF()
+        self.physical_scale=max(1,int(min(area.width()*ratio/ART_W,area.height()*ratio/ART_H)))
+        sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
+        self.scene_rect=QRectF(area.left()+(area.width()-sw)/2,area.top()+(area.height()-sh)/2,sw,sh)
+        self.rect_icone=QRect(area.right()-59,area.top()+10,48,48)
+        self.update()
 
     def keyPressEvent(self,event):
         if mobile() and event.key() in (Qt.Key_Back,Qt.Key_Escape):

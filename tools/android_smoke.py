@@ -3,6 +3,7 @@ import copy,json,os,traceback
 from pathlib import Path
 from PySide6.QtCore import QTimer,Qt,QEvent
 from PySide6.QtWidgets import QWidget
+from PySide6.QtTest import QTest
 
 
 def schedule(app,game,lifecycle):
@@ -31,24 +32,28 @@ def run(app,g,lifecycle):
         state=copy.deepcopy(g.estado);state['barco']=10;state['vara']=10;state['pausado']=True
         set_balance(state,100000);desbloquear(state);assert g._commit(state)
         assert g.rect_icone.width()>=44 and g.scene_rect.left()>=0
-        g.grab().save(str(out/'game.png'))
+        g.repaint();QTest.qWait(150);g.grab().save(str(out/'game.png'))
         for map_id in LOCAIS:
             image,_=g._render.render(g,map_id=map_id)
             assert not image.isNull();assert image.save(str(out/(map_id+'.png')))
         checks.append('8 packaged map assets rendered')
-        shop=fit_dialog(LojaDialog(g));shop.show();app.processEvents()
+        shop=fit_dialog(LojaDialog(g));shop.show();QTest.qWait(150)
         slot='chapeu';shop.categoria.setCurrentIndex(1+list(SLOTS).index(slot))
         first=next(x for x in sold_items() if x[1]==slot)
         for row in range(shop.listas[slot].count()):
             if shop.listas[slot].item(row).data(Qt.UserRole)==first[0]:shop.listas[slot].setCurrentRow(row);break
         before=balance(g.estado);shop.btn.click();app.processEvents()
         assert g.estado['equipados'][slot]==first[0] and balance(g.estado)==before-cents(first[3])
+        assert shop.lbl_moedas.text()==f'Suas moedas: {g.fmt_currency(g.estado["moedas"])}'
+        QTest.qWait(150)
         shop.grab().save(str(out/'shop.png'));shop.accept()
         assert not shop.timer.isActive();shop.deleteLater()
         checks.append('touch-sized shop purchase and preview lifecycle')
         for cls,name in ((ColecaoDialog,'collection'),(ViajarDialog,'travel'),(ExpedicaoDialog,'expedition')):
-            dlg=fit_dialog(cls(g));dlg.show();app.processEvents()
+            dlg=fit_dialog(cls(g));dlg.show();QTest.qWait(150)
             assert dlg.width()<=g.width() and dlg.height()<=g.height()
+            scroll=dlg.findChild(__import__('PySide6.QtWidgets',fromlist=['QScrollArea']).QScrollArea)
+            assert scroll.widget().width()<=scroll.viewport().width()
             dlg.grab().save(str(out/(name+'.png')));dlg.accept();dlg.deleteLater()
         app.sendPostedEvents(None,QEvent.DeferredDelete)
         checks.append('collection travel expedition scrollable dialogs')

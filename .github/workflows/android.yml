@@ -101,4 +101,8 @@ jobs:
         if: always()
         with:
           name: Android-emulator-evidence
-          path: ${{ runner.temp }}/emulator-qa
+          path: |
+            ${{ runner.temp }}/emulator-qa/*.json
+            ${{ runner.temp }}/emulator-qa/*.png
+            ${{ runner.temp }}/emulator-qa/*.txt
+            ${{ runner.temp }}/emulator-qa/*.log

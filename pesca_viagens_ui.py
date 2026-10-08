@@ -3,7 +3,7 @@ import copy
 from datetime import datetime
 from PySide6.QtCore import Qt, QTimer, QDateTime, QSize
 from PySide6.QtGui import QPixmap, QIcon
-from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
+from PySide6.QtWidgets import (QApplication,QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
     QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox)
 from pesca_catalogo import ESPECIES,LOCAIS,OCORRENCIAS,eligible
 from pesca_tempo import LABELS,snapshot
@@ -125,7 +125,8 @@ class ViajarDialog(Page):
         id_=item.data(Qt.UserRole);m=LOCAIS[id_];s=self.game.estado
         unlocked=id_ in s['locais_desbloqueados'];self.button.setEnabled(unlocked)
         img,_=self.game._render.render(self.game,map_id=id_)
-        self.preview.setPixmap(QPixmap.fromImage(img.scaled(512,288,Qt.KeepAspectRatio,Qt.FastTransformation)))
+        width=min(512,QApplication.primaryScreen().availableGeometry().width()-52) if mobile() else 512
+        self.preview.setPixmap(QPixmap.fromImage(img.scaled(width,round(width*144/256),Qt.KeepAspectRatio,Qt.FastTransformation)))
         ids={o['species_id'] for o in OCORRENCIAS if o['map_id']==id_}
         known=sum(s['inventario_por_id'].get(x,0)>0 for x in ids)
         regional=sum(s['registros_regionais'].get(id_,{}).get(x,0)>0 for x in ids)

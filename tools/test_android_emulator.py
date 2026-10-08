@@ -1,5 +1,5 @@
 """Install the QA APK on a disposable AVD; collect on-device results and pixels."""
-import argparse,getpass,json,os,subprocess,time,uuid
+import argparse,getpass,json,os,struct,subprocess,time,uuid
 from pathlib import Path
 
 
@@ -67,10 +67,17 @@ def test(apk,out):
         profile=Path(report['profile']);private=str(profile.parent)
         for filename in ('game.png','shop.png','collection.png','travel.png','expedition.png'):
             with (out/filename).open('wb') as f:subprocess.run([adb,'exec-out','run-as',package,'cat',private+'/'+filename],stdout=f,check=True,timeout=30)
-        for orientation,value in [('portrait','0'),('landscape','1')]:
-            call(adb,'shell','settings','put','system','accelerometer_rotation','0')
-            call(adb,'shell','settings','put','system','user_rotation',value);time.sleep(2)
-            with (out/(orientation+'-screen.png')).open('wb') as f:subprocess.run([adb,'exec-out','screencap','-p'],stdout=f,check=True,timeout=30)
+        call(adb,'shell','settings','put','system','accelerometer_rotation','1')
+        for orientation,value in [('portrait','0:9.8:0'),('landscape','9.8:0:0')]:
+            call(adb,'emu','sensor','set','acceleration',value)
+            deadline=time.monotonic()+20
+            while time.monotonic()<deadline:
+                png=subprocess.check_output([adb,'exec-out','screencap','-p'],timeout=30)
+                width,height=struct.unpack_from('>II',png,16)
+                if (width>height)==(orientation=='landscape'):break
+                time.sleep(1)
+            else:raise RuntimeError('Actual screen did not rotate to '+orientation)
+            (out/(orientation+'-screen.png')).write_bytes(png)
         # A real Android background transition and return, not just a Qt signal.
         call(adb,'shell','input','keyevent','3');time.sleep(2)
         call(adb,'shell','am','start','-W','-n',package+'/org.kivy.android.PythonActivity');time.sleep(2)
