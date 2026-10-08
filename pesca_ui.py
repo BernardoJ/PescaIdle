@@ -2,7 +2,7 @@
 from PySide6.QtCore import Qt, QRect
 import os
 from pathlib import Path
-from PySide6.QtGui import QColor, QFont, QFontDatabase, QPainter, QPen, QIcon, QImage, QPixmap
+from PySide6.QtGui import QColor, QFont, QFontDatabase, QPainter, QPen, QIcon, QImage, QPixmap, QPalette
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea, QPushButton
 from pesca_visual import resource_path
 from pesca_catalogo import LOCAIS
@@ -27,6 +27,10 @@ QListWidget {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-widt
 QLabel[panel="true"] {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-width: 8px; }}
 ''')
     if mobile():
+        palette=app.palette()
+        for role,color in ((QPalette.Window,'#172838'),(QPalette.Base,'#1b2c3d'),(QPalette.WindowText,'#f5dfb6'),(QPalette.Text,'#f5dfb6')):
+            palette.setColor(role,QColor(color))
+        app.setPalette(palette)
         app.setStyleSheet(app.styleSheet()+'''QWidget { font-family: sans-serif; font-size: 16px; }
 QPushButton,QComboBox,QDateTimeEdit,QDoubleSpinBox { min-height: 44px; padding: 6px; }
 QCheckBox { min-height: 40px; } QListWidget::item { min-height: 54px; }''')

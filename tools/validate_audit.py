@@ -56,7 +56,7 @@ class Audit(unittest.TestCase):
         store=self.store('concurrent');env=os.environ.copy();env['PYTHONPATH']=str(ROOT)
         code="from pesca_save import SaveStore,SaveError; import sys\ntry:\n s=SaveStore(sys.argv[1]);s.close();print('open')\nexcept SaveError:print('blocked')"
         alias=store.path.parent/'alias'/'..'/store.path.name
-        alias.parent.mkdir(exist_ok=True)
+        (store.path.parent/'alias').mkdir(exist_ok=True)
         for path in (store.path,alias):
             result=subprocess.run([sys.executable,'-c',code,str(path)],env=env,text=True,capture_output=True,timeout=20)
             self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(result.stdout.strip(),'blocked')
