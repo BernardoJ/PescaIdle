@@ -1,8 +1,8 @@
 """On-device checks, included only in the disposable Android QA package."""
 import copy,json,os,sys,traceback
 from pathlib import Path
-from PySide6.QtCore import QTimer,Qt,QEvent
-from PySide6.QtWidgets import QWidget,QComboBox,QScrollArea
+from PySide6.QtCore import QTimer,Qt,QEvent,QPoint
+from PySide6.QtWidgets import QWidget,QComboBox,QScrollArea,QLabel
 from PySide6.QtTest import QTest
 
 
@@ -65,6 +65,17 @@ def run(app,g,lifecycle):
             check(scroll.widget().width()<=scroll.viewport().width(),'Horizontal content clipped: '+name)
             for combo in dlg.findChildren(QComboBox):
                 check(combo.height()>=44,'Combo not touch-sized: '+name)
+            report.setdefault('dialog_geometry',{})[name]=[
+                {'class':type(w).__name__,'text':w.currentText() if isinstance(w,QComboBox) else w.text()[:60],
+                 'rect':[w.mapTo(scroll.widget(),QPoint()).x(),w.mapTo(scroll.widget(),QPoint()).y(),w.width(),w.height()],
+                 'parent':type(w.parent()).__name__}
+                for w in scroll.widget().findChildren(QComboBox)+scroll.widget().findChildren(QLabel)]
+            if name=='collection':
+                report['collection_scroll']=scroll.verticalScrollBar().value()
+                check(dlg.local.width()==dlg.period.width(),'Collection first filter width mismatch')
+                check(dlg.local.y()+dlg.local.height()<=dlg.period.y(),'Collection filters overlap')
+                check(dlg.local.y()>=scroll.widget().layout().itemAt(0).widget().geometry().bottom(),'Collection title/filter overlap')
+            QTest.qWait(500);dlg.repaint();QTest.qWait(100)
             dlg.grab().save(str(out/(name+'.png')));dlg.accept();dlg.deleteLater()
         app.sendPostedEvents(None,QEvent.DeferredDelete)
         checks.append('collection travel expedition scrollable dialogs')
