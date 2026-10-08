@@ -36,6 +36,9 @@ def build(output,arch):
     env['APPDATA']=str(output/'qa-appdata');env['LOCALAPPDATA']=str(output/'qa-localappdata')
     subprocess.run(['pyside6-android-deploy','--init','--name','PescaIdle','--wheel-pyside',str(paths[0]),'--wheel-shiboken',str(paths[1]),'--ndk-path',str(ndk),'--sdk-path',str(sdk),'--extra-modules','Core,Gui,Widgets','--keep-deployment-files','--force'],cwd=stage,env=env,check=True)
     spec=stage/'buildozer.spec';cfg=configparser.ConfigParser(interpolation=None);cfg.read(spec)
+    from android_icon import make
+    icon=stage/'app-icon.png';make(icon)
+    subprocess.run([str(sdk/'build-tools/36.0.0/aapt2'),'compile',str(icon),'-o',str(output/'icon-flat.zip')],check=True)
     # Buildozer 1.5 expects the former SDK tools path. Expose existing SDK
     # components through links in the task directory, without changing the SDK.
     sdk_view=output/'sdk';sdk_view.mkdir()
@@ -54,6 +57,7 @@ def build(output,arch):
         'orientation':'portrait,landscape','android.manifest.orientation':'fullSensor','fullscreen':'0','p4a.branch':'develop',
         'p4a.source_dir':str(p4a),'android.sdk_path':str(sdk_view)}
     for key,value in options.items():cfg.set('app',key,value)
+    cfg.set('app','icon.filename',str(icon))
     if qa:
         cfg.set('app','package.domain','br.com.bernardoj.pescaidle')
         cfg.set('app','package.name','qa')
