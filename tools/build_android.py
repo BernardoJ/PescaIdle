@@ -37,7 +37,7 @@ def build(output,arch):
     subprocess.run(['pyside6-android-deploy','--init','--name','PescaIdle','--wheel-pyside',str(paths[0]),'--wheel-shiboken',str(paths[1]),'--ndk-path',str(ndk),'--sdk-path',str(sdk),'--extra-modules','Core,Gui,Widgets','--keep-deployment-files','--force'],cwd=stage,env=env,check=True)
     spec=stage/'buildozer.spec';cfg=configparser.ConfigParser(interpolation=None);cfg.read(spec)
     from android_icon import make
-    icon=stage/'app-icon.png';make(icon)
+    icon=output/'launcher/mipmap/icon.png';icon.parent.mkdir(parents=True);make(icon)
     subprocess.run([str(sdk/'build-tools/36.0.0/aapt2'),'compile',str(icon),'-o',str(output/'icon-flat.zip')],check=True)
     # Buildozer 1.5 expects the former SDK tools path. Expose existing SDK
     # components through links in the task directory, without changing the SDK.
