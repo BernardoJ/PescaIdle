@@ -3,7 +3,7 @@ import os
 import uuid
 from pathlib import Path
 from PySide6.QtCore import Qt,QStandardPaths
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication,QMessageBox
 
 
 class MobileLifecycle:
@@ -13,6 +13,7 @@ class MobileLifecycle:
 
     def changed(self,state):
         g=self.game
+        if g._closed:return
         if state!=Qt.ApplicationActive:
             if not self.suspended:
                 g.tick();g.salvar()
@@ -43,8 +44,13 @@ def run():
     # The profile override is established before any game import.
     from pesca_ui import configure_app
     from pesca_idle import JogoPesca
+    from pesca_save import SaveError
     configure_app(app)
-    game=JogoPesca();lifecycle=MobileLifecycle(app,game)
+    try:game=JogoPesca()
+    except SaveError as exc:
+        QMessageBox.critical(None,'Não foi possível abrir o perfil',str(exc))
+        return 1
+    lifecycle=MobileLifecycle(app,game)
     game.showMaximized()
     if qa:
         from tools.android_smoke import schedule

@@ -145,7 +145,8 @@ class Audit(unittest.TestCase):
         from pesca_catalogo import ESPECIES,desbloquear
         from pesca_loja import SLOTS
         clock={'wall':1800000000.,'mono':0.}
-        g=game.JogoPesca(wall_clock=lambda:clock['wall'],monotonic_clock=lambda:clock['mono'])
+        with patch.object(game,'SAVE_PATH',Path(PROFILE.name)/'achievement-flows.json'):
+            g=game.JogoPesca(wall_clock=lambda:clock['wall'],monotonic_clock=lambda:clock['mono'])
         g.setAttribute(Qt.WA_DontShowOnScreen,True)
         def messages():return [x[0] for x in ([g.popup] if g.popup else [])+g._popup_queue]
         def clear():g.popup=None;g._popup_queue=[]
