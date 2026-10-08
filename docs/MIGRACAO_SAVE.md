@@ -1,4 +1,4 @@
-# Save v2 e ausência
+# Save v3 e ausência
 
 O caminho normal permanece `%APPDATA%\PescaIdle\save.json`. Nenhum conteúdo do
 perfil pessoal foi lido ou usado nesta tarefa. Todos os testes utilizaram dados
@@ -8,19 +8,25 @@ sintéticos e `PESCA_IDLE_SAVE_PATH` explícito, com APPDATA/LOCALAPPDATA isolad
 
 Antes da primeira migração de um JSON válido v1, uma cópia byte a byte é gravada
 em `save.pre-expansao-v1.json`. Se já existir uma cópia diferente, usa outro nome
-exclusivo, sem sobrescrever a anterior. O save v2 é gravado em temporário no mesmo
+exclusivo, sem sobrescrever a anterior. Para v2, preserva `save.pre-schema-2.json`.
+O save v3 é gravado em temporário no mesmo
 diretório, seguido de flush/fsync e substituição atômica por `os.replace`.
 
 Saldo, níveis, peças, equipamentos, compras, conquistas, total histórico e campos
 desconhecidos são preservados. Os nomes antigos são mapeados explicitamente para
 IDs duráveis. Nomes não reconhecidos permanecem recuperáveis em
 `inventario_legado_desconhecido`, inclusive na tela de status. Inventário por ID
-é canônico; `inventario` é apenas uma projeção em memória, excluída do JSON v2.
+é canônico; `inventario` é apenas uma projeção em memória, excluída do JSON v3.
 
 Capturas antigas ficam em `legado_sem_contexto` e contam globalmente nos marcos
 1/5/10. Não se atribuem mapa ou período retroativamente. Mapas já elegíveis pelo
 barco são liberados; desbloqueios anteriores válidos permanecem mesmo se um nível
 for reduzido. Mapa inválido volta à Enseada, mantendo diagnóstico do ID anterior.
+
+Antes de cada substituição, `save.json.bak` recebe o snapshot válido anterior,
+também de forma atômica. Havendo backup válido e um save ilegível, a abertura
+pergunta explicitamente se deve recuperar. O original rejeitado é arquivado
+com nome exclusivo antes da recuperação. Recusar mantém o original intacto.
 
 JSON corrompido, schema futuro, RNG inválido, contagens inválidas ou uma fisgada
 inconsistente impedem a abertura sem substituir o arquivo. A mensagem informa o
@@ -29,9 +35,18 @@ fechar; sua presença no disco não significa que ainda existe outro processo.
 
 Uma falha de escrita preserva o estado durável anterior, informa o jogador e
 pausa a pesca. Recompensa, resultado, inventário, conquistas e watermark são
-confirmados juntos. Não se usa pickle. O saldo legado continua numérico compatível;
-somas de recompensas utilizam Decimal sobre o valor textual, sem quantizar ou
-arredondar o saldo antigo na migração. Recompensas novas conservam duas casas.
+confirmados juntos. Não se usa pickle. `moedas_centavos` é inteiro e canônico;
+`moedas` é uma projeção para exibição, não gravada no JSON. A migração v1/v2
+quantiza o valor textual legado em centésimos, com arredondamento decimal
+half-even, corrigindo desvios binários como 29,999999999999925 para 30 moedas.
+A diferença máxima de quantização é meio centésimo; o backup conserva o número
+anterior byte a byte. Cada recompensa e multiplicador é quantizado uma única vez.
+Compras, somas e persistência usam inteiros. Um executável anterior ao schema 3
+não deve ser usado para abrir o perfil já migrado.
+
+Em Android, o perfil fica no diretório privado do aplicativo. Os testes Android
+usam um pacote QA separado e um subdiretório exclusivo do cache, antes de importar
+o jogo. Nenhum save do Windows é transferido automaticamente.
 
 ## Offline e suspensão
 

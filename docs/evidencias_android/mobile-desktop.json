@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "viewport portrait",
+    "shop portrait",
+    "collection portrait",
+    "travel portrait",
+    "expedition portrait",
+    "viewport landscape",
+    "shop landscape",
+    "collection landscape",
+    "travel landscape",
+    "expedition landscape",
+    "suspend saves",
+    "resume offline once",
+    "intentional pause preserved"
+  ],
+  "profile_isolated": true,
+  "backend": "Qt offscreen on desktop; Android installation is a separate test"
+}

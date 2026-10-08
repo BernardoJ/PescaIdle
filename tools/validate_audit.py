@@ -40,6 +40,17 @@ class Audit(unittest.TestCase):
         with patch('pesca_save.json.dumps',side_effect=ValueError('serialization interrupted')):
             with self.assertRaises(SaveError):store.save(candidate)
         self.assertEqual(store.path.read_bytes(),before)
+        original_temp=tempfile.NamedTemporaryFile
+        def partial_file(**kwargs):
+            file=original_temp(**kwargs);write=file.write
+            def interrupted(data):
+                write(data[:len(data)//2]);file.flush()
+                raise OSError('disk full after partial write')
+            file.write=interrupted
+            return file
+        with patch('pesca_save.tempfile.NamedTemporaryFile',side_effect=partial_file):
+            with self.assertRaises(SaveError):store.save(candidate)
+        self.assertEqual(store.path.read_bytes(),before)
         store.save(candidate);self.assertEqual(store.backup_path.read_bytes(),before)
         self.assertFalse(list(store.path.parent.glob(store.path.name+'.*.tmp')))
 
