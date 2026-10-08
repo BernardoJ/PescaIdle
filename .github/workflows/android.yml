@@ -35,6 +35,10 @@ jobs:
           QT_QPA_PLATFORM: offscreen
           PESCA_IDLE_QA_DIR: ${{ runner.temp }}/audit
         run: python tools/validate_audit.py
+      - name: NDK compatível com as bibliotecas Qt
+        run: |
+          test -d "$ANDROID_HOME/licenses"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install 'ndk;27.2.12479018' 'platforms;android-36' 'build-tools;36.0.0'
       - name: Compilar APK
         run: python tools/build_android.py --output "$RUNNER_TEMP/android-${{ matrix.arch }}" --arch "${{ matrix.arch }}"
       - name: Assinar e verificar

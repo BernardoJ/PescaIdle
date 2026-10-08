@@ -35,11 +35,13 @@ def build(output,arch):
         'android.api':'36','android.minapi':'28','android.ndk':'27c','android.ndk_api':'28',
         'android.accept_sdk_license':'False','android.skip_update':'True','android.permissions':'',
         'android.numeric_version':'21000','android.debug_artifact':'apk','android.release_artifact':'apk',
-        'orientation':'all','fullscreen':'0','p4a.branch':'develop'}
+        'orientation':'all','fullscreen':'0','p4a.branch':'develop',
+        'p4a.commit':'94ffd5f31d816414ad1fe66c0fe587c61daac757'}
     for key,value in options.items():cfg.set('app',key,value)
     cfg.set('buildozer','bin_dir',str(output/'bin'))
     with spec.open('w') as f:cfg.write(f)
-    subprocess.run([sys.executable,'-m','buildozer','-v','android','debug'],cwd=stage,env=env,check=True)
+    mode='release' if arch=='aarch64' else 'debug'
+    subprocess.run([sys.executable,'-m','buildozer','-v','android',mode],cwd=stage,env=env,check=True)
     apk=list((output/'bin').glob('*.apk'))
     if len(apk)!=1:raise RuntimeError('APK único não encontrado após compilação.')
     target=output/f'PescaIdle-{arch}-unsigned.apk';shutil.copy2(apk[0],target)
