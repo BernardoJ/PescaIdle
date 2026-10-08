@@ -31,7 +31,7 @@ def test(apk,out):
     if not os.access('/dev/kvm',os.R_OK|os.W_OK):
         # Existing runner privilege, scoped to this process and the same UID.
         # No chmod, udev rule, group membership or system configuration changes.
-        command=['sudo','-n','-u',getpass.getuser(),'-g','kvm','--','env',
+        command=['sudo','-n','--','runuser','-u',getpass.getuser(),'-g','kvm','--','env',
                  'ANDROID_AVD_HOME='+str(avd_home),'ANDROID_USER_HOME='+str(user_home),
                  'ANDROID_HOME='+str(sdk),*command]
     emu=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT)
