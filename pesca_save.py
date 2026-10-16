@@ -12,6 +12,7 @@ from pesca_catalogo import ALIASES, ESPECIES, desbloquear, legacy_view
 from pesca_tempo import snapshot
 from pesca_loja import CAT, SLOTS
 from pesca_moedas import set_balance, set_cents, cents
+from pesca_museu import empty_museum, validate_museum
 
 SCHEMA = 3
 
@@ -43,7 +44,7 @@ def migrate(raw, defaults, now):
                'pesca_pendente', 'rng_state', 'expedicao', 'viagem_pendente',
                'registros_regionais', 'registros_por_periodo', 'legado_sem_contexto',
                'local_atual_id', 'locais_desbloqueados', 'contador_eventos',
-               'ultimo_evento_aplicado', 'pausado')
+               'ultimo_evento_aplicado', 'pausado', 'museu')
     for key in dynamic:
         if key not in raw:
             state.pop(key, None)
@@ -79,6 +80,7 @@ def migrate(raw, defaults, now):
     state.setdefault('viagem_pendente', None)
     state.setdefault('expedicao', None)
     state.setdefault('rng_state', None)
+    state.setdefault('museu', empty_museum())
     try:
         if version < 3:
             set_balance(state, raw.get('moedas', defaults.get('moedas', 0)))
@@ -104,6 +106,10 @@ def migrate(raw, defaults, now):
 def validate_state(state):
     from pesca_catalogo import LOCAIS
     from pesca_tempo import LABELS
+    try:
+        validate_museum(state['museu'])
+    except (KeyError, ValueError) as exc:
+        raise SaveError('Museu inválido; original preservado: '+str(exc)) from exc
     if type(state.get('moedas_centavos')) is not int or state['moedas_centavos'] < 0:
         raise SaveError('Saldo em centésimos inválido.')
     if state.get('moedas') != state['moedas_centavos']/100:

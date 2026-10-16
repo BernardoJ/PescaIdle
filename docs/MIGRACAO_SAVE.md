@@ -48,6 +48,13 @@ Em Android, o perfil fica no diretório privado do aplicativo. Os testes Android
 usam um pacote QA separado e um subdiretório exclusivo do cache, antes de importar
 o jogo. Nenhum save do Windows é transferido automaticamente.
 
+## Exposição do museu (entrega local)
+
+A extensão opcional `museu` usa versão interna 1 e três referências por ID;
+o schema global permanece 3. Ausência do campo inicializa exposição vazia.
+Referências indisponíveis são preservadas e sinalizadas, sem consumir capturas
+ou alterar saldo. [Contrato, migração e testes](MUSEU_PRIMEIRA_ENTREGA.md).
+
 ## Offline e suspensão
 
 `ultimo_salvo` é metadado de gravação, separado de `ultimo_processado_utc`.

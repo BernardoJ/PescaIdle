@@ -1219,7 +1219,7 @@ class JogoPesca(QWidget):
     def abrir_menu(self):
         if mobile():
             dlg=QDialog(self);layout=QVBoxLayout(dlg)
-            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
+            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
                 button=QPushButton(title);button.clicked.connect(lambda checked=False,f=action:(dlg.accept(),QTimer.singleShot(0,f)));layout.addWidget(button)
             button=QPushButton('Voltar à pescaria');button.clicked.connect(dlg.accept);layout.addWidget(button)
             fit_dialog(dlg).exec();dlg.deleteLater();return
@@ -1227,6 +1227,7 @@ class JogoPesca(QWidget):
         m.addAction(rpg_icon("loja"), "Loja", self.abrir_loja)
         m.addAction(rpg_icon("barco"), "Status e inventário", self.mostrar_status)
         m.addAction(rpg_icon("livro"), "Enciclopédia", self.abrir_enciclopedia)
+        m.addAction(rpg_icon("livro"), "Museu", self.abrir_museu)
         m.addAction(rpg_icon("conquistas"), "Conquistas", self.mostrar_conquistas)
         m.addAction(rpg_icon("barco"), "Viajar", self.abrir_viagens)
         m.addAction(rpg_icon("livro"), "Expedição offline", self.abrir_expedicao)
@@ -1255,6 +1256,11 @@ class JogoPesca(QWidget):
         from pesca_viagens_ui import ColecaoDialog
         dlg = ColecaoDialog(self)
         fit_dialog(dlg)
+        dlg.exec(); dlg.deleteLater()
+
+    def abrir_museu(self):
+        from pesca_museu_ui import MuseuDialog
+        dlg = MuseuDialog(self)
         dlg.exec(); dlg.deleteLater()
 
     def viajar(self, map_id):

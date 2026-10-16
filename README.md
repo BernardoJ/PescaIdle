@@ -2,6 +2,21 @@
 
 Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
 
+## Entrega local: museu inicial
+
+Esta branch acrescenta **Museu** ao menu, com um aquário para até três espécies diferentes já descobertas. Selecionar, trocar e retirar não consome capturas nem moedas. Encontros especiais ficam fora deste aquário. A exposição é salva; não há alimentação, renda ou punição por ausência.
+
+Esta entrega está somente no código local. Os EXEs e APKs existentes são anteriores ao museu e não foram substituídos. [Diagnóstico, medições, imagens e limites](docs/MUSEU_PRIMEIRA_ENTREGA.md).
+
+Para experimentar com descobertas de exemplo e um perfil temporário, no ambiente Python/PySide6 já configurado:
+
+```powershell
+python tools/preview_museum.py
+python tools/preview_museum.py --empty
+```
+
+Essa prévia não abre o save pessoal e descarta o perfil de teste ao fechar. O jogo normal abre pelo código em `pesca_idle.py`; faça sessões de QA somente com `PESCA_IDLE_SAVE_PATH` explícito. Não foram implementadas as etapas posteriores de clima, equipamentos ou distribuição do catálogo.
+
 ## Jogar com dois cliques
 
 Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/android-auditoria/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.

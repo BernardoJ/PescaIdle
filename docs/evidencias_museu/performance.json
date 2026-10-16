@@ -1,0 +1,16 @@
+{
+  "aquarium_3": {
+    "median_ms": 0.10619999966365867,
+    "p95_ms": 0.11369999992894009
+  },
+  "main_scene": {
+    "median_ms": 1.4105499994911952,
+    "p95_ms": 1.488699999754317
+  },
+  "frames": 200,
+  "max_exhibits": 3,
+  "animation_interval_ms": 66,
+  "backend": "offscreen",
+  "device_ratio": 1.0,
+  "limit": "Desktop render microbenchmark, not physical Android performance."
+}
