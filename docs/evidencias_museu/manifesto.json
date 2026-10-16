@@ -1,0 +1,132 @@
+{
+  "client_date": "2026-10-15",
+  "base_commit": "f5946680df4599c2c132cee7ca14256dd695b88a",
+  "branch": "codex/museu-aquario-inicial",
+  "working_tree": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-museu-20261015",
+  "qa_directory": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-museu-qa-20261015",
+  "local_changes_uncommitted": true,
+  "scope": "one aquarium, zero to three discovered category peixe IDs; no economy changes",
+  "baseline_normalized_source_equal": true,
+  "normalization": "CRLF/LF only; raw checkout hashes can differ",
+  "modified_game_methods": [
+    "abrir_menu"
+  ],
+  "new_game_methods": [
+    "abrir_museu"
+  ],
+  "SaveStore_methods_unchanged": true,
+  "protected_paths_unchanged": [
+    "assets",
+    "pesca_catalogo.py",
+    "pesca_tempo.py",
+    "pesca_pescaria.py",
+    "pesca_offline.py",
+    "pesca_moedas.py",
+    "pesca_conquistas.py",
+    "pesca_loja.py",
+    "pesca_visual.py",
+    "pesca_ambiente.py",
+    "pesca_luz.py",
+    "pesca_regional_visual.py",
+    "pesca_efeitos.py",
+    "pesca_equipamentos.py",
+    "pesca_especies_visual.py",
+    "pesca_plataforma.py",
+    "pesca_android.py",
+    "PescaIdle.spec",
+    "requirements.txt",
+    "requirements-build.txt",
+    "tools/build_android.py",
+    ".github/workflows/android.yml",
+    "PescaIdle.exe"
+  ],
+  "existing_worktrees": [
+    {
+      "path": "C:\\Users\\berna\\Desktop\\Pesca Idle",
+      "head": "910340492e720c1e545dc0f45407d0e881b20a95",
+      "clean": true
+    },
+    {
+      "path": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-android-auditoria-20261007",
+      "head": "f5946680df4599c2c132cee7ca14256dd695b88a",
+      "clean": true
+    },
+    {
+      "path": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-cosmeticos-20261006",
+      "head": "6b29b4a0da3ce403dad4ff46e7f656659d2266f1",
+      "clean": true
+    },
+    {
+      "path": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-executavel-20261006",
+      "head": "4e20f87c9c8bfaac49b89e27a1baaf0c9015ef78",
+      "clean": true
+    },
+    {
+      "path": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-expansao-20261006",
+      "head": "b4c81121bddff8416fcfa4cbd5b2542f9d8b8f34",
+      "clean": true
+    },
+    {
+      "path": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-integracao-20261006",
+      "head": "fdc293f0cf884d28011846fdba4fbcd85661ab18",
+      "clean": true
+    }
+  ],
+  "personal_save_read": false,
+  "published": false,
+  "merged": false,
+  "binaries_replaced": false,
+  "python": "C:/Users/berna/.codex/visualizations/2026/10/05/01a10c72-a799-7b40-b2e1-13c17985406b/PescaIdle-integracao-20261006/.venv/Scripts/python.exe",
+  "commands": [
+    "python tools/validate_game.py",
+    "python tools/validate_mobile.py",
+    "QT_QPA_PLATFORM=windows QT_SCALE_FACTOR=1 python tools/validate_museum.py --native-visual",
+    "QT_QPA_PLATFORM=windows QT_SCALE_FACTOR=1.25 python tools/validate_museum.py --native-visual",
+    "PESCA_IDLE_MEASURE_SOURCE=<intact f594668> python tools/measure_museum_baseline.py",
+    "python tools/preview_museum.py --auto-close-ms 200",
+    "python tools/preview_museum.py --empty --auto-close-ms 200"
+  ],
+  "limitations": [
+    "No Android SDK/ADB/emulator or WSL installed; no native Android tests/build.",
+    "Qt touch events, resize and application-state simulation are desktop evidence, not physical phone tests.",
+    "No EXE/APK distribution build or replacement in this delivery."
+  ],
+  "sha256": {
+    "pesca_idle.py": "f7d493a28c66e95deb2b38321b03b887a0e5949b7d5fadbe5a36ceebe902c3ed",
+    "pesca_save.py": "563a5da311270726a0a1495dacb8b333eea8fc609ce15fd15a6362c1a9288660",
+    "pesca_museu.py": "30b2f7b8cf3921230137e7a026426ae19e69d43b8e76fb10d0ffda8472aa4196",
+    "pesca_museu_ui.py": "79e67f400bad3543ef085e20183ac91e5fe0229309f505583a15b79261629630",
+    "tools/validate_museum.py": "bc3cd00dd1a210df3bf353e67d4a74a3dc4ca208cb411ab22a07476165df1d1c",
+    "tools/measure_museum_baseline.py": "e418ba33c6edd684c5c4d183de27771061de99c1bae3360ba0e8559ba9c051cf",
+    "tools/preview_museum.py": "eb1395bbfeb871c8c3b012344916329fcd069bd3a22e13ab10491bc65b63b1b9",
+    "tools/validate_game.py": "918672e935565d567c4d1230b3f7d92838a7507a77b522ca510a295fddf77257",
+    "tools/validate_mobile.py": "f45a088dd68a609754454fa82acd1a1dc3961f11637bc33139cf1a2ac18b4fef",
+    "README.md": "59e6c1ca6d933a2ba44dfe36ff114c6c6215bde9ec4c8b0c214ca49589f07a9b",
+    "docs/MUSEU_PRIMEIRA_ENTREGA.md": "7aaeaae468ffde005a18f58a6296831797db48d33220d4bfae9a5c68a46ccdd6",
+    "docs/MIGRACAO_SAVE.md": "4b727cc7e8a2820bc9d67696edbebc62a048914b5daffa2395b2b59a23eb3cc4",
+    "docs/evidencias_museu/aquario-animado.gif": "c18a3431fb4f2adeb807957e45f91069730d9044f6df8af8e6538e4c9766e058",
+    "docs/evidencias_museu/aquario-tres.png": "060c611c54ea88573eaee859df58fcf758484c3b61163d2a8f7ee2c33b392c42",
+    "docs/evidencias_museu/balanceamento.json": "4ab7157ab4d58d248ff1c59484fea32a6a91b23d3442f398beeb5d1beef60709",
+    "docs/evidencias_museu/baseline-audit.json": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+    "docs/evidencias_museu/baseline-expansion.json": "7de095a0172dd7984cbdd23155097f0770d783c8c85ccf6a3255701a1f1f04ba",
+    "docs/evidencias_museu/final-audit.json": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+    "docs/evidencias_museu/final-cosmetics.json": "7133f8ab09840abd262c932d8c8b493e866a44ebb5ff0627363bd752b671b1d5",
+    "docs/evidencias_museu/final-expansion.json": "ebdc80d9e80705c775b5d30da8114718f9785d3e5d95de9b61b3f3b29f48b82e",
+    "docs/evidencias_museu/mobile-preview.json": "669015edb1da70b950c68db538857c2a2a05c41f7ea1aebb5de05106b9f87f6d",
+    "docs/evidencias_museu/museu-catalogo-vazio.png": "4dccd578789615ebc930f877b0cbc06fde4a3799c19c6f134c51a98a03213019",
+    "docs/evidencias_museu/museu-inicio.png": "8cb5c74fcea7433f8d533422a8391b823326f1199a895dec8204cc6e428efa40",
+    "docs/evidencias_museu/museu-preview-320x568.png": "c5057fa8169903727623180218893baad6b5c727e5ddfda57c6c682f1f3b6a67",
+    "docs/evidencias_museu/museu-preview-360x800.png": "37cf18859703d4f3a4b5ac15fdaa30fa14455d74079d78017c30e0576024fe36",
+    "docs/evidencias_museu/museu-preview-512x288.png": "f1d5d2c70ebdddcd3c45a681cfcc667a42966573f73694a239c2e2982e69a4c6",
+    "docs/evidencias_museu/museu-preview-800x360.png": "94bd05227b6b7f6d8e60a13c82b29ca33d1754a3885d441811ff7c111cd5fffb",
+    "docs/evidencias_museu/museu-tres-125.png": "9e802e07732c670594fecfb2d6e61f0f6d822a36b8b605dce2835f94f9c93cb0",
+    "docs/evidencias_museu/museu-tres.png": "40f71435501c013539e60450f951860e666a9bf6c6c6e7a027b09127b9064d6f",
+    "docs/evidencias_museu/museu-um.png": "86bed300fa08cce980a31318c75d0c63509102f4cb9f2561003d0e766aa5c513",
+    "docs/evidencias_museu/museu-vazio.png": "8ffeb1b3dcef4be1950fc0918fbc0afbcf076e1150bd633a0b30755823795177",
+    "docs/evidencias_museu/museum.json": "9e23e5cfc050c9c28a809c9950179366af404355e6f0f94db081beda9dddcdf5",
+    "docs/evidencias_museu/native100.json": "3a534148d2a0a9b748fa2551584839c2d4f4d36ec0a873a4895b1e9c8cbb24ca",
+    "docs/evidencias_museu/native125.json": "3a534148d2a0a9b748fa2551584839c2d4f4d36ec0a873a4895b1e9c8cbb24ca",
+    "docs/evidencias_museu/performance.json": "e8ffc173e52dd317c471947359ef1e5ee3aed63735aedc25c7039e9bd1ca16ca",
+    "docs/evidencias_museu/ritmo.json": "7bc50a997d719da46d8ddfde57ecdb78d53491d0ca357adced3b7c262821b6f5"
+  }
+}

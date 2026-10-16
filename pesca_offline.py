@@ -4,6 +4,7 @@ import math
 import uuid
 from pesca_catalogo import LOCAIS
 from pesca_pescaria import FishingEngine
+from pesca_moedas import balance
 
 LIMIT = 14400
 
@@ -56,10 +57,10 @@ def replay(state, now):
     budget = max(0, hi-lo)
     report['paid_seconds'] = budget
     report['discarded'] = elapsed-budget
-    before = candidate['moedas']
+    before = balance(candidate)
     engine = FishingEngine(candidate)
     candidate = engine.advance(budget, lo, offset, override,
                                {'vara': candidate['vara'], 'barco': candidate['barco']})
     report.update(count=sum(e['categoria']!='lixo' for e in engine.events),cycles=len(engine.events),
-                  gain=round(candidate['moedas']-before, 2),events=engine.events)
+                  gain=(balance(candidate)-before)/100,events=engine.events)
     return candidate, report

@@ -2,11 +2,12 @@
 from PySide6.QtCore import Qt, QRect
 import os
 from pathlib import Path
-from PySide6.QtGui import QColor, QFont, QFontDatabase, QPainter, QPen, QIcon, QImage, QPixmap
+from PySide6.QtGui import QColor, QFont, QFontDatabase, QPainter, QPen, QIcon, QImage, QPixmap, QPalette
 from PySide6.QtWidgets import QApplication, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea, QPushButton
 from pesca_visual import resource_path
 from pesca_catalogo import LOCAIS
 from pesca_tempo import snapshot
+from pesca_plataforma import mobile,safe_rect
 
 
 def configure_app(app):
@@ -25,6 +26,14 @@ QMenu::icon {{ margin-left: 8px; }}
 QListWidget {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-width: 8px; }}
 QLabel[panel="true"] {{ border-image: url("{frame}") 8 8 8 8 stretch stretch; border-width: 8px; }}
 ''')
+    if mobile():
+        palette=app.palette()
+        for role,color in ((QPalette.Window,'#172838'),(QPalette.Base,'#1b2c3d'),(QPalette.WindowText,'#f5dfb6'),(QPalette.Text,'#f5dfb6')):
+            palette.setColor(role,QColor(color))
+        app.setPalette(palette)
+        app.setStyleSheet(app.styleSheet()+'''QWidget { font-family: sans-serif; font-size: 16px; }
+QPushButton,QComboBox,QDateTimeEdit,QDoubleSpinBox { min-height: 44px; padding: 6px; }
+QCheckBox { min-height: 40px; } QListWidget::item { min-height: 54px; }''')
 
 
 _ICONS = {}
@@ -137,18 +146,21 @@ def panel(p, r, bright=False):
 
 def paint_overlay(game):
     p=QPainter(game)
+    if mobile():p.fillRect(game.rect(),QColor('#142334'))
     p.setRenderHint(QPainter.SmoothPixmapTransform,False)
     scene,_=game.desenhar_cena()
     p.drawImage(game.scene_rect,scene)
+    area=safe_rect(game);W,H=area.width(),area.height()
+    p.translate(area.topLeft())
     # Text renders at screen resolution to preserve Portuguese and DPI readability.
-    font=QFont('Segoe UI')
-    font.setPixelSize(12)
+    font=QFont(QApplication.font()) if mobile() else QFont('Segoe UI')
+    font.setPixelSize(14 if mobile() else 12)
     font.setWeight(QFont.DemiBold)
     p.setFont(font)
     clock=game._clock_snapshot
     title=LOCAIS[game.estado['local_atual_id']]['nome'].upper()+' · '+clock['rotulo'].upper()
     p.setPen(QColor('#253647'))
-    title=p.fontMetrics().elidedText(title,Qt.ElideRight,game.W-72)
+    title=p.fontMetrics().elidedText(title,Qt.ElideRight,W-72)
     p.drawText(13,23,title)
     p.setPen(QColor('#f6dfb4'))
     p.drawText(12,22,title)
@@ -157,18 +169,18 @@ def paint_overlay(game):
     next_time=datetime.fromtimestamp(clock['proxima_utc']).strftime('%H:%M')
     p.drawText(12,36,'Próximo período às '+next_time)
     info=f'{game.fmt_currency(game.estado["moedas"])} moedas'
-    panel(p,QRect(12,game.H-30,146,23))
-    p.fillRect(20,game.H-22,7,7,QColor('#c09554'))
-    p.fillRect(22,game.H-22,3,5,QColor('#ffe5a1'))
+    panel(p,QRect(12,H-30,146,23))
+    p.fillRect(20,H-22,7,7,QColor('#c09554'))
+    p.fillRect(22,H-22,3,5,QColor('#ffe5a1'))
     p.setPen(QColor('#f9e7bf'))
-    p.drawText(QRect(32,game.H-29,119,21),Qt.AlignVCenter|Qt.AlignLeft,
+    p.drawText(QRect(32,H-29,119,21),Qt.AlignVCenter|Qt.AlignLeft,
                p.fontMetrics().elidedText(info,Qt.ElideRight,119))
     label='PAUSADO' if game.pausado else 'FISGADA!' if game.fisgando>0 else 'PESCANDO'
     w=p.fontMetrics().horizontalAdvance(label)+20
-    panel(p,QRect(game.W-w-12,game.H-30,w,23))
+    panel(p,QRect(W-w-12,H-30,w,23))
     p.setPen(QColor('#f6d493' if game.pausado or game.fisgando>0 else '#c0d0bd'))
-    p.drawText(QRect(game.W-w-12,game.H-29,w,21),Qt.AlignCenter,label)
-    r=game.rect_icone
+    p.drawText(QRect(W-w-12,H-29,w,21),Qt.AlignCenter,label)
+    r=game.rect_icone.translated(-area.left(),-area.top())
     panel(p,r,game.hover)
     for yy in (r.top()+9,r.top()+15,r.top()+21):
         p.fillRect(r.left()+9,yy,14,2,QColor('#ffe3ac' if game.hover else '#d7bb85'))
@@ -178,10 +190,10 @@ def paint_overlay(game):
     if game.popup:
         text,color,left=game.popup
         # Full-width wrap stays away from the fisherman and the menu.
-        maxw=game.W-100
+        maxw=W-100
         bounds=p.fontMetrics().boundingRect(QRect(0,0,maxw-28,110),Qt.TextWordWrap,text)
         w=min(maxw,max(180,bounds.width()+28)); h=bounds.height()+26
-        r=QRect((game.W-w)//2,39,w,h)
+        r=QRect((W-w)//2,39,w,h)
         p.setOpacity(min(1,left/.5))
         panel(p,r)
         p.setPen(QColor(color))

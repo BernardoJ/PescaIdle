@@ -1,0 +1,13 @@
+{
+  "source_commit": "24e4055911e5d4360faebfdab1b3aaedac5207b4",
+  "qt": "6.11.2",
+  "p4a_commit": "94ffd5f31d816414ad1fe66c0fe587c61daac757",
+  "arch": "x86_64",
+  "mode": "debug",
+  "qa_package": true,
+  "wheels": {
+    "pyside6-6.11.2-6.11.2-cp311-cp311-android_x86_64.whl": "7dc0335592a11a612fd6a16b48b202ddd85bf0bcd2d2e3fc2d50dbb8e4f7a5fe",
+    "shiboken6-6.11.2-6.11.2-cp311-cp311-android_x86_64.whl": "642bb59b6f4654236f8cba0c2fa45dbfcca6363d83b2c1b53f245a2a7bd77530"
+  },
+  "apk_sha256": "ec8c7ab4b20ae59db55da9f6b190f8bab89b8849aa93c4e35e6c8ed47cf40e35"
+}

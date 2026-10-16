@@ -1,0 +1,31 @@
+{
+  "production_source": "35a2483f140b64075befe249a44be8bc9ab1e10d",
+  "qa_source": "24e4055911e5d4360faebfdab1b3aaedac5207b4",
+  "identical_runtime_and_assets": true,
+  "git_objects": {
+    "main.py": "6b9b5baf6248056d68fa0d3b5aae183a8c88fed3",
+    "pesca_ambiente.py": "dfd36e10f81b71d21701b19e11a6d6909b00449f",
+    "pesca_android.py": "7ca2802d13d00d33b338b1f6320c1ed75fb44e73",
+    "pesca_catalogo.py": "9dc62624ec84c51271c136f75c41b19c19ff792f",
+    "pesca_conquistas.py": "9de053fe6f2d2bfa09e494ab7b8c49d13a617992",
+    "pesca_efeitos.py": "93ff17562ee73a202b09c12608fd6469c6eed5d2",
+    "pesca_equipamentos.py": "8bf4ee48f48c285cb86daa1a43e1ebcb404db2e5",
+    "pesca_especies_visual.py": "c8752befeb40a25375283dc75741e4fc6db9fecf",
+    "pesca_idle.py": "4d626b77778b75af59e1f11ef439267424ed19b0",
+    "pesca_loja.py": "6f2bbdaf0f68160639736b316c1990704eda0ad7",
+    "pesca_luz.py": "ce2a888d7e2df024a704a3734cee9eebcaa979e9",
+    "pesca_moedas.py": "55d678bc3d65b2a7b81aae5ba7199f0b5f776dbb",
+    "pesca_offline.py": "a991e2b0bcc5d0a6c2354ff3c0a50d5ac9d2aac8",
+    "pesca_pescaria.py": "8d2104f1d9544147470272f5f33f6f46d3badfd4",
+    "pesca_plataforma.py": "8e21889f05a876e3a305e66195f71e4f21ee6616",
+    "pesca_regional_visual.py": "348222db967c4f386371b0e1d6e7a89922984978",
+    "pesca_save.py": "70eac93a3a896ac91bc08bee4e35db1e402e25e1",
+    "pesca_tempo.py": "8fa3c5008aa7db39af12f116dfa2a425926839dd",
+    "pesca_ui.py": "e0f1a52f2475154242c2fceb9b753691a2aba85d",
+    "pesca_viagens_ui.py": "13e06591a074dedbb382c10acbd8adcf89c113ad",
+    "pesca_visual.py": "49ffc27887a10a755811711a0fdb15957587a172",
+    "assets": "0f1bb220f1e381cb630c1c633e693b1dfc859c84"
+  },
+  "qa_harness": "tools/android_smoke.py",
+  "qa_run": "https://github.com/BernardoJ/PescaIdle/actions/runs/37725337560"
+}

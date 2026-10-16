@@ -3,12 +3,13 @@ import copy
 from datetime import datetime
 from PySide6.QtCore import Qt, QTimer, QDateTime, QSize
 from PySide6.QtGui import QPixmap, QIcon
-from PySide6.QtWidgets import (QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
+from PySide6.QtWidgets import (QApplication,QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
     QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox)
 from pesca_catalogo import ESPECIES,LOCAIS,OCORRENCIAS,eligible
 from pesca_tempo import LABELS,snapshot
 from pesca_offline import schedule,cancel
 from pesca_especies_visual import species_image
+from pesca_plataforma import mobile
 
 
 class Page(QDialog):
@@ -24,7 +25,7 @@ class Page(QDialog):
 class ColecaoDialog(Page):
     def __init__(self,game):
         super().__init__(game,'Enciclopédia')
-        row=QHBoxLayout();self.local=QComboBox();self.period=QComboBox();self.ordem=QComboBox()
+        row=QVBoxLayout() if mobile() else QHBoxLayout();self.local=QComboBox();self.period=QComboBox();self.ordem=QComboBox()
         self.local.addItem('Todos os locais',None)
         for id_,m in LOCAIS.items():self.local.addItem(m['nome'],id_)
         self.period.addItem('Todos os períodos',None)
@@ -32,10 +33,11 @@ class ColecaoDialog(Page):
         self.ordem.addItem('Ordem alfabética','alpha');self.ordem.addItem('Quantidade registrada','count')
         for widget in (self.local,self.period,self.ordem):row.addWidget(widget)
         self.layout.addLayout(row)
-        flags=QHBoxLayout();self.agora=QCheckBox('Disponível agora');self.pistas=QCheckBox('Mostrar pistas de desconhecidas')
+        flags=QVBoxLayout() if mobile() else QHBoxLayout();self.agora=QCheckBox('Disponível agora');self.pistas=QCheckBox('Mostrar pistas de desconhecidas')
         flags.addWidget(self.agora);flags.addWidget(self.pistas);self.layout.addLayout(flags)
         self.summary=QLabel();self.layout.addWidget(self.summary)
-        body=QHBoxLayout();self.lista=QListWidget();self.lista.setIconSize(QSize(54,36))
+        body=QVBoxLayout() if mobile() else QHBoxLayout();self.lista=QListWidget();self.lista.setIconSize(QSize(54,36))
+        if mobile():self.lista.setMinimumHeight(200)
         self.detail=QLabel();self.detail.setWordWrap(True);self.detail.setTextFormat(Qt.PlainText)
         self.detail.setAlignment(Qt.AlignTop);self.detail.setProperty('panel',True)
         self.detail.setTextInteractionFlags(Qt.TextSelectableByMouse)
@@ -123,7 +125,8 @@ class ViajarDialog(Page):
         id_=item.data(Qt.UserRole);m=LOCAIS[id_];s=self.game.estado
         unlocked=id_ in s['locais_desbloqueados'];self.button.setEnabled(unlocked)
         img,_=self.game._render.render(self.game,map_id=id_)
-        self.preview.setPixmap(QPixmap.fromImage(img.scaled(512,288,Qt.KeepAspectRatio,Qt.FastTransformation)))
+        width=min(512,QApplication.primaryScreen().availableGeometry().width()-52) if mobile() else 512
+        self.preview.setPixmap(QPixmap.fromImage(img.scaled(width,round(width*144/256),Qt.KeepAspectRatio,Qt.FastTransformation)))
         ids={o['species_id'] for o in OCORRENCIAS if o['map_id']==id_}
         known=sum(s['inventario_por_id'].get(x,0)>0 for x in ids)
         regional=sum(s['registros_regionais'].get(id_,{}).get(x,0)>0 for x in ids)

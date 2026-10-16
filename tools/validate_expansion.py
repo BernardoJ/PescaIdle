@@ -45,6 +45,7 @@ def run(profile,out):
     from pesca_catalogo import DATA,ESPECIES,LOCAIS,OCORRENCIAS,LEGADO_49,EXPANSAO_88,eligible,probabilities,desbloquear
     from pesca_tempo import PERIODOS,periodo,snapshot,proxima_mudanca
     from pesca_save import SaveStore,SaveError,migrate
+    from pesca_moedas import set_balance,credit
     from pesca_pescaria import FishingEngine,travel
     from pesca_offline import replay,schedule,cancel,expire_active
     from pesca_conquistas import grant,RECOMPENSA_LIVRO
@@ -142,7 +143,7 @@ def run(profile,out):
     try:SaveStore(path)
     except SaveError:check('SAV-05 exclusive writer',True)
     else:check('SAV-05 exclusive writer',False)
-    before=path.read_bytes();candidate=copy.deepcopy(migrated);candidate['moedas']+=100
+    before=path.read_bytes();candidate=copy.deepcopy(migrated);credit(candidate,10000)
     with patch('pesca_save.os.replace',side_effect=OSError('injected replace failure')):
         try:store.save(candidate)
         except SaveError:pass
@@ -227,7 +228,7 @@ def run(profile,out):
     check('PERF-01 dialogs no orphan timer',len(g.findChildren(QTimer))==2)
     # Preserve actual purchasing/preview coverage for every sold cosmetic.
     g._wall=lambda:base;g._monotonic=lambda:g.ultimo_tick
-    shop=game.LojaDialog(g);g.estado['moedas']=10000000
+    shop=game.LojaDialog(g);set_balance(g.estado,10000000)
     for slot_index,slot in enumerate(game.SLOTS,1):
         shop.abas.setCurrentIndex(slot_index)
         prices=[game.CAT[shop.listas[slot].item(i).data(Qt.UserRole)][3] for i in range(shop.listas[slot].count())]
@@ -287,7 +288,7 @@ def run(profile,out):
     check('OFF-06 suspension once',r['count']==0 and g._last_offline['paid_seconds']==100)
     clocks.update(utc=base+150,mono=211);g.tick();check('CLK-03 backwards watermark',g.estado['ultimo_processado_utc']>=base+200)
     # Purchases and rewards use one durable snapshot; failed saves pause visibly.
-    g.estado['moedas']=1000;g.comprar_peca('barco');g.comprar_peca('barco')
+    set_balance(g.estado,1000);g.comprar_peca('barco');g.comprar_peca('barco')
     check('UI purchases unlock maps',g.estado['barco']==1 and 'rio_das_vitorias' in g.estado['locais_desbloqueados'])
     before_fail=g._store.last_good
     with patch('pesca_save.os.replace',side_effect=OSError('injected GUI failure')):g.salvar()

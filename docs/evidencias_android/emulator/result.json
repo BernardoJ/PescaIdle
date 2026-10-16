@@ -1,0 +1,181 @@
+{
+  "passed": true,
+  "checks": [
+    "Android Qt and disposable private profile",
+    "8 packaged map assets rendered",
+    "touch-sized shop purchase and preview lifecycle",
+    "collection travel expedition scrollable dialogs",
+    "fishing reward and unlocked travel",
+    "Fashionista excludes encyclopedia reward",
+    "atomic save reload and profile lock release",
+    "historical resume once and intentional pause"
+  ],
+  "platform": "android",
+  "profile": "/data/user/0/br.com.bernardoj.pescaidle.qa/cache/qa-1804cc47fa3140ecb312b4bdcdc1c5c5/save.json",
+  "window": [
+    411,
+    731
+  ],
+  "ratio": 2.625,
+  "python_optimize_flag": 2,
+  "purchase_balance_cents": 9985000,
+  "dialog_geometry": {
+    "collection": [
+      {
+        "class": "QComboBox",
+        "text": "Todos os locais",
+        "rect": [
+          18,
+          45,
+          352,
+          58
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QComboBox",
+        "text": "Todos os per\u00edodos",
+        "rect": [
+          18,
+          107,
+          352,
+          58
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QComboBox",
+        "text": "Ordem alfab\u00e9tica",
+        "rect": [
+          18,
+          169,
+          352,
+          58
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Enciclop\u00e9dia",
+        "rect": [
+          18,
+          18,
+          352,
+          23
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Cole\u00e7\u00e3o global: 0/88 \u00b7 Registros neste local: 0\nValor: 1 reg",
+        "rect": [
+          18,
+          329,
+          352,
+          44
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Pesque para descobrir esp\u00e9cies. Ative as pistas para explora",
+        "rect": [
+          18,
+          581,
+          352,
+          96
+        ],
+        "parent": "QWidget"
+      }
+    ],
+    "travel": [
+      {
+        "class": "QLabel",
+        "text": "Viajar",
+        "rect": [
+          18,
+          18,
+          352,
+          23
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "",
+        "rect": [
+          18,
+          241,
+          352,
+          202
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Enseada do Poente \u00b7 cole\u00e7\u00e3o global 0/8 \u00b7 regional 0/8\nLago a",
+        "rect": [
+          18,
+          447,
+          352,
+          154
+        ],
+        "parent": "QWidget"
+      }
+    ],
+    "expedition": [
+      {
+        "class": "QComboBox",
+        "text": "Enseada do Poente",
+        "rect": [
+          18,
+          182,
+          365,
+          58
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Expedi\u00e7\u00e3o offline",
+        "rect": [
+          18,
+          18,
+          365,
+          46
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "A expedi\u00e7\u00e3o substitui o progresso offline desta aus\u00eancia.\nFe",
+        "rect": [
+          18,
+          68,
+          365,
+          110
+        ],
+        "parent": "QWidget"
+      },
+      {
+        "class": "QLabel",
+        "text": "Nenhuma expedi\u00e7\u00e3o agendada.",
+        "rect": [
+          18,
+          370,
+          365,
+          45
+        ],
+        "parent": "QWidget"
+      }
+    ]
+  },
+  "collection_scroll": 0,
+  "caught": 6,
+  "host_checks": [
+    "APK installed",
+    "portrait/landscape display",
+    "real background/resume process alive"
+  ],
+  "android_api": "35"
+}
