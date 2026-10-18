@@ -2,6 +2,12 @@
 
 Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
 
+## Etapa 6A: proposta em revisão
+
+Esta branch acrescenta somente material documental da proposta **Fluxo/Precisão**. O jogo continua na base com museu e save v3; as especializações, sua interface e o save v4 **não estão implementados**.
+
+[Entrega revisável da 6A, divergências com Serena/Seletiva e origem das evidências](docs/etapa6a/README.md). Os testes apresentados são registros da Fase 1, não execuções desta publicação. A escolha da proposta vigente para revisão não autoriza implementação, rebalanceamento ou merge.
+
 ## Entrega local: museu inicial
 
 Esta branch acrescenta **Museu** ao menu, com um aquário para até três espécies diferentes já descobertas. Selecionar, trocar e retirar não consome capturas nem moedas. Encontros especiais ficam fora deste aquário. A exposição é salva; não há alimentação, renda ou punição por ausência.
