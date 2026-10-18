@@ -1,0 +1,350 @@
+{
+  "prepared_on_client_date": "2026-10-17",
+  "repository": "BernardoJ/PescaIdle",
+  "review_branch": "codex/etapa6a-revisao",
+  "target_branch": "codex/android-auditoria",
+  "base_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+  "delivery_kind": "proposal/documentation; no production implementation",
+  "user_decision": {
+    "date": "2026-10-17",
+    "choice": "Publicar Fluxo/Precisão como proposta vigente",
+    "implementation_authorized": false,
+    "merge_or_deploy_authorized": false
+  },
+  "unchanged_copies": [
+    {
+      "published_path": "docs/etapa6a/FASE_1_ORIGINAL.md",
+      "source_id": "fase1/ETAPA_6A_FASE_1.md",
+      "source_sha256": "d4e6699925ab524665a5ce68edd33acbf70b99e06564f35da51f5e0c7b27e6f9",
+      "published_sha256": "d4e6699925ab524665a5ce68edd33acbf70b99e06564f35da51f5e0c7b27e6f9",
+      "bytes": 18436
+    },
+    {
+      "published_path": "docs/etapa6a/referencias/Serena_Seletiva_reconstrucao_2026-10-17.pdf",
+      "source_id": "pdf-desktop/PescaIdle_Etapa_6A_Relatorio_Completo.pdf",
+      "source_sha256": "0d01c32fcba3a1ef39766977aaf05f0a9c83c93fafddbce90c4b4b996bc68b5f",
+      "published_sha256": "0d01c32fcba3a1ef39766977aaf05f0a9c83c93fafddbce90c4b4b996bc68b5f",
+      "bytes": 66431
+    },
+    {
+      "published_path": "docs/etapa6a/scripts-historicos/executar_verificacao.py",
+      "source_id": "fase1/executar_verificacao.py",
+      "source_sha256": "39208973f5c87865e42fd9f7244322afe323a474fdba68b703300b435984f1ee",
+      "published_sha256": "39208973f5c87865e42fd9f7244322afe323a474fdba68b703300b435984f1ee",
+      "bytes": 3182
+    },
+    {
+      "published_path": "docs/etapa6a/scripts-historicos/comparar_proposta.py",
+      "source_id": "fase1/comparar_proposta.py",
+      "source_sha256": "d5662ba43deb7f5580f531d1cd9be3c4396937bb63191d3097c54f15e7d372b8",
+      "published_sha256": "d5662ba43deb7f5580f531d1cd9be3c4396937bb63191d3097c54f15e7d372b8",
+      "bytes": 7085
+    },
+    {
+      "published_path": "docs/etapa6a/scripts-historicos/verificar_rolagem.py",
+      "source_id": "fase1/verificar_rolagem.py",
+      "source_sha256": "6a46226d7fccb335504ec115ee68d84c4f19c6c2f6c62d096f5dcf646bef8e87",
+      "published_sha256": "6a46226d7fccb335504ec115ee68d84c4f19c6c2f6c62d096f5dcf646bef8e87",
+      "bytes": 3068
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/proposta-pesos.json",
+      "source_id": "fase1/analise/proposta-pesos.json",
+      "source_sha256": "33502119580693dd16e3428d43d4a58c9ca465dab823858f4b018e4a8f2f9ef6",
+      "published_sha256": "33502119580693dd16e3428d43d4a58c9ca465dab823858f4b018e4a8f2f9ef6",
+      "bytes": 601885
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/ritmo-base.json",
+      "source_id": "fase1/qa/measure/ritmo.json",
+      "source_sha256": "e7519cf276a073d4b62932d0c58628bb2bfe694c83f21b683dd509d46b4706a5",
+      "published_sha256": "e7519cf276a073d4b62932d0c58628bb2bfe694c83f21b683dd509d46b4706a5",
+      "bytes": 1310637
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/auditoria-base.json",
+      "source_id": "fase1/qa/suite-utf8/validate_audit/audit.json",
+      "source_sha256": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+      "published_sha256": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+      "bytes": 195
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/museu-base.json",
+      "source_id": "fase1/qa/suite-utf8/validate_museum/museum.json",
+      "source_sha256": "9e23e5cfc050c9c28a809c9950179366af404355e6f0f94db081beda9dddcdf5",
+      "published_sha256": "9e23e5cfc050c9c28a809c9950179366af404355e6f0f94db081beda9dddcdf5",
+      "bytes": 258
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/mobile-base.json",
+      "source_id": "fase1/qa/mobile/mobile.json",
+      "source_sha256": "669015edb1da70b950c68db538857c2a2a05c41f7ea1aebb5de05106b9f87f6d",
+      "published_sha256": "669015edb1da70b950c68db538857c2a2a05c41f7ea1aebb5de05106b9f87f6d",
+      "bytes": 530
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/rolagem-base.json",
+      "source_id": "fase1/qa/rolagem/rolagem.json",
+      "source_sha256": "a4f2d5f509ca039e22bff97dabbc06f79d33d2399eb07e0fe520bcdf79dde919",
+      "published_sha256": "a4f2d5f509ca039e22bff97dabbc06f79d33d2399eb07e0fe520bcdf79dde919",
+      "bytes": 841
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/windows125-rodape.png",
+      "source_id": "fase1/evidencias/windows125-rodape.png",
+      "source_sha256": "cd29f9aaffba5be9d6dec9c097968e8ece9a22933143bcc9e2d11e23d5b0df0a",
+      "published_sha256": "cd29f9aaffba5be9d6dec9c097968e8ece9a22933143bcc9e2d11e23d5b0df0a",
+      "bytes": 45511
+    },
+    {
+      "published_path": "docs/etapa6a/evidencias/mobile320-rodape.png",
+      "source_id": "fase1/evidencias/mobile320-rodape.png",
+      "source_sha256": "469b77c782f1a57ca757cc0727b39748da4036fb8673e7ad84bde314f91ce900",
+      "published_sha256": "469b77c782f1a57ca757cc0727b39748da4036fb8673e7ad84bde314f91ce900",
+      "bytes": 33198
+    }
+  ],
+  "historical_execution_metadata_sanitized": [
+    {
+      "source_id": "fase1/qa/suite/execucao.json",
+      "source_sha256": "6663f703450d394bd68f5ece6c4cd92bc285df55ea64f067b0fca30babbeaeb9",
+      "run_label": "suite",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:32:59.064416+00:00",
+      "finished_utc": "2026-10-18T00:34:17.371566+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/validate_game.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 78.3071391582489,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "offscreen",
+      "qt_scale": "1",
+      "executed_for_this_publication": false
+    },
+    {
+      "source_id": "fase1/qa/suite-utf8/execucao.json",
+      "source_sha256": "7ebe86cf6bc6cfbc15335152aaad40c99ee580482bc8ea11275dd65094f3747d",
+      "run_label": "suite-utf8",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:34:39.385282+00:00",
+      "finished_utc": "2026-10-18T00:35:49.058002+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/validate_game.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 69.67271661758423,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "offscreen",
+      "qt_scale": "1",
+      "executed_for_this_publication": false
+    },
+    {
+      "source_id": "fase1/qa/mobile/execucao.json",
+      "source_sha256": "f930377b84851db2b62cc66f2fec96c14971b701cd997770617af0d8049c23b4",
+      "run_label": "mobile",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:34:39.385473+00:00",
+      "finished_utc": "2026-10-18T00:34:41.070217+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/validate_mobile.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.6847419738769531,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "offscreen",
+      "qt_scale": "1",
+      "executed_for_this_publication": false
+    },
+    {
+      "source_id": "fase1/qa/native100/execucao.json",
+      "source_sha256": "cd12adf3b6479faa3d1610512eef22aad22316596a067f9e5f6306911ee07986",
+      "run_label": "native100",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:35:17.628623+00:00",
+      "finished_utc": "2026-10-18T00:35:26.699484+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/validate_museum.py",
+        "--native-visual"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 9.070859909057617,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "windows",
+      "qt_scale": "1",
+      "executed_for_this_publication": false
+    },
+    {
+      "source_id": "fase1/qa/native125/execucao.json",
+      "source_sha256": "52aa9326a322020a6639f00f2aa4d3f4ef0abfb1efb9e4df063eb8cf2a679de4",
+      "run_label": "native125",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:35:56.241552+00:00",
+      "finished_utc": "2026-10-18T00:36:02.148086+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/validate_museum.py",
+        "--native-visual"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.906532049179077,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "windows",
+      "qt_scale": "1.25",
+      "executed_for_this_publication": false
+    },
+    {
+      "source_id": "fase1/qa/measure/execucao.json",
+      "source_sha256": "e7c5f5ff5418e37b4b867cfbab427b464938939e49c599c8521baf0dcfdcf646",
+      "run_label": "measure",
+      "source_commit": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+      "started_utc": "2026-10-18T00:32:59.064494+00:00",
+      "finished_utc": "2026-10-18T00:34:16.760208+00:00",
+      "historical_command": [
+        "<python-do-ambiente-historico>",
+        "tools/measure_museum_baseline.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 77.69568300247192,
+      "persistence_isolation_recorded": true,
+      "qt_backend": "offscreen",
+      "qt_scale": "1",
+      "executed_for_this_publication": false
+    }
+  ],
+  "historical_summary_sources_kept_local": {
+    "expansion": {
+      "source_id": "fase1/qa/suite-utf8/validate_expansion/validacao-expansao.json",
+      "source_sha256": "2f26a041279e1acf928f3c182b28c265bce03a4029b46cb76149b3e89d20b5c9",
+      "bytes": 308370,
+      "full_file_published": false,
+      "checks": 5920
+    },
+    "cosmetics": {
+      "source_id": "fase1/qa/suite-utf8/validate_cosmetics/cosmetics-validation.json",
+      "source_sha256": "7133f8ab09840abd262c932d8c8b493e866a44ebb5ff0627363bd752b671b1d5",
+      "bytes": 91409,
+      "full_file_published": false,
+      "checks": 1359
+    },
+    "balance": {
+      "source_id": "fase1/qa/suite-utf8/balance_expansion/balanceamento.json",
+      "source_sha256": "4ab7157ab4d58d248ff1c59484fea32a6a91b23d3442f398beeb5d1beef60709",
+      "bytes": 682773,
+      "full_file_published": false
+    }
+  },
+  "data_review": [
+    {
+      "file": "proposta-pesos.json",
+      "top_level_keys": [
+        "source_commit",
+        "catalogue_sha256",
+        "pilot",
+        "frequent_ids",
+        "target_ids",
+        "factors",
+        "exact_pool_scenarios",
+        "exact_pilot_rows",
+        "seeded_fixed_pool_scenarios",
+        "draws_per_seed",
+        "seeds",
+        "seeded_fixed_pool",
+        "neutral_period_context",
+        "limits"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    },
+    {
+      "file": "ritmo-base.json",
+      "top_level_keys": [
+        "source_runtime_sha256",
+        "seeds",
+        "python",
+        "simulated_date",
+        "offset_seconds",
+        "progression",
+        "return_comparison_tolerance",
+        "fixed_profiles",
+        "return_comparison",
+        "limitations"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    },
+    {
+      "file": "auditoria-base.json",
+      "top_level_keys": [
+        "tests",
+        "failures",
+        "errors",
+        "schema",
+        "profile_isolated",
+        "python"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    },
+    {
+      "file": "museu-base.json",
+      "top_level_keys": [
+        "tests",
+        "failures",
+        "errors",
+        "profile_isolated",
+        "backend",
+        "python",
+        "qt",
+        "android_device_test"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    },
+    {
+      "file": "mobile-base.json",
+      "top_level_keys": [
+        "checks",
+        "profile_isolated",
+        "backend"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    },
+    {
+      "file": "rolagem-base.json",
+      "top_level_keys": [
+        "records",
+        "profile_isolated",
+        "platform"
+      ],
+      "review": "synthetic measurement/aggregate result; no player profiles, absolute user paths or credential patterns"
+    }
+  ],
+  "conflicting_pdf": {
+    "source_kind": "documentary reconstruction of alleged Linux execution",
+    "export_date": "2026-10-17",
+    "execution_date_claimed": "2026-10-16",
+    "production_code_or_raw_results_recovered": false,
+    "runtime_integration_present": false,
+    "claimed_review_zip_sha256": "33192432249dd2a35b2bc72e83c313457d70481b34f8bba77f4124885111cd4a",
+    "claimed_review_zip_verified": false
+  },
+  "publication_preparation_executed_game_or_suite": false,
+  "excluded": [
+    "personal and QA profile files",
+    "credentials and machine configuration",
+    "whole ZIPs",
+    "Git bundles",
+    "complete historical snapshots",
+    "caches",
+    "raw dumps",
+    "original absolute execution paths",
+    "old full game patches"
+  ],
+  "limitations": [
+    "No native Android test of the proposed pilot",
+    "No new build or balance run",
+    "Historical scripts retain workspace-relative layout and were not made portable",
+    "Only proposal precedence for review was decided; implementation/economy remain unapproved"
+  ]
+}

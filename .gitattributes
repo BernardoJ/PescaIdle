@@ -1,1 +1,4 @@
 *.pdf binary
+docs/etapa6a/FASE_1_ORIGINAL.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/etapa6a/evidencias/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/etapa6a/scripts-historicos/*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

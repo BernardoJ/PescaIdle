@@ -1,0 +1,39 @@
+{
+  "records": [
+    {
+      "name": "windows125",
+      "viewport": [
+        640,
+        700
+      ],
+      "device_ratio": 1.25,
+      "footer_fully_visible": true,
+      "exit_fully_visible": true,
+      "escape_stops_timer": true
+    },
+    {
+      "name": "mobile320",
+      "viewport": [
+        320,
+        568
+      ],
+      "device_ratio": 1.25,
+      "footer_fully_visible": true,
+      "exit_fully_visible": true,
+      "escape_stops_timer": true
+    },
+    {
+      "name": "mobile360",
+      "viewport": [
+        360,
+        800
+      ],
+      "device_ratio": 1.25,
+      "footer_fully_visible": true,
+      "exit_fully_visible": true,
+      "escape_stops_timer": true
+    }
+  ],
+  "profile_isolated": true,
+  "platform": "Windows native; desktop mobile preview, not a physical phone"
+}
