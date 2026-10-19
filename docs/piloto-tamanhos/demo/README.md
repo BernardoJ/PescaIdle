@@ -2,6 +2,8 @@
 
 Esta entrega parte da PR #5 em `9d57a465ad418f885af46d11590def0753007e78`. Acrescenta correção do ID pendente, apresentação de recordes e um modo **explicitamente sintético**. A base econômica continua `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não implementa Fluxo/Precisão ou Android, nem muda parâmetros, distribuição de espécies ou recompensas.
 
+[Relatório observado, identificação da build e evidências](RELATORIO.md).
+
 ## Experimentar
 
 Use a build local **PescaIdle-Tamanhos-Demo-<revisão>.exe**, em uma pasta gravável: basta dar dois cliques. É um executável separado; o EXE histórico e o piloto anterior não foram substituídos. Não há build nova publicada no Git ou em Releases nesta entrega. O relatório desta pasta identifica caminho, SHA de origem e hash do arquivo efetivamente gerado.
