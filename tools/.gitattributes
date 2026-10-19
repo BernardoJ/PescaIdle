@@ -1,0 +1,6 @@
+# Stable hashes for the new comparison tools/fixture, independent of autocrlf.
+comparar_fluxo_base.py text eol=lf
+comparacao_worker.py text eol=lf
+test_comparar_fluxo_base.py text eol=lf
+relatorio_comparacao.py text eol=lf
+fixtures/comparacao_tamanhos.json -text whitespace=cr-at-eol

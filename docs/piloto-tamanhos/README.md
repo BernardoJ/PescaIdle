@@ -92,3 +92,7 @@ Android nativo, toque em aparelho físico e sessão manual prolongada em outra m
 Parâmetros biológicos, cortes de faixa (aproximadamente 5%), diversidade de 3/4 espécies e compressão visual permanecem para revisão. As medianas de esforço não são promessa de retenção. Não houve expansão de catálogo, alteração econômica, implementação de Fluxo/Precisão ou integração na main.
 
 O workflow Android existente dispara em pushes da branch `codex/android-auditoria`, não nesta branch. Esta publicação não dispara nem declara uma nova validação Android.
+
+## Comparador reproduzível — adendo de 19/10/2026
+
+O comparador histórico foi recuperado e uma extensão foi executada contra SHAs fixos, com controles positivos/negativos e perfis sintéticos. [Ferramentas, matriz, comandos e resultados novos](comparador/README.md). As evidências da entrega local de 18/10/2026 acima foram preservadas; o adendo não altera produto, parâmetros, executável ou Android.
