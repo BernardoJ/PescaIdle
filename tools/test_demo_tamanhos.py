@@ -331,6 +331,15 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(counts,sorted(counts))
         self.assertEqual(hashlib.sha256(bytes(species_image('lambari').constBits())).hexdigest(),original)
 
+    def test_10_resolved_file_redirect_is_rejected_before_read(self):
+        folder=QA/'resolved-file-guard'
+        redirected=ROOT/'perfil-piloto'/'save.json'
+        # Model a resolved link without creating OS links or changing privileges.
+        with patch('tools.demo_tamanhos.validate_profile_path',side_effect=[folder,redirected]), \
+                patch.object(Path,'read_text',side_effect=AssertionError('No file may be read')):
+            with self.assertRaisesRegex(ValueError,'redirecionar'):
+                prepare_environment()
+
 
 if __name__=='__main__':
     result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(DemoTests))

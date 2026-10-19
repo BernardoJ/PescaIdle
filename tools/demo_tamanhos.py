@@ -21,7 +21,9 @@ def prepare_environment():
     folder.mkdir(parents=True, exist_ok=True)
     for name in ('appdata', 'localappdata', 'tmp'):
         (folder / name).mkdir(exist_ok=True)
-    path = folder / 'save.json'
+    path = validate_profile_path(folder / 'save.json')
+    if path.parent != folder or path.name != 'save.json':
+        raise ValueError('Demonstração: o save não pode redirecionar para outro perfil. Original preservado.')
     # Ignore any inherited ordinary save override, even before product imports.
     os.environ.update(PESCA_IDLE_SAVE_PATH=str(path),
         APPDATA=str(folder / 'appdata'), LOCALAPPDATA=str(folder / 'localappdata'),
