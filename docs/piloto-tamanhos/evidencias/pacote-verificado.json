@@ -1,0 +1,19 @@
+{
+  "modules_bytecode_equal_source": [
+    "pesca_idle",
+    "pesca_tamanhos",
+    "pesca_piloto",
+    "pesca_tamanho_visual",
+    "pesca_museu_ui",
+    "pesca_pescaria",
+    "pesca_save",
+    "pesca_conquistas",
+    "pesca_visual",
+    "pesca_viagens_ui",
+    "tools.pilot_smoke",
+    "tools.dev_access",
+    "piloto_entry"
+  ],
+  "assets_byte_equal_source": 61,
+  "exe_sha256": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27"
+}

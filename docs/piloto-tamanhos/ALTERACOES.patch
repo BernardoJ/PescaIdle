@@ -1,0 +1,1097 @@
+--- a/PescaIdle.spec
++++ b/PescaIdle.spec
+@@ -3,7 +3,7 @@
+ import os
+ 
+ a = Analysis(
+-    ['pesca_idle.py'],
++    ['piloto_entry.py'],
+     pathex=[],
+     binaries=[],
+     datas=[(str(p), str(Path('assets') / p.parent.relative_to(Path(SPECPATH) / 'assets')))
+@@ -33,7 +33,7 @@
+     a.binaries,
+     a.datas,
+     [],
+-    name='PescaIdleDebug' if os.getenv('PESCA_IDLE_CONSOLE') == '1' else 'PescaIdle',
++    name='PescaIdle-Tamanhos-Piloto',
+     debug=False,
+     bootloader_ignore_signals=False,
+     strip=False,
+--- /dev/null
++++ b/assets/tamanhos_piloto.json
+@@ -0,0 +1,13 @@
++{
++  "version": 1,
++  "provenance": "Valores de design provisórios. Não são medidas biológicas verificadas.",
++  "tail_probability": 0.05,
++  "diversity_goal": 3,
++  "visual": {"minimum": 0.55, "typical": 0.9, "maximum": 1.2},
++  "species": {
++    "lambari": {"min_mm": 40, "typical_mm": 90, "max_mm": 180},
++    "tilapia_do_nilo": {"min_mm": 120, "typical_mm": 300, "max_mm": 600},
++    "carpa_comum": {"min_mm": 180, "typical_mm": 500, "max_mm": 1100},
++    "traira": {"min_mm": 100, "typical_mm": 350, "max_mm": 800}
++  }
++}
+--- a/pesca_conquistas.py
++++ b/pesca_conquistas.py
+@@ -1,6 +1,7 @@
+ """Stable collection goals and cosmetic rewards, independent of Qt."""
+ from pesca_catalogo import ESPECIES, LEGADO_49, EXPANSAO_88
+ from pesca_loja import sold_items
++from pesca_tamanhos import definitions as size_definitions
+ 
+ RECOMPENSA_LIVRO = 'enciclopedia_viva'
+ 
+@@ -28,7 +29,7 @@
+       ('rei_piratas','Rei dos piratas?','Compre todos os itens de pirata na loja.',all(id_ in owned for id_,_,_,_ in catalogue if 'pirata' in id_)),
+       ('fashionista','Fashionista',fashionista_text,not progress['missing']),
+       ('enciclopedia_viva','Enciclopédia Viva','Libere todas as informações de todas as espécies; concede o livro flutuante.',all(inv.get(id_,0)>=10 for id_ in ESPECIES)),
+-    ]
++    ] + size_definitions(state)
+ 
+ 
+ def grant(state, catalogue):
+--- a/pesca_idle.py
++++ b/pesca_idle.py
+@@ -8,6 +8,8 @@
+ Executar:    python pesca_idle.py        (ou pythonw pesca_idle.py)
+ """
+ import sys
++from pesca_piloto import prepare_profile
++prepare_profile()  # refuse all personal/outside profiles before initialization
+ import copy
+ from datetime import datetime
+ from pesca_catalogo import ESPECIES, LOCAIS, OCORRENCIAS, legacy_view, desbloquear
+@@ -18,6 +20,7 @@
+ from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
+ from pesca_moedas import can_buy, debit
+ from pesca_plataforma import mobile, fit_dialog, safe_rect
++from pesca_tamanhos import fmt as fmt_length, offline_summary
+ import os
+ import json
+ import random
+@@ -1061,7 +1064,11 @@
+         prefix = ('Avistamento' if s['sprite']['family'] in ('whale','orca','dolphin','narwhal','turtle','ray')
+                   else 'Amostra registrada' if s['sprite']['family'] in ('copepod','salp','shrimp','shell')
+                   else 'Encontro registrado') if event['categoria']=='especial' else 'Captura'
+-        return f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas", '#ffe3ac'
++        text = f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas"
++        if 'measurement' in event:
++            text += '\n'+fmt_length(event['measurement']['mm'])+' · '+event['measurement']['band']
++            if event.get('size_news'): text += ' · recorde pessoal'
++        return text, '#ffe3ac'
+ 
+     def mostrar_popup(self, texto, cor='#ffffff'):
+         message = [texto, cor, self.DURACAO_POPUP]
+@@ -1118,6 +1125,8 @@
+         messages = [f"Retorno: {report['count']} registros, +{fmt_moedas(report['gain'])} moedas.",
+                     f"Tempo contado: {fmt_tempo(report['paid_seconds'])} (limite de 4h)."]
+         if report['mode']=='expedicao': messages.append('Expedição: substituiu o offline normal.')
++        size_summary = offline_summary(report['events'])
++        if size_summary: messages.append(size_summary)
+         if awards: messages.append('Conquistas: '+', '.join(awards))
+         return '\n'.join(messages)
+ 
+--- a/pesca_museu_ui.py
++++ b/pesca_museu_ui.py
+@@ -8,6 +8,9 @@
+ from pesca_especies_visual import species_image
+ from pesca_museu import CAPACIDADE, eligible_species, slot_status, change_exhibit
+ from pesca_plataforma import mobile
++from pesca_tamanhos import exhibit, fmt as fmt_length
++from pesca_tamanho_visual import draw_fish, scale_for
++import copy
+ 
+ 
+ class AquariumView(QWidget):
+@@ -101,8 +104,12 @@
+         for slot, id_ in enumerate(state['museu']['aquario']):
+             if slot_status(state, slot, self.catalogue) == 'exibida':
+                 angle = phase*.19+slot*2.2
+-                result.append((id_, round(128+78*math.sin(angle)),
+-                               34+slot*23+round(3*math.sin(phase*.7+slot)), math.cos(angle)<0))
++                scale=scale_for(exhibit(state,slot),id_)
++                width,height=36*scale,24*scale
++                amplitude=112-width/2-2
++                bob=max(0,min(2,(30-height)/2-1))
++                result.append((id_, 128+amplitude*math.sin(angle),
++                               31+slot*30+bob*math.sin(phase*.7+slot), math.cos(angle)<0))
+         return result
+ 
+     def render_image(self, phase=None):
+@@ -115,11 +122,10 @@
+             y = 100-int((phase*7+i*17)%80)
+             p.setPen(QColor('#76b2b3'));p.drawRect(x,y,2,3)
+             p.fillRect(x+1,y,1,1,QColor('#c0dfd0'))
++        state=self.state_getter()
+         for id_, x, y, reverse in self.fish_positions(phase):
+-            sprite = species_image(id_)
+-            if reverse:
+-                sprite = sprite.mirrored(True,False)
+-            p.drawImage(x-18,y-12,sprite)
++            slot=state['museu']['aquario'].index(id_)
++            draw_fish(p,id_,x,y,exhibit(state,slot),reverse)
+         p.setPen(QColor('#7eafb1'))
+         for i in range(4):
+             x = 22+i*55+int(3*math.sin(phase*.4+i))
+@@ -175,6 +181,7 @@
+         self.status = self.label('')
+         self.body.addWidget(self.status)
+         self.selectors, self.remove_buttons, self.details = [], [], []
++        self.specimen_selectors=[]
+         for slot in range(CAPACIDADE):
+             row = QHBoxLayout()
+             combo = QComboBox()
+@@ -191,11 +198,18 @@
+             self.body.addLayout(row)
+             detail = self.label('')
+             self.body.addWidget(detail)
++            specimen=QComboBox()
++            specimen.setAccessibleName(f'Exemplar no espaço {slot+1}')
++            specimen.addItem('Maior exemplar conhecido','maior')
++            specimen.addItem('Menor exemplar conhecido','menor')
++            specimen.currentIndexChanged.connect(lambda _,i=slot:self.choose_specimen(i))
++            self.body.addWidget(specimen)
++            self.specimen_selectors.append(specimen)
+             self.selectors.append(combo);self.remove_buttons.append(remove);self.details.append(detail)
+         self.feedback = self.label('')
+         self.feedback.setStyleSheet('color: #ffe3ac')
+         self.body.addWidget(self.feedback)
+-        self.body.addWidget(self.label('Ilustrações da coleção, sem simular habitat ou escala real. Informações completas ficam na Enciclopédia. Sem alimentação, renda ou perda por ausência.'))
++        self.body.addWidget(self.label('Comprimentos de design provisórios. Escala visual comprimida por espécie, não uma comparação real entre espécies. Sem medida: representação padrão. Sem alimentação, renda ou perda por ausência.'))
+         self.back = QPushButton('Voltar à pescaria')
+         self.back.clicked.connect(self.accept)
+         self.body.addWidget(self.back)
+@@ -228,7 +242,8 @@
+     def refresh(self):
+         state = self.game.estado
+         slots = state['museu']['aquario']
+-        signature = (tuple(state['inventario_por_id'].items()),tuple(slots))
++        signature = (tuple(state['inventario_por_id'].items()),tuple(slots),
++                     repr(state.get('medidas_peixes',{})),tuple(state['museu'].get('exemplares',['maior']*3)))
+         if signature == self._signature:
+             return
+         self._signature = signature
+@@ -262,13 +277,28 @@
+                 s = self.catalogue[current]
+                 count = state['inventario_por_id'][current]
+                 text = f"{s['nome']} · {count} {'registro' if count == 1 else 'registros'}\n{s['cientifico']}"
++                measured=exhibit(state,slot)
++                choice=state['museu'].get('exemplares',['maior']*3)[slot]
++                text+='\n'+(choice.title()+': '+fmt_length(measured['mm']) if measured else 'Sem exemplar medido · representação padrão')
+             else:
+                 text = 'Seleção indisponível: '+current[:72]+'. Referência guardada; troque ou retire para liberar este espaço.'
+             self.details[slot].setText(text)
++            specimen=self.specimen_selectors[slot]
++            specimen.blockSignals(True)
++            specimen.setCurrentIndex(0 if state['museu'].get('exemplares',['maior']*3)[slot]=='maior' else 1)
++            specimen.setEnabled(status=='exibida' and exhibit(state,slot) is not None)
++            specimen.blockSignals(False)
+         self.aquario.update()
+ 
+     def choose(self,slot):
+         self.apply(slot,self.selectors[slot].currentData())
++
++    def choose_specimen(self,slot):
++        candidate=copy.deepcopy(self.game.estado)
++        candidate['museu'].setdefault('exemplares',['maior']*3)[slot]=self.specimen_selectors[slot].currentData()
++        if not self.game._commit(candidate):self.feedback.setText('Exemplar não salvo. '+str(self.game._save_error))
++        else:self.feedback.setText('Exemplar salvo. Comprimento preciso mostrado acima.')
++        self._signature=None;self.refresh()
+ 
+     def apply(self,slot,species_id):
+         failed = False
+--- a/pesca_pescaria.py
++++ b/pesca_pescaria.py
+@@ -5,6 +5,7 @@
+ import random
+ from pesca_catalogo import ESPECIES, LOCAIS, VERSION, probabilities, legacy_view, desbloquear
+ from pesca_tempo import snapshot
++from pesca_tamanhos import attach, apply, ensure_sizes
+ 
+ 
+ def as_tuple(value):
+@@ -14,6 +15,7 @@
+ class FishingEngine:
+     def __init__(self, state, rng=None):
+         self.state = copy.deepcopy(state)
++        ensure_sizes(self.state)
+         self.rng = rng or random.Random()
+         if rng is None and state.get('rng_state') is not None:
+             self.rng.setstate(as_tuple(state['rng_state']))
+@@ -42,6 +44,7 @@
+         if species_id in ESPECIES:
+             event['gain_cents'] = reward(ESPECIES[species_id]['valor'], context['barco'])
+             event['gain'] = event['gain_cents']/100
++        attach(self.state, event)
+         self.state['pesca_pendente'] = event
+         self.state['pesca'] = {'etapa': 'fisgando', 'restante': 1.5}
+         return event
+@@ -51,6 +54,7 @@
+         if event is None:
+             raise ValueError('Fisgada sem resultado persistido.')
+         if event['id'] != self.state['ultimo_evento_aplicado']:
++            event['size_news'] = apply(self.state, event)
+             if event['species_id'] in ESPECIES:
+                 credit(self.state, event['gain_cents'])
+                 self.state['total_pescados'] += 1
+--- /dev/null
++++ b/pesca_piloto.py
+@@ -0,0 +1,17 @@
++"""Hard boundary for this disposable candidate's profiles; never use APPDATA saves."""
++import os
++import sys
++from pathlib import Path
++
++ROOT = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else Path(__file__).resolve().parent
++
++def validate_profile_path(path):
++    target = Path(path).expanduser().resolve()
++    if not target.is_relative_to(ROOT) or target == ROOT:
++        raise ValueError('Piloto isolado: o perfil deve ficar dentro da pasta deste candidato.')
++    return target
++
++def prepare_profile():
++    target = validate_profile_path(os.environ.get('PESCA_IDLE_SAVE_PATH', ROOT/'perfil-piloto'/'save.json'))
++    os.environ['PESCA_IDLE_SAVE_PATH'] = str(target)
++    return target
+--- a/pesca_save.py
++++ b/pesca_save.py
+@@ -13,8 +13,10 @@
+ from pesca_loja import CAT, SLOTS
+ from pesca_moedas import set_balance, set_cents, cents
+ from pesca_museu import empty_museum, validate_museum
+-
+-SCHEMA = 3
++from pesca_tamanhos import ensure_sizes, validate_sizes
++from pesca_piloto import validate_profile_path
++
++SCHEMA = 4  # isolated size pilot, NOT the unimplemented rod proposal
+ 
+ 
+ class SaveError(RuntimeError):
+@@ -27,6 +29,10 @@
+     version = raw.get('schema_version', 1)
+     if type(version) is not int or version > SCHEMA or version < 1:
+         raise SaveError('Versão do save não suportada; o arquivo foi preservado.')
++    if version == 4 and raw.get('pilot_kind') != 'tamanhos-v1':
++        raise SaveError('Schema 4 pertence a outro candidato ou não tem identificação; original preservado.')
++    if version == 4 and 'medidas_peixes' not in raw:
++        raise SaveError('Perfil do piloto sem o campo de medidas; original preservado.')
+     for key in ('equipados', 'inventario', 'inventario_por_id', 'registros_regionais', 'registros_por_periodo'):
+         if key in raw and not isinstance(raw[key], dict):
+             raise SaveError('Campo inválido: '+key+'; original preservado.')
+@@ -44,7 +50,7 @@
+                'pesca_pendente', 'rng_state', 'expedicao', 'viagem_pendente',
+                'registros_regionais', 'registros_por_periodo', 'legado_sem_contexto',
+                'local_atual_id', 'locais_desbloqueados', 'contador_eventos',
+-               'ultimo_evento_aplicado', 'pausado', 'museu')
++               'ultimo_evento_aplicado', 'pausado', 'museu', 'medidas_peixes')
+     for key in dynamic:
+         if key not in raw:
+             state.pop(key, None)
+@@ -81,6 +87,7 @@
+     state.setdefault('expedicao', None)
+     state.setdefault('rng_state', None)
+     state.setdefault('museu', empty_museum())
++    ensure_sizes(state)
+     try:
+         if version < 3:
+             set_balance(state, raw.get('moedas', defaults.get('moedas', 0)))
+@@ -94,6 +101,7 @@
+     except (ValueError, TypeError, KeyError) as exc:
+         raise SaveError('Saldo/recompensa inválidos; original preservado.') from exc
+     state['schema_version'] = SCHEMA
++    state['pilot_kind'] = 'tamanhos-v1'
+     if not isinstance(state['inventario_por_id'], dict) or any(
+             type(n) is not int or n < 0 for n in state['inventario_por_id'].values()):
+         raise SaveError('Contagens inválidas; o save foi preservado.')
+@@ -106,10 +114,12 @@
+ def validate_state(state):
+     from pesca_catalogo import LOCAIS
+     from pesca_tempo import LABELS
++    if state.get('pilot_kind') != 'tamanhos-v1':raise SaveError('Perfil não pertence ao piloto de tamanhos.')
+     try:
+         validate_museum(state['museu'])
+-    except (KeyError, ValueError) as exc:
+-        raise SaveError('Museu inválido; original preservado: '+str(exc)) from exc
++        validate_sizes(state)
++    except (KeyError, ValueError, TypeError) as exc:
++        raise SaveError('Museu/medidas inválidos; original preservado: '+str(exc)) from exc
+     if type(state.get('moedas_centavos')) is not int or state['moedas_centavos'] < 0:
+         raise SaveError('Saldo em centésimos inválido.')
+     if state.get('moedas') != state['moedas_centavos']/100:
+@@ -184,7 +194,10 @@
+ 
+ class SaveStore:
+     def __init__(self, path):
+-        self.path = Path(path).expanduser().resolve()
++        try:
++            self.path = validate_profile_path(path)
++        except ValueError as exc:
++            raise SaveError(str(exc)) from exc
+         self.lock = None
+         try:
+             self.path.parent.mkdir(parents=True, exist_ok=True)
+--- /dev/null
++++ b/pesca_tamanho_visual.py
+@@ -0,0 +1,18 @@
++"""Per-instance painter transforms. Shared cached artwork is never changed."""
++from PySide6.QtGui import QPainter
++from pesca_especies_visual import species_image
++from pesca_tamanhos import visual_scale, RULES, rule_snapshot
++
++def scale_for(measurement,id_=None):
++    if not measurement:return 1.
++    rule=measurement.get('visual_rule') or (rule_snapshot(id_) if id_ in RULES else measurement['rule'])
++    return visual_scale(measurement['mm'],rule)
++
++def draw_fish(painter,id_,x,y,measurement=None,reverse=False,base_scale=1.):
++    s=scale_for(measurement,id_)*base_scale
++    painter.save()
++    painter.setRenderHint(QPainter.SmoothPixmapTransform,False)
++    painter.translate(x,y);painter.scale(-s if reverse else s,s)
++    painter.drawImage(-18,-12,species_image(id_))
++    painter.restore()
++    return 36*s,24*s
+--- /dev/null
++++ b/pesca_tamanhos.py
+@@ -0,0 +1,165 @@
++"""Pilot lengths in integer mm, independent stateless event randomness, no money."""
++import copy
++import hashlib
++import json
++import math
++from pathlib import Path
++import sys
++
++ASSETS=Path(getattr(sys,'_MEIPASS',Path(__file__).resolve().parent))/'assets'
++CONFIG=json.loads((ASSETS/'tamanhos_piloto.json').read_text(encoding='utf-8'))
++RULES=CONFIG['species']
++
++def cdf(x,rule):
++    a,m,b=(rule[k] for k in ('min_mm','typical_mm','max_mm'))
++    if x<=a:return 0.
++    if x>=b:return 1.
++    if x<=m:return (x-a)**2/((b-a)*(m-a))
++    return 1-(b-x)**2/((b-a)*(b-m))
++
++def quantile(u,rule):
++    if not 0<=u<=1:raise ValueError('Quantil fora de [0,1].')
++    a,m,b=(rule[k] for k in ('min_mm','typical_mm','max_mm'))
++    if u<=(m-a)/(b-a):return a+math.sqrt(u*(b-a)*(m-a))
++    return b-math.sqrt((1-u)*(b-a)*(b-m))
++
++def rule_snapshot(id_):
++    r=copy.deepcopy(RULES[id_]);r['version']=CONFIG['version']
++    r['small_cut_mm']=math.floor(quantile(CONFIG['tail_probability'],r))
++    r['large_cut_mm']=math.ceil(quantile(1-CONFIG['tail_probability'],r))
++    return r
++
++def band(mm,r):
++    return 'diminuto' if mm<=r['small_cut_mm'] else 'excepcional' if mm>=r['large_cut_mm'] else 'habitual'
++
++def sample(u,r):
++    mm=min(r['max_mm'],max(r['min_mm'],math.floor(quantile(u,r)+.5)))
++    return {'mm':mm,'band':band(mm,r),'rule':copy.deepcopy(r)}
++
++def empty_sizes(profile_id):
++    return {'version':1,'seed':hashlib.sha256(('length-v1:'+profile_id).encode()).hexdigest(),
++            'quantity':0,'last_counter':0,'records':{},'small_species':[],'large_species':[]}
++
++def ensure_sizes(state):
++    if 'medidas_peixes' not in state:state['medidas_peixes']=empty_sizes(state['perfil_id'])
++    return state['medidas_peixes']
++
++def attach(state,event):
++    if 'measurement' in event:return  # already frozen, including after a parameter edit
++    id_=event['species_id']
++    if id_ not in RULES or event['categoria']!='peixe':return
++    sizes=ensure_sizes(state)
++    raw=hashlib.sha256(('length-v1|'+sizes['seed']+'|'+event['id']+'|'+id_).encode()).digest()
++    u=(int.from_bytes(raw[:8],'big')>>11)/(1<<53)
++    event['measurement']=sample(u,rule_snapshot(id_))
++
++def validate_measurement(item):
++    if not isinstance(item,dict) or not isinstance(item.get('rule'),dict):raise ValueError('Medida inválida.')
++    r=item['rule']
++    if type(r.get('version')) is not int or r['version']!=1:raise ValueError('Versão de regra de tamanho não suportada.')
++    keys=('min_mm','typical_mm','max_mm','small_cut_mm','large_cut_mm')
++    if any(type(r.get(k)) is not int for k in keys):raise ValueError('Limites de medida inválidos.')
++    if not 0<r['min_mm']<r['small_cut_mm']<r['typical_mm']<r['large_cut_mm']<r['max_mm']:
++        raise ValueError('Limites de medida incoerentes.')
++    if type(item.get('mm')) is not int or not r['min_mm']<=item['mm']<=r['max_mm']:
++        raise ValueError('Comprimento fora da regra de origem.')
++    if item.get('band')!=band(item['mm'],r):raise ValueError('Faixa incompatível com comprimento.')
++
++def validate_sizes(state):
++    s=state.get('medidas_peixes')
++    if not isinstance(s,dict) or type(s.get('version')) is not int or s['version']!=1:
++        raise ValueError('Versão de medidas não suportada.')
++    if not isinstance(s.get('seed'),str) or len(s['seed'])!=64:raise ValueError('Semente de medidas inválida.')
++    try:int(s['seed'],16)
++    except ValueError as exc:raise ValueError('Semente de medidas inválida.') from exc
++    for k in ('quantity','last_counter'):
++        if type(s.get(k)) is not int or s[k]<0:raise ValueError('Contador de medidas inválido.')
++    if s['last_counter']>state['contador_eventos']:raise ValueError('Contador futuro de medidas.')
++    records=s.get('records')
++    if not isinstance(records,dict):raise ValueError('Recordes inválidos.')
++    total=0
++    for id_,rec in records.items():
++        if not isinstance(id_,str) or not isinstance(rec,dict) or type(rec.get('n')) is not int or rec['n']<1:
++            raise ValueError('Recorde inválido.')
++        total+=rec['n']
++        if rec['n']>state['inventario_por_id'].get(id_,0):raise ValueError('Medidas excedem as capturas da espécie.')
++        for k in ('menor','maior'):
++            item=rec.get(k);validate_measurement(item)
++            if not isinstance(item.get('event_id'),str) or not item['event_id']:
++                raise ValueError('Recorde sem referência de evento.')
++            if type(item.get('utc')) not in (int,float) or not math.isfinite(item['utc']):raise ValueError('Instante de recorde inválido.')
++            if any(not isinstance(item.get(k),str) for k in ('map_id','periodo_id')):raise ValueError('Contexto de recorde inválido.')
++        if rec['menor']['mm']>rec['maior']['mm']:raise ValueError('Menor recorde excede maior.')
++    if total!=s['quantity']:raise ValueError('Quantidade de medidas inconsistente.')
++    for k in ('small_species','large_species'):
++        ids=s.get(k)
++        if not isinstance(ids,list) or any(not isinstance(x,str) or x not in records for x in ids) or len(set(ids))!=len(ids):
++            raise ValueError('Diversidade de medidas inválida.')
++    pending=state.get('pesca_pendente')
++    if isinstance(pending,dict) and 'measurement' in pending:
++        if pending.get('categoria')!='peixe':raise ValueError('Somente peixes possuem medida no piloto.')
++        validate_measurement(pending['measurement'])
++    choices=state['museu'].get('exemplares',['maior']*3)
++    if not isinstance(choices,list) or len(choices)!=3 or any(c not in ('maior','menor') for c in choices):
++        raise ValueError('Seleção de exemplar inválida.')
++
++def apply(state,event):
++    if 'measurement' not in event:return []  # legacy/out-of-scope remains unmeasured
++    m=event['measurement'];validate_measurement(m)
++    s=ensure_sizes(state);counter=int(event['id'].rsplit(':',1)[1])
++    if counter<=s['last_counter']:return []
++    id_=event['species_id'];entry=copy.deepcopy(m)
++    ctx=event['context']
++    entry.update(event_id=event['id'],utc=ctx['utc'],map_id=ctx['map_id'],periodo_id=ctx['periodo_id'])
++    rec=s['records'].get(id_);news=[]
++    if rec is None:
++        rec={'n':0,'menor':copy.deepcopy(entry),'maior':copy.deepcopy(entry)}
++        s['records'][id_]=rec;news=['primeira']
++    else:
++        if m['mm']<rec['menor']['mm']:rec['menor']=copy.deepcopy(entry);news.append('menor')
++        if m['mm']>rec['maior']['mm']:rec['maior']=copy.deepcopy(entry);news.append('maior')
++    rec['n']+=1;s['quantity']+=1;s['last_counter']=counter
++    key='small_species' if m['band']=='diminuto' else 'large_species' if m['band']=='excepcional' else None
++    if key and id_ not in s[key]:s[key].append(id_);s[key].sort()
++    return news
++
++def definitions(state):
++    s=ensure_sizes(state);goal=CONFIG['diversity_goal']
++    return [('med_primeira','Uma fita, muitas histórias','Registre a primeira captura medida.',s['quantity']>=1),
++            ('med_diminuto','Pequeno notável','Registre um exemplar diminuto.',bool(s['small_species'])),
++            ('med_excepcional','Grande encontro','Registre um exemplar excepcional.',bool(s['large_species'])),
++            ('med_div_pequenos','Pequena coleção',f'Registre diminutos de {goal} espécies do piloto ({len(s["small_species"])}/{goal}).',len(s['small_species'])>=goal),
++            ('med_div_grandes','Grandes lembranças',f'Registre excepcionais de {goal} espécies do piloto ({len(s["large_species"])}/{goal}).',len(s['large_species'])>=goal)]
++
++def fmt(mm):
++    return (f'{mm//10}' if mm%10==0 else f'{mm//10},{mm%10}')+' cm'
++
++def visual_scale(mm,rule):
++    v=CONFIG['visual'];a,m,b=(rule[k] for k in ('min_mm','typical_mm','max_mm'))
++    if mm<=m:return v['minimum']+(v['typical']-v['minimum'])*max(0,min(1,(mm-a)/(m-a)))
++    return v['typical']+(v['maximum']-v['typical'])*max(0,min(1,(mm-m)/(b-m)))
++
++def exhibit(state,slot):
++    id_=state['museu']['aquario'][slot]
++    rec=state.get('medidas_peixes',{}).get('records',{}).get(id_)
++    if not rec:return None
++    item=copy.deepcopy(rec[state['museu'].get('exemplares',['maior']*3)[slot]])
++    item['visual_rule']=rule_snapshot(id_) if id_ in RULES else rec['maior']['rule']
++    return item
++
++def record_text(state,id_):
++    rec=state.get('medidas_peixes',{}).get('records',{}).get(id_)
++    if not rec:return 'Comprimento: sem exemplar medido. Registros antigos não recebem medidas retroativas.'
++    return f"Recordes pessoais (piloto)\nMenor: {fmt(rec['menor']['mm'])}\nMaior: {fmt(rec['maior']['mm'])}\n{rec['n']} capturas medidas. Parâmetros de design provisórios."
++
++def offline_summary(events):
++    measured=[e for e in events if 'measurement' in e]
++    if not measured:return ''
++    changes=sum(bool(e.get('size_news')) for e in measured)
++    small=sum(e['measurement']['band']=='diminuto' for e in measured)
++    large=sum(e['measurement']['band']=='excepcional' for e in measured)
++    return f'Medidas: {len(measured)} exemplares · {changes} novidades de recordes · {small} diminutos · {large} excepcionais. Consulte a Enciclopédia.'
++
++for species_id in RULES:
++    r=rule_snapshot(species_id)
++    validate_measurement(sample(.5,r))
+--- a/pesca_viagens_ui.py
++++ b/pesca_viagens_ui.py
+@@ -4,12 +4,13 @@
+ from PySide6.QtCore import Qt, QTimer, QDateTime, QSize
+ from PySide6.QtGui import QPixmap, QIcon
+ from PySide6.QtWidgets import (QApplication,QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
+-    QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox)
++    QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox,QScrollArea)
+ from pesca_catalogo import ESPECIES,LOCAIS,OCORRENCIAS,eligible
+ from pesca_tempo import LABELS,snapshot
+ from pesca_offline import schedule,cancel
+ from pesca_especies_visual import species_image
+ from pesca_plataforma import mobile
++from pesca_tamanhos import record_text
+ 
+ 
+ class Page(QDialog):
+@@ -41,7 +42,14 @@
+         self.detail=QLabel();self.detail.setWordWrap(True);self.detail.setTextFormat(Qt.PlainText)
+         self.detail.setAlignment(Qt.AlignTop);self.detail.setProperty('panel',True)
+         self.detail.setTextInteractionFlags(Qt.TextSelectableByMouse)
+-        body.addWidget(self.lista,1);body.addWidget(self.detail,1);self.layout.addLayout(body,1)
++        body.addWidget(self.lista,1)
++        self.detail_scroll=None
++        if mobile():body.addWidget(self.detail,1)
++        else:
++            self.detail_scroll=QScrollArea();self.detail_scroll.setWidgetResizable(True)
++            self.detail_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
++            self.detail_scroll.setWidget(self.detail);body.addWidget(self.detail_scroll,1)
++        self.layout.addLayout(body,1)
+         for w in (self.local,self.period,self.ordem):w.currentIndexChanged.connect(self.refresh)
+         for w in (self.agora,self.pistas):w.toggled.connect(self.refresh)
+         self.lista.currentItemChanged.connect(self.show_detail)
+@@ -95,7 +103,8 @@
+         local=self.local.currentData() or self.game.estado['local_atual_id']
+         regional=self.game.estado['registros_regionais'].get(local,{}).get(id_,0)
+         legacy=self.game.estado['legado_sem_contexto'].get(id_,0)
+-        text=f"{s['nome']}\n{s['cientifico']}\n\nValor: {self.game.fmt_currency(s['valor'])} moedas\n"
++        text=f"{s['nome']}\n{s['cientifico']}\n\n"+record_text(self.game.estado,id_)
++        text+=f"\n\nValor: {self.game.fmt_currency(s['valor'])} moedas\n"
+         text+=f"Raridade: {s['raridade']}\n" if n>=5 else f'Raridade: faltam {5-n} registros\n'
+         text+='\n'+s['curiosidade'] if n>=10 else f'\nCuriosidade: faltam {10-n} registros'
+         text+=f'\n\nGlobal: {n} · Aqui: {regional}\nAntigos sem local/horário: {legacy}\n\n{places}'
+--- a/pesca_visual.py
++++ b/pesca_visual.py
+@@ -13,6 +13,7 @@
+ from pesca_equipamentos import rod, bait
+ from pesca_regional_visual import RegionalEnvironment
+ from pesca_especies_visual import species_image
++from pesca_tamanho_visual import draw_fish
+ from pesca_catalogo import INICIAL
+ from datetime import datetime
+ from pesca_efeitos import extra
+@@ -703,7 +704,7 @@
+         if game.capturando>0 and result and result['categoria']=='peixe':
+             t=1-game.capturando/1.2
+             xx=193-round(t*43); yy=108-round(math.sin(t*math.pi)*31)
+-            p.drawImage(xx-12,yy-8,species_image(result['species_id']).scaled(24,16,Qt.IgnoreAspectRatio,Qt.FastTransformation))
++            draw_fish(p,result['species_id'],xx,yy,result.get('measurement'),base_scale=2/3)
+         elif game.capturando>0 and result and result['categoria']=='especial':
+             # Observations and samples stay at the surface, detached from the hook.
+             p.drawImage(182,101,species_image(result['species_id']).scaled(64,42,Qt.IgnoreAspectRatio,Qt.FastTransformation))
+--- /dev/null
++++ b/piloto_entry.py
+@@ -0,0 +1,17 @@
++"""Standalone candidate entry; smoke mode requires explicit isolated paths."""
++import os
++import sys
++from pesca_piloto import validate_profile_path
++
++if '--pilot-smoke' in sys.argv:
++    for key in ('PESCA_IDLE_SAVE_PATH','PESCA_IDLE_PILOT_QA_DIR'):
++        if not os.environ.get(key):raise RuntimeError('Smoke do piloto exige '+key)
++        validate_profile_path(os.environ[key])
++
++if __name__=='__main__':
++    if '--pilot-smoke' in sys.argv:
++        from tools.pilot_smoke import run
++        sys.exit(run())
++    from pesca_idle import main
++    from tools.dev_access import DevAccess
++    main(DevAccess())
+--- /dev/null
++++ b/tools/pilot_smoke.py
+@@ -0,0 +1,68 @@
++"""Focused frozen three-process smoke. Only synthetic candidate profiles."""
++from pathlib import Path
++import copy,json,os,random,sys,traceback
++from pesca_piloto import validate_profile_path
++
++def run():
++    output=validate_profile_path(os.environ['PESCA_IDLE_PILOT_QA_DIR']);output.mkdir(parents=True,exist_ok=True)
++    mode=sys.argv[sys.argv.index('--pilot-smoke')+1]
++    try:
++        from PySide6.QtWidgets import QApplication
++        from PySide6.QtCore import Qt
++        from pesca_idle import JogoPesca,ESTADO_PADRAO,CATALOGO
++        from pesca_ui import configure_app
++        from pesca_save import migrate
++        from pesca_pescaria import FishingEngine
++        from pesca_conquistas import grant
++        from pesca_museu_ui import MuseuDialog
++        import pesca_tamanhos as sizes
++        now=1792332000
++        app=QApplication(sys.argv);configure_app(app)
++        g=JogoPesca(wall_clock=lambda:now,monotonic_clock=lambda:0)
++        g.setAttribute(Qt.WA_DontShowOnScreen,True)
++        g.relogio.stop();g.timer_save.stop();g.show();app.processEvents()
++        g.pausado=True
++        if mode=='pending':
++            assert not g.estado['inventario_por_id'],'Use um perfil sintético novo.'
++            s=migrate({},ESTADO_PADRAO,now)
++            s.update(perfil_id='frozen-size-smoke',rng_state=random.Random(0).getstate(),
++                     contexto_fuso=0,pausado=True)
++            s['medidas_peixes']=sizes.empty_sizes(s['perfil_id'])
++            e=FishingEngine(s);event=e.begin_strike(now,0)
++            assert 'measurement' in event
++            assert g._commit(e.advance(0,now,0))
++            result={'pending':event,'coins':s['moedas_centavos']}
++        elif mode=='deliver':
++            previous=json.loads((output/'pending.json').read_text(encoding='utf-8'))['state']
++            assert g.estado['pesca_pendente']==previous['pending']
++            frozen=copy.deepcopy(g.estado['pesca_pendente'])
++            g.estado['vara']=1;g.estado['barco']=1
++            g.sortear();event=g._last_result
++            assert event['measurement']==frozen['measurement']
++            assert g.estado['moedas_centavos']==previous['coins']+frozen['gain_cents']
++            sid=event['species_id'];s=copy.deepcopy(g.estado)
++            s['museu']['aquario']=[sid,None,None];s['museu']['exemplares']=['menor','maior','maior']
++            assert g._commit(s)
++            assert s['medidas_peixes']['records'][sid]['n']==1
++            assert 'med_primeira' in s['conquistas']
++            g.capturando=.6;g.popup=[g._describe(event)[0],'#ffe3ac',4]
++            g.grab().save(str(output/'exe-captura.png'))
++            museum=MuseuDialog(g);museum.setAttribute(Qt.WA_DontShowOnScreen,True)
++            museum.show();app.processEvents();museum.grab().save(str(output/'exe-museu.png'))
++            assert sizes.fmt(event['measurement']['mm']) in museum.details[0].text()
++            museum.accept();museum.deleteLater()
++            result={k:copy.deepcopy(s[k]) for k in ('medidas_peixes','museu','conquistas','moedas_centavos','inventario_por_id')}
++        elif mode=='reopen':
++            previous=json.loads((output/'deliver.json').read_text(encoding='utf-8'))
++            for key,value in previous['state'].items():assert g.estado[key]==value,key
++            assert g.estado['pesca_pendente'] is None
++            assert grant(g.estado,CATALOGO)==[]
++            result={'identical_records_inventory_money_awards_museum':True}
++        else:raise ValueError('Modo de smoke desconhecido.')
++        assert g.salvar();g.close();app.processEvents();assert g._closed
++        (output/(mode+'.json')).write_text(json.dumps({'ok':True,'frozen':bool(getattr(sys,'frozen',False)),
++            'schema':g.estado['schema_version'],'state':result,'save':os.environ['PESCA_IDLE_SAVE_PATH']},ensure_ascii=False,indent=2),encoding='utf-8')
++        return 0
++    except Exception:
++        (output/(mode+'-falha.txt')).write_text(traceback.format_exc(),encoding='utf-8')
++        return 1
+--- /dev/null
++++ b/tools/verificar_tamanhos.py
+@@ -0,0 +1,223 @@
++"""Focused size tests. All profiles live in this candidate, never in APPDATA."""
++from pathlib import Path
++import os,sys
++ROOT=Path(__file__).resolve().parents[1]
++QA=ROOT/'qa';TMP=QA/'tmp';TMP.mkdir(parents=True,exist_ok=True)
++os.environ.update(PESCA_IDLE_SAVE_PATH=str(QA/'test-profile'/'save.json'),
++                  APPDATA=str(QA/'appdata'),LOCALAPPDATA=str(QA/'localappdata'),
++                  TEMP=str(TMP),TMP=str(TMP),QT_QPA_PLATFORM='offscreen')
++sys.path.insert(0,str(ROOT))
++import copy,json,math,random,tempfile,unittest,hashlib,time
++from pesca_save import migrate,SaveStore,SaveError
++from pesca_idle import ESTADO_PADRAO
++from pesca_pescaria import FishingEngine
++from pesca_offline import replay,schedule
++from pesca_catalogo import ESPECIES
++from pesca_conquistas import grant
++from pesca_loja import CATALOGO
++import pesca_tamanhos as sizes
++
++NOW=1792332000
++
++def fresh(seed=0):
++    s=migrate({},ESTADO_PADRAO,NOW)
++    s.update(perfil_id=f'size-qa-{seed}',rng_state=random.Random(seed).getstate(),
++             ultimo_processado_utc=NOW,contexto_fuso=0)
++    s['medidas_peixes']=sizes.empty_sizes(s['perfil_id'])
++    return s
++
++def add(s,id_,u):
++    s['contador_eventos']+=1
++    event={'id':s['perfil_id']+':'+str(s['contador_eventos']),'species_id':id_,
++           'categoria':'peixe','gain':ESPECIES[id_]['valor'],'gain_cents':round(ESPECIES[id_]['valor']*100),
++           'measurement':sizes.sample(u,sizes.rule_snapshot(id_)),
++           'context':{'utc':NOW+s['contador_eventos'],'map_id':'enseada_do_poente','periodo_id':'dia'}}
++    event['size_news']=sizes.apply(s,event)
++    s['inventario_por_id'][id_]=s['inventario_por_id'].get(id_,0)+1;s['total_pescados']+=1
++    return event
++
++class SizeTests(unittest.TestCase):
++    def test_01_distribution_borders_and_monotonicity(self):
++        for id_ in sizes.RULES:
++            r=sizes.rule_snapshot(id_)
++            self.assertEqual(sizes.sample(0,r)['mm'],r['min_mm'])
++            self.assertEqual(sizes.sample(1,r)['mm'],r['max_mm'])
++            values=[sizes.sample(i/1000,r)['mm'] for i in range(1001)]
++            self.assertEqual(values,sorted(values))
++            self.assertLess(abs(sizes.cdf(r['small_cut_mm']+.5,r)-.05),.003)
++            self.assertLess(abs(1-sizes.cdf(r['large_cut_mm']-.5,r)-.05),.003)
++            scales=[sizes.visual_scale(mm,r) for mm in values]
++            self.assertEqual(scales,sorted(scales))
++
++    def test_02_separate_event_rng_repeatable(self):
++        s=fresh(7);state=random.Random(7).getstate()
++        event={'id':s['perfil_id']+':1','species_id':'lambari','categoria':'peixe'}
++        a=copy.deepcopy(event);b=copy.deepcopy(event)
++        sizes.attach(s,a);sizes.attach(s,b)
++        self.assertEqual(a,b);self.assertEqual(s['rng_state'],state)
++        saved=copy.deepcopy(a)
++        old=copy.deepcopy(sizes.RULES['lambari'])
++        try:
++            sizes.RULES['lambari'].update(min_mm=20,typical_mm=50,max_mm=100)
++            sizes.attach(s,a);self.assertEqual(a,saved)
++        finally:sizes.RULES['lambari']=old
++        other=copy.deepcopy(event);other['species_id']='pacu';sizes.attach(s,other)
++        self.assertNotIn('measurement',other)
++
++    def test_03_first_extremes_ties_and_idempotence(self):
++        s=fresh();first=add(s,'lambari',.5)
++        rec=s['medidas_peixes']['records']['lambari']
++        self.assertEqual(rec['menor']['mm'],rec['maior']['mm'])
++        before=copy.deepcopy(s['medidas_peixes']);self.assertEqual(sizes.apply(s,first),[])
++        self.assertEqual(s['medidas_peixes'],before)
++        tie=add(s,'lambari',.5);self.assertEqual(tie['size_news'],[])
++        lo=add(s,'lambari',.02);hi=add(s,'lambari',.98)
++        self.assertEqual(lo['size_news'],['menor']);self.assertEqual(hi['size_news'],['maior'])
++        self.assertEqual(s['moedas_centavos'],0)
++
++    def test_04_diversity_and_unique_achievements(self):
++        s=fresh()
++        for i in range(25):add(s,'lambari',.02)
++        grant(s,CATALOGO);self.assertNotIn('med_div_pequenos',s['conquistas'])
++        for id_ in ('tilapia_do_nilo','carpa_comum'):
++            add(s,id_,.02);add(s,id_,.98)
++        add(s,'lambari',.98)
++        grant(s,CATALOGO);old=list(s['conquistas']);self.assertEqual(grant(s,CATALOGO),[])
++        self.assertEqual(s['conquistas'],old)
++        self.assertEqual(sum(x.startswith('med_') for x in old),5)
++        self.assertEqual(len(s['medidas_peixes']['small_species']),3)
++        self.assertEqual(s['moedas_centavos'],0)
++
++    def test_05_pending_save_reopen_no_reroll_or_double_reward(self):
++        e=FishingEngine(fresh(0))
++        event=e.begin_strike(NOW,0)
++        self.assertIn('measurement',event)
++        e.advance(0,NOW,0)
++        with tempfile.TemporaryDirectory(dir=TMP) as tmp:
++            path=Path(tmp)/'save.json';store=SaveStore(path);store.save(e.state);store.close()
++            store=SaveStore(path);s=store.load(ESTADO_PADRAO,NOW);store.close()
++        self.assertEqual(s['pesca_pendente'],event)
++        s['vara']=5;s['barco']=5
++        resumed=FishingEngine(s);resumed.finish_strike()
++        self.assertEqual(resumed.events[0]['measurement'],event['measurement'])
++        self.assertEqual(resumed.state['moedas_centavos'],event['gain_cents'])
++        before=copy.deepcopy(resumed.state['medidas_peixes']);coins=resumed.state['moedas_centavos']
++        resumed.state['pesca_pendente']=copy.deepcopy(event);resumed.finish_strike()
++        self.assertEqual(resumed.state['medidas_peixes'],before);self.assertEqual(resumed.state['moedas_centavos'],coins)
++
++    def test_06_legacy_migration_no_retroactive_sizes(self):
++        raw=fresh();raw['schema_version']=3;raw.pop('pilot_kind');raw.pop('medidas_peixes')
++        raw['inventario_por_id']={'lambari':500};raw['museu']['aquario']=['lambari',None,None]
++        raw['conquistas']=['rei_pesca'];raw['moedas_centavos']=12345;raw['moedas']=123.45
++        raw.update(vara=4,barco=3,pecas_vara=2,pecas_barco=1,total_pescados=500)
++        raw['cosmeticos'].append('chapeu_ninja');raw['equipados']['chapeu']='chapeu_ninja'
++        raw['registros_regionais']={'enseada_do_poente':{'lambari':7}}
++        raw['registros_por_periodo']={'enseada_do_poente':{'dia':{'lambari':7}}}
++        raw['legado_sem_contexto']={'lambari':493}
++        a=migrate(raw,ESTADO_PADRAO,NOW);b=migrate(a,ESTADO_PADRAO,NOW)
++        self.assertEqual(a,b);self.assertEqual(a['medidas_peixes']['records'],{})
++        self.assertEqual(a['museu'],raw['museu']);self.assertEqual(a['conquistas'],raw['conquistas'])
++        self.assertEqual(a['moedas_centavos'],12345)
++        for k in ('vara','barco','pecas_vara','pecas_barco','total_pescados','equipados','cosmeticos',
++                  'inventario_por_id','legado_sem_contexto','registros_regionais','registros_por_periodo'):
++            self.assertEqual(a[k],raw[k],k)
++        with tempfile.TemporaryDirectory(dir=TMP) as tmp:
++            p=Path(tmp)/'save.json';payload=json.dumps(raw).encode();p.write_bytes(payload)
++            st=SaveStore(p);loaded=st.load(ESTADO_PADRAO,NOW);st.close()
++            self.assertEqual(p.with_name('save.pre-schema-3.json').read_bytes(),payload)
++            self.assertEqual(loaded['medidas_peixes']['quantity'],0)
++
++    def test_07_invalid_data_preserves_last_good_file(self):
++        s=fresh();add(s,'lambari',.5)
++        with tempfile.TemporaryDirectory(dir=TMP) as tmp:
++            p=Path(tmp)/'save.json';st=SaveStore(p);st.save(s);old=p.read_bytes()
++            for value in (-1,True,999999):
++                bad=copy.deepcopy(s);bad['medidas_peixes']['records']['lambari']['maior']['mm']=value
++                with self.assertRaises(SaveError):st.save(bad)
++                self.assertEqual(p.read_bytes(),old)
++            bad=copy.deepcopy(s);bad['medidas_peixes']['version']=2
++            with self.assertRaises(SaveError):st.save(bad)
++            self.assertEqual(p.read_bytes(),old);st.close()
++        with self.assertRaises(SaveError):SaveStore(ROOT.parent/'outside-refused.json')
++
++    def test_08_future_parameters_keep_old_record_snapshot(self):
++        s=fresh();add(s,'lambari',1);before=copy.deepcopy(s['medidas_peixes'])
++        old=copy.deepcopy(sizes.RULES['lambari'])
++        try:
++            sizes.RULES['lambari'].update(min_mm=20,typical_mm=50,max_mm=100)
++            again=migrate(s,ESTADO_PADRAO,NOW)
++            self.assertEqual(again['medidas_peixes'],before)
++        finally:sizes.RULES['lambari']=old
++
++    def test_12_missing_or_corrupt_pilot_fields_are_not_silently_reset(self):
++        s=fresh();add(s,'lambari',.5)
++        variants=[]
++        for value in (None,[],{'version':1}):
++            v=copy.deepcopy(s);v['medidas_peixes']=value;variants.append(v)
++        v=copy.deepcopy(s);v.pop('medidas_peixes');variants.append(v)
++        v=copy.deepcopy(s);v['pilot_kind']='fluxo-proposal';variants.append(v)
++        for v in variants:
++            with self.assertRaises(SaveError):migrate(v,ESTADO_PADRAO,NOW)
++
++    def test_09_offline_all_events_cap_and_no_repeat(self):
++        for seed in range(4):
++            s=fresh(seed);s.update(vara=3,barco=3)
++            e=FishingEngine(s);online=e.advance(14400,NOW,0)
++            offline,report=replay(s,NOW+14400)
++            for k in ('inventario_por_id','moedas_centavos','rng_state','medidas_peixes','pesca_pendente'):
++                self.assertEqual(online[k],offline[k])
++            self.assertEqual(grant(online,CATALOGO),grant(offline,CATALOGO))
++            self.assertEqual(online['conquistas'],offline['conquistas'])
++            self.assertEqual(offline['medidas_peixes']['quantity'],sum('measurement' in x for x in report['events']))
++            eight,r8=replay(s,NOW+28800)
++            self.assertEqual(eight['medidas_peixes'],offline['medidas_peixes']);self.assertEqual(r8['paid_seconds'],14400)
++            again,r=replay(eight,NOW+28800)
++            self.assertEqual(again,eight);self.assertEqual(r['count'],0)
++            self.assertEqual(sizes.offline_summary(report['events']).count('Medidas:'),1)
++
++    def test_10_legacy_pending_stays_unmeasured(self):
++        e=FishingEngine(fresh(0));event=e.begin_strike(NOW,0);event.pop('measurement')
++        e.finish_strike();self.assertEqual(e.state['medidas_peixes']['quantity'],0)
++        self.assertEqual(e.state['inventario_por_id'][event['species_id']],1)
++
++    def test_11_pause_and_scheduled_offline(self):
++        s=fresh(3);s['pausado']=True
++        a,r=replay(s,NOW+1000);self.assertEqual(a['medidas_peixes']['quantity'],0)
++        s['pausado']=False;schedule(s,'enseada_do_poente',NOW+3600,3600,NOW)
++        a,r=replay(s,NOW+7200);self.assertEqual(r['paid_seconds'],3600)
++        self.assertEqual(a['medidas_peixes']['quantity'],sum('measurement' in x for x in r['events']))
++        a2,r2=replay(a,NOW+7200);self.assertEqual(a2['medidas_peixes'],a['medidas_peixes'])
++
++def measure():
++    distribution={}
++    for sid in sizes.RULES:
++        r=sizes.rule_snapshot(sid);rng=random.Random(20261018);n=100000
++        small=large=0
++        for _ in range(n):
++            m=sizes.sample(rng.random(),r);small+=m['band']=='diminuto';large+=m['band']=='excepcional'
++        distribution[sid]={'rule':r,'samples':n,'small':small,'large':large,
++                           'small_probability_exact':sizes.cdf(r['small_cut_mm']+.5,r),
++                           'large_probability_exact':1-sizes.cdf(r['large_cut_mm']-.5,r)}
++    efforts=[]
++    for seed in range(32):
++        for hour in (7,20):
++            start=NOW-NOW%86400+hour*3600;s=fresh(seed);s['ultimo_processado_utc']=start
++            e=FishingEngine(s);elapsed=0.;milestones={};measured=0
++            while elapsed<14400-1e-8:
++                step=min(e.state['pesca']['restante'],14400-elapsed)
++                e.advance(step,start+elapsed,0);elapsed+=step
++                measured=e.state['medidas_peixes']['quantity']
++                for id_,_,_,ok in sizes.definitions(e.state):
++                    if ok:milestones.setdefault(id_,{'seconds':elapsed,'measured_catches':measured})
++                e.events.clear()
++            efforts.append({'seed':seed,'start_hour':hour,'horizon_seconds':14400,
++                            'milestones':milestones,'measured_catches':measured})
++    (QA/'distribuicao-esforco.json').write_text(json.dumps({'distribution':distribution,'effort':efforts,
++        'scope':'32 paired seeds, starts 07/20h, level0 fixed, Enseada, 4h; not retention/global economy'},indent=2),encoding='utf-8')
++
++if __name__=='__main__':
++    sys.stdout.reconfigure(encoding='utf-8')
++    result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(SizeTests))
++    (QA/'testes-nucleo.json').write_text(json.dumps({'tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors)}),encoding='utf-8')
++    if not result.wasSuccessful():raise SystemExit(1)
++    measure()
+--- /dev/null
++++ b/tools/visual_tamanhos.py
+@@ -0,0 +1,189 @@
++"""Qt visual fixtures and injected input events; not Android/physical input."""
++from pathlib import Path
++import os,sys,json,hashlib,copy
++ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
++from tools.verificar_tamanhos import QA,fresh,add,NOW
++os.environ['QT_QPA_PLATFORM']='windows'
++from PySide6.QtCore import Qt,QRectF
++from PySide6.QtGui import QImage,QPainter,QColor,QFont
++from PySide6.QtWidgets import QApplication
++from PySide6.QtTest import QTest
++from pesca_idle import JogoPesca,ESTADO_PADRAO
++from pesca_museu_ui import MuseuDialog,AquariumView
++from pesca_viagens_ui import ColecaoDialog
++from pesca_plataforma import fit_dialog
++from pesca_ui import configure_app
++from pesca_especies_visual import species_image
++import pesca_tamanhos as sizes
++from pesca_tamanho_visual import scale_for
++
++APP=QApplication.instance() or QApplication([]);configure_app(APP)
++OUT=QA/'visual';OUT.mkdir(exist_ok=True)
++def digest(img):return hashlib.sha256(bytes(img.constBits())).hexdigest()
++def mm_event(s,sid,mm):
++    e=add(s,sid,.5)
++    e['measurement']=dict(mm=mm,band=sizes.band(mm,sizes.rule_snapshot(sid)),rule=sizes.rule_snapshot(sid))
++    # Replace only this synthetic fixture's records, not a captured player's state.
++    item=copy.deepcopy(e['measurement']);item.update(event_id=e['id'],utc=NOW,map_id='enseada_do_poente',periodo_id='dia')
++    s['medidas_peixes']['records'][sid]={'n':1,'menor':copy.deepcopy(item),'maior':copy.deepcopy(item)}
++    s['medidas_peixes']['quantity']=sum(r['n'] for r in s['medidas_peixes']['records'].values())
++    return e
++
++def game(name,mobile=False):
++    os.environ['PESCA_IDLE_MOBILE']='1' if mobile else '0'
++    configure_app(APP)
++    import pesca_idle
++    pesca_idle.SAVE_PATH=QA/(name+'.json')
++    g=JogoPesca(wall_clock=lambda:NOW,monotonic_clock=lambda:0)
++    g.setAttribute(Qt.WA_DontShowOnScreen,True);g.pausado=True
++    g.estado=fresh(9);g.estado['pausado']=True;g.fase=2
++    g.show();APP.processEvents()
++    return g
++
++g=game('visual-desktop')
++checks={};bounds=0
++cached={sid:digest(species_image(sid)) for sid in sizes.RULES}
++for sid in sizes.RULES:
++    rule=sizes.rule_snapshot(sid)
++    contact=QImage(1536,640,QImage.Format_ARGB32_Premultiplied);contact.fill(QColor('#172b3b'))
++    painter=QPainter(contact);painter.setFont(QFont('Segoe UI',11));painter.setPen(QColor('#eef0de'))
++    scales=[]
++    for i,(label,key) in enumerate((('Pequeno','min_mm'),('Típico','typical_mm'),('Grande','max_mm'))):
++        g.estado=fresh(9);g.estado['pausado']=True
++        event=mm_event(g.estado,sid,rule[key]);g.estado['museu']['aquario']=[sid,None,None]
++        view=AquariumView(lambda:g.estado,__import__('pesca_catalogo').ESPECIES)
++        aq=view.render_image(4)
++        g._last_result=event;g.capturando=.6;g.fisgando=0
++        g.popup=[g._describe(event)[0],'#ffe3ac',4]
++        scene,_=g._render.render(g)
++        painter.drawText(i*512+12,24,label+' · '+sizes.fmt(rule[key])+' · design provisório')
++        painter.drawImage(QRectF(i*512,42,512,288),scene)
++        painter.drawImage(QRectF(i*512,362,512,256),aq)
++        scales.append(scale_for(event['measurement'],sid))
++        view.deleteLater()
++    painter.end();contact.save(str(OUT/('variacao-'+sid+'.png')))
++    assert scales==sorted(scales);checks[sid]={'scales':scales,'range_mm':[rule['min_mm'],rule['max_mm']]}
++
++# Three simultaneous species, with real record selection in each occupied slot.
++g.estado=fresh(9);g.estado['pausado']=True
++for sid in ('lambari','tilapia_do_nilo','carpa_comum'):
++    add(g.estado,sid,0);add(g.estado,sid,1)
++g.estado['museu']['aquario']=['lambari','tilapia_do_nilo','carpa_comum']
++assert g._commit(copy.deepcopy(g.estado))
++d=MuseuDialog(g);d.setAttribute(Qt.WA_DontShowOnScreen,True);d.resize(640,700);d.show();APP.processEvents()
++for phase in (i/10 for i in range(600)):
++    for sid,x,y,reverse in d.aquario.fish_positions(phase):
++        slot=g.estado['museu']['aquario'].index(sid);sc=scale_for(sizes.exhibit(g.estado,slot),sid)
++        assert 16<=x-18*sc and x+18*sc<=240
++        assert 16<=y-12*sc and y+12*sc<=106
++        bounds+=1
++d.grab().save(str(OUT/'museu-desktop-topo.png'))
++d.specimen_selectors[0].setFocus();QTest.keyClick(d.specimen_selectors[0],Qt.Key_End);APP.processEvents()
++assert g.estado['museu']['exemplares'][0]=='menor'
++selected=sizes.exhibit(g.estado,0)
++assert selected['mm']==g.estado['medidas_peixes']['records']['lambari']['menor']['mm']
++d.aquario.render_image(3).scaled(768,384,Qt.KeepAspectRatio,Qt.FastTransformation).save(str(OUT/'aquario-misto.png'))
++animation=QImage(1536,256,QImage.Format_ARGB32_Premultiplied);animation.fill(QColor('#172b3b'))
++ap=QPainter(animation)
++frames=[]
++for i,t in enumerate((0,10,20)):
++    frame=d.aquario.render_image(t);frames.append(digest(frame));ap.drawImage(QRectF(i*512,0,512,256),frame)
++ap.end();animation.save(str(OUT/'aquario-animacao.png'));assert len(set(frames))==3
++d.scroll.verticalScrollBar().setValue(d.scroll.verticalScrollBar().maximum());APP.processEvents()
++d.grab().save(str(OUT/'museu-desktop-rodape.png'))
++QTest.mouseClick(d.remove_buttons[2],Qt.LeftButton);APP.processEvents()
++assert g.estado['museu']['aquario'][2] is None
++assert not d.specimen_selectors[2].isEnabled()
++legacy=copy.deepcopy(g.estado);legacy['inventario_por_id']['pacu']=10;legacy['total_pescados']+=10
++assert g._commit(legacy);d._signature=None;d.refresh()
++d.selectors[2].setCurrentIndex(d.selectors[2].findData('pacu'));APP.processEvents()
++assert sizes.exhibit(g.estado,2) is None and not d.specimen_selectors[2].isEnabled()
++assert 'Sem exemplar medido' in d.details[2].text()
++d.scroll.verticalScrollBar().setValue(d.scroll.verticalScrollBar().maximum());APP.processEvents()
++d.grab().save(str(OUT/'museu-legado-sem-medida.png'))
++checks['qt_input']={'key_end_selected_smaller':True,'mouse_click_removed_slot':True,
++                    'kind':'QTest-injected events, not direct callback calls or physical OS input'}
++d.accept();d.deleteLater();APP.processEvents()
++
++add(g.estado,'lambari',.5)
++e=ColecaoDialog(g);e.setAttribute(Qt.WA_DontShowOnScreen,True);e.show();APP.processEvents()
++e.local.setCurrentIndex(e.local.findData('enseada_do_poente'));APP.processEvents()
++row=next(i for i in range(e.lista.count()) if e.lista.item(i).data(Qt.UserRole)=='lambari')
++e.lista.setCurrentRow(row);APP.processEvents()
++assert 'Menor:' in e.detail.text() and 'Maior:' in e.detail.text()
++e.period.setCurrentIndex(e.period.findData('noite'));e.agora.setChecked(True);APP.processEvents()
++from pesca_catalogo import OCORRENCIAS
++from pesca_tempo import snapshot
++now=snapshot(g._wall())['periodo_id']
++for i in range(e.lista.count()):
++    sid=e.lista.item(i).data(Qt.UserRole)
++    assert any(o['species_id']==sid and o['map_id']=='enseada_do_poente' and 'noite' in o['periods'] and now in o['periods'] for o in OCORRENCIAS)
++e.period.setCurrentIndex(0);e.agora.setChecked(False);e.ordem.setCurrentIndex(1);APP.processEvents()
++counts=[g.estado['inventario_por_id'][e.lista.item(i).data(Qt.UserRole)] for i in range(e.lista.count())]
++assert counts==sorted(counts,reverse=True)
++e.ordem.setCurrentIndex(0);APP.processEvents()
++e.lista.setCurrentRow(next(i for i in range(e.lista.count()) if e.lista.item(i).data(Qt.UserRole)=='lambari'))
++checks['filters']={'local_period_now_valid':True,'count_order_valid':True,'kind':'programmatic widget selections'}
++e.grab().save(str(OUT/'enciclopedia-desktop.png'));e.accept();e.deleteLater()
++g._last_result=add(g.estado,'lambari',.98);g.capturando=.6;g.popup=[g._describe(g._last_result)[0],'#ffe3ac',4]
++g.grab().save(str(OUT/'captura-desktop.png'));g.close();APP.processEvents()
++
++for width,height in ((320,568),(360,800)):
++    m=game('visual-mobile-'+str(width),True)
++    for sid in ('lambari','tilapia_do_nilo','carpa_comum'):
++        add(m.estado,sid,0);add(m.estado,sid,1)
++    m.estado['museu']['aquario']=['lambari','tilapia_do_nilo','carpa_comum'];m.salvar()
++    m.resize(width,height)
++    md=MuseuDialog(m);md.setAttribute(Qt.WA_DontShowOnScreen,True);md.resize(width,height);md.show();APP.processEvents()
++    md.grab().save(str(OUT/f'museu-mobile-{width}-topo.png'))
++    md.scroll.verticalScrollBar().setValue(md.scroll.verticalScrollBar().maximum());APP.processEvents()
++    md.grab().save(str(OUT/f'museu-mobile-{width}-rodape.png'))
++    assert md.back.geometry().bottom()<=md.scroll.widget().height()
++    if width==320:
++        preserved=copy.deepcopy(m.estado)
++        for sid in sizes.RULES:
++            rule=sizes.rule_snapshot(sid)
++            panels=QImage(960,568,QImage.Format_ARGB32_Premultiplied);panels.fill(QColor('#172b3b'))
++            p=QPainter(panels)
++            for column,key in enumerate(('min_mm','typical_mm','max_mm')):
++                m.estado=fresh(9);m.estado['pausado']=True
++                mm_event(m.estado,sid,rule[key]);m.estado['museu']['aquario']=[sid,None,None]
++                md._signature=None;md.refresh()
++                for _ in range(3):md.scroll.verticalScrollBar().setValue(0);APP.processEvents()
++                p.drawPixmap(column*320,0,md.grab())
++            p.end();panels.save(str(OUT/f'variacao-mobile-{sid}.png'))
++        m.estado=preserved;md._signature=None;md.refresh()
++    md.accept();md.deleteLater();APP.processEvents()
++    enc=fit_dialog(ColecaoDialog(m));enc.setAttribute(Qt.WA_DontShowOnScreen,True);enc.resize(width,height);enc.show();APP.processEvents()
++    enc.lista.setCurrentRow(next(i for i in range(enc.lista.count()) if enc.lista.item(i).data(Qt.UserRole)=='lambari'))
++    APP.processEvents();enc.grab().save(str(OUT/f'enciclopedia-mobile-{width}.png'))
++    assert 'Recordes pessoais' in enc.detail.text()
++    from PySide6.QtWidgets import QScrollArea
++    outer=next(s for s in enc.findChildren(QScrollArea) if s.widget() is not enc.detail)
++    for _ in range(4):
++        outer.verticalScrollBar().setValue(outer.verticalScrollBar().maximum());APP.processEvents()
++    enc.grab().save(str(OUT/f'enciclopedia-mobile-{width}-rodape.png'))
++    enc.accept();enc.deleteLater();APP.processEvents()
++    if width==320:
++        for sid in sizes.RULES:
++            rule=sizes.rule_snapshot(sid)
++            shots=QImage(960,568,QImage.Format_ARGB32_Premultiplied);shots.fill(QColor('#172b3b'))
++            p=QPainter(shots);sprite_regions=[]
++            for column,key in enumerate(('min_mm','typical_mm','max_mm')):
++                m.estado=fresh(9);m.estado['pausado']=True
++                event=mm_event(m.estado,sid,rule[key]);m._last_result=event;m.capturando=.6
++                m.popup=[m._describe(event)[0],'#ffe3ac',4]
++                m.repaint();APP.processEvents();shot=m.grab();p.drawPixmap(column*320,0,shot)
++                area=m.scene_rect
++                cx=round(area.x()+171*area.width()/256);cy=round(area.y()+77*area.height()/144)
++                sprite_regions.append(digest(shot.toImage().copy(cx-16,cy-12,32,24)))
++            p.end();shots.save(str(OUT/f'captura-mobile-{sid}.png'))
++            assert len(set(sprite_regions))==3,'Mobile capture sprite did not change: '+sid
++        checks['mobile_capture_sprite_regions_distinct']=True
++    m.close();APP.processEvents()
++
++for sid in cached:assert cached[sid]==digest(species_image(sid))
++checks.update(geometry_checks=bounds,cache_original_unchanged=True,native_qt_platform=APP.platformName(),
++              android_native_test=False,viewport_mobile_only=True,frames_checked=600)
++(QA/'visual-checks.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2),encoding='utf-8')
++print(json.dumps(checks,ensure_ascii=False))

@@ -1,3 +1,34 @@
+# Pesca Idle — piloto de tamanhos e recordes
+
+Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
+
+## Abrir com dois cliques
+
+**[Baixar PescaIdle-Tamanhos-Piloto.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Tamanhos-Piloto.exe)**
+
+Salve o EXE em uma pasta gravável e abra. Ele inclui runtime e recursos; não exige instalar Python. O perfil novo fica em `perfil-piloto/save.json`, junto ao EXE. O piloto recusa perfis fora dessa pasta-base e não abre o save pessoal em APPDATA.
+
+Build Windows de 18/10/2026: **50.200.863 bytes**, SHA-256 `4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27`.
+
+## Conteúdo
+
+- Comprimentos individuais para Lambari, Tilápia-do-nilo, Carpa-comum e Traíra; valores provisórios de design.
+- Menor/maior exemplar por espécie na enciclopédia e cinco conquistas sem bônus econômico.
+- Variação visual na captura e no aquário; seleção menor/maior nos três espaços.
+- Save schema 4 exclusivo do piloto, com marcador `tamanhos-v1`, backup de migração e perfil isolado.
+- As outras espécies, economia, tempos e varas existentes permanecem com as regras da base.
+
+[Entrega, comandos e limitações](docs/piloto-tamanhos/README.md) · [Parâmetros](docs/piloto-tamanhos/PARAMETROS.md) · [Relatório local sanitizado](docs/piloto-tamanhos/RELATORIO.md)
+
+![Variação de comprimento no piloto](docs/piloto-tamanhos/imagens/variacao-lambari.png)
+
+Evidências da preparação local de 18/10/2026: 12 testes passaram, 16.010 eventos em 48 fluxos pareados iguais à base quanto a espécies/moedas/tempos, smoke do EXE em três processos e prévias Qt desktop/mobile. Não foram repetidos jogo/simulações para esta publicação. **Android nativo deste piloto não foi testado.**
+
+O arquivo antigo `PescaIdle.exe` e os APKs preexistentes foram preservados e não contêm este piloto. Use o EXE com **Tamanhos-Piloto** no nome. Para retornar, feche o piloto e abra o jogo anterior; não transfira o save do piloto para a versão principal.
+
+<details>
+<summary>Documentação histórica da base, anterior ao piloto (comandos, saves e binários não descrevem esta branch experimental)</summary>
+
 # Pesca Idle — Oito Águas
 
 Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
@@ -105,3 +136,5 @@ Resultados observados: **5.920** verificações da matriz e **1.359** de cosmét
 [Expansão e arte](docs/EXPANSAO_MAPAS.md) · [Save e offline](docs/MIGRACAO_SAVE.md) · [Balanceamento](docs/BALANCEAMENTO_EXPANSAO.md) · [Fontes das 39 novas identidades](docs/FONTES_ESPECIES.md) · [Critérios antigos](CRITERIOS_RARIDADE.md).
 
 A arte é própria, com personagem e barco existentes preservados e linguagem de RPG em pixels. Horários/ambientes são convenções do jogo; não representam coocorrência ou abundância científica exata. Curiosidades novas usam fatos taxonômicos verificados; as antigas foram preservadas e identificadas como legado.
+
+</details>

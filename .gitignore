@@ -10,3 +10,8 @@ deployment/
 *.jks
 *.keystore
 signing-private/
+
+# Disposable size-pilot profiles and QA output
+qa/
+perfil-piloto/
+qa-smoke-*/

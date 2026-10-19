@@ -4,12 +4,13 @@ from datetime import datetime
 from PySide6.QtCore import Qt, QTimer, QDateTime, QSize
 from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtWidgets import (QApplication,QDialog,QVBoxLayout,QHBoxLayout,QLabel,QListWidget,
-    QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox)
+    QListWidgetItem,QPushButton,QComboBox,QCheckBox,QDateTimeEdit,QDoubleSpinBox,QScrollArea)
 from pesca_catalogo import ESPECIES,LOCAIS,OCORRENCIAS,eligible
 from pesca_tempo import LABELS,snapshot
 from pesca_offline import schedule,cancel
 from pesca_especies_visual import species_image
 from pesca_plataforma import mobile
+from pesca_tamanhos import record_text
 
 
 class Page(QDialog):
@@ -41,7 +42,14 @@ class ColecaoDialog(Page):
         self.detail=QLabel();self.detail.setWordWrap(True);self.detail.setTextFormat(Qt.PlainText)
         self.detail.setAlignment(Qt.AlignTop);self.detail.setProperty('panel',True)
         self.detail.setTextInteractionFlags(Qt.TextSelectableByMouse)
-        body.addWidget(self.lista,1);body.addWidget(self.detail,1);self.layout.addLayout(body,1)
+        body.addWidget(self.lista,1)
+        self.detail_scroll=None
+        if mobile():body.addWidget(self.detail,1)
+        else:
+            self.detail_scroll=QScrollArea();self.detail_scroll.setWidgetResizable(True)
+            self.detail_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            self.detail_scroll.setWidget(self.detail);body.addWidget(self.detail_scroll,1)
+        self.layout.addLayout(body,1)
         for w in (self.local,self.period,self.ordem):w.currentIndexChanged.connect(self.refresh)
         for w in (self.agora,self.pistas):w.toggled.connect(self.refresh)
         self.lista.currentItemChanged.connect(self.show_detail)
@@ -95,7 +103,8 @@ class ColecaoDialog(Page):
         local=self.local.currentData() or self.game.estado['local_atual_id']
         regional=self.game.estado['registros_regionais'].get(local,{}).get(id_,0)
         legacy=self.game.estado['legado_sem_contexto'].get(id_,0)
-        text=f"{s['nome']}\n{s['cientifico']}\n\nValor: {self.game.fmt_currency(s['valor'])} moedas\n"
+        text=f"{s['nome']}\n{s['cientifico']}\n\n"+record_text(self.game.estado,id_)
+        text+=f"\n\nValor: {self.game.fmt_currency(s['valor'])} moedas\n"
         text+=f"Raridade: {s['raridade']}\n" if n>=5 else f'Raridade: faltam {5-n} registros\n'
         text+='\n'+s['curiosidade'] if n>=10 else f'\nCuriosidade: faltam {10-n} registros'
         text+=f'\n\nGlobal: {n} · Aqui: {regional}\nAntigos sem local/horário: {legacy}\n\n{places}'

@@ -1,0 +1,619 @@
+{
+  "base_head": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+  "candidate_git_commits": false,
+  "packaged_snapshot_sha256": "3118f7966ad9a3070a06cd81796709b39927b31e12064f8edc45521f038bc8d9",
+  "reviewed_changes": [
+    {
+      "path": "PescaIdle.spec",
+      "status": "modified",
+      "bytes": 1559,
+      "sha256": "61ead03b656cd5fabbc7db1a43142c9f5a780a2ba84f508bb682414110d08d08",
+      "added_lines": 2,
+      "removed_lines": 2
+    },
+    {
+      "path": "assets/tamanhos_piloto.json",
+      "status": "new",
+      "bytes": 520,
+      "sha256": "7041e65d9932596ba6ffc5b7c8956e8f4ffeb7c7048817198c84267578349ecb",
+      "added_lines": 13,
+      "removed_lines": 0
+    },
+    {
+      "path": "pesca_conquistas.py",
+      "status": "modified",
+      "bytes": 2477,
+      "sha256": "1b02a411d75554f516c70caec346427c410ff8969629ac025538ace8a56f00bf",
+      "added_lines": 2,
+      "removed_lines": 1
+    },
+    {
+      "path": "pesca_idle.py",
+      "status": "modified",
+      "bytes": 61704,
+      "sha256": "4d696a94a2cb58f1755444574577980d26d271c8f8ae677ea8a24852f1a47907",
+      "added_lines": 10,
+      "removed_lines": 1
+    },
+    {
+      "path": "pesca_museu_ui.py",
+      "status": "modified",
+      "bytes": 15303,
+      "sha256": "a279037d31149ed50e3e774463370dc479e11e3f07f6686ec5b17c1cd0e1e8ed",
+      "added_lines": 38,
+      "removed_lines": 8
+    },
+    {
+      "path": "pesca_pescaria.py",
+      "status": "modified",
+      "bytes": 4803,
+      "sha256": "4596b89b5c2796625ff95de68562835d36ef43160a92d4bb404dd0f2a05238f0",
+      "added_lines": 4,
+      "removed_lines": 0
+    },
+    {
+      "path": "pesca_piloto.py",
+      "status": "new",
+      "bytes": 707,
+      "sha256": "7c76dbeab00dcd5feed08417010321e100dde83202d1e6fb1a44e5c9322e6101",
+      "added_lines": 17,
+      "removed_lines": 0
+    },
+    {
+      "path": "pesca_save.py",
+      "status": "modified",
+      "bytes": 17056,
+      "sha256": "5fbb2d03d67508f090f1f5c7b82fbe0c79d1cce4d2e55dd0f9632767ceb40770",
+      "added_lines": 19,
+      "removed_lines": 6
+    },
+    {
+      "path": "pesca_tamanho_visual.py",
+      "status": "new",
+      "bytes": 811,
+      "sha256": "a112f9325b4c4ddb3b7d73a6668dbaaccd175b3df7a0f71e94ec7511e3df833f",
+      "added_lines": 18,
+      "removed_lines": 0
+    },
+    {
+      "path": "pesca_tamanhos.py",
+      "status": "new",
+      "bytes": 9076,
+      "sha256": "4889de63bfc8f3d73bd1b7e8bfb4cbd558c86c0b3e06295f2ace9feec53ac2b8",
+      "added_lines": 165,
+      "removed_lines": 0
+    },
+    {
+      "path": "pesca_viagens_ui.py",
+      "status": "modified",
+      "bytes": 12221,
+      "sha256": "d3e270a841578c505da8e5cae1d38e87ff1f82ac861f2caaa3a9d42f0f9011c5",
+      "added_lines": 12,
+      "removed_lines": 3
+    },
+    {
+      "path": "pesca_visual.py",
+      "status": "modified",
+      "bytes": 36185,
+      "sha256": "57efaca71e526e77abdf7368a28d7436989872e2aa5ac87d82aa9d6d1312e9b8",
+      "added_lines": 2,
+      "removed_lines": 1
+    },
+    {
+      "path": "piloto_entry.py",
+      "status": "new",
+      "bytes": 603,
+      "sha256": "bb1153a5adcd81f73883f87f0c95beb6bd2f7b9ca1c18a2998ff65e8d1f9fb38",
+      "added_lines": 17,
+      "removed_lines": 0
+    },
+    {
+      "path": "tools/pilot_smoke.py",
+      "status": "new",
+      "bytes": 3964,
+      "sha256": "62cadccc78e3fd2c576189d35add46a4e60f60bd34c7060887586d392cc0d26a",
+      "added_lines": 68,
+      "removed_lines": 0
+    },
+    {
+      "path": "tools/verificar_tamanhos.py",
+      "status": "new",
+      "bytes": 12756,
+      "sha256": "4e81ed97373f5df322c1ad43a7997eb092eb59e8c27949178bc70b60962ae0c1",
+      "added_lines": 223,
+      "removed_lines": 0
+    },
+    {
+      "path": "tools/visual_tamanhos.py",
+      "status": "new",
+      "bytes": 11468,
+      "sha256": "0958433bad1a0a2211c0fb7b0cdda64a6e584982b84e6c3d6f8ae81b1270df2e",
+      "added_lines": 189,
+      "removed_lines": 0
+    }
+  ],
+  "packaged_source_and_assets": [
+    {
+      "path": "assets/barco.png",
+      "sha256": "992dfa85f2688a0c428dcbaf500c0dd6ee0240d23722c3e88ffb0763e150b28d",
+      "bytes": 2992
+    },
+    {
+      "path": "assets/boias.png",
+      "sha256": "d059a1f839168f7caafbc16cc5162370a315377a8dc6ea8ec9d16d22caa78989",
+      "bytes": 4102
+    },
+    {
+      "path": "assets/catalogo_expansao.json",
+      "sha256": "11cdbd185721a9f58b3ad33a893aee8ffc9695de5a8dc911fd34b51d0b95b0b5",
+      "bytes": 140221
+    },
+    {
+      "path": "assets/chapeus.png",
+      "sha256": "f60416a424ec3e23290f0d8c13bca26577561896e2f0bb64efbbe5515db9534a",
+      "bytes": 12851
+    },
+    {
+      "path": "assets/cosmeticos.json",
+      "sha256": "80d9019576fc6bfc0c9cea67ba0b2327963c0a8db78fffc03b59f8fbc141f0d4",
+      "bytes": 1041
+    },
+    {
+      "path": "assets/enseada.png",
+      "sha256": "4a1dc79dc4be8e445eeecde0bf3d8b2eea0078e235d631c9700da8442b5bc919",
+      "bytes": 52528
+    },
+    {
+      "path": "assets/icone-acessorio.png",
+      "sha256": "ee58a59cd15157cf72251de285bb35ce81f2a68f2f1f242dfb417190bd838a3f",
+      "bytes": 198
+    },
+    {
+      "path": "assets/icone-bandeira.png",
+      "sha256": "1d0bb73168b5caab70c2bbdbff922a7e1a163f687426600f6ea03cc56b464c31",
+      "bytes": 162
+    },
+    {
+      "path": "assets/icone-barco.png",
+      "sha256": "dc6d690e35d9df0a43193c4f02ab0e0e971dfa69da294da946cb44ad2c069b44",
+      "bytes": 182
+    },
+    {
+      "path": "assets/icone-boia.png",
+      "sha256": "7edef322240ac135d445ac759456202c8cb9dbc9e58d8800cf3cd356144b378b",
+      "bytes": 180
+    },
+    {
+      "path": "assets/icone-boneco.png",
+      "sha256": "2b6e0b8959ffb80143a38e3913c9a065ac53194d6c44768e39b5685d9f4d4c68",
+      "bytes": 204
+    },
+    {
+      "path": "assets/icone-chapeu.png",
+      "sha256": "2d7cd022f5022d379bb4cb331b1b3086f19cf9cef7d592dc43d908c294e27437",
+      "bytes": 165
+    },
+    {
+      "path": "assets/icone-conquistas.png",
+      "sha256": "31dea9a5b2e214a6dd487e1b929615b6e4feed99bbd729dfe8c4426f6b4cfe95",
+      "bytes": 199
+    },
+    {
+      "path": "assets/icone-livro.png",
+      "sha256": "d1b717fe82a81abcd87311a2d0ac808ddcd3727109fab43b81cf1ca8518f5b60",
+      "bytes": 200
+    },
+    {
+      "path": "assets/icone-loja.png",
+      "sha256": "e23d93d8a16b620c6008355d51b7212166ffb51fcdea7e55e200ecb738e6dd88",
+      "bytes": 175
+    },
+    {
+      "path": "assets/icone-pausa.png",
+      "sha256": "9557cd2b6ad8daa61eaac344bd0cc44710af6cf10e6eea3697542428b0940fda",
+      "bytes": 123
+    },
+    {
+      "path": "assets/icone-peixe.png",
+      "sha256": "d037d335a3f17a88ec90acc64744d1f85917ae5116a39ba5b3d66dbfd8363d13",
+      "bytes": 180
+    },
+    {
+      "path": "assets/icone-roupa.png",
+      "sha256": "95656e9d02b5623f1ca35c51b3e9437588934d2a778c37d139eb8e2e3cc4a375",
+      "bytes": 178
+    },
+    {
+      "path": "assets/icone-sair.png",
+      "sha256": "2a3ea0f5f5201441a7fe817c7863b51a702fc110824b9ed5227d8faca8e1568c",
+      "bytes": 141
+    },
+    {
+      "path": "assets/icone-vara.png",
+      "sha256": "0685569deb42424a2722ab849f348749697e0c9e5b1409f880f35ac2f639775f",
+      "bytes": 179
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-agua.png",
+      "sha256": "44a73be027170b5c4347d3095ad69acd81776d2514e61e95dcb56f8aae84896b",
+      "bytes": 427
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-ceu.png",
+      "sha256": "313d5831ccfe480eeb881c7e2e85c1eab8f2904166f594ebac3242ed894b5a15",
+      "bytes": 800
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-margem.png",
+      "sha256": "22165b23d1deab048c725c1df17467c16e436b4955242c4a16e55a36bdfec8d5",
+      "bytes": 2533
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-materiais.png",
+      "sha256": "59c873e7f6f46f4b733c36244994be0973b2862cc3dbb39d799f5fde2123cb5c",
+      "bytes": 1441
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas.png",
+      "sha256": "6a9f6f60e166daf62da6d4b1be00c65da4bf783557eabdc00b66b2b23dacc978",
+      "bytes": 36926
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-agua.png",
+      "sha256": "b006f213917e1a09a1ccb649b57da0cb38d4f746577ad1cff48df9c80438f1b3",
+      "bytes": 398
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-ceu.png",
+      "sha256": "a5b4679618ef29fabe610c5edf01f8b74c368c43ab9404cd1f455308e8ab3146",
+      "bytes": 1968
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-materiais.png",
+      "sha256": "50e68ecceb05483f16c146ca8d994640e56b204ac210697207934946ad743348",
+      "bytes": 2859
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes.png",
+      "sha256": "8368af94afa9c12058bc18f91cf840400a543c69ecf08e018211178d4b31aea0",
+      "bytes": 64827
+    },
+    {
+      "path": "assets/mapas/manifesto.json",
+      "sha256": "6f591af0a81d1babe5c5def2e71233623bbe50bb018451cc7eafaeb4a5a8d243",
+      "bytes": 892
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-agua.png",
+      "sha256": "09c800f72f1a65d13358a66315609d8b0e1c315bc0f3d54f70a483fcf1dcf7d0",
+      "bytes": 312
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-ceu.png",
+      "sha256": "0607063e9956367b9aa3aed828eed7619722f8d72df9cdc4d0f20835b84438b3",
+      "bytes": 909
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-materiais.png",
+      "sha256": "775ce01ae17f6372ad13d9204122348563818f0b207938cc4656d5018058389a",
+      "bytes": 1417
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras.png",
+      "sha256": "929d2ab9ac0116fc4594a13b980884fdd1e9c37e6be7e2991cb7c6f1f228c9ce",
+      "bytes": 36942
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-agua.png",
+      "sha256": "6e779c63a07afbd617422da1bd37b6ed417ca88d2d1e436907a7dc022cc0cea7",
+      "bytes": 234
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-ceu.png",
+      "sha256": "0936163f98feecdd2cd8c741d8e8d2820430c76eaa58632ee1dd6258884299c5",
+      "bytes": 286
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-materiais.png",
+      "sha256": "1586274f386d3f424122e493cbf2a6cf623f766a228e17c9cb39815c57e0e3d0",
+      "bytes": 552
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos.png",
+      "sha256": "948d643d157808b7fde49515d1ad2868aca5e464d071cd30fb503883bc2f1263",
+      "bytes": 40462
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-agua.png",
+      "sha256": "c0e4b41d292f0e0f00ee26af811d21c362a61bf18f0b9e226d7e21b52eaddce3",
+      "bytes": 367
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-ceu.png",
+      "sha256": "eda441f4f8025a3eb3b367e57c6b9f92144f6e50302ba85fe6ec8cc5a95a7aca",
+      "bytes": 624
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-margem.png",
+      "sha256": "ad2ef744faf6530112fdf8d85d1b8af87bf3d7ad7f787fe5ccdfc600569c3715",
+      "bytes": 1470
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-materiais.png",
+      "sha256": "a151b38e89dc13f03b4f2638dfe55194cc7f3e2333c7e7c9777eb3c1f1f8da38",
+      "bytes": 1114
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa.png",
+      "sha256": "847838eb3a38a722f49983fa9f2deecb37bd4fad5eef6fac497223439f4151df",
+      "bytes": 36281
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-agua.png",
+      "sha256": "a7cd9d2b0fe1154ad83645e5ea5c25967bb004b4f6fa6ff97ed41c52bb0604c4",
+      "bytes": 605
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-ceu.png",
+      "sha256": "4235a269d8a52c835d7b38d0c8ebc39ee9042286c0f6f3a603d029fc50dd95d8",
+      "bytes": 663
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-margem.png",
+      "sha256": "3961853bfdf6d430f45d009e04a3d7589c391cf8f58884a5d0e593ec20c7dfff",
+      "bytes": 3748
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-materiais.png",
+      "sha256": "f785f08854e514c260c9ef1cff9320a5a199f218079a251d28376894632367ee",
+      "bytes": 1453
+    },
+    {
+      "path": "assets/mapas/recife_das_cores.png",
+      "sha256": "9b1311ac6229f79e4ab42e82a3cefb515b912227372f86ccd59f765e6a667c3a",
+      "bytes": 44265
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-agua.png",
+      "sha256": "6ad31ad39594ff77fd75936250eac4abf670c453a8001ff6102667630c6f757c",
+      "bytes": 511
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-ceu.png",
+      "sha256": "116d890d9f9da5b33b8d78c4c9dd7b4b2dab256fae3bf02bd2a4e37ed144ac1c",
+      "bytes": 888
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-margem.png",
+      "sha256": "d18856761f1fc4b82500ee0e8255671af362b759b03b55fd4a6d5b979bda1d4e",
+      "bytes": 4018
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-materiais.png",
+      "sha256": "3be174b75d93a10b990ddb18cb3209c19c7e3e4d9786f76b7d61e13ea4b3c9ae",
+      "bytes": 1589
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias.png",
+      "sha256": "4081fb1a36fc71506658d30c3b56e7bc0b8baffe49cb00fad665ac026057d111",
+      "bytes": 47004
+    },
+    {
+      "path": "assets/margem.png",
+      "sha256": "873bbf2d40803ebd154175f6bc02d7d79060adda5ecadaa56732116524723a97",
+      "bytes": 4804
+    },
+    {
+      "path": "assets/mascotes.png",
+      "sha256": "89c78b89b0c4ea1ef44d2ef07f5b83b6bebeccb9eea736a3fcefb6de55f8b1d5",
+      "bytes": 7759
+    },
+    {
+      "path": "assets/painel.png",
+      "sha256": "7139ab15ed1aaec214bc19945caf6dbb9608eb8edf41c175af1fc2908653bc1b",
+      "bytes": 405
+    },
+    {
+      "path": "assets/pescador.png",
+      "sha256": "af60ab2a571377e43258d778612c57948fa30fbded73dbf150d625942094a9b7",
+      "bytes": 2322
+    },
+    {
+      "path": "assets/tamanhos_piloto.json",
+      "sha256": "7041e65d9932596ba6ffc5b7c8956e8f4ffeb7c7048817198c84267578349ecb",
+      "bytes": 520
+    },
+    {
+      "path": "main.py",
+      "sha256": "acd62f44633cb4a810ca293e50168b0950d8fec055977b1adfeb2da246aeb88f",
+      "bytes": 136
+    },
+    {
+      "path": "pesca_ambiente.py",
+      "sha256": "19743e22beb5df0c72aa575eb94d6fb9801d7974a70e8dfe9d11e0e440bd7b02",
+      "bytes": 9156
+    },
+    {
+      "path": "pesca_android.py",
+      "sha256": "40e985ea782d314b7c7f3917f9cf1c1e10218acbc067838a56cb3b34447a1bbe",
+      "bytes": 2581
+    },
+    {
+      "path": "pesca_catalogo.py",
+      "sha256": "93ad3965dc650a367482eb55444b9cc4b83ffeabf6b13b21fad8977228632cd0",
+      "bytes": 4403
+    },
+    {
+      "path": "pesca_conquistas.py",
+      "sha256": "1b02a411d75554f516c70caec346427c410ff8969629ac025538ace8a56f00bf",
+      "bytes": 2477
+    },
+    {
+      "path": "pesca_efeitos.py",
+      "sha256": "9eb98c9e10eca91ea7f1928304b3faa92a7a7c8383778f1288a669a8aefab237",
+      "bytes": 5045
+    },
+    {
+      "path": "pesca_equipamentos.py",
+      "sha256": "42d109e7aed81b6f8e6a3012c21a1246ef4c6de36781e266dd9976bae68c23ba",
+      "bytes": 2793
+    },
+    {
+      "path": "pesca_especies_visual.py",
+      "sha256": "7da544561c90ddb3a5ffe2b8f90616a0bc7416f1781144f9a52ebfba4277e988",
+      "bytes": 6084
+    },
+    {
+      "path": "pesca_idle.py",
+      "sha256": "4d696a94a2cb58f1755444574577980d26d271c8f8ae677ea8a24852f1a47907",
+      "bytes": 61704
+    },
+    {
+      "path": "pesca_loja.py",
+      "sha256": "f89ef6136376c233eb35aeb86aa08ee60883a45678bac9bca92edfc913f46443",
+      "bytes": 6710
+    },
+    {
+      "path": "pesca_luz.py",
+      "sha256": "9072f1ea6e72ebfca8f1a76f7e3896c137af0854aee69af29a2a28783e4f1ab2",
+      "bytes": 8273
+    },
+    {
+      "path": "pesca_moedas.py",
+      "sha256": "bbe38e1b865716329f6ec1486fba65e510357b81540b6588725db4bddad1520c",
+      "bytes": 1497
+    },
+    {
+      "path": "pesca_museu.py",
+      "sha256": "30b2f7b8cf3921230137e7a026426ae19e69d43b8e76fb10d0ffda8472aa4196",
+      "bytes": 2826
+    },
+    {
+      "path": "pesca_museu_ui.py",
+      "sha256": "a279037d31149ed50e3e774463370dc479e11e3f07f6686ec5b17c1cd0e1e8ed",
+      "bytes": 15303
+    },
+    {
+      "path": "pesca_offline.py",
+      "sha256": "448cd3dc6c40d1cb3ad3b82956722e346b4f220b09a65dd21ebf1283073f3a86",
+      "bytes": 2905
+    },
+    {
+      "path": "pesca_pescaria.py",
+      "sha256": "4596b89b5c2796625ff95de68562835d36ef43160a92d4bb404dd0f2a05238f0",
+      "bytes": 4803
+    },
+    {
+      "path": "pesca_piloto.py",
+      "sha256": "7c76dbeab00dcd5feed08417010321e100dde83202d1e6fb1a44e5c9322e6101",
+      "bytes": 707
+    },
+    {
+      "path": "pesca_plataforma.py",
+      "sha256": "09f7228cc1b469193ced4d6db6dfede6ebd802b281fa58e0b4e84cdbc0d66899",
+      "bytes": 1957
+    },
+    {
+      "path": "pesca_regional_visual.py",
+      "sha256": "a3eca8f6759ca021cdba07799a8567aa66c0fd8b711ef03e3368cea0acdb2467",
+      "bytes": 3531
+    },
+    {
+      "path": "pesca_save.py",
+      "sha256": "5fbb2d03d67508f090f1f5c7b82fbe0c79d1cce4d2e55dd0f9632767ceb40770",
+      "bytes": 17056
+    },
+    {
+      "path": "pesca_tamanho_visual.py",
+      "sha256": "a112f9325b4c4ddb3b7d73a6668dbaaccd175b3df7a0f71e94ec7511e3df833f",
+      "bytes": 811
+    },
+    {
+      "path": "pesca_tamanhos.py",
+      "sha256": "4889de63bfc8f3d73bd1b7e8bfb4cbd558c86c0b3e06295f2ace9feec53ac2b8",
+      "bytes": 9076
+    },
+    {
+      "path": "pesca_tempo.py",
+      "sha256": "115d39367ef21d9b91b02c17f5c26c8f73ef7a00b62c335fda725baed8c0575b",
+      "bytes": 1420
+    },
+    {
+      "path": "pesca_ui.py",
+      "sha256": "4d38782e63b6652028b32c898d905704a3cea0cb0b63b499d1ca73a6ab6006c1",
+      "bytes": 10479
+    },
+    {
+      "path": "pesca_viagens_ui.py",
+      "sha256": "d3e270a841578c505da8e5cae1d38e87ff1f82ac861f2caaa3a9d42f0f9011c5",
+      "bytes": 12221
+    },
+    {
+      "path": "pesca_visual.py",
+      "sha256": "57efaca71e526e77abdf7368a28d7436989872e2aa5ac87d82aa9d6d1312e9b8",
+      "bytes": 36185
+    },
+    {
+      "path": "PescaIdle.spec",
+      "sha256": "61ead03b656cd5fabbc7db1a43142c9f5a780a2ba84f508bb682414110d08d08",
+      "bytes": 1559
+    },
+    {
+      "path": "piloto_entry.py",
+      "sha256": "bb1153a5adcd81f73883f87f0c95beb6bd2f7b9ca1c18a2998ff65e8d1f9fb38",
+      "bytes": 603
+    },
+    {
+      "path": "tools/dev_access.py",
+      "sha256": "41f4b6e12e5cc05859f9dac2cb1526090f209143142476feb5ee2512e5870f71",
+      "bytes": 5516
+    },
+    {
+      "path": "tools/pilot_smoke.py",
+      "sha256": "62cadccc78e3fd2c576189d35add46a4e60f60bd34c7060887586d392cc0d26a",
+      "bytes": 3964
+    }
+  ],
+  "original_source_clean": true,
+  "base_original_hashes_verified": 373,
+  "all_existing_assets_unchanged": true,
+  "date_utc": "2026-10-18T22:42:50.031355+00:00",
+  "build": {
+    "exe": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-piloto-tamanhos-20261018\\executavel\\PescaIdle-Tamanhos-Piloto.exe",
+    "bytes": 50200863,
+    "sha256": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27",
+    "output": "C:\\Users\\berna\\.codex\\visualizations\\2026\\10\\05\\01a10c72-a799-7b40-b2e1-13c17985406b\\PescaIdle-piloto-tamanhos-20261018\\executavel\\qa-smoke-da0e51a3",
+    "phases": [
+      {
+        "mode": "pending",
+        "exit_code": 0
+      },
+      {
+        "mode": "deliver",
+        "exit_code": 0
+      },
+      {
+        "mode": "reopen",
+        "exit_code": 0
+      }
+    ],
+    "native_windows": true,
+    "physical_input": false,
+    "android": false
+  }
+}

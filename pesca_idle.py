@@ -8,6 +8,8 @@ Requisitos:  pip install PySide6
 Executar:    python pesca_idle.py        (ou pythonw pesca_idle.py)
 """
 import sys
+from pesca_piloto import prepare_profile
+prepare_profile()  # refuse all personal/outside profiles before initialization
 import copy
 from datetime import datetime
 from pesca_catalogo import ESPECIES, LOCAIS, OCORRENCIAS, legacy_view, desbloquear
@@ -18,6 +20,7 @@ from pesca_offline import replay, schedule, cancel, expire_active
 from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
 from pesca_moedas import can_buy, debit
 from pesca_plataforma import mobile, fit_dialog, safe_rect
+from pesca_tamanhos import fmt as fmt_length, offline_summary
 import os
 import json
 import random
@@ -1061,7 +1064,11 @@ class JogoPesca(QWidget):
         prefix = ('Avistamento' if s['sprite']['family'] in ('whale','orca','dolphin','narwhal','turtle','ray')
                   else 'Amostra registrada' if s['sprite']['family'] in ('copepod','salp','shrimp','shell')
                   else 'Encontro registrado') if event['categoria']=='especial' else 'Captura'
-        return f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas", '#ffe3ac'
+        text = f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas"
+        if 'measurement' in event:
+            text += '\n'+fmt_length(event['measurement']['mm'])+' · '+event['measurement']['band']
+            if event.get('size_news'): text += ' · recorde pessoal'
+        return text, '#ffe3ac'
 
     def mostrar_popup(self, texto, cor='#ffffff'):
         message = [texto, cor, self.DURACAO_POPUP]
@@ -1118,6 +1125,8 @@ class JogoPesca(QWidget):
         messages = [f"Retorno: {report['count']} registros, +{fmt_moedas(report['gain'])} moedas.",
                     f"Tempo contado: {fmt_tempo(report['paid_seconds'])} (limite de 4h)."]
         if report['mode']=='expedicao': messages.append('Expedição: substituiu o offline normal.')
+        size_summary = offline_summary(report['events'])
+        if size_summary: messages.append(size_summary)
         if awards: messages.append('Conquistas: '+', '.join(awards))
         return '\n'.join(messages)
 

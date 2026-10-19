@@ -1,6 +1,7 @@
 """Stable collection goals and cosmetic rewards, independent of Qt."""
 from pesca_catalogo import ESPECIES, LEGADO_49, EXPANSAO_88
 from pesca_loja import sold_items
+from pesca_tamanhos import definitions as size_definitions
 
 RECOMPENSA_LIVRO = 'enciclopedia_viva'
 
@@ -28,7 +29,7 @@ def definitions(state, catalogue):
       ('rei_piratas','Rei dos piratas?','Compre todos os itens de pirata na loja.',all(id_ in owned for id_,_,_,_ in catalogue if 'pirata' in id_)),
       ('fashionista','Fashionista',fashionista_text,not progress['missing']),
       ('enciclopedia_viva','Enciclopédia Viva','Libere todas as informações de todas as espécies; concede o livro flutuante.',all(inv.get(id_,0)>=10 for id_ in ESPECIES)),
-    ]
+    ] + size_definitions(state)
 
 
 def grant(state, catalogue):

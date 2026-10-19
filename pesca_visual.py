@@ -13,6 +13,7 @@ from pesca_luz import Lighting
 from pesca_equipamentos import rod, bait
 from pesca_regional_visual import RegionalEnvironment
 from pesca_especies_visual import species_image
+from pesca_tamanho_visual import draw_fish
 from pesca_catalogo import INICIAL
 from datetime import datetime
 from pesca_efeitos import extra
@@ -703,7 +704,7 @@ class SceneRenderer:
         if game.capturando>0 and result and result['categoria']=='peixe':
             t=1-game.capturando/1.2
             xx=193-round(t*43); yy=108-round(math.sin(t*math.pi)*31)
-            p.drawImage(xx-12,yy-8,species_image(result['species_id']).scaled(24,16,Qt.IgnoreAspectRatio,Qt.FastTransformation))
+            draw_fish(p,result['species_id'],xx,yy,result.get('measurement'),base_scale=2/3)
         elif game.capturando>0 and result and result['categoria']=='especial':
             # Observations and samples stay at the surface, detached from the hook.
             p.drawImage(182,101,species_image(result['species_id']).scaled(64,42,Qt.IgnoreAspectRatio,Qt.FastTransformation))

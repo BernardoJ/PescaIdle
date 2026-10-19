@@ -8,6 +8,9 @@ from pesca_catalogo import ESPECIES
 from pesca_especies_visual import species_image
 from pesca_museu import CAPACIDADE, eligible_species, slot_status, change_exhibit
 from pesca_plataforma import mobile
+from pesca_tamanhos import exhibit, fmt as fmt_length
+from pesca_tamanho_visual import draw_fish, scale_for
+import copy
 
 
 class AquariumView(QWidget):
@@ -101,8 +104,12 @@ class AquariumView(QWidget):
         for slot, id_ in enumerate(state['museu']['aquario']):
             if slot_status(state, slot, self.catalogue) == 'exibida':
                 angle = phase*.19+slot*2.2
-                result.append((id_, round(128+78*math.sin(angle)),
-                               34+slot*23+round(3*math.sin(phase*.7+slot)), math.cos(angle)<0))
+                scale=scale_for(exhibit(state,slot),id_)
+                width,height=36*scale,24*scale
+                amplitude=112-width/2-2
+                bob=max(0,min(2,(30-height)/2-1))
+                result.append((id_, 128+amplitude*math.sin(angle),
+                               31+slot*30+bob*math.sin(phase*.7+slot), math.cos(angle)<0))
         return result
 
     def render_image(self, phase=None):
@@ -115,11 +122,10 @@ class AquariumView(QWidget):
             y = 100-int((phase*7+i*17)%80)
             p.setPen(QColor('#76b2b3'));p.drawRect(x,y,2,3)
             p.fillRect(x+1,y,1,1,QColor('#c0dfd0'))
+        state=self.state_getter()
         for id_, x, y, reverse in self.fish_positions(phase):
-            sprite = species_image(id_)
-            if reverse:
-                sprite = sprite.mirrored(True,False)
-            p.drawImage(x-18,y-12,sprite)
+            slot=state['museu']['aquario'].index(id_)
+            draw_fish(p,id_,x,y,exhibit(state,slot),reverse)
         p.setPen(QColor('#7eafb1'))
         for i in range(4):
             x = 22+i*55+int(3*math.sin(phase*.4+i))
@@ -175,6 +181,7 @@ class MuseuDialog(QDialog):
         self.status = self.label('')
         self.body.addWidget(self.status)
         self.selectors, self.remove_buttons, self.details = [], [], []
+        self.specimen_selectors=[]
         for slot in range(CAPACIDADE):
             row = QHBoxLayout()
             combo = QComboBox()
@@ -191,11 +198,18 @@ class MuseuDialog(QDialog):
             self.body.addLayout(row)
             detail = self.label('')
             self.body.addWidget(detail)
+            specimen=QComboBox()
+            specimen.setAccessibleName(f'Exemplar no espaço {slot+1}')
+            specimen.addItem('Maior exemplar conhecido','maior')
+            specimen.addItem('Menor exemplar conhecido','menor')
+            specimen.currentIndexChanged.connect(lambda _,i=slot:self.choose_specimen(i))
+            self.body.addWidget(specimen)
+            self.specimen_selectors.append(specimen)
             self.selectors.append(combo);self.remove_buttons.append(remove);self.details.append(detail)
         self.feedback = self.label('')
         self.feedback.setStyleSheet('color: #ffe3ac')
         self.body.addWidget(self.feedback)
-        self.body.addWidget(self.label('Ilustrações da coleção, sem simular habitat ou escala real. Informações completas ficam na Enciclopédia. Sem alimentação, renda ou perda por ausência.'))
+        self.body.addWidget(self.label('Comprimentos de design provisórios. Escala visual comprimida por espécie, não uma comparação real entre espécies. Sem medida: representação padrão. Sem alimentação, renda ou perda por ausência.'))
         self.back = QPushButton('Voltar à pescaria')
         self.back.clicked.connect(self.accept)
         self.body.addWidget(self.back)
@@ -228,7 +242,8 @@ class MuseuDialog(QDialog):
     def refresh(self):
         state = self.game.estado
         slots = state['museu']['aquario']
-        signature = (tuple(state['inventario_por_id'].items()),tuple(slots))
+        signature = (tuple(state['inventario_por_id'].items()),tuple(slots),
+                     repr(state.get('medidas_peixes',{})),tuple(state['museu'].get('exemplares',['maior']*3)))
         if signature == self._signature:
             return
         self._signature = signature
@@ -262,13 +277,28 @@ class MuseuDialog(QDialog):
                 s = self.catalogue[current]
                 count = state['inventario_por_id'][current]
                 text = f"{s['nome']} · {count} {'registro' if count == 1 else 'registros'}\n{s['cientifico']}"
+                measured=exhibit(state,slot)
+                choice=state['museu'].get('exemplares',['maior']*3)[slot]
+                text+='\n'+(choice.title()+': '+fmt_length(measured['mm']) if measured else 'Sem exemplar medido · representação padrão')
             else:
                 text = 'Seleção indisponível: '+current[:72]+'. Referência guardada; troque ou retire para liberar este espaço.'
             self.details[slot].setText(text)
+            specimen=self.specimen_selectors[slot]
+            specimen.blockSignals(True)
+            specimen.setCurrentIndex(0 if state['museu'].get('exemplares',['maior']*3)[slot]=='maior' else 1)
+            specimen.setEnabled(status=='exibida' and exhibit(state,slot) is not None)
+            specimen.blockSignals(False)
         self.aquario.update()
 
     def choose(self,slot):
         self.apply(slot,self.selectors[slot].currentData())
+
+    def choose_specimen(self,slot):
+        candidate=copy.deepcopy(self.game.estado)
+        candidate['museu'].setdefault('exemplares',['maior']*3)[slot]=self.specimen_selectors[slot].currentData()
+        if not self.game._commit(candidate):self.feedback.setText('Exemplar não salvo. '+str(self.game._save_error))
+        else:self.feedback.setText('Exemplar salvo. Comprimento preciso mostrado acima.')
+        self._signature=None;self.refresh()
 
     def apply(self,slot,species_id):
         failed = False

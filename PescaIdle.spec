@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 
 a = Analysis(
-    ['pesca_idle.py'],
+    ['piloto_entry.py'],
     pathex=[],
     binaries=[],
     datas=[(str(p), str(Path('assets') / p.parent.relative_to(Path(SPECPATH) / 'assets')))
@@ -33,7 +33,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='PescaIdleDebug' if os.getenv('PESCA_IDLE_CONSOLE') == '1' else 'PescaIdle',
+    name='PescaIdle-Tamanhos-Piloto',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
