@@ -9,6 +9,9 @@ if '--pilot-smoke' in sys.argv:
         validate_profile_path(os.environ[key])
 
 if __name__=='__main__':
+    if '--demo' in sys.argv:
+        from tools.demo_tamanhos import run
+        sys.exit(run())
     if '--pilot-smoke' in sys.argv:
         from tools.pilot_smoke import run
         sys.exit(run())

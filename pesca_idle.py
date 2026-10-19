@@ -1067,7 +1067,13 @@ class JogoPesca(QWidget):
         text = f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas"
         if 'measurement' in event:
             text += '\n'+fmt_length(event['measurement']['mm'])+' · '+event['measurement']['band']
-            if event.get('size_news'): text += ' · recorde pessoal'
+            news = event.get('size_news', [])
+            if 'primeira' in news:
+                text += '\nPrimeiro registro · menor e maior iniciais'
+            elif news:
+                text += '\n' + ' · '.join('Novo '+kind+' pessoal' for kind in news)
+            else:
+                text += '\nSem novo recorde'
         return text, '#ffe3ac'
 
     def mostrar_popup(self, texto, cor='#ffffff'):

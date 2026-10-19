@@ -1,15 +1,26 @@
 # -*- mode: python ; coding: utf-8 -*-
 from pathlib import Path
 import os
+import json
+
+demo_build = os.getenv('PESCA_IDLE_DEMO_BUILD') == '1'
+demo_datas = []
+demo_name = None
+if demo_build:
+    info_path = Path(os.environ['PESCA_IDLE_DEMO_BUILD_INFO'])
+    info = json.loads(info_path.read_text(encoding='utf-8'))
+    demo_name = 'PescaIdle-Tamanhos-Demo-' + info['source_commit'][:8]
+    demo_datas = [(str(info_path), '.'),
+                  (str(Path(SPECPATH) / 'tools/fixtures/demo_tamanhos.json'), 'tools/fixtures')]
 
 a = Analysis(
-    ['piloto_entry.py'],
+    ['demo_entry.py' if demo_build else 'piloto_entry.py'],
     pathex=[],
     binaries=[],
     datas=[(str(p), str(Path('assets') / p.parent.relative_to(Path(SPECPATH) / 'assets')))
            for p in (Path(SPECPATH) / 'assets').rglob('*')
            if p.suffix in ('.png', '.json')
-           and 'source' not in p.relative_to(Path(SPECPATH) / 'assets').parts],
+           and 'source' not in p.relative_to(Path(SPECPATH) / 'assets').parts] + demo_datas,
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -33,7 +44,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='PescaIdle-Tamanhos-Piloto',
+    name=demo_name if demo_build else 'PescaIdle-Tamanhos-Piloto',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

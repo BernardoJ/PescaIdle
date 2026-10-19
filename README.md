@@ -2,6 +2,10 @@
 
 Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
 
+## Demonstração revisada — 19/10/2026
+
+Correção de IDs pendentes, recordes mais claros e um roteiro sintético isolado: execute `python -B piloto_entry.py --demo` com o ambiente existente. [Como experimentar, perfil separado, testes e build local](docs/piloto-tamanhos/demo/README.md). A build **Tamanhos-Demo** é separada e fica local; o download histórico abaixo não inclui essas correções.
+
 ## Abrir com dois cliques
 
 **[Baixar PescaIdle-Tamanhos-Piloto.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Tamanhos-Piloto.exe)**

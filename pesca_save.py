@@ -8,6 +8,7 @@ import time
 import uuid
 import math
 import random
+import re
 from pesca_catalogo import ALIASES, ESPECIES, desbloquear, legacy_view
 from pesca_tempo import snapshot
 from pesca_loja import CAT, SLOTS
@@ -182,10 +183,16 @@ def validate_state(state):
                 raise ValueError('recompensa/instante inválido')
             if any(type(context.get(k)) is not int or not 0<=context[k]<=10 for k in ('vara','barco')):
                 raise ValueError('equipamento inválido')
-            if not isinstance(pending['id'],str) or not pending['id'].startswith(state['perfil_id']+':'):
-                raise ValueError('identidade da fisgada inválida')
+            prefix = state['perfil_id'] + ':'
+            if (not isinstance(pending['id'], str)
+                    or not pending['id'].startswith(prefix)
+                    or re.fullmatch(r'[0-9]+', pending['id'][len(prefix):]) is None):
+                raise ValueError('ID deve conter o perfil seguido de um contador decimal')
+            counter = int(pending['id'][len(prefix):])
+            if not 0 < counter <= state['contador_eventos']:
+                raise ValueError('contador da fisgada fora do intervalo já criado')
         except (KeyError,TypeError,AssertionError,ValueError) as exc:
-            raise SaveError('Contexto da fisgada inválido; save preservado.') from exc
+            raise SaveError('Contexto/ID da fisgada inválido; save preservado. '+str(exc)) from exc
     if state['rng_state'] is not None:
         def tuples(v):return tuple(tuples(x) for x in v) if isinstance(v,(list,tuple)) else v
         try:random.Random().setstate(tuples(state['rng_state']))

@@ -704,7 +704,7 @@ class SceneRenderer:
         if game.capturando>0 and result and result['categoria']=='peixe':
             t=1-game.capturando/1.2
             xx=193-round(t*43); yy=108-round(math.sin(t*math.pi)*31)
-            draw_fish(p,result['species_id'],xx,yy,result.get('measurement'),base_scale=2/3)
+            draw_fish(p,result['species_id'],xx,yy,result.get('measurement'),base_scale=2/3,contrast=True)
         elif game.capturando>0 and result and result['categoria']=='especial':
             # Observations and samples stay at the surface, detached from the hook.
             p.drawImage(182,101,species_image(result['species_id']).scaled(64,42,Qt.IgnoreAspectRatio,Qt.FastTransformation))

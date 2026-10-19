@@ -183,6 +183,7 @@ class MuseuDialog(QDialog):
         self.selectors, self.remove_buttons, self.details = [], [], []
         self.specimen_selectors=[]
         for slot in range(CAPACIDADE):
+            self.body.addWidget(self.label(f'Espaço {slot+1}'))
             row = QHBoxLayout()
             combo = QComboBox()
             combo.setAccessibleName(f'Espécie no espaço {slot+1}')
@@ -279,12 +280,16 @@ class MuseuDialog(QDialog):
                 text = f"{s['nome']} · {count} {'registro' if count == 1 else 'registros'}\n{s['cientifico']}"
                 measured=exhibit(state,slot)
                 choice=state['museu'].get('exemplares',['maior']*3)[slot]
-                text+='\n'+(choice.title()+': '+fmt_length(measured['mm']) if measured else 'Sem exemplar medido · representação padrão')
+                text+='\n'+('Em exposição: '+choice+' exemplar · '+fmt_length(measured['mm']) if measured else 'Sem exemplar medido · representação padrão')
             else:
                 text = 'Seleção indisponível: '+current[:72]+'. Referência guardada; troque ou retire para liberar este espaço.'
             self.details[slot].setText(text)
             specimen=self.specimen_selectors[slot]
             specimen.blockSignals(True)
+            record=state.get('medidas_peixes',{}).get('records',{}).get(current)
+            for index,kind in enumerate(('maior','menor')):
+                length=fmt_length(record[kind]['mm']) if record else 'sem medida'
+                specimen.setItemText(index,kind.title()+' exemplar · '+length)
             specimen.setCurrentIndex(0 if state['museu'].get('exemplares',['maior']*3)[slot]=='maior' else 1)
             specimen.setEnabled(status=='exibida' and exhibit(state,slot) is not None)
             specimen.blockSignals(False)
@@ -294,11 +299,20 @@ class MuseuDialog(QDialog):
         self.apply(slot,self.selectors[slot].currentData())
 
     def choose_specimen(self,slot):
+        choice=self.specimen_selectors[slot].currentData()
+        if choice not in ('menor','maior') or exhibit(self.game.estado,slot) is None:
+            return
         candidate=copy.deepcopy(self.game.estado)
-        candidate['museu'].setdefault('exemplares',['maior']*3)[slot]=self.specimen_selectors[slot].currentData()
-        if not self.game._commit(candidate):self.feedback.setText('Exemplar não salvo. '+str(self.game._save_error))
-        else:self.feedback.setText('Exemplar salvo. Comprimento preciso mostrado acima.')
+        candidate['museu'].setdefault('exemplares',['maior']*3)[slot]=choice
+        failed=not self.game._commit(candidate)
+        if failed:
+            self.feedback.setText('Exemplar não salvo. Seleção anterior mantida. '+str(self.game._save_error))
+        else:
+            measured=exhibit(self.game.estado,slot)
+            self.feedback.setText(f'Espaço {slot+1}: {choice} exemplar · '+fmt_length(measured['mm'])+'. Seleção salva.')
         self._signature=None;self.refresh()
+        if failed:
+            QTimer.singleShot(0,self,lambda:self.scroll.ensureWidgetVisible(self.feedback,0,12))
 
     def apply(self,slot,species_id):
         failed = False
