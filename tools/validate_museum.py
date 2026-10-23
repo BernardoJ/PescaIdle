@@ -140,14 +140,13 @@ class MuseumTests(unittest.TestCase):
             self.assertEqual(loaded['inventario_por_id'],s['inventario_por_id'])
             self.assertEqual(loaded['registros_regionais'],s['registros_regionais'])
             self.assertEqual(migrate(loaded,game.ESTADO_PADRAO,NOW),loaded)
-            if version<3:
-                backup = store.path.with_name('legacy-'+str(version)+('.pre-expansao-v1.json' if version==1 else '.pre-schema-2.json'))
-                self.assertEqual(backup.read_bytes(),blob)
-            else:
-                self.assertEqual(store.path.read_bytes(),blob)
+            # All three historical versions migrate to this branch's pilot v4.
+            suffix='.pre-expansao-v1.json' if version==1 else f'.pre-schema-{version}.json'
+            backup = store.path.with_name('legacy-'+str(version)+suffix)
+            self.assertEqual(backup.read_bytes(),blob)
+            migrated_bytes = store.path.read_bytes()
             store.save(loaded)
-            if version==3:
-                self.assertEqual(store.backup_path.read_bytes(),blob)
+            self.assertEqual(store.backup_path.read_bytes(),migrated_bytes)
             self.assertEqual(store.load(game.ESTADO_PADRAO,NOW)['museu'],empty_museum())
 
     def test_04_unknown_references_preserved_and_not_drawn(self):
@@ -206,8 +205,9 @@ class MuseumTests(unittest.TestCase):
         for slot,id_ in enumerate(IDS[:3]):
             d.selectors[slot].setCurrentIndex(d.selectors[slot].findData(id_))
         self.assertEqual(g.estado['museu']['aquario'],list(IDS[:3]))
-        self.assertEqual({k:v for k,v in g.estado.items() if k not in ('museu','ultimo_salvo')},
-                         {k:v for k,v in original.items() if k not in ('museu','ultimo_salvo')})
+        self.assertEqual({k:v for k,v in g.estado.items() if k not in ('museu','ultimo_salvo','conquistas')},
+                         {k:v for k,v in original.items() if k not in ('museu','ultimo_salvo','conquistas')})
+        self.assertEqual(g.estado['conquistas'],original['conquistas']+['etapa1_c16','etapa1_c17'])
         d.apply(1,IDS[0]);self.assertIn('outro espaço',d.feedback.text())
         d.apply(1,IDS[3])
         self.assertEqual(g.estado['museu']['aquario'],[IDS[0],IDS[3],IDS[2]])
@@ -267,9 +267,12 @@ class MuseumTests(unittest.TestCase):
             self.assertEqual(ra,rb)
             self.assertEqual({k:v for k,v in a.items() if k!='museu'}, {k:v for k,v in b.items() if k!='museu'})
             before=copy.deepcopy(b);grant(b,CATALOGO)
-            # Aquarium cannot grant an achievement or award by itself.
+            # The approved first-museum goal is the only additive difference;
+            # all economics, RNG and other achievement IDs must remain equal.
             other=copy.deepcopy(a);grant(other,CATALOGO)
-            self.assertEqual(b['conquistas'],other['conquistas'])
+            self.assertEqual([id_ for id_ in b['conquistas'] if id_!='etapa1_c16'],
+                             other['conquistas'])
+            self.assertEqual(b['conquistas'].count('etapa1_c16'),1)
             self.assertEqual(b['museu'],changed['museu'])
             again,report=replay(before,NOW+seconds)
             self.assertEqual(report['gain'],0)

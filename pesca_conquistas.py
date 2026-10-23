@@ -1,7 +1,8 @@
 """Stable collection goals and cosmetic rewards, independent of Qt."""
 from pesca_catalogo import ESPECIES, LEGADO_49, EXPANSAO_88
-from pesca_loja import sold_items
+from pesca_loja import sold_items, CATALOGO
 from pesca_tamanhos import definitions as size_definitions
+from pesca_conquistas_etapa1 import definitions as stage1_definitions
 
 RECOMPENSA_LIVRO = 'enciclopedia_viva'
 
@@ -29,7 +30,7 @@ def definitions(state, catalogue):
       ('rei_piratas','Rei dos piratas?','Compre todos os itens de pirata na loja.',all(id_ in owned for id_,_,_,_ in catalogue if 'pirata' in id_)),
       ('fashionista','Fashionista',fashionista_text,not progress['missing']),
       ('enciclopedia_viva','Enciclopédia Viva','Libere todas as informações de todas as espécies; concede o livro flutuante.',all(inv.get(id_,0)>=10 for id_ in ESPECIES)),
-    ] + size_definitions(state)
+    ] + size_definitions(state) + stage1_definitions(state)
 
 
 def grant(state, catalogue):
@@ -40,3 +41,15 @@ def grant(state, catalogue):
     if 'enciclopedia_viva' in state['conquistas'] and RECOMPENSA_LIVRO not in state['cosmeticos']:
         state['cosmeticos'].append(RECOMPENSA_LIVRO)
     return unlocked
+
+
+def commit_with_achievements(game, candidate):
+    """Grant in the same snapshot; announce only after a successful commit."""
+    awards = grant(candidate, CATALOGO)
+    if not game._commit(candidate):
+        return False
+    notify = getattr(game, 'mostrar_popup', None)
+    if notify:
+        for title in awards:
+            notify('Conquista desbloqueada: '+title, '#ffe27a')
+    return True

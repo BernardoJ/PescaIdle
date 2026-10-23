@@ -7,6 +7,7 @@ from pesca_aquario_decor import (CAT,CATALOGO,SLOTS,record,purchase,equip,restor
 from pesca_aquario_decor_visual import aquarium_background
 from pesca_museu_ui import AquariumView
 from pesca_catalogo import ESPECIES
+from pesca_conquistas import commit_with_achievements
 
 def money_cent(value):
     whole,fraction=divmod(value,100)
@@ -113,7 +114,7 @@ class DecorationPanel(QWidget):
         self.aquarium.update()
 
     def commit(self,candidate,message):
-        if not self.game._commit(candidate):
+        if not commit_with_achievements(self.game,candidate):
             self.feedback.setText('Alteração não salva. '+str(getattr(self.game,'_save_error','')))
             self.signature=None;self.refresh();return
         self.feedback.setText(message);self.preview_requested=False;self.signature=None;self.refresh();self.changed.emit()

@@ -11,6 +11,7 @@ from pesca_plataforma import mobile
 from pesca_tamanhos import exhibit, fmt as fmt_length
 from pesca_tamanho_visual import scale_for
 from pesca_museu_visual import draw_aquarium_fish
+from pesca_conquistas import commit_with_achievements
 from pesca_aquario_decor import selections
 from pesca_aquario_decor_visual import aquarium_background
 import copy
@@ -288,7 +289,7 @@ class MuseuDialog(QDialog):
             return
         candidate=copy.deepcopy(self.game.estado)
         candidate['museu'].setdefault('exemplares',['maior']*3)[slot]=choice
-        failed=not self.game._commit(candidate)
+        failed=not commit_with_achievements(self.game,candidate)
         if failed:
             self.feedback.setText('Exemplar não salvo. Seleção anterior mantida. '+str(self.game._save_error))
         else:
@@ -304,7 +305,7 @@ class MuseuDialog(QDialog):
             candidate = change_exhibit(self.game.estado,slot,species_id,self.catalogue)
             if candidate == self.game.estado:
                 return
-            if not self.game._commit(candidate):
+            if not commit_with_achievements(self.game,candidate):
                 failed = True
                 self.feedback.setText('Exposição não salva. '+str(self.game._save_error))
             else:

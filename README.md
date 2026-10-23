@@ -2,6 +2,12 @@
 
 Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
 
+## Conquistas - primeira etapa
+
+O código-fonte acrescenta as **24 conquistas aprovadas**, totalizando **38** com as 14 anteriores. Há metas de coleção, mapas/períodos, museu, decorações, estilo e melhorias, com dificuldade e progresso na tela existente. Sem recompensa econômica nova ou alteração de preços, RNG e schema do piloto.
+
+[Regras, testes individuais e limitações](docs/conquistas-etapa1/README.md). Os executáveis/APKs históricos não foram recompilados para esta atualização.
+
 ## Decorar o aquário
 
 No código-fonte, a loja agora inclui a aba **Decorações do aquário**, com 21 opções internas/externas em sete tipos. No museu, use **Decorar aquário** para combinar os itens adquiridos. Preços iniciais propostos: **150 a 6.000 moedas**, apenas visuais; trocar ou retirar é gratuito. As decorações não ampliam a exigência de Fashionista.

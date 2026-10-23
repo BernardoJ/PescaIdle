@@ -866,8 +866,8 @@ class LojaDialog(QDialog):
                 return
             debit(e, preco)
             e["cosmeticos"].append(id_)
-        awards = grant(e, CATALOGO)
         e["equipados"][slot] = id_
+        awards = grant(e, CATALOGO)
         if not self.jogo._commit(e):
             return
         for title in awards:
@@ -1126,9 +1126,11 @@ class JogoPesca(QWidget):
             engine.begin_strike(self._wall(), snapshot(self._wall())['offset_seconds'])
         engine.finish_strike()
         candidate = engine.advance(0, self._wall(), snapshot(self._wall())['offset_seconds'])
-        grant(candidate, CATALOGO)
+        awards = grant(candidate, CATALOGO)
         if not self._commit(candidate):
             return {'tipo':'lixo','texto':self._save_error,'cor':'#ffb08a'}
+        for title in awards:
+            self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
         event = engine.events[-1]; self._last_result = event; self._sync_fishing()
         text,color = self._describe(event)
         return {'tipo':'peixe' if event['categoria']!='lixo' else 'lixo','texto':text,'cor':color}

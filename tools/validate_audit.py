@@ -106,7 +106,9 @@ class Audit(unittest.TestCase):
             self.assertEqual(migrated['moedas_centavos'],3000);self.assertTrue(debit(migrated,30))
         self.assertEqual(reward(.15,1),18);self.assertEqual(reward(.125,0),12)
         store=self.store('money');store.save(s);payload=json.loads(store.path.read_text())
-        self.assertNotIn('moedas',payload);self.assertEqual(payload['schema_version'],3)
+        # This branch has used the isolated size-pilot schema 4 since before
+        # stage-one achievements; keep the monetary payload assertion strict.
+        self.assertNotIn('moedas',payload);self.assertEqual(payload['schema_version'],4)
         self.assertEqual(store.load(game.ESTADO_PADRAO)['moedas_centavos'],0)
 
     def test_malformed_profiles_rejected(self):
