@@ -130,7 +130,7 @@ class AquariumView(QWidget):
         state=self.state_getter()
         for id_, x, y, reverse in self.fish_positions(phase):
             slot=state['museu']['aquario'].index(id_)
-            draw_aquarium_fish(p,id_,x,y,exhibit(state,slot),reverse,detail)
+            draw_aquarium_fish(p,id_,x,y,exhibit(state,slot),reverse,detail,phase)
         p.setPen(QColor('#7eafb1'))
         for i in range(4):
             x = 22+i*55+int(3*math.sin(phase*.4+i))
