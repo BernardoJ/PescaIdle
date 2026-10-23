@@ -1,0 +1,14 @@
+{
+  "pause": true,
+  "step": true,
+  "presets": true,
+  "viewports": [
+    640,
+    320
+  ],
+  "specimen_choice": true,
+  "timer_advanced": true,
+  "timer_stopped_on_close": true,
+  "save_created": false,
+  "frozen": false
+}

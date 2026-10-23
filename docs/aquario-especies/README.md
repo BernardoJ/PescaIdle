@@ -1,5 +1,7 @@
 # Aquário: arte por espécie
 
+Este documento registra a entrega dos passos 1-3. A continuação dos passos 4-5, com movimento, verificações e demonstração, está em [movimento/README.md](movimento/README.md). O [PDF completo](../../output/pdf/PescaIdle_Aquario_Completo.pdf) reúne os cinco passos.
+
 Implementação visual sobre o head da PR #5 `0f516e89c4bb7b2935a5011801595429941431c6`, em área isolada. A base da PR continua `codex/android-auditoria` (`2a0353ff7c1cae2dca69d08c222b0660770d4385` na conferência inicial). Data: 23/10/2026.
 
 ## Escopo

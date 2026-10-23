@@ -2,6 +2,14 @@
 
 Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
 
+## Aquário com movimento - passos 1 a 5 completos
+
+Os 68 moradores do tanque têm arte própria e movimento discreto de cauda/nadadeiras. [Baixar a demonstração visual Windows](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Aquario-Demo.exe), salvar em uma pasta gravável e abrir com dois cliques. É um visualizador em memória, sem progressão nem save; permite pausar, avançar quadros, trocar espécies e comparar exemplares do piloto.
+
+[PDF completo com os cinco passos](output/pdf/PescaIdle_Aquario_Completo.pdf) · [GIF do movimento](docs/aquario-especies/movimento/evidencias/movimento-ampliado.gif) · [Reprodução e limites](docs/aquario-especies/movimento/README.md) · [Testes, desempenho e pacote](docs/aquario-especies/movimento/RELATORIO.md).
+
+A animação foi integrada ao código-fonte do tanque. Os executáveis antigos do jogo completo abaixo permanecem históricos; a nova demonstração visual é separada.
+
 ## Arte dos peixes no aquário - 23/10/2026
 
 Os **68 peixes elegíveis** agora têm desenhos próprios no tanque, com formas e marcas por espécie e detalhe adaptado ao tamanho de exibição. A mudança preserva a escala do piloto e afeta somente a arte dentro do aquário. [Escopo, referências e reprodução](docs/aquario-especies/README.md) · [Relatório com screenshots em PDF](output/pdf/PescaIdle_Aquario_Especies.pdf) · [Antes/depois e limitações](docs/aquario-especies/relatorio.md).
