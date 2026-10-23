@@ -659,6 +659,7 @@ class LojaDialog(QDialog):
         self.categoria.addItem(rpg_icon("vara"), "Equipamento")
         for slot, title in SLOTS.items():
             self.categoria.addItem(rpg_icon(slot), title)
+        self.categoria.addItem(rpg_icon('livro'), 'Decorações do aquário')
         self.categoria.currentIndexChanged.connect(self.abas.setCurrentIndex)
         self.abas.currentChanged.connect(self.categoria.setCurrentIndex)
         controls.addWidget(self.categoria)
@@ -697,6 +698,9 @@ class LojaDialog(QDialog):
             self.listas[slot] = lista
             if mobile():lista.setMinimumHeight(200)
             self.abas.addTab(lista, titulo)
+        from pesca_aquario_decor_ui import DecorationPanel
+        self.decoracoes=DecorationPanel(jogo,shop=True,parent=self)
+        self.abas.addTab(self.decoracoes,'Decorações do aquário')
         self.abas.currentChanged.connect(self.ao_selecionar)
         controls.addWidget(self.abas, 1)
 
@@ -709,7 +713,8 @@ class LojaDialog(QDialog):
         self.btn.clicked.connect(self.acao)
         controls.addWidget(self.btn)
         body.addLayout(controls, 1)
-        preview = QVBoxLayout()
+        self.preview_container=QWidget()
+        preview = QVBoxLayout(self.preview_container)
         preview_title = QLabel("Seu barco • prévia ao vivo")
         preview_title.setStyleSheet("color: #efc581; font-weight: 600;")
         preview.addWidget(preview_title)
@@ -722,17 +727,20 @@ class LojaDialog(QDialog):
         preview.addStretch(1)
         close = QPushButton("Voltar à pescaria")
         close.clicked.connect(self.accept)
-        preview.addWidget(close)
-        body.addLayout(preview)
+        body.addWidget(self.preview_container)
         lay.addLayout(body, 1)
+        lay.addWidget(close)
 
         self.preencher()
+        self.decoracoes.changed.connect(self.atualizar_moedas)
         self.atualizar_moedas()
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.atualizar_moedas)
         self.timer.start(500)
         self.finished.connect(self.timer.stop)
+        self.finished.connect(self.decoracoes.aquarium.timer.stop)
+        self.finished.connect(self.preview_scene.timer.stop)
 
         geo = QApplication.primaryScreen().availableGeometry()
         x = max(geo.x(), jogo.x() - self.width() - 10)
@@ -765,7 +773,7 @@ class LojaDialog(QDialog):
     # ---- cosméticos
     def slot_atual(self):
         idx = self.abas.currentIndex()
-        return None if idx == 0 else list(SLOTS)[idx - 1]
+        return list(SLOTS)[idx-1] if 1<=idx<=len(SLOTS) else None
 
     def id_atual(self):
         slot = self.slot_atual()
@@ -801,6 +809,10 @@ class LojaDialog(QDialog):
         self.ao_selecionar()
 
     def ao_selecionar(self, *_):
+        if hasattr(self,'preview_container'):
+            self.preview_container.setVisible(self.abas.currentWidget() is not self.decoracoes)
+            if self.abas.currentWidget() is self.decoracoes:self.preview_scene.timer.stop()
+            else:self.preview_scene.timer.start(100)
         self.jogo.previa = {}
         id_ = self.id_atual()
         if id_:
@@ -837,6 +849,7 @@ class LojaDialog(QDialog):
             f'Suas moedas: {fmt_moedas(self.jogo.estado["moedas"])}')
         self.atualizar_equipamento()
         self.atualizar_botao()
+        self.decoracoes.refresh()
 
     def acao(self):
         self.jogo.tick()
@@ -1259,8 +1272,9 @@ class JogoPesca(QWidget):
         self.estado['ultimo_processado_utc'] = max(self.estado['ultimo_processado_utc'],self._wall())
         self.salvar()
 
-    def abrir_loja(self):
+    def abrir_loja(self, decoracoes=False):
         dlg = LojaDialog(self)
+        if decoracoes:dlg.abas.setCurrentWidget(dlg.decoracoes)
         fit_dialog(dlg)
         dlg.exec()
         dlg.deleteLater()

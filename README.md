@@ -2,6 +2,14 @@
 
 Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
 
+## Decorar o aquário
+
+No código-fonte, a loja agora inclui a aba **Decorações do aquário**, com 21 opções internas/externas em sete tipos. No museu, use **Decorar aquário** para combinar os itens adquiridos. Preços iniciais propostos: **150 a 6.000 moedas**, apenas visuais; trocar ou retirar é gratuito. As decorações não ampliam a exigência de Fashionista.
+
+[Catálogo, preços, save e limites](docs/aquario-decoracoes/README.md) · [Loja](docs/aquario-decoracoes/imagens/loja.png) · [Prancha das 21 opções](docs/aquario-decoracoes/imagens/catalogo.png).
+
+Os executáveis/APKs abaixo são anteriores às decorações e não foram recompilados nesta entrega.
+
 ## Aquário com movimento - passos 1 a 5 completos
 
 Os 68 moradores do tanque têm arte própria e movimento discreto de cauda/nadadeiras. [Baixar a demonstração visual Windows](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Aquario-Demo.exe), salvar em uma pasta gravável e abrir com dois cliques. É um visualizador em memória, sem progressão nem save; permite pausar, avançar quadros, trocar espécies e comparar exemplares do piloto.

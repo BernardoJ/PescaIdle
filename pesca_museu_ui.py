@@ -11,6 +11,8 @@ from pesca_plataforma import mobile
 from pesca_tamanhos import exhibit, fmt as fmt_length
 from pesca_tamanho_visual import scale_for
 from pesca_museu_visual import draw_aquarium_fish
+from pesca_aquario_decor import selections
+from pesca_aquario_decor_visual import aquarium_background
 import copy
 
 
@@ -31,6 +33,7 @@ class AquariumView(QWidget):
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.setAccessibleName('Aquário de descobertas, até três espécies')
         self.background = self.make_background()
+        self.decoration_preview = {}
 
     def hasHeightForWidth(self):
         return True
@@ -62,42 +65,7 @@ class AquariumView(QWidget):
 
     @staticmethod
     def make_background():
-        image = QImage(256, 128, QImage.Format_ARGB32_Premultiplied)
-        image.fill(QColor('#263749'))
-        p = QPainter(image)
-        def box(x, y, w, h, color):
-            p.fillRect(x, y, w, h, QColor(color))
-        for y in range(0, 128, 16):
-            box(0, y, 256, 1, '#32465a')
-            for x in range((y//16 % 2)*16, 256, 32):
-                box(x, y, 1, 16, '#32465a')
-        box(7, 8, 242, 108, '#101e2b')
-        for inset, color in ((0,'#ba9860'),(1,'#f0d39b'),(3,'#69513c'),(5,'#a9c8bf')):
-            p.setPen(QColor(color));p.drawRect(8+inset,9+inset,239-2*inset,104-2*inset)
-        for y in range(16, 106):
-            depth = (y-16)/90
-            box(15,y,226,1,QColor(int(29-depth*13),int(91-depth*47),int(108-depth*48)).name())
-        p.setPen(Qt.NoPen)
-        for x in (42, 114, 191):
-            p.setBrush(QColor(162,217,199,16))
-            p.drawPolygon(QPolygon([QPoint(x,16),QPoint(x+8,16),QPoint(x+33,105),QPoint(x-14,105)]))
-            box(x-6,5,22,4,'#d2af76');box(x-2,10,14,2,'#f5dca0')
-        box(15,102,226,6,'#aa9d78')
-        for i in range(38):
-            box(17+i*6,103+i%3,2,1,'#6d7b70')
-        for x, height in ((27,28),(37,18),(220,33),(230,22)):
-            for y in range(height):
-                box(x+round(2*math.sin(y*.4)),103-y,2,2,'#507e70')
-                if y%6 == 0:
-                    box(x-3,103-y,5,2,'#729e7a')
-        for x, width in ((43,18),(185,23)):
-            box(x,99,width,5,'#566d70');box(x+3,95,width-6,5,'#77948c')
-            box(x+5,95,width-9,1,'#9bb0a0')
-        box(8,115,240,4,'#ab8753');box(12,119,232,9,'#514333')
-        for x in (20, 76, 132, 188):
-            box(x,120,47,2,'#776042')
-        p.end()
-        return image
+        return aquarium_background()
 
     def fish_positions(self, phase):
         state = self.state_getter()
@@ -117,7 +85,10 @@ class AquariumView(QWidget):
         phase = self.phase if phase is None else phase
         if detail not in (1, 2):
             raise ValueError('Aquarium detail must be 1 or 2.')
-        image = self.background.scaled(256*detail,128*detail,
+        state=self.state_getter()
+        selection=selections(state,self.decoration_preview)
+        background=aquarium_background(selection) if any(selection) else self.background
+        image = background.scaled(256*detail,128*detail,
                                       Qt.IgnoreAspectRatio,Qt.FastTransformation)
         p = QPainter(image)
         p.scale(detail,detail)
@@ -127,7 +98,6 @@ class AquariumView(QWidget):
             y = 100-int((phase*7+i*17)%80)
             p.setPen(QColor('#76b2b3'));p.drawRect(x,y,2,3)
             p.fillRect(x+1,y,1,1,QColor('#c0dfd0'))
-        state=self.state_getter()
         for id_, x, y, reverse in self.fish_positions(phase):
             slot=state['museu']['aquario'].index(id_)
             draw_aquarium_fish(p,id_,x,y,exhibit(state,slot),reverse,detail,phase)
@@ -181,6 +151,9 @@ class MuseuDialog(QDialog):
         heading.setProperty('heading',True)
         self.body.addWidget(heading)
         self.body.addWidget(self.label('Aquário de descobertas\nExiba até três espécies diferentes. Descobrir libera a representação: nenhuma captura ou moeda é consumida.'))
+        decorate=QPushButton('Decorar aquário')
+        decorate.clicked.connect(self.open_decorations)
+        self.body.addWidget(decorate)
         self.aquario = AquariumView(lambda:self.game.estado,self.catalogue,self)
         self.body.addWidget(self.aquario)
         self.status = self.label('')
@@ -302,6 +275,12 @@ class MuseuDialog(QDialog):
 
     def choose(self,slot):
         self.apply(slot,self.selectors[slot].currentData())
+
+    def open_decorations(self):
+        from pesca_aquario_decor_ui import DecorationDialog
+        dialog=DecorationDialog(self.game,self)
+        dialog.exec();dialog.deleteLater()
+        self.aquario.update()
 
     def choose_specimen(self,slot):
         choice=self.specimen_selectors[slot].currentData()
