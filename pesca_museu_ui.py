@@ -9,7 +9,8 @@ from pesca_especies_visual import species_image
 from pesca_museu import CAPACIDADE, eligible_species, slot_status, change_exhibit
 from pesca_plataforma import mobile
 from pesca_tamanhos import exhibit, fmt as fmt_length
-from pesca_tamanho_visual import draw_fish, scale_for
+from pesca_tamanho_visual import scale_for
+from pesca_museu_visual import draw_aquarium_fish
 import copy
 
 
@@ -112,10 +113,14 @@ class AquariumView(QWidget):
                                31+slot*30+bob*math.sin(phase*.7+slot), math.cos(angle)<0))
         return result
 
-    def render_image(self, phase=None):
+    def render_image(self, phase=None, detail=1):
         phase = self.phase if phase is None else phase
-        image = self.background.copy()
+        if detail not in (1, 2):
+            raise ValueError('Aquarium detail must be 1 or 2.')
+        image = self.background.scaled(256*detail,128*detail,
+                                      Qt.IgnoreAspectRatio,Qt.FastTransformation)
         p = QPainter(image)
+        p.scale(detail,detail)
         p.setClipRect(16,16,224,90)
         for i in range(7):
             x = 24+(i*31)%205
@@ -125,7 +130,7 @@ class AquariumView(QWidget):
         state=self.state_getter()
         for id_, x, y, reverse in self.fish_positions(phase):
             slot=state['museu']['aquario'].index(id_)
-            draw_fish(p,id_,x,y,exhibit(state,slot),reverse)
+            draw_aquarium_fish(p,id_,x,y,exhibit(state,slot),reverse,detail)
         p.setPen(QColor('#7eafb1'))
         for i in range(4):
             x = 22+i*55+int(3*math.sin(phase*.4+i))
@@ -142,7 +147,7 @@ class AquariumView(QWidget):
         target = QRectF(round((self.width()-width)*ratio/2)/ratio,
                         round((self.height()-height)*ratio/2)/ratio,width,height)
         painter.setRenderHint(QPainter.SmoothPixmapTransform,False)
-        painter.drawImage(target,self.render_image())
+        painter.drawImage(target,self.render_image(detail=2 if scale>=2 else 1))
         painter.end()
 
 
