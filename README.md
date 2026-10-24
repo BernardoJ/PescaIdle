@@ -1,4 +1,16 @@
-# Pesca Idle — piloto de tamanhos e recordes
+# Pesca Idle - clima diário e piloto de tamanhos
+
+## Versão atual Windows - 23/10/2026
+
+**[Baixar PescaIdle-Clima.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Clima.exe)**. Salve em uma pasta gravável e abra com dois cliques; não exige instalar Python. Inclui clima diário, consulta clicável de bônus/ônus e os avanços anteriores de aquário, decorações e conquistas desta branch.
+
+O perfil fica em `perfil-piloto/save.json`, junto ao EXE; não importa o save pessoal de APPDATA. Perfis piloto anteriores são migrados com backup para schema 5. Executáveis antigos não abrem esse schema; voltar exige restaurar uma cópia do backup anterior.
+
+Build Windows x64, código `d1bcd5bb13cb58d7196221450be2a43124dfa233`: **50.561.165 bytes**, SHA-256 `ba481e9a42d2e992406aaa6380575499274cff3e541e160efd32ea5cf352c0ee`. Smoke do EXE novo passou em três processos com perfil temporário. Android nativo/APK não atualizado nesta entrega.
+
+[Relatório com resultados e imagens](docs/clima/RELATORIO.md) · [PDF](output/pdf/PescaIdle_Relatorio_Clima.pdf) · [Regras e reprodução](docs/CLIMA.md) · [Animação dos cinco climas](docs/clima/imagens/climas.gif).
+
+As seções abaixo preservam o histórico das entregas anteriores e seus binários. Suas observações sobre ausência de recompilação referem-se àquelas entregas; o download atual está acima.
 
 Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
 

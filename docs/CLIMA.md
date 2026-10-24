@@ -58,12 +58,21 @@ São 35 condições iniciais (sete períodos x cinco sementes), duas políticas 
 Build Windows e smoke sobre o EXE novo:
 
 ```powershell
-# Antes do build, configure TEMP/TMP/APPDATA/LOCALAPPDATA e
-# PESCA_IDLE_SAVE_PATH para uma pasta nova em qa deste candidato.
+$climaBuild = Join-Path (Get-Location) 'qa/build-minha-rodada'
+New-Item -ItemType Directory -Path $climaBuild -ErrorAction Stop | Out-Null
+foreach ($parte in @('tmp','appdata','localappdata')) {
+    New-Item -ItemType Directory -Path (Join-Path $climaBuild $parte) -ErrorAction Stop | Out-Null
+}
+$env:TEMP = Join-Path $climaBuild 'tmp'
+$env:TMP = $env:TEMP
+$env:APPDATA = Join-Path $climaBuild 'appdata'
+$env:LOCALAPPDATA = Join-Path $climaBuild 'localappdata'
+$env:PESCA_IDLE_SAVE_PATH = Join-Path $climaBuild 'guard.json'
 $env:PESCA_IDLE_CLIMATE_BUILD = '1'
-python -m PyInstaller --noconfirm --distpath qa/clima-build/dist --workpath qa/clima-build/work PescaIdle.spec
-# Copiar somente o EXE novo da saída para PescaIdle-Clima.exe na raiz.
-python -X utf8 -B tools/run_climate_smoke.py --exe PescaIdle-Clima.exe --out qa/smoke-exe-minha-rodada
+python -m PyInstaller --noconfirm --distpath (Join-Path $climaBuild 'dist') --workpath (Join-Path $climaBuild 'work') PescaIdle.spec
+# O novo arquivo é dist/PescaIdle-Clima.exe dentro de $climaBuild.
+# O smoke aceita esse caminho; não é preciso substituir nenhum EXE histórico.
+python -X utf8 -B tools/run_climate_smoke.py --exe (Join-Path $climaBuild 'dist/PescaIdle-Clima.exe') --out qa/smoke-exe-minha-rodada
 ```
 
 ## Evidências e limites

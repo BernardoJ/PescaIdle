@@ -1,0 +1,12 @@
+{
+  "cosmetic_renders": 7360,
+  "equipment_pair_renders": 4840,
+  "maps": 8,
+  "climates": 5,
+  "cosmetic_items": 92,
+  "dialog_lifecycles": 50,
+  "timers_stopped": true,
+  "game_state_and_rng_unchanged": true,
+  "seconds": 23.044106999994256,
+  "scope": "Cada item individual em duas fases e todo par vara/barco; não enumera todas as combinações simultâneas de cosméticos."
+}
