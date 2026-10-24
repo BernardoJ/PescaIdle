@@ -1,0 +1,875 @@
+{
+  "version": 1,
+  "frames": 8,
+  "scope": "Aquarium-only artistic animation, not a biological swimming-rate model.",
+  "species": {
+    "lambari": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "tilapia_do_nilo": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "carpa_comum": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "traira": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "tambaqui": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "pacu": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "carpa_capim": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "acara": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "jundia": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "curimbata": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "matrinxa": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "piabanha": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "piraputanga": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "piapara": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "dourado": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "pintado": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "pirarara": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "jau": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "tainha": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "parati": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "carapeba": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "robalo_flecha": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "robalo_peva": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "corvina": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "bagre_amarelo": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_rei": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_agulha": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "betara": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "sargo": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "sargentinho": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_borboleta": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "cirurgiao_patela": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "garoupa_verdadeira": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "mero_preto": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_papagaio_azul": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "barracuda_grande": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "atum_azul": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "albacora_laje": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_palhaco": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "salmao_rosa": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "bacalhau_do_atlantico": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "polaca_do_alasca": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "bacalhau_polar": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "cavala": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "sardinha_do_pacifico": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "anchoveta_peruana": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "arenque_atlantico": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_lanterna_glaciar": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_lanterna_de_muller": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_lanterna_comum": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "dourado_do_mar": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_vela": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_voador": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        6,
+        7,
+        8
+      ]
+    },
+    "tubarao_branco": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "tubarao_boca_grande": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "tubarao_lagarto": {
+      "style": "undulate",
+      "anchor_x": 34,
+      "step_seconds": 0.24,
+      "tail_back": [],
+      "fins_back": [],
+      "fins_front": []
+    },
+    "celacanto_comorense": {
+      "style": "caudal",
+      "anchor_x": 49,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0
+      ],
+      "fins_back": [
+        1,
+        2,
+        3
+      ],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_mao_vermelho": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_ogro": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.22,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_lua": {
+      "style": "fins",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [],
+      "fins_back": [
+        0,
+        1,
+        2
+      ],
+      "fins_front": [
+        3
+      ]
+    },
+    "linguado_comum": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [
+        6,
+        7
+      ],
+      "fins_front": []
+    },
+    "halibute_do_atlantico": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [
+        6,
+        7
+      ],
+      "fins_front": []
+    },
+    "moreia_verde": {
+      "style": "undulate",
+      "anchor_x": 34,
+      "step_seconds": 0.22,
+      "tail_back": [],
+      "fins_back": [],
+      "fins_front": []
+    },
+    "peixe_lobo": {
+      "style": "undulate",
+      "anchor_x": 34,
+      "step_seconds": 0.24,
+      "tail_back": [],
+      "fins_back": [],
+      "fins_front": []
+    },
+    "peixe_pescador_abissal": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.18,
+      "tail_back": [
+        0
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "peixe_vibora": {
+      "style": "caudal",
+      "anchor_x": 54,
+      "step_seconds": 0.2,
+      "tail_back": [
+        0,
+        1
+      ],
+      "fins_back": [],
+      "fins_front": [
+        1
+      ]
+    },
+    "enguia_pelicano": {
+      "style": "undulate",
+      "anchor_x": 34,
+      "step_seconds": 0.22,
+      "tail_back": [],
+      "fins_back": [],
+      "fins_front": []
+    },
+    "cavalinho_do_mar_pigmeu": {
+      "style": "fins",
+      "anchor_x": 54,
+      "step_seconds": 0.24,
+      "tail_back": [],
+      "fins_back": [
+        0
+      ],
+      "fins_front": []
+    }
+  }
+}

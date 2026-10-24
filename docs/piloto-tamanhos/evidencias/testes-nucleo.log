@@ -1,0 +1,17 @@
+test_01_distribution_borders_and_monotonicity (tools.verificar_tamanhos.SizeTests.test_01_distribution_borders_and_monotonicity) ... ok
+test_02_separate_event_rng_repeatable (tools.verificar_tamanhos.SizeTests.test_02_separate_event_rng_repeatable) ... ok
+test_03_first_extremes_ties_and_idempotence (tools.verificar_tamanhos.SizeTests.test_03_first_extremes_ties_and_idempotence) ... ok
+test_04_diversity_and_unique_achievements (tools.verificar_tamanhos.SizeTests.test_04_diversity_and_unique_achievements) ... ok
+test_05_pending_save_reopen_no_reroll_or_double_reward (tools.verificar_tamanhos.SizeTests.test_05_pending_save_reopen_no_reroll_or_double_reward) ... ok
+test_06_legacy_migration_no_retroactive_sizes (tools.verificar_tamanhos.SizeTests.test_06_legacy_migration_no_retroactive_sizes) ... ok
+test_07_invalid_data_preserves_last_good_file (tools.verificar_tamanhos.SizeTests.test_07_invalid_data_preserves_last_good_file) ... ok
+test_08_future_parameters_keep_old_record_snapshot (tools.verificar_tamanhos.SizeTests.test_08_future_parameters_keep_old_record_snapshot) ... ok
+test_09_offline_all_events_cap_and_no_repeat (tools.verificar_tamanhos.SizeTests.test_09_offline_all_events_cap_and_no_repeat) ... ok
+test_10_legacy_pending_stays_unmeasured (tools.verificar_tamanhos.SizeTests.test_10_legacy_pending_stays_unmeasured) ... ok
+test_11_pause_and_scheduled_offline (tools.verificar_tamanhos.SizeTests.test_11_pause_and_scheduled_offline) ... ok
+test_12_missing_or_corrupt_pilot_fields_are_not_silently_reset (tools.verificar_tamanhos.SizeTests.test_12_missing_or_corrupt_pilot_fields_are_not_silently_reset) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 1.665s
+
+OK

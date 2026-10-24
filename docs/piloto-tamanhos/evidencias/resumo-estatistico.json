@@ -1,0 +1,365 @@
+{
+  "scope": "32 paired seeds, starts 07/20h, level0 fixed, Enseada, 4h; not retention/global economy",
+  "distribution": {
+    "lambari": {
+      "rule": {
+        "min_mm": 40,
+        "typical_mm": 90,
+        "max_mm": 180,
+        "version": 1,
+        "small_cut_mm": 58,
+        "large_cut_mm": 155
+      },
+      "samples": 100000,
+      "small": 4875,
+      "large": 5053,
+      "small_probability_exact": 0.04889285714285714,
+      "large_probability_exact": 0.05160714285714285,
+      "small_95ci": [
+        0.047432549837049726,
+        0.05010211799705648
+      ],
+      "large_95ci": [
+        0.049189608290752876,
+        0.05190492279267253
+      ]
+    },
+    "tilapia_do_nilo": {
+      "rule": {
+        "min_mm": 120,
+        "typical_mm": 300,
+        "max_mm": 600,
+        "version": 1,
+        "small_cut_mm": 185,
+        "large_cut_mm": 516
+      },
+      "samples": 100000,
+      "small": 4953,
+      "large": 4866,
+      "small_probability_exact": 0.0496556712962963,
+      "large_probability_exact": 0.04958506944444441,
+      "small_95ci": [
+        0.048202437774691444,
+        0.05089217013495912
+      ],
+      "large_95ci": [
+        0.04734372264580542,
+        0.05001095210266105
+      ]
+    },
+    "carpa_comum": {
+      "rule": {
+        "min_mm": 180,
+        "typical_mm": 500,
+        "max_mm": 1100,
+        "version": 1,
+        "small_cut_mm": 301,
+        "large_cut_mm": 934
+      },
+      "samples": 100000,
+      "small": 5006,
+      "large": 4921,
+      "small_probability_exact": 0.05014351222826087,
+      "large_probability_exact": 0.0502214673913044,
+      "small_95ci": [
+        0.04872561953251777,
+        0.05142894765923347
+      ],
+      "large_95ci": [
+        0.047886575032828504,
+        0.05056805746121411
+      ]
+    },
+    "traira": {
+      "rule": {
+        "min_mm": 100,
+        "typical_mm": 350,
+        "max_mm": 800,
+        "version": 1,
+        "small_cut_mm": 193,
+        "large_cut_mm": 675
+      },
+      "samples": 100000,
+      "small": 4978,
+      "large": 4906,
+      "small_probability_exact": 0.049955714285714284,
+      "large_probability_exact": 0.050000793650793685,
+      "small_95ci": [
+        0.04844921635424738,
+        0.0511453723488469
+      ],
+      "large_95ci": [
+        0.04773851975898328,
+        0.05041612425899312
+      ]
+    }
+  },
+  "by_start": {
+    "7": {
+      "med_primeira": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 25.193867855276498,
+          "median": 18.79817127025101,
+          "p10": 13.862397434728802,
+          "p90": 39.916648074777946,
+          "min": 11.622782473979754,
+          "max": 91.59862743941842
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 1,
+          "median": 1.0,
+          "p10": 1.0,
+          "p90": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "median_seconds_bootstrap95ci": [
+          16.890815646058105,
+          28.158245665007215
+        ]
+      },
+      "med_diminuto": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 497.10827957472526,
+          "median": 351.8824456234104,
+          "p10": 75.68394349442175,
+          "p90": 1119.4398003920885,
+          "min": 32.43090409731584,
+          "max": 1573.2219070394099
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 22.1875,
+          "median": 14.0,
+          "p10": 3.1,
+          "p90": 42.0,
+          "min": 1,
+          "max": 68
+        },
+        "median_seconds_bootstrap95ci": [
+          170.97623792106302,
+          667.7371999440837
+        ]
+      },
+      "med_excepcional": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 451.26958123721334,
+          "median": 257.2664926368398,
+          "p10": 37.69207118695378,
+          "p90": 964.1559235005697,
+          "min": 14.738327648331623,
+          "max": 3794.695650897598
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 20.03125,
+          "median": 10.5,
+          "p10": 2.0,
+          "p90": 44.00000000000002,
+          "min": 1,
+          "max": 169
+        },
+        "median_seconds_bootstrap95ci": [
+          131.28042505105378,
+          448.23072432162155
+        ]
+      },
+      "med_div_pequenos": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 3337.2015265294435,
+          "median": 2595.427835635626,
+          "p10": 1409.1847603749688,
+          "p90": 5932.235730722626,
+          "min": 249.71913747985116,
+          "max": 8104.703580414891
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 151.21875,
+          "median": 116.0,
+          "p10": 67.1,
+          "p90": 269.1,
+          "min": 14,
+          "max": 368
+        },
+        "median_seconds_bootstrap95ci": [
+          2133.0876092722256,
+          3649.1316560825053
+        ]
+      },
+      "med_div_grandes": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 3519.1897528545837,
+          "median": 3079.204136955309,
+          "p10": 1057.9158372706809,
+          "p90": 6679.731186332235,
+          "min": 511.8277904256864,
+          "max": 12835.405378813366
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 157.0625,
+          "median": 135.0,
+          "p10": 46.0,
+          "p90": 305.10000000000014,
+          "min": 20,
+          "max": 568
+        },
+        "median_seconds_bootstrap95ci": [
+          2411.4037685932262,
+          3738.552279123538
+        ]
+      }
+    },
+    "20": {
+      "med_primeira": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 19.145593058397388,
+          "median": 16.936003092087546,
+          "p10": 12.874227676844809,
+          "p90": 32.46630751457644,
+          "min": 11.622782473979754,
+          "max": 41.17298595674525
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 1,
+          "median": 1.0,
+          "p10": 1.0,
+          "p90": 1.0,
+          "min": 1,
+          "max": 1
+        },
+        "median_seconds_bootstrap95ci": [
+          15.567574281506696,
+          18.48252100686349
+        ]
+      },
+      "med_diminuto": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 472.2768361782619,
+          "median": 268.7072576973494,
+          "p10": 78.6355127886565,
+          "p90": 994.5761974969593,
+          "min": 16.24570678688548,
+          "max": 1573.2219070394099
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 24.5625,
+          "median": 14.0,
+          "p10": 4.0,
+          "p90": 56.30000000000001,
+          "min": 1,
+          "max": 83
+        },
+        "median_seconds_bootstrap95ci": [
+          170.55111675879184,
+          667.7371999440837
+        ]
+      },
+      "med_excepcional": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 356.24085535978674,
+          "median": 257.2664926368398,
+          "p10": 37.69207118695378,
+          "p90": 734.4750994163373,
+          "min": 14.738327648331623,
+          "max": 1909.6455283489036
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 18.15625,
+          "median": 13.5,
+          "p10": 2.1,
+          "p90": 34.500000000000014,
+          "min": 1,
+          "max": 99
+        },
+        "median_seconds_bootstrap95ci": [
+          131.28042505105378,
+          375.5917091011371
+        ]
+      },
+      "med_div_pequenos": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 2134.0484290064046,
+          "median": 2040.1577019517658,
+          "p10": 884.0817340607233,
+          "p90": 3133.644861254483,
+          "min": 249.71913747985116,
+          "max": 5027.050001553289
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 111,
+          "median": 105.5,
+          "p10": 45.9,
+          "p90": 162.70000000000002,
+          "min": 14,
+          "max": 258
+        },
+        "median_seconds_bootstrap95ci": [
+          1547.955915064515,
+          2371.781969457623
+        ]
+      },
+      "med_div_grandes": {
+        "hit": 32,
+        "not_reached_4h": 0,
+        "seconds": {
+          "n": 32,
+          "mean": 2329.8956073803984,
+          "median": 1938.9510117709738,
+          "p10": 560.3714069643365,
+          "p90": 4694.324017579953,
+          "min": 190.48366345105669,
+          "max": 6829.863779304882
+        },
+        "measured_catches": {
+          "n": 32,
+          "mean": 121,
+          "median": 100.5,
+          "p10": 29.1,
+          "p90": 246.30000000000004,
+          "min": 11,
+          "max": 353
+        },
+        "median_seconds_bootstrap95ci": [
+          1155.0599248944989,
+          2534.800310368132
+        ]
+      }
+    }
+  },
+  "quantiles": "linear interpolation",
+  "uncertainty": "Wilson 95% per frequency; percentile bootstrap 2000 resamples of 32 seeds separately per start, median only; paired starts are not independent"
+}

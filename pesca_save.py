@@ -8,13 +8,17 @@ import time
 import uuid
 import math
 import random
+import re
 from pesca_catalogo import ALIASES, ESPECIES, desbloquear, legacy_view
 from pesca_tempo import snapshot
 from pesca_loja import CAT, SLOTS
 from pesca_moedas import set_balance, set_cents, cents
 from pesca_museu import empty_museum, validate_museum
+from pesca_tamanhos import ensure_sizes, validate_sizes
+from pesca_piloto import validate_profile_path
+from pesca_clima import new_climate,validate_climate,validate_context,context as weather_context
 
-SCHEMA = 3
+SCHEMA = 5  # daily weather on the isolated size pilot; not the rod proposal
 
 
 class SaveError(RuntimeError):
@@ -27,6 +31,10 @@ def migrate(raw, defaults, now):
     version = raw.get('schema_version', 1)
     if type(version) is not int or version > SCHEMA or version < 1:
         raise SaveError('Versão do save não suportada; o arquivo foi preservado.')
+    if version >= 4 and raw.get('pilot_kind') != 'tamanhos-v1':
+        raise SaveError('Schema 4 pertence a outro candidato ou não tem identificação; original preservado.')
+    if version >= 4 and 'medidas_peixes' not in raw:
+        raise SaveError('Perfil do piloto sem o campo de medidas; original preservado.')
     for key in ('equipados', 'inventario', 'inventario_por_id', 'registros_regionais', 'registros_por_periodo'):
         if key in raw and not isinstance(raw[key], dict):
             raise SaveError('Campo inválido: '+key+'; original preservado.')
@@ -44,7 +52,7 @@ def migrate(raw, defaults, now):
                'pesca_pendente', 'rng_state', 'expedicao', 'viagem_pendente',
                'registros_regionais', 'registros_por_periodo', 'legado_sem_contexto',
                'local_atual_id', 'locais_desbloqueados', 'contador_eventos',
-               'ultimo_evento_aplicado', 'pausado', 'museu')
+               'ultimo_evento_aplicado', 'pausado', 'museu', 'medidas_peixes')
     for key in dynamic:
         if key not in raw:
             state.pop(key, None)
@@ -81,7 +89,15 @@ def migrate(raw, defaults, now):
     state.setdefault('expedicao', None)
     state.setdefault('rng_state', None)
     state.setdefault('museu', empty_museum())
+    ensure_sizes(state)
     try:
+        if version<5:
+            # Historical absence remains neutral until migration. No weather is
+            # invented for past catches, even if the old clock was ahead.
+            state['clima']=new_climate(state['perfil_id'],now)
+            if state['pesca_pendente'] is not None:
+                ctx=state['pesca_pendente']['context']
+                ctx['clima']=weather_context({},ctx['utc'],ctx['offset_seconds'])
         if version < 3:
             set_balance(state, raw.get('moedas', defaults.get('moedas', 0)))
         else:
@@ -94,6 +110,7 @@ def migrate(raw, defaults, now):
     except (ValueError, TypeError, KeyError) as exc:
         raise SaveError('Saldo/recompensa inválidos; original preservado.') from exc
     state['schema_version'] = SCHEMA
+    state['pilot_kind'] = 'tamanhos-v1'
     if not isinstance(state['inventario_por_id'], dict) or any(
             type(n) is not int or n < 0 for n in state['inventario_por_id'].values()):
         raise SaveError('Contagens inválidas; o save foi preservado.')
@@ -106,10 +123,14 @@ def migrate(raw, defaults, now):
 def validate_state(state):
     from pesca_catalogo import LOCAIS
     from pesca_tempo import LABELS
+    if state.get('schema_version')!=SCHEMA:raise SaveError('Versão do snapshot inválida.')
+    if state.get('pilot_kind') != 'tamanhos-v1':raise SaveError('Perfil não pertence ao piloto de tamanhos.')
     try:
+        validate_climate(state.get('clima'))
         validate_museum(state['museu'])
-    except (KeyError, ValueError) as exc:
-        raise SaveError('Museu inválido; original preservado: '+str(exc)) from exc
+        validate_sizes(state)
+    except (KeyError, ValueError, TypeError) as exc:
+        raise SaveError('Clima/museu/medidas inválidos; original preservado: '+str(exc)) from exc
     if type(state.get('moedas_centavos')) is not int or state['moedas_centavos'] < 0:
         raise SaveError('Saldo em centésimos inválido.')
     if state.get('moedas') != state['moedas_centavos']/100:
@@ -164,6 +185,7 @@ def validate_state(state):
         from pesca_tempo import LABELS
         try:
             context=pending['context']
+            validate_context(context['clima'],context['utc'],context['offset_seconds'])
             if not (pending['species_id'] in ESPECIES or pending['species_id']=='bota_velha'):
                 raise ValueError('espécie inválida')
             if context['map_id'] not in LOCAIS or context['periodo_id'] not in LABELS:
@@ -172,10 +194,16 @@ def validate_state(state):
                 raise ValueError('recompensa/instante inválido')
             if any(type(context.get(k)) is not int or not 0<=context[k]<=10 for k in ('vara','barco')):
                 raise ValueError('equipamento inválido')
-            if not isinstance(pending['id'],str) or not pending['id'].startswith(state['perfil_id']+':'):
-                raise ValueError('identidade da fisgada inválida')
+            prefix = state['perfil_id'] + ':'
+            if (not isinstance(pending['id'], str)
+                    or not pending['id'].startswith(prefix)
+                    or re.fullmatch(r'[0-9]+', pending['id'][len(prefix):]) is None):
+                raise ValueError('ID deve conter o perfil seguido de um contador decimal')
+            counter = int(pending['id'][len(prefix):])
+            if not 0 < counter <= state['contador_eventos']:
+                raise ValueError('contador da fisgada fora do intervalo já criado')
         except (KeyError,TypeError,AssertionError,ValueError) as exc:
-            raise SaveError('Contexto da fisgada inválido; save preservado.') from exc
+            raise SaveError('Contexto/ID da fisgada inválido; save preservado. '+str(exc)) from exc
     if state['rng_state'] is not None:
         def tuples(v):return tuple(tuples(x) for x in v) if isinstance(v,(list,tuple)) else v
         try:random.Random().setstate(tuples(state['rng_state']))
@@ -184,7 +212,10 @@ def validate_state(state):
 
 class SaveStore:
     def __init__(self, path):
-        self.path = Path(path).expanduser().resolve()
+        try:
+            self.path = validate_profile_path(path)
+        except ValueError as exc:
+            raise SaveError(str(exc)) from exc
         self.lock = None
         try:
             self.path.parent.mkdir(parents=True, exist_ok=True)

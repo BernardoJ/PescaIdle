@@ -1,0 +1,338 @@
+{
+  "repository": "BernardoJ/PescaIdle",
+  "branch": "codex/piloto-tamanhos",
+  "base_branch": "codex/android-auditoria",
+  "base_sha": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+  "tested_snapshot_sha256": "3118f7966ad9a3070a06cd81796709b39927b31e12064f8edc45521f038bc8d9",
+  "exe_sha256": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27",
+  "exe_bytes": 50200863,
+  "historical_test_date": "2026-10-18",
+  "tests_rerun_for_publication": false,
+  "file_selection": "reviewed source changes, one new pilot EXE, reports, synthetic aggregates, screenshots; no profiles/build dirs/caches",
+  "line_endings": "Git stores canonical text; .gitattributes preserves tested LF/CRLF checkout per changed file",
+  "privacy": "absolute local user paths removed from publication copies; original local artifacts preserved",
+  "files": [
+    {
+      "path": "PescaIdle.spec",
+      "bytes": 1559,
+      "sha256": "61ead03b656cd5fabbc7db1a43142c9f5a780a2ba84f508bb682414110d08d08"
+    },
+    {
+      "path": "assets/tamanhos_piloto.json",
+      "bytes": 520,
+      "sha256": "7041e65d9932596ba6ffc5b7c8956e8f4ffeb7c7048817198c84267578349ecb"
+    },
+    {
+      "path": "pesca_conquistas.py",
+      "bytes": 2477,
+      "sha256": "1b02a411d75554f516c70caec346427c410ff8969629ac025538ace8a56f00bf"
+    },
+    {
+      "path": "pesca_idle.py",
+      "bytes": 61704,
+      "sha256": "4d696a94a2cb58f1755444574577980d26d271c8f8ae677ea8a24852f1a47907"
+    },
+    {
+      "path": "pesca_museu_ui.py",
+      "bytes": 15303,
+      "sha256": "a279037d31149ed50e3e774463370dc479e11e3f07f6686ec5b17c1cd0e1e8ed"
+    },
+    {
+      "path": "pesca_pescaria.py",
+      "bytes": 4803,
+      "sha256": "4596b89b5c2796625ff95de68562835d36ef43160a92d4bb404dd0f2a05238f0"
+    },
+    {
+      "path": "pesca_piloto.py",
+      "bytes": 707,
+      "sha256": "7c76dbeab00dcd5feed08417010321e100dde83202d1e6fb1a44e5c9322e6101"
+    },
+    {
+      "path": "pesca_save.py",
+      "bytes": 17056,
+      "sha256": "5fbb2d03d67508f090f1f5c7b82fbe0c79d1cce4d2e55dd0f9632767ceb40770"
+    },
+    {
+      "path": "pesca_tamanho_visual.py",
+      "bytes": 811,
+      "sha256": "a112f9325b4c4ddb3b7d73a6668dbaaccd175b3df7a0f71e94ec7511e3df833f"
+    },
+    {
+      "path": "pesca_tamanhos.py",
+      "bytes": 9076,
+      "sha256": "4889de63bfc8f3d73bd1b7e8bfb4cbd558c86c0b3e06295f2ace9feec53ac2b8"
+    },
+    {
+      "path": "pesca_viagens_ui.py",
+      "bytes": 12221,
+      "sha256": "d3e270a841578c505da8e5cae1d38e87ff1f82ac861f2caaa3a9d42f0f9011c5"
+    },
+    {
+      "path": "pesca_visual.py",
+      "bytes": 36185,
+      "sha256": "57efaca71e526e77abdf7368a28d7436989872e2aa5ac87d82aa9d6d1312e9b8"
+    },
+    {
+      "path": "piloto_entry.py",
+      "bytes": 603,
+      "sha256": "bb1153a5adcd81f73883f87f0c95beb6bd2f7b9ca1c18a2998ff65e8d1f9fb38"
+    },
+    {
+      "path": "tools/pilot_smoke.py",
+      "bytes": 3964,
+      "sha256": "62cadccc78e3fd2c576189d35add46a4e60f60bd34c7060887586d392cc0d26a"
+    },
+    {
+      "path": "tools/verificar_tamanhos.py",
+      "bytes": 12756,
+      "sha256": "4e81ed97373f5df322c1ad43a7997eb092eb59e8c27949178bc70b60962ae0c1"
+    },
+    {
+      "path": "tools/visual_tamanhos.py",
+      "bytes": 11468,
+      "sha256": "0958433bad1a0a2211c0fb7b0cdda64a6e584982b84e6c3d6f8ae81b1270df2e"
+    },
+    {
+      "path": "PescaIdle-Tamanhos-Piloto.exe",
+      "bytes": 50200863,
+      "sha256": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27"
+    },
+    {
+      "path": "docs/piloto-tamanhos/RELATORIO.md",
+      "bytes": 17917,
+      "sha256": "ca20571a1da381e455c15fb24044b8fb667ab507d8b89e1d0539aa00052aefe4"
+    },
+    {
+      "path": "docs/piloto-tamanhos/PARAMETROS.md",
+      "bytes": 3777,
+      "sha256": "ba20e02cbc666b724a986ca307a9000ca96e66a0a01495acc5203d543173d3ba"
+    },
+    {
+      "path": "docs/piloto-tamanhos/INSTRUCOES.md",
+      "bytes": 2971,
+      "sha256": "811b3253c975115c1da12d0b0cceaa9866822a2f469bd3a0325fb70bffd17c2f"
+    },
+    {
+      "path": "docs/piloto-tamanhos/ALTERACOES.patch",
+      "bytes": 58977,
+      "sha256": "5af287883c868bf1aea93802a955569288ce4cd6bd393c0aa94618fe7b1ccd62"
+    },
+    {
+      "path": "docs/piloto-tamanhos/BASE.json",
+      "bytes": 63997,
+      "sha256": "1dc920783e7aeef62f7fafa00a35786a21dcc0ad42f7093a528f3938a91bab12"
+    },
+    {
+      "path": "docs/piloto-tamanhos/ENTREGA.json",
+      "bytes": 19536,
+      "sha256": "f26c8d79559375c2cced6c74559dae06db183b74b7a81365a8b404d069814ee7"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/testes-nucleo.json",
+      "bytes": 49,
+      "sha256": "2b83682009dfe410a08fb545607f398aa330ae9f5315f1bb5cfcc464af8b02e0"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/testes-nucleo.log",
+      "bytes": 1731,
+      "sha256": "9addb6ad2c78da9796972b15b2fd873384ab43e301c42f0f31933201e6eb00e5"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/visual-checks.json",
+      "bytes": 1047,
+      "sha256": "451060abfc2a50eeb30e16a242bfb31663c8c2a7d8282b5863ff6ef82496bad0"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/distribuicao-esforco.json",
+      "bytes": 46948,
+      "sha256": "3e3abe7a4a1155b40d4c1684ab2bb31b324b0400224cd28cb33e1faf068bad07"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/resumo-estatistico.json",
+      "bytes": 9320,
+      "sha256": "a3cfe387f82b54274a95a4601735e823a68a96352005de5f00cd27e3495740cd"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/regressao-comparada.json",
+      "bytes": 421,
+      "sha256": "769a4812fcfafec9310c3daf36e1890ddbc6e3b8ae3c7ad046d926898aeb93fa"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/smoke-executavel.json",
+      "bytes": 503,
+      "sha256": "0ed7e1e6f5ab026206175cf79d6b4245c0994f7a1a375f3020d2bb58d01ebb4e"
+    },
+    {
+      "path": "docs/piloto-tamanhos/evidencias/pacote-verificado.json",
+      "bytes": 448,
+      "sha256": "d4cbd6b1edeb016365f5531ceba112a228838d9b4bd7e56eabf4bfc262dfc0ed"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/aquario-animacao.png",
+      "bytes": 12652,
+      "sha256": "003e44deb456571081b5ad53dee078593ab233bfdaa5e6576511ab7e0e429251"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/aquario-misto.png",
+      "bytes": 7203,
+      "sha256": "ec797fccddb266bc4238c89cfe2a2704db234befbd93877aff05dc1b18c2e52f"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/captura-desktop.png",
+      "bytes": 80053,
+      "sha256": "c069f05a88c7030263aa83a4a47a929e4d8bb15fa8fc70654e87d090cbd3e9e5"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/captura-mobile-carpa_comum.png",
+      "bytes": 96280,
+      "sha256": "4f94a48448fdee05fa0e9a0aa13b922306115001ae2816e464816bd5af3fb974"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/captura-mobile-lambari.png",
+      "bytes": 96108,
+      "sha256": "e2a79715f7d977cad85800dc2ec22332b5e641db1b48c5a46000f1717d0ac696"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/captura-mobile-tilapia_do_nilo.png",
+      "bytes": 96440,
+      "sha256": "7a2bee6454eaaaa4b1564a16032489f4ef29b6b25082e67e00b9279991be9d02"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/captura-mobile-traira.png",
+      "bytes": 95841,
+      "sha256": "b67f2afa9c4c736ef09b896c339877daf8073a648d8fd4d4d9a2568addddb314"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/enciclopedia-desktop.png",
+      "bytes": 27195,
+      "sha256": "d69f6ade8f610656b1473cb5b3c3e41d4e7a16ff39b159e38a0b87132519f293"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/enciclopedia-mobile-320-rodape.png",
+      "bytes": 19521,
+      "sha256": "f87c3a83eda28c600a5f85e58d2e91aa9f0f6f18ca2d2f59bd9be944c5ab23dd"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/enciclopedia-mobile-320.png",
+      "bytes": 16438,
+      "sha256": "7273c0f94e0f5d8e0494f33b9574eb4aa18df814a3ef666028eb0a30674de434"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/enciclopedia-mobile-360-rodape.png",
+      "bytes": 25219,
+      "sha256": "13a7686ea206a517f5602c9515aacd3a7b95f20264a470bb11082178f1b2e244"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/enciclopedia-mobile-360.png",
+      "bytes": 23853,
+      "sha256": "b612ae867a3dcc2d5db02620e9ac0af4a9c148a65e044f1117e72c308ef4efcf"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-desktop-rodape.png",
+      "bytes": 27796,
+      "sha256": "0a4c342e53fab823efdfbe9eb60a5528ab0539084f6b0feb5fe7330ef9d2351a"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-desktop-topo.png",
+      "bytes": 27106,
+      "sha256": "ee35c06cc3070a7820c62e9e7e316cf7ea1930f0410e7a5a24ce48b1aa454247"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-legado-sem-medida.png",
+      "bytes": 28156,
+      "sha256": "2cb44d23b1189c009b7fa03c065236ced15bf4d993f7e2e89bdc23d8133d17e0"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-mobile-320-rodape.png",
+      "bytes": 18277,
+      "sha256": "ccc45a53874f375f4086ed9d2e0bc385683755202739538ca8f9ce614951ba70"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-mobile-320-topo.png",
+      "bytes": 21761,
+      "sha256": "c62958734060f61bd50f13592f7efa6658197f81740d66cfab08eb8f8f860cee"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-mobile-360-rodape.png",
+      "bytes": 25908,
+      "sha256": "53ab84d0814d1c41896a9a4441767c40a75da7933b96e725e3543403f19da357"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/museu-mobile-360-topo.png",
+      "bytes": 30465,
+      "sha256": "2f458b36a24d5bb90452c962660b399a48c91c6317b945575850abaf376e4f6c"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-carpa_comum.png",
+      "bytes": 104031,
+      "sha256": "18b37da01e8858523ca65e38aceb32e6730ef892fa9f291abcaeef490278e726"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-lambari.png",
+      "bytes": 104109,
+      "sha256": "0bf39bb3dd7f171035c6d11cdd1ace2cd45eb0b919b5f60c6ea2355d21e3114f"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-mobile-carpa_comum.png",
+      "bytes": 34424,
+      "sha256": "3f9ab62f5691bfaedbe70cc1114ba7e1bd09d07d19bfb7d4df3d30e662648593"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-mobile-lambari.png",
+      "bytes": 33948,
+      "sha256": "db1ce5ddc18c333cbee4917a0cbb237eb97c8cb8b081f3aaf0b7c30936d6c9d2"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-mobile-tilapia_do_nilo.png",
+      "bytes": 34524,
+      "sha256": "aadfc45503bd59523263113d8149922022e7e12fadba20e69f15b1a4fc6a4c2a"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-mobile-traira.png",
+      "bytes": 33297,
+      "sha256": "f93563008569be3c5b4be988421c33ce00711de29eb1e1518a7a98270096f3ab"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-tilapia_do_nilo.png",
+      "bytes": 104044,
+      "sha256": "5c10b30efd1e86ad56d4ed8512050be7b9e62a6b15a1565579c5609f50499c59"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/variacao-traira.png",
+      "bytes": 103940,
+      "sha256": "cc8bb90572d3b65269296ccaae112c8bff432d4ac8186f8278f02f70f673deda"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/exe-captura.png",
+      "bytes": 79392,
+      "sha256": "07abf4c7fda1a2e45cf9e363c97dff9e30c5bf5ad618b725e42b28e6816fe789"
+    },
+    {
+      "path": "docs/piloto-tamanhos/imagens/exe-museu.png",
+      "bytes": 25574,
+      "sha256": "413f188fb66766246285ca9feb1366a073184f15ae65c2ddba429dd96e1a381c"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 611,
+      "sha256": "cd50999914a109c769bf986b2a2cf141268495285440fc3680ab72e6356f80f8"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 192,
+      "sha256": "9510cb4376b41ceb02647d56b69ffc018e235af14635b571b8596b7644de12c6"
+    }
+  ],
+  "publication_docs": [
+    "README.md",
+    "docs/piloto-tamanhos/README.md"
+  ],
+  "static_review": {
+    "selected_files": 65,
+    "credential_pattern_findings": 0,
+    "personal_profile_files_included": false,
+    "historical_exe_sha256": "be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9",
+    "new_exe_hash_matches_tested": true,
+    "current_publication_executed_game_or_simulations": false
+  }
+}

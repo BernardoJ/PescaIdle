@@ -95,7 +95,11 @@ def run(profile,out):
     check('EVT-01 frozen start and queue',engine.state['pesca_pendente']==original and event['context']['periodo_id']=='amanhecer' and event['context']['map_id']=='enseada_do_poente')
     midway=engine.advance(.75,ctx_time,0);saved=json.loads(json.dumps(midway));restored=FishingEngine(saved)
     end=restored.advance(.75,ctx_time+.75,0)
-    check('EVT-02 applied once after reload',len(restored.events)==1 and restored.events[0]==original and end['local_atual_id']=='recife_das_cores' and end['pesca_pendente'] is None)
+    # The size pilot adds this exact post-delivery annotation; the frozen
+    # event/context/measurement/economy must still compare without other changes.
+    delivered=copy.deepcopy(original)
+    delivered['size_news']=['primeira'] if 'measurement' in original else []
+    check('EVT-02 applied once after reload',len(restored.events)==1 and restored.events[0]==delivered and end['local_atual_id']=='recife_das_cores' and end['pesca_pendente'] is None)
     reread=FishingEngine(json.loads(json.dumps(end)));reread.advance(0,ctx_time+1.5,0)
     check('EVT-02 no repeated result',len(reread.events)==0 and reread.state['moedas']==end['moedas'])
     blocked=fresh();old=copy.deepcopy(blocked);check('EVT-04 blocked read-only',not travel(blocked,'rio_das_vitorias') and blocked==old)

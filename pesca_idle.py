@@ -8,6 +8,8 @@ Requisitos:  pip install PySide6
 Executar:    python pesca_idle.py        (ou pythonw pesca_idle.py)
 """
 import sys
+from pesca_piloto import prepare_profile
+prepare_profile()  # refuse all personal/outside profiles before initialization
 import copy
 from datetime import datetime
 from pesca_catalogo import ESPECIES, LOCAIS, OCORRENCIAS, legacy_view, desbloquear
@@ -18,6 +20,7 @@ from pesca_offline import replay, schedule, cancel, expire_active
 from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
 from pesca_moedas import can_buy, debit
 from pesca_plataforma import mobile, fit_dialog, safe_rect
+from pesca_tamanhos import fmt as fmt_length, offline_summary
 import os
 import json
 import random
@@ -656,6 +659,7 @@ class LojaDialog(QDialog):
         self.categoria.addItem(rpg_icon("vara"), "Equipamento")
         for slot, title in SLOTS.items():
             self.categoria.addItem(rpg_icon(slot), title)
+        self.categoria.addItem(rpg_icon('livro'), 'Decorações do aquário')
         self.categoria.currentIndexChanged.connect(self.abas.setCurrentIndex)
         self.abas.currentChanged.connect(self.categoria.setCurrentIndex)
         controls.addWidget(self.categoria)
@@ -694,6 +698,9 @@ class LojaDialog(QDialog):
             self.listas[slot] = lista
             if mobile():lista.setMinimumHeight(200)
             self.abas.addTab(lista, titulo)
+        from pesca_aquario_decor_ui import DecorationPanel
+        self.decoracoes=DecorationPanel(jogo,shop=True,parent=self)
+        self.abas.addTab(self.decoracoes,'Decorações do aquário')
         self.abas.currentChanged.connect(self.ao_selecionar)
         controls.addWidget(self.abas, 1)
 
@@ -706,7 +713,8 @@ class LojaDialog(QDialog):
         self.btn.clicked.connect(self.acao)
         controls.addWidget(self.btn)
         body.addLayout(controls, 1)
-        preview = QVBoxLayout()
+        self.preview_container=QWidget()
+        preview = QVBoxLayout(self.preview_container)
         preview_title = QLabel("Seu barco • prévia ao vivo")
         preview_title.setStyleSheet("color: #efc581; font-weight: 600;")
         preview.addWidget(preview_title)
@@ -719,17 +727,20 @@ class LojaDialog(QDialog):
         preview.addStretch(1)
         close = QPushButton("Voltar à pescaria")
         close.clicked.connect(self.accept)
-        preview.addWidget(close)
-        body.addLayout(preview)
+        body.addWidget(self.preview_container)
         lay.addLayout(body, 1)
+        lay.addWidget(close)
 
         self.preencher()
+        self.decoracoes.changed.connect(self.atualizar_moedas)
         self.atualizar_moedas()
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.atualizar_moedas)
         self.timer.start(500)
         self.finished.connect(self.timer.stop)
+        self.finished.connect(self.decoracoes.aquarium.timer.stop)
+        self.finished.connect(self.preview_scene.timer.stop)
 
         geo = QApplication.primaryScreen().availableGeometry()
         x = max(geo.x(), jogo.x() - self.width() - 10)
@@ -762,7 +773,7 @@ class LojaDialog(QDialog):
     # ---- cosméticos
     def slot_atual(self):
         idx = self.abas.currentIndex()
-        return None if idx == 0 else list(SLOTS)[idx - 1]
+        return list(SLOTS)[idx-1] if 1<=idx<=len(SLOTS) else None
 
     def id_atual(self):
         slot = self.slot_atual()
@@ -798,6 +809,10 @@ class LojaDialog(QDialog):
         self.ao_selecionar()
 
     def ao_selecionar(self, *_):
+        if hasattr(self,'preview_container'):
+            self.preview_container.setVisible(self.abas.currentWidget() is not self.decoracoes)
+            if self.abas.currentWidget() is self.decoracoes:self.preview_scene.timer.stop()
+            else:self.preview_scene.timer.start(100)
         self.jogo.previa = {}
         id_ = self.id_atual()
         if id_:
@@ -834,6 +849,7 @@ class LojaDialog(QDialog):
             f'Suas moedas: {fmt_moedas(self.jogo.estado["moedas"])}')
         self.atualizar_equipamento()
         self.atualizar_botao()
+        self.decoracoes.refresh()
 
     def acao(self):
         self.jogo.tick()
@@ -850,8 +866,8 @@ class LojaDialog(QDialog):
                 return
             debit(e, preco)
             e["cosmeticos"].append(id_)
-        awards = grant(e, CATALOGO)
         e["equipados"][slot] = id_
+        awards = grant(e, CATALOGO)
         if not self.jogo._commit(e):
             return
         for title in awards:
@@ -909,6 +925,11 @@ class JogoPesca(QWidget):
         self.ultimo_tick = self._monotonic()
         self._ultimo_civil = self._wall()
         self._clock_snapshot = snapshot(self._wall())
+        from PySide6.QtWidgets import QToolButton
+        self.botao_clima=QToolButton(self);self.botao_clima.setObjectName('botaoClima')
+        self.botao_clima.setCursor(Qt.PointingHandCursor);self.botao_clima.setFocusPolicy(Qt.StrongFocus)
+        self.botao_clima.setStyleSheet('QToolButton { background: #233449; border: 2px solid #c9ac78; padding: 2px; } QToolButton:hover,QToolButton:focus { background: #405965; border-color: #ffe1a0; }')
+        self.botao_clima.clicked.connect(self.abrir_clima);self._sync_climate_button()
         self.posicionar()
         self.atualizar_tooltip()
         self.relogio = QTimer(self)
@@ -928,7 +949,9 @@ class JogoPesca(QWidget):
         self.W,self.H=math.ceil(self.scene_rect.width()),math.ceil(self.scene_rect.height())
         self.ICONE_X=self.W-44
         self.rect_icone=QRect(self.ICONE_X,self.ICONE_Y,32,32)
+        self.rect_clima=QRect(self.ICONE_X-40,self.ICONE_Y,32,32)
         self.setFixedSize(self.W,self.H)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
 
     def event(self, event):
         result=super().event(event)
@@ -948,6 +971,8 @@ class JogoPesca(QWidget):
         sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
         self.scene_rect=QRectF(area.left()+(area.width()-sw)/2,area.top()+(area.height()-sh)/2,sw,sh)
         self.rect_icone=QRect(area.right()-59,area.top()+10,48,48)
+        self.rect_clima=QRect(self.rect_icone.left()-56,area.top()+10,48,48)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
         self.update()
 
     def keyPressEvent(self,event):
@@ -1018,6 +1043,7 @@ class JogoPesca(QWidget):
         self.ultimo_tick = mono
         self.fase += dt
         self._clock_snapshot = snapshot(now)
+        self._sync_climate_button()
         if not self.pausado and not self._save_error:
             self.capturando = max(0.0, self.capturando-dt)
             if dt >= 30 and now-self._ultimo_civil >= 30:
@@ -1061,7 +1087,17 @@ class JogoPesca(QWidget):
         prefix = ('Avistamento' if s['sprite']['family'] in ('whale','orca','dolphin','narwhal','turtle','ray')
                   else 'Amostra registrada' if s['sprite']['family'] in ('copepod','salp','shrimp','shell')
                   else 'Encontro registrado') if event['categoria']=='especial' else 'Captura'
-        return f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas", '#ffe3ac'
+        text = f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas"
+        if 'measurement' in event:
+            text += '\n'+fmt_length(event['measurement']['mm'])+' · '+event['measurement']['band']
+            news = event.get('size_news', [])
+            if 'primeira' in news:
+                text += '\nPrimeiro registro · menor e maior iniciais'
+            elif news:
+                text += '\n' + ' · '.join('Novo '+kind+' pessoal' for kind in news)
+            else:
+                text += '\nSem novo recorde'
+        return text, '#ffe3ac'
 
     def mostrar_popup(self, texto, cor='#ffffff'):
         message = [texto, cor, self.DURACAO_POPUP]
@@ -1100,9 +1136,11 @@ class JogoPesca(QWidget):
             engine.begin_strike(self._wall(), snapshot(self._wall())['offset_seconds'])
         engine.finish_strike()
         candidate = engine.advance(0, self._wall(), snapshot(self._wall())['offset_seconds'])
-        grant(candidate, CATALOGO)
+        awards = grant(candidate, CATALOGO)
         if not self._commit(candidate):
             return {'tipo':'lixo','texto':self._save_error,'cor':'#ffb08a'}
+        for title in awards:
+            self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
         event = engine.events[-1]; self._last_result = event; self._sync_fishing()
         text,color = self._describe(event)
         return {'tipo':'peixe' if event['categoria']!='lixo' else 'lixo','texto':text,'cor':color}
@@ -1118,6 +1156,8 @@ class JogoPesca(QWidget):
         messages = [f"Retorno: {report['count']} registros, +{fmt_moedas(report['gain'])} moedas.",
                     f"Tempo contado: {fmt_tempo(report['paid_seconds'])} (limite de 4h)."]
         if report['mode']=='expedicao': messages.append('Expedição: substituiu o offline normal.')
+        size_summary = offline_summary(report['events'])
+        if size_summary: messages.append(size_summary)
         if awards: messages.append('Conquistas: '+', '.join(awards))
         return '\n'.join(messages)
 
@@ -1195,7 +1235,9 @@ class JogoPesca(QWidget):
 
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
-            if self.rect_icone.contains(ev.position().toPoint()):
+            if self.rect_clima.contains(ev.position().toPoint()):
+                self.abrir_clima();ev.accept()
+            elif self.rect_icone.contains(ev.position().toPoint()):
                 self.abrir_menu()
             else:
                 if mobile():ev.accept();return
@@ -1219,7 +1261,7 @@ class JogoPesca(QWidget):
     def abrir_menu(self):
         if mobile():
             dlg=QDialog(self);layout=QVBoxLayout(dlg)
-            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
+            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Clima de hoje',self.abrir_clima),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
                 button=QPushButton(title);button.clicked.connect(lambda checked=False,f=action:(dlg.accept(),QTimer.singleShot(0,f)));layout.addWidget(button)
             button=QPushButton('Voltar à pescaria');button.clicked.connect(dlg.accept);layout.addWidget(button)
             fit_dialog(dlg).exec();dlg.deleteLater();return
@@ -1230,6 +1272,7 @@ class JogoPesca(QWidget):
         m.addAction(rpg_icon("livro"), "Museu", self.abrir_museu)
         m.addAction(rpg_icon("conquistas"), "Conquistas", self.mostrar_conquistas)
         m.addAction(rpg_icon("barco"), "Viajar", self.abrir_viagens)
+        m.addAction('Clima de hoje',self.abrir_clima)
         m.addAction(rpg_icon("livro"), "Expedição offline", self.abrir_expedicao)
         m.addSeparator()
         m.addAction(rpg_icon("pausa"), "Retomar" if self.pausado else "Pausar", self.alternar_pausa)
@@ -1244,8 +1287,9 @@ class JogoPesca(QWidget):
         self.estado['ultimo_processado_utc'] = max(self.estado['ultimo_processado_utc'],self._wall())
         self.salvar()
 
-    def abrir_loja(self):
+    def abrir_loja(self, decoracoes=False):
         dlg = LojaDialog(self)
+        if decoracoes:dlg.abas.setCurrentWidget(dlg.decoracoes)
         fit_dialog(dlg)
         dlg.exec()
         dlg.deleteLater()
@@ -1257,6 +1301,24 @@ class JogoPesca(QWidget):
         dlg = ColecaoDialog(self)
         fit_dialog(dlg)
         dlg.exec(); dlg.deleteLater()
+
+    def _sync_climate_button(self):
+        from pesca_clima_ui import current_weather
+        from pesca_clima_visual import weather_image
+        from PySide6.QtGui import QIcon,QPixmap
+        from PySide6.QtCore import QSize
+        weather=current_weather(self);signature=(weather['id'],weather['data'])
+        if getattr(self,'_weather_button_signature',None)==signature:return
+        self._weather_button_signature=signature
+        self.botao_clima.setGeometry(self.rect_clima)
+        self.botao_clima.setIcon(QIcon(QPixmap.fromImage(weather_image(weather['id'] if weather['id']!='legado' else 'ameno'))))
+        self.botao_clima.setIconSize(QSize(self.rect_clima.width()-8,self.rect_clima.height()-8))
+        description='Clima: '+weather['rotulo']+'. Clique para ver bônus e ônus. Muda às 00:00.'
+        self.botao_clima.setToolTip(description);self.botao_clima.setAccessibleName(description)
+
+    def abrir_clima(self):
+        from pesca_clima_ui import ClimateDialog
+        dlg=ClimateDialog(self);fit_dialog(dlg).exec();dlg.deleteLater()
 
     def abrir_museu(self):
         from pesca_museu_ui import MuseuDialog

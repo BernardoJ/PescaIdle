@@ -1,0 +1,477 @@
+{
+  "base_sha": "c545ca652386d74372307bd6d52a91f84d1ed4a0",
+  "unique_initial_conditions": 35,
+  "policies": 2,
+  "runs_per_mode": 70,
+  "modes": 3,
+  "horizon_seconds": 86400,
+  "total_actual_events": 2383508,
+  "base_ameno_exact": true,
+  "by_mode": {
+    "base": {
+      "10800": {
+        "total_gain_cents": {
+          "mean": 362608066.05714285,
+          "median": 359815938,
+          "min": 330089702,
+          "max": 391078902
+        },
+        "balance_cents": {
+          "mean": 360718066.05714285,
+          "median": 357925938,
+          "min": 328199702,
+          "max": 389188902
+        },
+        "known_species": {
+          "mean": 37.114285714285714,
+          "median": 36,
+          "min": 34,
+          "max": 41
+        },
+        "encyclopedia10": {
+          "mean": 31.82857142857143,
+          "median": 32,
+          "min": 29,
+          "max": 35
+        },
+        "regional_pairs": {
+          "mean": 38.02857142857143,
+          "median": 36,
+          "min": 35,
+          "max": 43
+        },
+        "events": {
+          "mean": 11350.114285714286,
+          "median": 11361,
+          "min": 11232,
+          "max": 11421
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3737.177781526121
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3908.0540022505693
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 27509.527096044352
+        }
+      },
+      "1800": {
+        "total_gain_cents": {
+          "mean": 373103792.1142857,
+          "median": 373353890,
+          "min": 330089702,
+          "max": 402617626
+        },
+        "balance_cents": {
+          "mean": 371213792.1142857,
+          "median": 371463890,
+          "min": 328199702,
+          "max": 400727626
+        },
+        "known_species": {
+          "mean": 35.142857142857146,
+          "median": 35,
+          "min": 32,
+          "max": 39
+        },
+        "encyclopedia10": {
+          "mean": 30.17142857142857,
+          "median": 30,
+          "min": 27,
+          "max": 33
+        },
+        "regional_pairs": {
+          "mean": 36.05714285714286,
+          "median": 36,
+          "min": 32,
+          "max": 41
+        },
+        "events": {
+          "mean": 11350.114285714286,
+          "median": 11361,
+          "min": 11232,
+          "max": 11421
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3737.177781526121
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3908.0540022505693
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 25720.149347265575
+        }
+      }
+    },
+    "ameno": {
+      "10800": {
+        "total_gain_cents": {
+          "mean": 362608066.05714285,
+          "median": 359815938,
+          "min": 330089702,
+          "max": 391078902
+        },
+        "balance_cents": {
+          "mean": 360718066.05714285,
+          "median": 357925938,
+          "min": 328199702,
+          "max": 389188902
+        },
+        "known_species": {
+          "mean": 37.114285714285714,
+          "median": 36,
+          "min": 34,
+          "max": 41
+        },
+        "encyclopedia10": {
+          "mean": 31.82857142857143,
+          "median": 32,
+          "min": 29,
+          "max": 35
+        },
+        "regional_pairs": {
+          "mean": 38.02857142857143,
+          "median": 36,
+          "min": 35,
+          "max": 43
+        },
+        "events": {
+          "mean": 11350.114285714286,
+          "median": 11361,
+          "min": 11232,
+          "max": 11421
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3737.177781526121
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3908.0540022505693
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 27509.527096044352
+        }
+      },
+      "1800": {
+        "total_gain_cents": {
+          "mean": 373103792.1142857,
+          "median": 373353890,
+          "min": 330089702,
+          "max": 402617626
+        },
+        "balance_cents": {
+          "mean": 371213792.1142857,
+          "median": 371463890,
+          "min": 328199702,
+          "max": 400727626
+        },
+        "known_species": {
+          "mean": 35.142857142857146,
+          "median": 35,
+          "min": 32,
+          "max": 39
+        },
+        "encyclopedia10": {
+          "mean": 30.17142857142857,
+          "median": 30,
+          "min": 27,
+          "max": 33
+        },
+        "regional_pairs": {
+          "mean": 36.05714285714286,
+          "median": 36,
+          "min": 32,
+          "max": 41
+        },
+        "events": {
+          "mean": 11350.114285714286,
+          "median": 11361,
+          "min": 11232,
+          "max": 11421
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3737.177781526121
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3908.0540022505693
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 25720.149347265575
+        }
+      }
+    },
+    "clima": {
+      "10800": {
+        "total_gain_cents": {
+          "mean": 359076837.48571426,
+          "median": 357757922,
+          "min": 310039706,
+          "max": 391327422
+        },
+        "balance_cents": {
+          "mean": 357186837.48571426,
+          "median": 355867922,
+          "min": 308149706,
+          "max": 389437422
+        },
+        "known_species": {
+          "mean": 37.42857142857143,
+          "median": 36,
+          "min": 35,
+          "max": 45
+        },
+        "encyclopedia10": {
+          "mean": 32.4,
+          "median": 32,
+          "min": 29,
+          "max": 39
+        },
+        "regional_pairs": {
+          "mean": 38.371428571428574,
+          "median": 37,
+          "min": 35,
+          "max": 47
+        },
+        "events": {
+          "mean": 11349.885714285714,
+          "median": 11361,
+          "min": 11232,
+          "max": 11419
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3744.4847185850804
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3931.6535089461076
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 27368.114287381544
+        }
+      },
+      "1800": {
+        "total_gain_cents": {
+          "mean": 373181494.3428571,
+          "median": 373800828,
+          "min": 330565652,
+          "max": 402605434
+        },
+        "balance_cents": {
+          "mean": 371291494.3428571,
+          "median": 371910828,
+          "min": 328675652,
+          "max": 400715434
+        },
+        "known_species": {
+          "mean": 35.34285714285714,
+          "median": 36,
+          "min": 32,
+          "max": 42
+        },
+        "encyclopedia10": {
+          "mean": 30.62857142857143,
+          "median": 30,
+          "min": 27,
+          "max": 35
+        },
+        "regional_pairs": {
+          "mean": 36.285714285714285,
+          "median": 36,
+          "min": 32,
+          "max": 44
+        },
+        "events": {
+          "mean": 11349.885714285714,
+          "median": 11361,
+          "min": 11232,
+          "max": 11419
+        },
+        "rod10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3744.4847185850804
+        },
+        "boat10": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 3931.6535089461076
+        },
+        "funds_all_shop": {
+          "reached": 35,
+          "total": 35,
+          "median_seconds": 25720.149347265575
+        }
+      }
+    }
+  },
+  "paired_weather_vs_base": {
+    "10800": {
+      "total_gain_cents": {
+        "mean_difference": -3531228.5714285714,
+        "mean_relative_percent": -0.975884052817719,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          -7083733.365120544,
+          21276.222263401374
+        ]
+      },
+      "known_species": {
+        "mean_difference": 0.3142857142857143,
+        "mean_relative_percent": 0.8866377530901112,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          -0.13862850951129457,
+          0.7671999380827231
+        ]
+      },
+      "encyclopedia10": {
+        "mean_difference": 0.5714285714285714,
+        "mean_relative_percent": 1.7762375958574335,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          0.10093446319516014,
+          1.0419226796619827
+        ]
+      },
+      "regional_pairs": {
+        "mean_difference": 0.34285714285714286,
+        "mean_relative_percent": 1.0022412065601436,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          -0.3291428571428572,
+          1.014857142857143
+        ]
+      }
+    },
+    "1800": {
+      "total_gain_cents": {
+        "mean_difference": 77702.22857142857,
+        "mean_relative_percent": 0.021232477373833714,
+        "median_difference": 82610,
+        "difference_ci95_normal_approx": [
+          -101872.59219187169,
+          257277.04933472883
+        ]
+      },
+      "known_species": {
+        "mean_difference": 0.2,
+        "mean_relative_percent": 0.6123597764464634,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          -0.17516804078110032,
+          0.5751680407811004
+        ]
+      },
+      "encyclopedia10": {
+        "mean_difference": 0.45714285714285713,
+        "mean_relative_percent": 1.5189165210021718,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          0.06069747480567994,
+          0.8535882394800343
+        ]
+      },
+      "regional_pairs": {
+        "mean_difference": 0.22857142857142856,
+        "mean_relative_percent": 0.7520626876027579,
+        "median_difference": 0,
+        "difference_ci95_normal_approx": [
+          -0.3678003465132471,
+          0.8249432036561042
+        ]
+      }
+    }
+  },
+  "frequent_advantage": {
+    "base": {
+      "total_gain_cents": {
+        "mean_difference": 10495726.057142857,
+        "mean_relative_percent": 2.904063089829944
+      },
+      "known_species": {
+        "mean_difference": -1.9714285714285715,
+        "mean_relative_percent": -5.338932070639389
+      },
+      "encyclopedia10": {
+        "mean_difference": -1.6571428571428573,
+        "mean_relative_percent": -5.032333435953005
+      },
+      "regional_pairs": {
+        "mean_difference": -1.9714285714285715,
+        "mean_relative_percent": -5.251041501872068
+      }
+    },
+    "ameno": {
+      "total_gain_cents": {
+        "mean_difference": 10495726.057142857,
+        "mean_relative_percent": 2.904063089829944
+      },
+      "known_species": {
+        "mean_difference": -1.9714285714285715,
+        "mean_relative_percent": -5.338932070639389
+      },
+      "encyclopedia10": {
+        "mean_difference": -1.6571428571428573,
+        "mean_relative_percent": -5.032333435953005
+      },
+      "regional_pairs": {
+        "mean_difference": -1.9714285714285715,
+        "mean_relative_percent": -5.251041501872068
+      }
+    },
+    "clima": {
+      "total_gain_cents": {
+        "mean_difference": 14104656.857142856,
+        "mean_relative_percent": 4.058410166393055
+      },
+      "known_species": {
+        "mean_difference": -2.085714285714286,
+        "mean_relative_percent": -5.576357806873121
+      },
+      "encyclopedia10": {
+        "mean_difference": -1.7714285714285714,
+        "mean_relative_percent": -5.252413551024987
+      },
+      "regional_pairs": {
+        "mean_difference": -2.085714285714286,
+        "mean_relative_percent": -5.467977274923514
+      }
+    }
+  },
+  "worker_seconds": {
+    "base": 119.87964459999785,
+    "ameno": 154.23695679999946,
+    "clima": 133.52817800000048
+  },
+  "interpretation": "35 sementes/horários pareados por política. Revisão de destino por renda esperada a cada 3h ou 30min; não exige que o mapa mude em toda revisão. São heurísticas, sem prova de ótimo.",
+  "limits": "Horizonte de 24h online; não mede conclusão integral, retenção, Android nem offline. Saldo suficiente para compras é um marco, não compra automática dos cosméticos. IC95 normal aproximado com 35 pares, condicionado ao modelo."
+}

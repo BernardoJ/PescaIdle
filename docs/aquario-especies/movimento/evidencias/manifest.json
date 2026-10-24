@@ -1,0 +1,26 @@
+{
+  "code_sha": "0c29196ac261ed04faf153121a1f8a01b1869cfc",
+  "files": {
+    "pesca_museu_ui.py": "a10b796639ed053726b917b50aae7dfcf7e54daad43e0ca10479e0af64eabcbd",
+    "pesca_museu_visual.py": "3f248493b9085adfef8e3db42edc4fe4a7e00aeab10ea885cad0d6dd5006cf8f",
+    "assets/aquario_especies.json": "d67f8c6159e25d9d33bc604d9d943744150ba7515392da2dba6884036b837112",
+    "assets/aquario_movimento.json": "353bb487289cc78e9dacbe6659de0e293cf5304d9210f18de820eff65b3a2b3d"
+  },
+  "outputs": {
+    "aquario-formas.gif": "513e59deada714ef0913993a2d8795425e09b85005059a2f76ae4695da94ba1d",
+    "aquario-piloto.gif": "f8d4cc76bed613044bfcba42aeed64989df53eb8d0a8222ff64455fa59c5c514",
+    "checks.json": "a05f0d3a7104840bedffcfa1777d014cf2cd213c4fc2e7dd3190a11d811814f5",
+    "formas-0.0.png": "e746a1fd1ef088484268f50b4951d77b564dc8f5d606e77b0e57a3f8a1f069ce",
+    "formas-0.4.png": "f733387cee8f8fcaa7741a4e8064340c04ec0e1b66fd823505caf19596510b66",
+    "formas-1.2.png": "57e62526c214c01a43d14b0c307950f99a912fd6509ac238c3bf3f429dc93dd5",
+    "movimento-ampliado.gif": "0548776de4771c6e8fabfef39cc64971696a0db75dbe013aab68a7c74d7b2e45",
+    "museu-320.png": "1c16287bfd9ec85ffa6e6a8aadf4755edee20d63052961285458a14eb73c3b8b",
+    "museu-640.png": "c39dabfd9bfa59d27a4e6b0acf0e9a129eee5f8ef620518895e50d0581c0b71a",
+    "performance.json": "e1d45ef5c1c103982d323d1e9dfe3610e375faa0025f3094632e31f2cd69b1dc",
+    "piloto-0.0.png": "d8ab90287c3a97932ee79c1b7274732488bd09260c645ed2f6fdd6dda6293167",
+    "piloto-0.4.png": "274b232852816a7ed0183aa70ac5cd4fbf99595f732100a633d5a9922432da6a",
+    "piloto-1.2.png": "0e5b2e2615b2550a3271aad341ab0c226f70f628f0caf96b134da2fe74ea4ec5",
+    "quadros.png": "d636785eefb2e6585316885f107243d2fa7e53030c5e760305d299729557169d"
+  },
+  "scope": "Synthetic in-memory visual verification; no game simulation or persistence."
+}

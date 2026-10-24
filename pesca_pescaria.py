@@ -5,6 +5,8 @@ import math
 import random
 from pesca_catalogo import ESPECIES, LOCAIS, VERSION, probabilities, legacy_view, desbloquear
 from pesca_tempo import snapshot
+from pesca_tamanhos import attach, apply, ensure_sizes
+from pesca_clima import context as weather_context
 
 
 def as_tuple(value):
@@ -14,6 +16,7 @@ def as_tuple(value):
 class FishingEngine:
     def __init__(self, state, rng=None):
         self.state = copy.deepcopy(state)
+        ensure_sizes(self.state)
         self.rng = rng or random.Random()
         if rng is None and state.get('rng_state') is not None:
             self.rng.setstate(as_tuple(state['rng_state']))
@@ -33,7 +36,8 @@ class FishingEngine:
                        vara=self.state['vara'], barco=self.state['barco'], catalog_version=VERSION)
         if equipment:
             context.update(equipment)
-        probs = probabilities(context['map_id'], context['periodo_id'], context['vara'])
+        context['clima']=weather_context(self.state,utc,offset)
+        probs = probabilities(context['map_id'], context['periodo_id'], context['vara'],context['clima']['id'])
         species_id = self.rng.choices(list(probs), weights=list(probs.values()))[0]
         self.state['contador_eventos'] += 1
         event = {'id': f"{self.state['perfil_id']}:{self.state['contador_eventos']}",
@@ -42,6 +46,7 @@ class FishingEngine:
         if species_id in ESPECIES:
             event['gain_cents'] = reward(ESPECIES[species_id]['valor'], context['barco'])
             event['gain'] = event['gain_cents']/100
+        attach(self.state, event)
         self.state['pesca_pendente'] = event
         self.state['pesca'] = {'etapa': 'fisgando', 'restante': 1.5}
         return event
@@ -51,6 +56,7 @@ class FishingEngine:
         if event is None:
             raise ValueError('Fisgada sem resultado persistido.')
         if event['id'] != self.state['ultimo_evento_aplicado']:
+            event['size_news'] = apply(self.state, event)
             if event['species_id'] in ESPECIES:
                 credit(self.state, event['gain_cents'])
                 self.state['total_pescados'] += 1

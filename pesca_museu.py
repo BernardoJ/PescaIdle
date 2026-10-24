@@ -20,6 +20,9 @@ def validate_museum(museum):
         raise ValueError('Referência inválida no aquário.')
     if len(set(ids)) != len(ids):
         raise ValueError('Uma espécie não pode ocupar dois espaços.')
+    if 'decoracao' in museum:
+        from pesca_aquario_decor import validate_decoration
+        validate_decoration(museum['decoracao'])
     # Unknown IDs are preserved, but never rendered as an eligible fish.
 
 

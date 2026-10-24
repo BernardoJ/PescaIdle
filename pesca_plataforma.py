@@ -16,6 +16,7 @@ def safe_rect(widget):
 
 def fit_dialog(dialog):
     if not mobile():return dialog
+    if hasattr(dialog,'fit_mobile'):return dialog.fit_mobile()
     from PySide6.QtCore import Qt,QTimer
     from PySide6.QtWidgets import QApplication,QWidget,QVBoxLayout,QScrollArea,QLabel,QComboBox,QSizePolicy,QScroller
     dialog.setWindowFlag(Qt.WindowStaysOnTopHint,False)

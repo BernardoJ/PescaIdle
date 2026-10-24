@@ -1,3 +1,78 @@
+# Pesca Idle - clima diário e piloto de tamanhos
+
+## Versão atual Windows - 23/10/2026
+
+**[Baixar PescaIdle-Clima.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Clima.exe)**. Salve em uma pasta gravável e abra com dois cliques; não exige instalar Python. Inclui clima diário, consulta clicável de bônus/ônus e os avanços anteriores de aquário, decorações e conquistas desta branch.
+
+O perfil fica em `perfil-piloto/save.json`, junto ao EXE; não importa o save pessoal de APPDATA. Perfis piloto anteriores são migrados com backup para schema 5. Executáveis antigos não abrem esse schema; voltar exige restaurar uma cópia do backup anterior.
+
+Build Windows x64, código `d1bcd5bb13cb58d7196221450be2a43124dfa233`: **50.561.165 bytes**, SHA-256 `ba481e9a42d2e992406aaa6380575499274cff3e541e160efd32ea5cf352c0ee`. Smoke do EXE novo passou em três processos com perfil temporário. Android nativo/APK não atualizado nesta entrega.
+
+[Relatório com resultados e imagens](docs/clima/RELATORIO.md) · [PDF](output/pdf/PescaIdle_Relatorio_Clima.pdf) · [Regras e reprodução](docs/CLIMA.md) · [Animação dos cinco climas](docs/clima/imagens/climas.gif).
+
+As seções abaixo preservam o histórico das entregas anteriores e seus binários. Suas observações sobre ausência de recompilação referem-se àquelas entregas; o download atual está acima.
+
+Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
+
+## Conquistas - primeira etapa
+
+O código-fonte acrescenta as **24 conquistas aprovadas**, totalizando **38** com as 14 anteriores. Há metas de coleção, mapas/períodos, museu, decorações, estilo e melhorias, com dificuldade e progresso na tela existente. Sem recompensa econômica nova ou alteração de preços, RNG e schema do piloto.
+
+[Regras, testes individuais e limitações](docs/conquistas-etapa1/README.md). Os executáveis/APKs históricos não foram recompilados para esta atualização.
+
+## Decorar o aquário
+
+No código-fonte, a loja agora inclui a aba **Decorações do aquário**, com 21 opções internas/externas em sete tipos. No museu, use **Decorar aquário** para combinar os itens adquiridos. Preços iniciais propostos: **150 a 6.000 moedas**, apenas visuais; trocar ou retirar é gratuito. As decorações não ampliam a exigência de Fashionista.
+
+[Catálogo, preços, save e limites](docs/aquario-decoracoes/README.md) · [Loja](docs/aquario-decoracoes/imagens/loja.png) · [Prancha das 21 opções](docs/aquario-decoracoes/imagens/catalogo.png).
+
+Os executáveis/APKs abaixo são anteriores às decorações e não foram recompilados nesta entrega.
+
+## Aquário com movimento - passos 1 a 5 completos
+
+Os 68 moradores do tanque têm arte própria e movimento discreto de cauda/nadadeiras. [Baixar a demonstração visual Windows](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Aquario-Demo.exe), salvar em uma pasta gravável e abrir com dois cliques. É um visualizador em memória, sem progressão nem save; permite pausar, avançar quadros, trocar espécies e comparar exemplares do piloto.
+
+[PDF completo com os cinco passos](output/pdf/PescaIdle_Aquario_Completo.pdf) · [GIF do movimento](docs/aquario-especies/movimento/evidencias/movimento-ampliado.gif) · [Reprodução e limites](docs/aquario-especies/movimento/README.md) · [Testes, desempenho e pacote](docs/aquario-especies/movimento/RELATORIO.md).
+
+A animação foi integrada ao código-fonte do tanque. Os executáveis antigos do jogo completo abaixo permanecem históricos; a nova demonstração visual é separada.
+
+## Arte dos peixes no aquário - 23/10/2026
+
+Os **68 peixes elegíveis** agora têm desenhos próprios no tanque, com formas e marcas por espécie e detalhe adaptado ao tamanho de exibição. A mudança preserva a escala do piloto e afeta somente a arte dentro do aquário. [Escopo, referências e reprodução](docs/aquario-especies/README.md) · [Relatório com screenshots em PDF](output/pdf/PescaIdle_Aquario_Especies.pdf) · [Antes/depois e limitações](docs/aquario-especies/relatorio.md).
+
+Esta atualização está no código-fonte; os executáveis e APKs históricos abaixo não foram recompilados nesta entrega visual.
+
+## Demonstração revisada — 19/10/2026
+
+Correção de IDs pendentes, recordes mais claros e um roteiro sintético isolado: execute `python -B piloto_entry.py --demo` com o ambiente existente. [Como experimentar, perfil separado, testes e build local](docs/piloto-tamanhos/demo/README.md). A build **Tamanhos-Demo** é separada e fica local; o download histórico abaixo não inclui essas correções.
+
+## Abrir com dois cliques
+
+**[Baixar PescaIdle-Tamanhos-Piloto.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Tamanhos-Piloto.exe)**
+
+Salve o EXE em uma pasta gravável e abra. Ele inclui runtime e recursos; não exige instalar Python. O perfil novo fica em `perfil-piloto/save.json`, junto ao EXE. O piloto recusa perfis fora dessa pasta-base e não abre o save pessoal em APPDATA.
+
+Build Windows de 18/10/2026: **50.200.863 bytes**, SHA-256 `4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27`.
+
+## Conteúdo
+
+- Comprimentos individuais para Lambari, Tilápia-do-nilo, Carpa-comum e Traíra; valores provisórios de design.
+- Menor/maior exemplar por espécie na enciclopédia e cinco conquistas sem bônus econômico.
+- Variação visual na captura e no aquário; seleção menor/maior nos três espaços.
+- Save schema 4 exclusivo do piloto, com marcador `tamanhos-v1`, backup de migração e perfil isolado.
+- As outras espécies, economia, tempos e varas existentes permanecem com as regras da base.
+
+[Entrega, comandos e limitações](docs/piloto-tamanhos/README.md) · [Parâmetros](docs/piloto-tamanhos/PARAMETROS.md) · [Relatório local sanitizado](docs/piloto-tamanhos/RELATORIO.md)
+
+![Variação de comprimento no piloto](docs/piloto-tamanhos/imagens/variacao-lambari.png)
+
+Evidências da preparação local de 18/10/2026: 12 testes passaram, 16.010 eventos em 48 fluxos pareados iguais à base quanto a espécies/moedas/tempos, smoke do EXE em três processos e prévias Qt desktop/mobile. Não foram repetidos jogo/simulações para esta publicação. **Android nativo deste piloto não foi testado.**
+
+O arquivo antigo `PescaIdle.exe` e os APKs preexistentes foram preservados e não contêm este piloto. Use o EXE com **Tamanhos-Piloto** no nome. Para retornar, feche o piloto e abra o jogo anterior; não transfira o save do piloto para a versão principal.
+
+<details>
+<summary>Documentação histórica da base, anterior ao piloto (comandos, saves e binários não descrevem esta branch experimental)</summary>
+
 # Pesca Idle — Oito Águas
 
 Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
@@ -105,3 +180,5 @@ Resultados observados: **5.920** verificações da matriz e **1.359** de cosmét
 [Expansão e arte](docs/EXPANSAO_MAPAS.md) · [Save e offline](docs/MIGRACAO_SAVE.md) · [Balanceamento](docs/BALANCEAMENTO_EXPANSAO.md) · [Fontes das 39 novas identidades](docs/FONTES_ESPECIES.md) · [Critérios antigos](CRITERIOS_RARIDADE.md).
 
 A arte é própria, com personagem e barco existentes preservados e linguagem de RPG em pixels. Horários/ambientes são convenções do jogo; não representam coocorrência ou abundância científica exata. Curiosidades novas usam fatos taxonômicos verificados; as antigas foram preservadas e identificadas como legado.
+
+</details>

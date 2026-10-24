@@ -1,1 +1,30 @@
 *.pdf binary
+
+# Preserve the tested candidate checkout line endings, with canonical Git text.
+PescaIdle.spec text eol=crlf
+assets/tamanhos_piloto.json text eol=lf
+pesca_conquistas.py text eol=crlf
+pesca_idle.py text eol=crlf
+pesca_museu_ui.py text eol=lf
+pesca_pescaria.py text eol=crlf
+pesca_piloto.py text eol=lf
+pesca_save.py text eol=crlf
+pesca_tamanho_visual.py text eol=lf
+pesca_tamanhos.py text eol=lf
+pesca_viagens_ui.py text eol=crlf
+pesca_visual.py text eol=crlf
+piloto_entry.py text eol=lf
+tools/pilot_smoke.py text eol=lf
+tools/verificar_tamanhos.py text eol=lf
+tools/visual_tamanhos.py text eol=lf
+
+# Published reports use LF; unified-diff blank context lines intentionally contain a space.
+.gitattributes text eol=lf
+.gitignore text eol=lf
+README.md text eol=lf
+docs/piloto-tamanhos/*.md text eol=lf
+docs/piloto-tamanhos/*.json text eol=lf
+docs/piloto-tamanhos/ALTERACOES.patch text eol=lf whitespace=-blank-at-eol
+docs/piloto-tamanhos/evidencias/*.json text eol=lf
+docs/piloto-tamanhos/evidencias/*.log text eol=lf
+docs/piloto-tamanhos/imagens/*.png -text

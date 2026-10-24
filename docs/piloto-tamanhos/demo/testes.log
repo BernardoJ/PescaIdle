@@ -1,0 +1,39 @@
+test_01_distribution_borders_and_monotonicity (tools.verificar_tamanhos.SizeTests.test_01_distribution_borders_and_monotonicity) ... ok
+test_02_separate_event_rng_repeatable (tools.verificar_tamanhos.SizeTests.test_02_separate_event_rng_repeatable) ... ok
+test_03_first_extremes_ties_and_idempotence (tools.verificar_tamanhos.SizeTests.test_03_first_extremes_ties_and_idempotence) ... ok
+test_04_diversity_and_unique_achievements (tools.verificar_tamanhos.SizeTests.test_04_diversity_and_unique_achievements) ... ok
+test_05_pending_save_reopen_no_reroll_or_double_reward (tools.verificar_tamanhos.SizeTests.test_05_pending_save_reopen_no_reroll_or_double_reward) ... ok
+test_06_legacy_migration_no_retroactive_sizes (tools.verificar_tamanhos.SizeTests.test_06_legacy_migration_no_retroactive_sizes) ... ok
+test_07_invalid_data_preserves_last_good_file (tools.verificar_tamanhos.SizeTests.test_07_invalid_data_preserves_last_good_file) ... ok
+test_08_future_parameters_keep_old_record_snapshot (tools.verificar_tamanhos.SizeTests.test_08_future_parameters_keep_old_record_snapshot) ... ok
+test_09_offline_all_events_cap_and_no_repeat (tools.verificar_tamanhos.SizeTests.test_09_offline_all_events_cap_and_no_repeat) ... ok
+test_10_legacy_pending_stays_unmeasured (tools.verificar_tamanhos.SizeTests.test_10_legacy_pending_stays_unmeasured) ... ok
+test_11_pause_and_scheduled_offline (tools.verificar_tamanhos.SizeTests.test_11_pause_and_scheduled_offline) ... ok
+test_12_missing_or_corrupt_pilot_fields_are_not_silently_reset (tools.verificar_tamanhos.SizeTests.test_12_missing_or_corrupt_pilot_fields_are_not_silently_reset) ... ok
+test_invalid_prefix_and_types (tools.test_save_pendente_piloto.PendingIdTests.test_invalid_prefix_and_types) ... ok
+test_invalid_suffix_variants (tools.test_save_pendente_piloto.PendingIdTests.test_invalid_suffix_variants) ... ok
+test_legacy_invalid_pending_is_not_migrated_or_backed_up (tools.test_save_pendente_piloto.PendingIdTests.test_legacy_invalid_pending_is_not_migrated_or_backed_up) ... ok
+test_nonnumeric_suffix_reproduced (tools.test_save_pendente_piloto.PendingIdTests.test_nonnumeric_suffix_reproduced) ... ok
+test_valid_ids_load_deliver_and_roundtrip (tools.test_save_pendente_piloto.PendingIdTests.test_valid_ids_load_deliver_and_roundtrip) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.989s
+
+OK
+
+test_01_environment_guard_and_ordinary_sentinel (__main__.DemoTests.test_01_environment_guard_and_ordinary_sentinel) ... ok
+test_02_capture_record_flow_and_evidence (__main__.DemoTests.test_02_capture_record_flow_and_evidence) ... ok
+test_03_exhibit_choices_autosave_close_reopen (__main__.DemoTests.test_03_exhibit_choices_autosave_close_reopen) ... ok
+test_04_interrupted_pending_resumes_without_reroll (__main__.DemoTests.test_04_interrupted_pending_resumes_without_reroll) ... ok
+test_05_save_failure_restores_choice_and_shows_error (__main__.DemoTests.test_05_save_failure_restores_choice_and_shows_error) ... ok
+test_06_empty_legacy_and_supported_viewports (__main__.DemoTests.test_06_empty_legacy_and_supported_viewports) ... ok
+test_07_three_fish_bounds_separation_and_art_unchanged (__main__.DemoTests.test_07_three_fish_bounds_separation_and_art_unchanged) ... ok
+test_08_invalid_demo_file_and_normal_entry (__main__.DemoTests.test_08_invalid_demo_file_and_normal_entry) ... ok
+test_09_capture_contrast_preserves_uniform_body_size (__main__.DemoTests.test_09_capture_contrast_preserves_uniform_body_size) ... ok
+test_10_resolved_file_redirect_is_rejected_before_read (__main__.DemoTests.test_10_resolved_file_redirect_is_rejected_before_read) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 10.362s
+
+OK
+{"tests": 10, "failures": 0, "errors": 0, "identification": {"source_commit": "5a6efb6d7b849702f6ced5c62ddde071fceb620a", "source_snapshot": "dba0729bc80f5c8ab04efd03f4d1598732a568387cb230a69d4f2dc19a0a848d"}, "qt_platform": "windows", "input": "QTest injected, hidden Qt widgets; not physical input/Android", "observed": {"isolation": {"synthetic_personal_sentinel_unchanged": true, "autosave_close": true}, "fixture": {"captures": 10, "measured": 10, "record_sequence": ["Primeiro registro", "Novo menor pessoal", "Novo maior pessoal", "Sem novo recorde"], "source_seed": 20261019}, "reopen": {"choices_preserved": true, "records_preserved": true, "no_extra_reward": true}, "qt_viewports": [[320, 568], [360, 800], [512, 288], [640, 700]], "tank": {"bounds_and_separation_checks": 72, "uniform_scale_unchanged": true, "shared_art_unchanged": true}}}

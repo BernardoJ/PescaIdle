@@ -1,0 +1,24 @@
+{
+  "steps": [
+    {
+      "mode": "pending",
+      "exit_code": 0,
+      "seconds": 0.9102933000031044,
+      "frozen": false
+    },
+    {
+      "mode": "deliver",
+      "exit_code": 0,
+      "seconds": 1.2277121000006446,
+      "frozen": false
+    },
+    {
+      "mode": "reopen",
+      "exit_code": 0,
+      "seconds": 0.9673907000033068,
+      "frozen": false
+    }
+  ],
+  "success": true,
+  "profile_isolated": true
+}

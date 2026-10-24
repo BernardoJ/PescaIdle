@@ -1,0 +1,101 @@
+{
+  "python": "3.14.8",
+  "pyside": "6.11.2",
+  "platform": "Windows",
+  "source_commit": "0c29196ac261ed04faf153121a1f8a01b1869cfc",
+  "animated": true,
+  "method": "30 cache-cleared renders, 120 warmups + 1200 warm renders, per scene/detail, serial, no sleeps. Microbenchmark only.",
+  "timings": {
+    "empty_1x": {
+      "n": 1200,
+      "median_ms": 0.0687,
+      "p95_ms": 0.0746,
+      "p99_ms": 0.1,
+      "max_ms": 0.1409,
+      "mean_ms": 0.0696715,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 0.07035,
+        "p95_ms": 0.0836,
+        "max_ms": 0.1744
+      }
+    },
+    "empty_2x": {
+      "n": 1200,
+      "median_ms": 0.1713,
+      "p95_ms": 0.1871,
+      "p99_ms": 0.2968,
+      "max_ms": 0.3191,
+      "mean_ms": 0.17584375,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 0.1757,
+        "p95_ms": 0.2681,
+        "max_ms": 0.3151
+      }
+    },
+    "pilot_1x": {
+      "n": 1200,
+      "median_ms": 0.2036,
+      "p95_ms": 0.2262,
+      "p99_ms": 0.2696,
+      "max_ms": 0.3147,
+      "mean_ms": 0.206529,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 1.4003,
+        "p95_ms": 1.5621,
+        "max_ms": 2.0115
+      }
+    },
+    "pilot_2x": {
+      "n": 1200,
+      "median_ms": 0.3196,
+      "p95_ms": 0.3429,
+      "p99_ms": 0.4174,
+      "max_ms": 0.6206,
+      "mean_ms": 0.3253433333333333,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 1.9224999999999999,
+        "p95_ms": 2.1216,
+        "max_ms": 2.1938
+      }
+    },
+    "special_1x": {
+      "n": 1200,
+      "median_ms": 0.1086,
+      "p95_ms": 0.118,
+      "p99_ms": 0.1556,
+      "max_ms": 0.2016,
+      "mean_ms": 0.11059775,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 1.0239500000000001,
+        "p95_ms": 1.1423,
+        "max_ms": 1.1575
+      }
+    },
+    "special_2x": {
+      "n": 1200,
+      "median_ms": 0.2218,
+      "p95_ms": 0.2662,
+      "p99_ms": 0.3162,
+      "max_ms": 0.5482,
+      "mean_ms": 0.22743758333333333,
+      "timer_interval_ms": 66,
+      "cold": {
+        "n": 30,
+        "median_ms": 1.2822,
+        "p95_ms": 1.5004,
+        "max_ms": 1.5439
+      }
+    }
+  },
+  "save_created": false
+}

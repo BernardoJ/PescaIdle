@@ -160,14 +160,16 @@ def paint_overlay(game):
     clock=game._clock_snapshot
     title=LOCAIS[game.estado['local_atual_id']]['nome'].upper()+' · '+clock['rotulo'].upper()
     p.setPen(QColor('#253647'))
-    title=p.fontMetrics().elidedText(title,Qt.ElideRight,W-72)
+    title=p.fontMetrics().elidedText(title,Qt.ElideRight,max(40,W-132))
     p.drawText(13,23,title)
     p.setPen(QColor('#f6dfb4'))
     p.drawText(12,22,title)
     p.setPen(QColor('#c6d4cd'))
     from datetime import datetime
     next_time=datetime.fromtimestamp(clock['proxima_utc']).strftime('%H:%M')
-    p.drawText(12,36,'Próximo período às '+next_time)
+    from pesca_clima_ui import current_weather
+    caption='Próx. período '+next_time+' · '+current_weather(game)['rotulo']
+    p.drawText(12,36,p.fontMetrics().elidedText(caption,Qt.ElideRight,max(40,W-132)))
     info=f'{game.fmt_currency(game.estado["moedas"])} moedas'
     panel(p,QRect(12,H-30,146,23))
     p.fillRect(20,H-22,7,7,QColor('#c09554'))
