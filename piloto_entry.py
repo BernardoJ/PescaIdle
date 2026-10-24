@@ -9,6 +9,12 @@ if '--pilot-smoke' in sys.argv:
         validate_profile_path(os.environ[key])
 
 if __name__=='__main__':
+    if '--climate-smoke' in sys.argv:
+        for key in ('PESCA_IDLE_SAVE_PATH','PESCA_IDLE_CLIMATE_QA_DIR'):
+            if not os.environ.get(key):raise RuntimeError('Smoke climático exige '+key)
+            validate_profile_path(os.environ[key])
+        from tools.climate_smoke import run
+        sys.exit(run())
     if '--demo' in sys.argv:
         from tools.demo_tamanhos import run
         sys.exit(run())

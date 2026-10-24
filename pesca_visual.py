@@ -584,10 +584,14 @@ class SceneRenderer:
                 rect(p,xx-7+i*6,yy-9-(int(f*7)+i*4)%10,1,2,'#e5bdff')
 
     def render(self, game, map_id=None):
+        from pesca_clima_visual import WeatherEffects
+        from pesca_clima_ui import current_weather
+        weather=current_weather(game)['id']
         map_id=map_id or game.estado['local_atual_id']
         self.select_map(map_id)
         f=game.fase
-        dy=round(1.5*math.sin(f*1.4)+.5*math.sin(f*.65))
+        wind_phase=f*(1.8 if weather=='ventania' else 1)
+        dy=round((2.2 if weather=='ventania' else 1.5)*math.sin(f*1.4)+.5*math.sin(f*.65))
         result=getattr(game,'_last_result',None)
         observing=bool(result and result['categoria']=='especial')
         pose=1 if game.fisgando>0 else 2 if game.capturando>0 and not observing else 0
@@ -601,13 +605,14 @@ class SceneRenderer:
         self.current_light=lighting
         img=lighting.background.copy()
         p=QPainter(img)
-        self.environment.sky(p,f,lighting.night,lighting.position)
+        self.environment.sky(p,f*(1.6 if weather=='ventania' else 1),lighting.night,lighting.position)
         self.environment.reflections(p,f,lighting.night,lighting.position)
+        WeatherEffects.background(p,self.environment,f,weather,lighting)
         p.end()
         actors=blank()
         p=QPainter(actors)
         p.setRenderHint(QPainter.Antialiasing,False)
-        self.environment.water(p,f)
+        self.environment.water(p,f*(1.6 if weather=='ventania' else 1))
         # Sparse traveling glints. Positions follow perspective, not a tiled grid.
         p.save();p.setClipRegion(self.environment.water_clip)
         for k in range(34):
@@ -629,7 +634,7 @@ class SceneRenderer:
             rect(p,91+(63-w)//2+sx+shift,yy+sy,w+stretch,1,'#426c70')
         band=game.equipado('bandeira')
         if band in self.flags:
-            p.drawImage(87,DECK_Y-38+dy,self.cached(('flag',band,int(f*4)%4),lambda:self.flag(band,int(f*4)%4)))
+            p.drawImage(87,DECK_Y-38+dy,self.cached(('flag',band,int(wind_phase*4)%4),lambda:self.flag(band,int(wind_phase*4)%4)))
         p.drawImage(BOAT_X,BOAT_Y+dy,self.cached(('boat',game.estado['barco']),lambda:self.boat(game.estado['barco'])))
         # The seat and pelvis use the same anchor; fore-hull occludes the boots.
         poly(p,[(104,BENCH_Y+dy),(122,BENCH_Y+dy),(128,BENCH_Y+4+dy),
@@ -718,14 +723,15 @@ class SceneRenderer:
         self.accessory_effects(p,game.equipado('acessorio'),f,dy,False,hand)
         p.drawImage(0,0,lighting.foreground)
         foliage=blank();fp=QPainter(foliage)
-        self.environment.foreground(fp,f)
+        self.environment.foreground(fp,wind_phase)
         self.environment.events(fp,f,lighting.night)
         fp.end();self.lighting.actors(foliage,lighting);p.drawImage(0,0,foliage)
         if map_id==INICIAL:self.lighting.emissive(p,f,dy,lighting)
         else:self.environment.emissive(p,f,dy,lighting)
+        WeatherEffects.foreground(p,self.environment,f,weather,lighting,map_id)
         # Animated flower tips match the foreground's warm/cool pixel ramps.
         for xx,yy in (((17,123),(244,119)) if map_id==INICIAL else ()):
-            rect(p,xx+round(math.sin(f*.8+xx)),yy,1,1,'#e6c895')
+            rect(p,xx+round(math.sin(wind_phase*.8+xx)),yy,1,1,'#e6c895')
         # Tiny moths and fireflies in the near bank, below the UI.
         for i,(xx,yy) in enumerate(((33,91),(73,68),(230,104)) if map_id==INICIAL else ()):
             if lighting.night>.6 and math.sin(f*1.2+i)>-.2:

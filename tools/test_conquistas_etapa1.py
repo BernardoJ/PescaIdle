@@ -47,7 +47,7 @@ from pesca_conquistas import definitions,grant,commit_with_achievements,fashioni
 from pesca_conquistas_etapa1 import CONFIG,GOALS,progress,FISH,SPECIAL,EPIC,BY_MAP,BY_CONTEXT
 from pesca_loja import CATALOGO,CAT
 from pesca_moedas import set_balance
-from pesca_save import SaveStore,SaveError,migrate,validate_state
+from pesca_save import SaveStore,SaveError,migrate,validate_state,SCHEMA
 from pesca_tamanhos import sample,rule_snapshot,exhibit
 from pesca_museu_ui import MuseuDialog
 from pesca_aquario_decor_ui import DecorationPanel
@@ -316,7 +316,7 @@ class Contracts(unittest.TestCase):
             self.assertEqual(grant(first,CATALOGO),[])
             self.assertIn('unknown_historical_award',first['conquistas'])
             self.assertEqual(first['inventario_por_id'],s['inventario_por_id'])
-            self.assertEqual(first['schema_version'],4)
+            self.assertEqual(first['schema_version'],SCHEMA)
 
     def test_seeded_fishing_online_and_offline_preserved(self):
         a=fresh();b=copy.deepcopy(a)

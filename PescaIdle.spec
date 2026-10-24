@@ -44,7 +44,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name=demo_name if demo_build else 'PescaIdle-Tamanhos-Piloto',
+    name=demo_name if demo_build else 'PescaIdle-Clima' if os.getenv('PESCA_IDLE_CLIMATE_BUILD')=='1' else 'PescaIdle-Tamanhos-Piloto',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

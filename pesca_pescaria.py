@@ -6,6 +6,7 @@ import random
 from pesca_catalogo import ESPECIES, LOCAIS, VERSION, probabilities, legacy_view, desbloquear
 from pesca_tempo import snapshot
 from pesca_tamanhos import attach, apply, ensure_sizes
+from pesca_clima import context as weather_context
 
 
 def as_tuple(value):
@@ -35,7 +36,8 @@ class FishingEngine:
                        vara=self.state['vara'], barco=self.state['barco'], catalog_version=VERSION)
         if equipment:
             context.update(equipment)
-        probs = probabilities(context['map_id'], context['periodo_id'], context['vara'])
+        context['clima']=weather_context(self.state,utc,offset)
+        probs = probabilities(context['map_id'], context['periodo_id'], context['vara'],context['clima']['id'])
         species_id = self.rng.choices(list(probs), weights=list(probs.values()))[0]
         self.state['contador_eventos'] += 1
         event = {'id': f"{self.state['perfil_id']}:{self.state['contador_eventos']}",

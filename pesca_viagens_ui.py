@@ -108,6 +108,8 @@ class ColecaoDialog(Page):
         text+=f"Raridade: {s['raridade']}\n" if n>=5 else f'Raridade: faltam {5-n} registros\n'
         text+='\n'+s['curiosidade'] if n>=10 else f'\nCuriosidade: faltam {10-n} registros'
         text+=f'\n\nGlobal: {n} · Aqui: {regional}\nAntigos sem local/horário: {legacy}\n\n{places}'
+        from pesca_clima import species_affinities
+        text+='\n\nClima - pesos de encontro:\n'+species_affinities(id_)
         verified=s.get('verification',{})
         if n>=10 and verified.get('url'):text+='\n\nFonte: '+verified['url']
         if n>=10 and verified.get('status')=='legado_preservado':text+='\n\nInformação preservada do catálogo anterior.'

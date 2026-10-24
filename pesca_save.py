@@ -16,8 +16,9 @@ from pesca_moedas import set_balance, set_cents, cents
 from pesca_museu import empty_museum, validate_museum
 from pesca_tamanhos import ensure_sizes, validate_sizes
 from pesca_piloto import validate_profile_path
+from pesca_clima import new_climate,validate_climate,validate_context,context as weather_context
 
-SCHEMA = 4  # isolated size pilot, NOT the unimplemented rod proposal
+SCHEMA = 5  # daily weather on the isolated size pilot; not the rod proposal
 
 
 class SaveError(RuntimeError):
@@ -30,9 +31,9 @@ def migrate(raw, defaults, now):
     version = raw.get('schema_version', 1)
     if type(version) is not int or version > SCHEMA or version < 1:
         raise SaveError('Versão do save não suportada; o arquivo foi preservado.')
-    if version == 4 and raw.get('pilot_kind') != 'tamanhos-v1':
+    if version >= 4 and raw.get('pilot_kind') != 'tamanhos-v1':
         raise SaveError('Schema 4 pertence a outro candidato ou não tem identificação; original preservado.')
-    if version == 4 and 'medidas_peixes' not in raw:
+    if version >= 4 and 'medidas_peixes' not in raw:
         raise SaveError('Perfil do piloto sem o campo de medidas; original preservado.')
     for key in ('equipados', 'inventario', 'inventario_por_id', 'registros_regionais', 'registros_por_periodo'):
         if key in raw and not isinstance(raw[key], dict):
@@ -90,6 +91,13 @@ def migrate(raw, defaults, now):
     state.setdefault('museu', empty_museum())
     ensure_sizes(state)
     try:
+        if version<5:
+            # Historical absence remains neutral until migration. No weather is
+            # invented for past catches, even if the old clock was ahead.
+            state['clima']=new_climate(state['perfil_id'],now)
+            if state['pesca_pendente'] is not None:
+                ctx=state['pesca_pendente']['context']
+                ctx['clima']=weather_context({},ctx['utc'],ctx['offset_seconds'])
         if version < 3:
             set_balance(state, raw.get('moedas', defaults.get('moedas', 0)))
         else:
@@ -115,12 +123,14 @@ def migrate(raw, defaults, now):
 def validate_state(state):
     from pesca_catalogo import LOCAIS
     from pesca_tempo import LABELS
+    if state.get('schema_version')!=SCHEMA:raise SaveError('Versão do snapshot inválida.')
     if state.get('pilot_kind') != 'tamanhos-v1':raise SaveError('Perfil não pertence ao piloto de tamanhos.')
     try:
+        validate_climate(state.get('clima'))
         validate_museum(state['museu'])
         validate_sizes(state)
     except (KeyError, ValueError, TypeError) as exc:
-        raise SaveError('Museu/medidas inválidos; original preservado: '+str(exc)) from exc
+        raise SaveError('Clima/museu/medidas inválidos; original preservado: '+str(exc)) from exc
     if type(state.get('moedas_centavos')) is not int or state['moedas_centavos'] < 0:
         raise SaveError('Saldo em centésimos inválido.')
     if state.get('moedas') != state['moedas_centavos']/100:
@@ -175,6 +185,7 @@ def validate_state(state):
         from pesca_tempo import LABELS
         try:
             context=pending['context']
+            validate_context(context['clima'],context['utc'],context['offset_seconds'])
             if not (pending['species_id'] in ESPECIES or pending['species_id']=='bota_velha'):
                 raise ValueError('espécie inválida')
             if context['map_id'] not in LOCAIS or context['periodo_id'] not in LABELS:

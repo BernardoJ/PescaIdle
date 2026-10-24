@@ -51,7 +51,7 @@ def eligible(map_id, period_id, category=None):
                  and (category is None or ESPECIES[o['species_id']]['categoria'] == category))
 
 
-def probabilities(map_id, period_id, rod_level=0):
+def probabilities(map_id, period_id, rod_level=0, weather='ameno'):
     if map_id not in LOCAIS or period_id not in LABELS:
         raise ValueError('Contexto de pesca desconhecido.')
     fish = eligible(map_id, period_id, 'peixe')
@@ -59,11 +59,13 @@ def probabilities(map_id, period_id, rod_level=0):
     trash_chance = LOCAIS[map_id]['trash_probability']
     special_chance = LOCAIS[map_id]['special_probability'] if specials else 0
     result = {'bota_velha': trash_chance}
+    from pesca_clima import factor
     for pool, share in ((fish, 1-trash_chance-special_chance), (specials, special_chance)):
         if not pool:
             continue
         weights = [o['weight'] * o['preferences'].get(period_id, 1.0)
-                   * (1+.15*rod_level if ESPECIES[o['species_id']]['rod_bonus'] else 1) for o in pool]
+                   * (1+.15*rod_level if ESPECIES[o['species_id']]['rod_bonus'] else 1)
+                   * factor(map_id,o['species_id'],weather,period_id) for o in pool]
         mass = sum(weights)
         if mass <= 0 or not math.isfinite(mass):
             raise ValueError('Pool sem massa finita.')

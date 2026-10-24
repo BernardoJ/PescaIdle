@@ -925,6 +925,11 @@ class JogoPesca(QWidget):
         self.ultimo_tick = self._monotonic()
         self._ultimo_civil = self._wall()
         self._clock_snapshot = snapshot(self._wall())
+        from PySide6.QtWidgets import QToolButton
+        self.botao_clima=QToolButton(self);self.botao_clima.setObjectName('botaoClima')
+        self.botao_clima.setCursor(Qt.PointingHandCursor);self.botao_clima.setFocusPolicy(Qt.StrongFocus)
+        self.botao_clima.setStyleSheet('QToolButton { background: #233449; border: 2px solid #c9ac78; padding: 2px; } QToolButton:hover,QToolButton:focus { background: #405965; border-color: #ffe1a0; }')
+        self.botao_clima.clicked.connect(self.abrir_clima);self._sync_climate_button()
         self.posicionar()
         self.atualizar_tooltip()
         self.relogio = QTimer(self)
@@ -944,7 +949,9 @@ class JogoPesca(QWidget):
         self.W,self.H=math.ceil(self.scene_rect.width()),math.ceil(self.scene_rect.height())
         self.ICONE_X=self.W-44
         self.rect_icone=QRect(self.ICONE_X,self.ICONE_Y,32,32)
+        self.rect_clima=QRect(self.ICONE_X-40,self.ICONE_Y,32,32)
         self.setFixedSize(self.W,self.H)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
 
     def event(self, event):
         result=super().event(event)
@@ -964,6 +971,8 @@ class JogoPesca(QWidget):
         sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
         self.scene_rect=QRectF(area.left()+(area.width()-sw)/2,area.top()+(area.height()-sh)/2,sw,sh)
         self.rect_icone=QRect(area.right()-59,area.top()+10,48,48)
+        self.rect_clima=QRect(self.rect_icone.left()-56,area.top()+10,48,48)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
         self.update()
 
     def keyPressEvent(self,event):
@@ -1034,6 +1043,7 @@ class JogoPesca(QWidget):
         self.ultimo_tick = mono
         self.fase += dt
         self._clock_snapshot = snapshot(now)
+        self._sync_climate_button()
         if not self.pausado and not self._save_error:
             self.capturando = max(0.0, self.capturando-dt)
             if dt >= 30 and now-self._ultimo_civil >= 30:
@@ -1225,7 +1235,9 @@ class JogoPesca(QWidget):
 
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
-            if self.rect_icone.contains(ev.position().toPoint()):
+            if self.rect_clima.contains(ev.position().toPoint()):
+                self.abrir_clima();ev.accept()
+            elif self.rect_icone.contains(ev.position().toPoint()):
                 self.abrir_menu()
             else:
                 if mobile():ev.accept();return
@@ -1249,7 +1261,7 @@ class JogoPesca(QWidget):
     def abrir_menu(self):
         if mobile():
             dlg=QDialog(self);layout=QVBoxLayout(dlg)
-            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
+            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Clima de hoje',self.abrir_clima),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
                 button=QPushButton(title);button.clicked.connect(lambda checked=False,f=action:(dlg.accept(),QTimer.singleShot(0,f)));layout.addWidget(button)
             button=QPushButton('Voltar à pescaria');button.clicked.connect(dlg.accept);layout.addWidget(button)
             fit_dialog(dlg).exec();dlg.deleteLater();return
@@ -1260,6 +1272,7 @@ class JogoPesca(QWidget):
         m.addAction(rpg_icon("livro"), "Museu", self.abrir_museu)
         m.addAction(rpg_icon("conquistas"), "Conquistas", self.mostrar_conquistas)
         m.addAction(rpg_icon("barco"), "Viajar", self.abrir_viagens)
+        m.addAction('Clima de hoje',self.abrir_clima)
         m.addAction(rpg_icon("livro"), "Expedição offline", self.abrir_expedicao)
         m.addSeparator()
         m.addAction(rpg_icon("pausa"), "Retomar" if self.pausado else "Pausar", self.alternar_pausa)
@@ -1288,6 +1301,24 @@ class JogoPesca(QWidget):
         dlg = ColecaoDialog(self)
         fit_dialog(dlg)
         dlg.exec(); dlg.deleteLater()
+
+    def _sync_climate_button(self):
+        from pesca_clima_ui import current_weather
+        from pesca_clima_visual import weather_image
+        from PySide6.QtGui import QIcon,QPixmap
+        from PySide6.QtCore import QSize
+        weather=current_weather(self);signature=(weather['id'],weather['data'])
+        if getattr(self,'_weather_button_signature',None)==signature:return
+        self._weather_button_signature=signature
+        self.botao_clima.setGeometry(self.rect_clima)
+        self.botao_clima.setIcon(QIcon(QPixmap.fromImage(weather_image(weather['id'] if weather['id']!='legado' else 'ameno'))))
+        self.botao_clima.setIconSize(QSize(self.rect_clima.width()-8,self.rect_clima.height()-8))
+        description='Clima: '+weather['rotulo']+'. Clique para ver bônus e ônus. Muda às 00:00.'
+        self.botao_clima.setToolTip(description);self.botao_clima.setAccessibleName(description)
+
+    def abrir_clima(self):
+        from pesca_clima_ui import ClimateDialog
+        dlg=ClimateDialog(self);fit_dialog(dlg).exec();dlg.deleteLater()
 
     def abrir_museu(self):
         from pesca_museu_ui import MuseuDialog

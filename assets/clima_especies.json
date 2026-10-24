@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "approved_on": "2026-10-23",
+  "meaning": "Afinidades de jogo aprovadas. Percentuais são modificadores de peso, não medidas biológicas nem pontos percentuais de chance.",
+  "climates": [
+    {
+      "id": "chuva",
+      "name": "Chuva",
+      "season": "Primavera",
+      "weight": 1
+    },
+    {
+      "id": "sol_forte",
+      "name": "Sol forte",
+      "season": "Verão",
+      "weight": 1
+    },
+    {
+      "id": "neve",
+      "name": "Neve / frio",
+      "season": "Inverno",
+      "weight": 1
+    },
+    {
+      "id": "ventania",
+      "name": "Ventania",
+      "season": "Outono",
+      "weight": 1
+    },
+    {
+      "id": "ameno",
+      "name": "Ameno",
+      "season": "Neutro",
+      "weight": 1
+    }
+  ],
+  "sources": {
+    "embrapa": {
+      "title": "Embrapa Pantanal: ciclos de reprodução e cheias",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/812710/1/ADM039.pdf"
+    },
+    "matrinxa": {
+      "title": "Ciclo reprodutivo de Brycon amazonicus",
+      "url": "https://orinoquia.unillanos.edu.co/index.php/orinoquia/article/download/215/406/1015"
+    },
+    "mexilhao": {
+      "title": "Salinidade e filtração de Mytilus edulis",
+      "url": "https://doi.org/10.1007/s10152-013-0347-2"
+    },
+    "maurolicus": {
+      "title": "Staby e Aksnes (2011): luz e distribuição vertical",
+      "url": "https://doi.org/10.3354/meps08938"
+    },
+    "fao": {
+      "title": "FAO: temperatura e atividade de peixes",
+      "url": "https://www.fao.org/fishery/static/FAO_Training/FAO_Training/General/x6709e/x6709e02.htm"
+    },
+    "tambaqui": {
+      "title": "Instituto de Pesca: tambaqui em temperaturas subtropicais",
+      "url": "https://institutodepesca.org/index.php/bip/article/view/1391"
+    },
+    "robalo": {
+      "title": "FWC: temperatura e robalo-flecha",
+      "url": "https://myfwc.com/fishing/saltwater/recreational/holistic/temperature/"
+    },
+    "anchoveta": {
+      "title": "IMARPE: Engraulis ringens",
+      "url": "https://biodiversidadacuatica.imarpe.gob.pe/Files/ExportarEspeciePdf?taxonId=103"
+    },
+    "ressurgencia": {
+      "title": "IMARPE: ventos, ressurgência e anchoveta",
+      "url": "https://revistas.imarpe.gob.pe/index.php/boletin/article/view/341"
+    },
+    "palhaco": {
+      "title": "Preferência térmica de Amphiprion ocellaris",
+      "url": "https://doi.org/10.1007/s40071-019-0228-7"
+    },
+    "cirurgiao": {
+      "title": "Universidade de Michigan: Paracanthurus hepatus",
+      "url": "https://animaldiversity.org/accounts/Paracanthurus_hepatus/"
+    },
+    "albacora": {
+      "title": "NOAA: habitat de espécies pelágicas do Pacífico",
+      "url": "https://repository.library.noaa.gov/view/noaa/50121/noaa_50121_DS1.pdf"
+    },
+    "dourado_mar": {
+      "title": "Governo de NSW: águas quentes e dourado-do-mar",
+      "url": "https://www.dpird.nsw.gov.au/fishing/recreational/resources/fish-aggregating-devices/mahi-mahi-and-fads"
+    },
+    "polar": {
+      "title": "IMR: bacalhau-polar",
+      "url": "https://www.hi.no/en/hi/temasider/species/polar-cod"
+    },
+    "cod": {
+      "title": "NOAA: bacalhau-do-atlântico",
+      "url": "https://www.fisheries.noaa.gov/species/atlantic-cod"
+    },
+    "lobo": {
+      "title": "Canadá: peixe-lobo",
+      "url": "https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/cosewic-assessments-status-reports/atlantic-wolffish-2012/chapter-3.html"
+    },
+    "polaca": {
+      "title": "Alaska Department of Fish and Game: agregações de polaca",
+      "url": "https://www.adfg.alaska.gov/index.cfm?adfg=walleyepollock.printerfriendly"
+    },
+    "tainha": {
+      "title": "Herbst e Hanazaki (2014): migração da tainha",
+      "url": "https://www.scielo.br/j/ni/a/mdHb6CrdkjMDh3bKXbPVqbR/?lang=en"
+    },
+    "krill": {
+      "title": "Distribuição e biomassa de eufausiáceos e vento",
+      "url": "https://doi.org/10.3389/fmars.2023.1031485"
+    },
+    "salmao": {
+      "title": "NOAA: migração do salmão-rosa",
+      "url": "https://www.fisheries.noaa.gov/species/pink-salmon"
+    }
+  },
+  "groups": [
+    {
+      "id": "pacu_cheias",
+      "maps": [
+        "enseada_do_poente",
+        "rio_das_vitorias"
+      ],
+      "species": [
+        "pacu"
+      ],
+      "factors": {
+        "chuva": 120
+      },
+      "reason": "Inspiração nas cheias e migrações; o bônus de encontro é uma adaptação de jogo.",
+      "sources": [
+        "embrapa"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "rio_cheias",
+      "maps": [
+        "rio_das_vitorias"
+      ],
+      "species": [
+        "curimbata",
+        "piraputanga",
+        "dourado",
+        "pintado",
+        "matrinxa"
+      ],
+      "factors": {
+        "chuva": 120
+      },
+      "reason": "Ciclos de cheias e reprodução no período chuvoso inspiram esta afinidade.",
+      "sources": [
+        "embrapa",
+        "matrinxa"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "mexilhao_salinidade",
+      "maps": [
+        "pier_da_brisa"
+      ],
+      "species": [
+        "mexilhao_azul"
+      ],
+      "factors": {
+        "chuva": 90
+      },
+      "reason": "Hipótese de menor atividade com aporte costeiro de água doce. Estudos de filtração não medem a chance de coleta.",
+      "sources": [
+        "mexilhao"
+      ],
+      "experimental_climates": [
+        "chuva"
+      ]
+    },
+    {
+      "id": "maurolicus_luz",
+      "maps": [
+        "fossa_das_lanternas"
+      ],
+      "species": [
+        "peixe_lanterna_de_muller"
+      ],
+      "factors": {
+        "chuva": 110,
+        "sol_forte": 90
+      },
+      "reason": "Adaptação da resposta vertical à luz superficial; aplica-se com luz ou crepúsculo. À noite, efeito neutro.",
+      "sources": [
+        "maurolicus"
+      ],
+      "experimental_climates": [
+        "chuva",
+        "sol_forte"
+      ],
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer"
+      ]
+    },
+    {
+      "id": "enseada_quentes",
+      "maps": [
+        "enseada_do_poente"
+      ],
+      "species": [
+        "tilapia_do_nilo",
+        "carpa_comum",
+        "carpa_capim"
+      ],
+      "factors": {
+        "sol_forte": 120,
+        "neve": 80
+      },
+      "reason": "Condições quentes dentro de faixas adequadas favorecem atividade; calor extremo também pode prejudicar.",
+      "sources": [
+        "fao"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "tambaqui_termico",
+      "maps": [
+        "rio_das_vitorias"
+      ],
+      "species": [
+        "tambaqui"
+      ],
+      "factors": {
+        "sol_forte": 120,
+        "neve": 80
+      },
+      "reason": "Espécie tropical com limitações em temperaturas baixas.",
+      "sources": [
+        "tambaqui"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "robalo_termico",
+      "maps": [
+        "mangue_das_raizes"
+      ],
+      "species": [
+        "robalo_flecha"
+      ],
+      "factors": {
+        "sol_forte": 120,
+        "neve": 80
+      },
+      "reason": "Sensibilidade ao frio e uso do habitat influenciado pela temperatura.",
+      "sources": [
+        "robalo"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "anchoveta_ambiente",
+      "maps": [
+        "pier_da_brisa"
+      ],
+      "species": [
+        "anchoveta_peruana"
+      ],
+      "factors": {
+        "sol_forte": 80,
+        "neve": 120,
+        "ventania": 110
+      },
+      "reason": "Águas moderadamente frias e ressurgência favorável inspiram os efeitos. Vento de qualquer direção não garante ressurgência.",
+      "sources": [
+        "anchoveta",
+        "ressurgencia"
+      ],
+      "experimental_climates": [
+        "ventania"
+      ]
+    },
+    {
+      "id": "palhaco_termico",
+      "maps": [
+        "recife_das_cores"
+      ],
+      "species": [
+        "peixe_palhaco"
+      ],
+      "factors": {
+        "sol_forte": 120,
+        "neve": 80
+      },
+      "reason": "Preferência térmica tropical inspira o efeito; não representa benefício ilimitado do calor.",
+      "sources": [
+        "palhaco"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "cirurgiao_termico",
+      "maps": [
+        "recife_das_cores"
+      ],
+      "species": [
+        "cirurgiao_patela"
+      ],
+      "factors": {
+        "sol_forte": 110,
+        "neve": 90
+      },
+      "reason": "Inferência leve a partir do habitat tropical e de sua faixa térmica.",
+      "sources": [
+        "cirurgiao"
+      ],
+      "experimental_climates": [
+        "sol_forte",
+        "neve"
+      ]
+    },
+    {
+      "id": "pelagicos_quentes",
+      "maps": [
+        "mar_dos_ventos"
+      ],
+      "species": [
+        "albacora_laje",
+        "dourado_do_mar"
+      ],
+      "factors": {
+        "sol_forte": 120,
+        "neve": 80
+      },
+      "reason": "Associação com águas superficiais quentes, dentro de faixas adequadas.",
+      "sources": [
+        "albacora",
+        "dourado_mar"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "auroras_frios",
+      "maps": [
+        "mar_das_auroras"
+      ],
+      "species": [
+        "bacalhau_polar",
+        "bacalhau_do_atlantico",
+        "peixe_lobo"
+      ],
+      "factors": {
+        "sol_forte": 80,
+        "neve": 120
+      },
+      "reason": "Espécies associadas a águas frias; a afinidade diária é uma adaptação sazonal.",
+      "sources": [
+        "polar",
+        "cod",
+        "lobo"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "polaca_inverno",
+      "maps": [
+        "mar_das_auroras"
+      ],
+      "species": [
+        "polaca_do_alasca"
+      ],
+      "factors": {
+        "neve": 120
+      },
+      "reason": "Grandes agregações reprodutivas no fim do inverno/início da primavera inspiram o bônus.",
+      "sources": [
+        "polaca"
+      ],
+      "experimental_climates": []
+    },
+    {
+      "id": "tainha_estuario",
+      "maps": [
+        "mangue_das_raizes"
+      ],
+      "species": [
+        "tainha"
+      ],
+      "factors": {
+        "ventania": 90
+      },
+      "reason": "Adaptação local: migração para fora do estuário durante frentes frias pode reduzir encontros dentro do mangue.",
+      "sources": [
+        "tainha"
+      ],
+      "experimental_climates": [
+        "ventania"
+      ]
+    },
+    {
+      "id": "krill_dispersao",
+      "maps": [
+        "mar_dos_ventos"
+      ],
+      "species": [
+        "krill_do_pacifico"
+      ],
+      "factors": {
+        "ventania": 90
+      },
+      "reason": "Vento forte pode dispersar agregações e reduzir biomassa local. Não representa redução global da espécie.",
+      "sources": [
+        "krill"
+      ],
+      "experimental_climates": [
+        "ventania"
+      ]
+    },
+    {
+      "id": "salmao_outono",
+      "maps": [
+        "mar_das_auroras"
+      ],
+      "species": [
+        "salmao_rosa"
+      ],
+      "factors": {
+        "ventania": 110
+      },
+      "reason": "Inspiração sazonal na migração do fim do verão/outono do habitat de origem; não é efeito direto comprovado do vento.",
+      "sources": [
+        "salmao"
+      ],
+      "experimental_climates": [
+        "ventania"
+      ]
+    }
+  ]
+}
