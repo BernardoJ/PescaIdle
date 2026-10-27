@@ -1,184 +1,138 @@
-# Pesca Idle - clima diário e piloto de tamanhos
+# Pesca Idle — candidato de integração
 
-## Versão atual Windows - 23/10/2026
+Jogo idle offline em Python/PySide6. O candidato reúne oito mapas, 88 espécies,
+sete períodos locais, museu com aquário animado, piloto de tamanhos, 21 decorações,
+38 conquistas e cinco climas diários. Comprimentos e preços das decorações ainda
+são parâmetros de design do piloto.
 
-**[Baixar PescaIdle-Clima.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Clima.exe)**. Salve em uma pasta gravável e abra com dois cliques; não exige instalar Python. Inclui clima diário, consulta clicável de bônus/ônus e os avanços anteriores de aquário, decorações e conquistas desta branch.
+## Qual versão está em revisão
 
-O perfil fica em `perfil-piloto/save.json`, junto ao EXE; não importa o save pessoal de APPDATA. Perfis piloto anteriores são migrados com backup para schema 5. Executáveis antigos não abrem esse schema; voltar exige restaurar uma cópia do backup anterior.
+A branch de trabalho **`codex/preparar-integracao-main`** parte de
+[`a352061`](https://github.com/BernardoJ/PescaIdle/commit/a352061bfb97692ff54934e4992406d16c9628b1)
+(`codex/piloto-tamanhos`) e acrescenta a recusa de save schema 5 sem `clima`, testes
+de regressão e esta organização documental. **O candidato atual é o código-fonte;
+os binários existentes não contêm essa correção.**
 
-Build Windows x64, código `d1bcd5bb13cb58d7196221450be2a43124dfa233`: **50.561.165 bytes**, SHA-256 `ba481e9a42d2e992406aaa6380575499274cff3e541e160efd32ea5cf352c0ee`. Smoke do EXE novo passou em três processos com perfil temporário. Android nativo/APK não atualizado nesta entrega.
+A cadeia existente é `main` → expansão (PR #2) → auditoria/Android e museu
+(PR #3) → piloto, aquário, conquistas e clima (PR #5). O PR #5 tem como destino
+`codex/android-auditoria`; seu diff isolado não representa tudo que falta na main.
+A preparação usa um PR em rascunho para `main`, com a cadeia completa, preservando
+os PRs anteriores. A proposta Fluxo/Precisão do PR #4 permanece separada.
 
-[Relatório com resultados e imagens](docs/clima/RELATORIO.md) · [PDF](output/pdf/PescaIdle_Relatorio_Clima.pdf) · [Regras e reprodução](docs/CLIMA.md) · [Animação dos cinco climas](docs/clima/imagens/climas.gif).
+[Revisão da integração, commits, testes e riscos](docs/INTEGRACAO_MAIN.md).
+O merge depende de aprovação específica. Merge não publica uma release nem
+certifica os executáveis históricos.
 
-As seções abaixo preservam o histórico das entregas anteriores e seus binários. Suas observações sobre ausência de recompilação referem-se àquelas entregas; o download atual está acima.
+## Plataformas e limites
 
-Esta branch `codex/piloto-tamanhos` publica o candidato local para revisão, sobre a base com museu `2a0353ff7c1cae2dca69d08c222b0660770d4385`. Não houve merge na main nem integração com Fluxo/Precisão.
+| Plataforma | Situação deste candidato |
+| --- | --- |
+| Windows x64 | Plataforma desktop do jogo. Há EXE histórico do clima; a correção atual foi validada na fonte em Linux, sem novo build ou teste nativo Windows nesta preparação. |
+| Linux x86_64 | QA com Python 3.12.14 / PySide6 6.11.2 / Qt offscreen. Testes de lógica e widgets não certificam uma sessão gráfica prolongada ou um pacote distribuível. |
+| Android | Infraestrutura Qt herdada da auditoria. **Nenhum APK atualizado ou Android nativo foi gerado ou validado para este candidato.** A restrição do perfil do piloto também precisa de revisão antes de portar esta versão. |
+| macOS | Não validado. |
 
-## Conquistas - primeira etapa
+A beta Android histórica é anterior ao museu, tamanhos, decorações, conquistas e
+clima. Seu alvo era Android 9+, ARM64 e páginas de 4 KB; telefone físico ARM64,
+páginas de 16 KB e Play Store continuam pendentes. [Histórico Android](ANDROID.md)
+e [evidências daquela auditoria](docs/AUDITORIA_ANDROID.md) não certificam schema 5.
 
-O código-fonte acrescenta as **24 conquistas aprovadas**, totalizando **38** com as 14 anteriores. Há metas de coleção, mapas/períodos, museu, decorações, estilo e melhorias, com dificuldade e progresso na tela existente. Sem recompensa econômica nova ou alteração de preços, RNG e schema do piloto.
+O replay offline usa o primeiro trecho de até quatro horas e o offset salvo;
+transições históricas de horário de verão não são reconstruídas. Expedição
+substitui o offline normal e só paga tempo decorrido. Prévia mobile Qt não
+substitui teste em aparelho. Garantias de escrita não cobrem falha física do disco.
 
-[Regras, testes individuais e limitações](docs/conquistas-etapa1/README.md). Os executáveis/APKs históricos não foram recompilados para esta atualização.
+O roteiro antigo `piloto_entry.py --demo` tem seis falhas de teste herdadas por
+criar capturas sem contexto climático; não está validado para schema 5. O jogo
+normal e o smoke climático da fonte passaram. [Falhas e escopo](docs/INTEGRACAO_MAIN.md).
 
-## Decorar o aquário
+## Executar o candidato pelo código
 
-No código-fonte, a loja agora inclui a aba **Decorações do aquário**, com 21 opções internas/externas em sete tipos. No museu, use **Decorar aquário** para combinar os itens adquiridos. Preços iniciais propostos: **150 a 6.000 moedas**, apenas visuais; trocar ou retirar é gratuito. As decorações não ampliam a exigência de Fashionista.
-
-[Catálogo, preços, save e limites](docs/aquario-decoracoes/README.md) · [Loja](docs/aquario-decoracoes/imagens/loja.png) · [Prancha das 21 opções](docs/aquario-decoracoes/imagens/catalogo.png).
-
-Os executáveis/APKs abaixo são anteriores às decorações e não foram recompilados nesta entrega.
-
-## Aquário com movimento - passos 1 a 5 completos
-
-Os 68 moradores do tanque têm arte própria e movimento discreto de cauda/nadadeiras. [Baixar a demonstração visual Windows](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Aquario-Demo.exe), salvar em uma pasta gravável e abrir com dois cliques. É um visualizador em memória, sem progressão nem save; permite pausar, avançar quadros, trocar espécies e comparar exemplares do piloto.
-
-[PDF completo com os cinco passos](output/pdf/PescaIdle_Aquario_Completo.pdf) · [GIF do movimento](docs/aquario-especies/movimento/evidencias/movimento-ampliado.gif) · [Reprodução e limites](docs/aquario-especies/movimento/README.md) · [Testes, desempenho e pacote](docs/aquario-especies/movimento/RELATORIO.md).
-
-A animação foi integrada ao código-fonte do tanque. Os executáveis antigos do jogo completo abaixo permanecem históricos; a nova demonstração visual é separada.
-
-## Arte dos peixes no aquário - 23/10/2026
-
-Os **68 peixes elegíveis** agora têm desenhos próprios no tanque, com formas e marcas por espécie e detalhe adaptado ao tamanho de exibição. A mudança preserva a escala do piloto e afeta somente a arte dentro do aquário. [Escopo, referências e reprodução](docs/aquario-especies/README.md) · [Relatório com screenshots em PDF](output/pdf/PescaIdle_Aquario_Especies.pdf) · [Antes/depois e limitações](docs/aquario-especies/relatorio.md).
-
-Esta atualização está no código-fonte; os executáveis e APKs históricos abaixo não foram recompilados nesta entrega visual.
-
-## Demonstração revisada — 19/10/2026
-
-Correção de IDs pendentes, recordes mais claros e um roteiro sintético isolado: execute `python -B piloto_entry.py --demo` com o ambiente existente. [Como experimentar, perfil separado, testes e build local](docs/piloto-tamanhos/demo/README.md). A build **Tamanhos-Demo** é separada e fica local; o download histórico abaixo não inclui essas correções.
-
-## Abrir com dois cliques
-
-**[Baixar PescaIdle-Tamanhos-Piloto.exe](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/piloto-tamanhos/PescaIdle-Tamanhos-Piloto.exe)**
-
-Salve o EXE em uma pasta gravável e abra. Ele inclui runtime e recursos; não exige instalar Python. O perfil novo fica em `perfil-piloto/save.json`, junto ao EXE. O piloto recusa perfis fora dessa pasta-base e não abre o save pessoal em APPDATA.
-
-Build Windows de 18/10/2026: **50.200.863 bytes**, SHA-256 `4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27`.
-
-## Conteúdo
-
-- Comprimentos individuais para Lambari, Tilápia-do-nilo, Carpa-comum e Traíra; valores provisórios de design.
-- Menor/maior exemplar por espécie na enciclopédia e cinco conquistas sem bônus econômico.
-- Variação visual na captura e no aquário; seleção menor/maior nos três espaços.
-- Save schema 4 exclusivo do piloto, com marcador `tamanhos-v1`, backup de migração e perfil isolado.
-- As outras espécies, economia, tempos e varas existentes permanecem com as regras da base.
-
-[Entrega, comandos e limitações](docs/piloto-tamanhos/README.md) · [Parâmetros](docs/piloto-tamanhos/PARAMETROS.md) · [Relatório local sanitizado](docs/piloto-tamanhos/RELATORIO.md)
-
-![Variação de comprimento no piloto](docs/piloto-tamanhos/imagens/variacao-lambari.png)
-
-Evidências da preparação local de 18/10/2026: 12 testes passaram, 16.010 eventos em 48 fluxos pareados iguais à base quanto a espécies/moedas/tempos, smoke do EXE em três processos e prévias Qt desktop/mobile. Não foram repetidos jogo/simulações para esta publicação. **Android nativo deste piloto não foi testado.**
-
-O arquivo antigo `PescaIdle.exe` e os APKs preexistentes foram preservados e não contêm este piloto. Use o EXE com **Tamanhos-Piloto** no nome. Para retornar, feche o piloto e abra o jogo anterior; não transfira o save do piloto para a versão principal.
-
-<details>
-<summary>Documentação histórica da base, anterior ao piloto (comandos, saves e binários não descrevem esta branch experimental)</summary>
-
-# Pesca Idle — Oito Águas
-
-Jogo idle de pesca em Python/PySide6, com arte original em pixels e adaptação Android.
-
-## Entrega local: museu inicial
-
-Esta branch acrescenta **Museu** ao menu, com um aquário para até três espécies diferentes já descobertas. Selecionar, trocar e retirar não consome capturas nem moedas. Encontros especiais ficam fora deste aquário. A exposição é salva; não há alimentação, renda ou punição por ausência.
-
-Esta entrega está somente no código local. Os EXEs e APKs existentes são anteriores ao museu e não foram substituídos. [Diagnóstico, medições, imagens e limites](docs/MUSEU_PRIMEIRA_ENTREGA.md).
-
-Para experimentar com descobertas de exemplo e um perfil temporário, no ambiente Python/PySide6 já configurado:
+Use Python 3.12 e uma pasta gravável. Na raiz do checkout, em PowerShell:
 
 ```powershell
-python tools/preview_museum.py
-python tools/preview_museum.py --empty
-```
-
-Essa prévia não abre o save pessoal e descarta o perfil de teste ao fechar. O jogo normal abre pelo código em `pesca_idle.py`; faça sessões de QA somente com `PESCA_IDLE_SAVE_PATH` explícito. Não foram implementadas as etapas posteriores de clima, equipamentos ou distribuição do catálogo.
-
-## Jogar com dois cliques
-
-Baixe o [PescaIdle.exe atualizado](https://github.com/BernardoJ/PescaIdle/raw/refs/heads/codex/android-auditoria/PescaIdle.exe), salve no computador e abra com dois cliques. Não precisa instalar Python. O executável na raiz desta branch contém todos os recursos.
-
-Build Windows: **50.164.461 bytes**. SHA256: `be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9`.
-[Correções e validação atual](docs/AUDITORIA_ANDROID.md) · [Android](ANDROID.md).
-
-## Jogar no Android
-
-Baixe o [PescaIdle-Android.apk — beta ARM64](https://github.com/BernardoJ/PescaIdle/releases/download/v2.1.0-android-beta.1/PescaIdle-Android.apk) e abra para instalar. O Android pode pedir permissão para instalar por esse navegador/gerenciador. O pacote inclui o jogo, o runtime e os recursos; não requer outro aplicativo.
-
-Alvo desta beta: **Android 9+, ARM64, páginas de memória de 4 KB**. Compatibilidade com páginas de 16 KB e teste em telefone físico permanecem pendentes. Instalação, funcionamento e rotação foram testados em emulador Android 15 x86_64 com o mesmo código/arte. [Relatório e limitações](docs/AUDITORIA_ANDROID.md).
-
-APK: **151.170.080 bytes**. SHA256: `beeaeb7354b4215572e15151b1270384fee124645d68dc63c687b8e1b4adc279`.
-
-## O que mudou
-
-- Oito mapas, com sete cenários inéditos, desbloqueados permanentemente por nível de barco. Viagem gratuita pelo menu **Viajar**.
-- 88 espécies aquáticas: 49 antigas preservadas e 39 novas; 68 peixes e 20 encontros especiais. Baleias e semelhantes são avistamentos, e plâncton é registrado por amostra.
-- Sete períodos pelo relógio local: Amanhecer 05–07, Manhã 07–09, Dia 09–11, Meio-dia 11–14, Tarde 14–17, Anoitecer 17–20, Noite 20–05. Fim exclusivo.
-- **Enciclopédia** com ordem alfabética/quantidade e filtros por local, período e disponível agora. Valor em 1 registro, raridade em 5, curiosidade em 10. Mostra descobertas por padrão; pistas opcionais de desconhecidas não revelam a identidade.
-- Coleção global e regional separadas. Conquista original **Rei da pesca** conserva a meta de 49; **Explorador das oito águas** usa as 88 da expansão.
-- **Fashionista**: somente cosméticos vendidos, excluindo o livro Enciclopédia Viva, opções grátis e peças de upgrade. A tela mostra progresso e nomes que faltam; recalcula ao abrir e comprar. **Enciclopédia Viva**: todas as informações reveladas, com acessório de livro flutuante grátis como recompensa.
-- Capuz de raposa/elmo corrigidos, cabo de martelo menor, nuvens e chuva no cajado, mais teias, broche lunar luminoso, dragão verde orbitando a esfera laranja, brilho no sabre/constelação/chamas e asas mais vivas.
-- Rótulos **Dragão Digital**, **Gorro de Rato Elétrico**, **Eu escolho você!** e **Mostre-me seu Coração Valente**, com IDs anteriores preservados.
-
-A janela compacta abre no canto inferior direito, fica no topo e pode ser arrastada. A cena conserva 256×144 pixels lógicos, com ampliação inteira em pixels físicos e tipografia legível. Todos os cosméticos, os 11 níveis de barco/vara e a prévia da loja permanecem. Itens são ordenados por preço em cada categoria. Peças de upgrade são compradas na loja.
-
-![Novos mapas e períodos](docs/visual/expansao/mapas-2.png)
-![Efeitos dos acessórios](docs/visual/expansao/efeitos.png)
-
-## Progresso e ausência
-
-O save normal Windows continua em `%APPDATA%\PescaIdle\save.json`. A atualização migra para schema 3, com moedas em centésimos inteiros, backup anterior e escrita atômica. Preserva inventário, compras, equipamentos e conquistas. Normaliza o saldo antigo a duas casas, guardando o número original no backup. Capturas antigas continuam globais, sem atribuir local/horário desconhecido. Saves corrompidos ou futuros não são substituídos silenciosamente; um backup válido pode ser recuperado com confirmação. Duas instâncias não podem gravar no mesmo perfil. Android usa seu diretório privado.
-
-Fisgadas congelam o resultado no início, inclusive ao viajar, pausar ou reabrir. O offline normal conta o **primeiro trecho de até quatro horas** da ausência, pescando em cada horário histórico; excesso é descartado uma vez. A pausa intencional persiste sem renda offline até retomar.
-
-**Expedição offline** permite agendar um mapa liberado, nas próximas 24 h, por até 4 h. Substitui a renda normal daquela ausência. Paga somente a parte decorrida enquanto o jogo esteve fechado/suspenso; retornar consome a janela parcial. Não acorda o computador, não executa serviços e não paga tempo futuro. Se o jogo estiver aberto no início, o plano expira.
-
-O replay usa UTC e offset salvo. Mudanças históricas de horário de verão durante a ausência não são reconstruídas. O jogo funciona offline, sem localização ou rede.
-
-## Executar pelo código
-
-```powershell
-py -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe pesca_idle.py
+.\.venv\Scripts\python.exe -B piloto_entry.py
 ```
 
-Ambiente efetivamente validado: Python 3.14.8, PySide6 6.11.2, Windows 11. Dependências estão fixadas nos arquivos de requirements. Para uma sessão manual de QA, configure o perfil **antes** de iniciar:
+O perfil padrão é `perfil-piloto/save.json` **dentro deste checkout**. Na versão
+empacotada histórica do piloto/clima, fica na mesma pasta do EXE. A versão atual
+recusa caminhos fora da pasta do candidato; não importa o save pessoal de APPDATA.
+
+Para experimentar com outro perfil sintético, estabeleça o caminho antes de abrir:
 
 ```powershell
-$qa = Join-Path $env:TEMP ('pesca-manual-' + [guid]::NewGuid())
+$qa = Join-Path (Get-Location) ('qa/manual-' + [guid]::NewGuid())
 $env:PESCA_IDLE_SAVE_PATH = Join-Path $qa 'save.json'
-.\.venv\Scripts\python.exe pesca_idle.py
+.\.venv\Scripts\python.exe -B piloto_entry.py
+Remove-Item Env:PESCA_IDLE_SAVE_PATH
 ```
 
-## Build e validação
+Não copie seu save pessoal para QA. A versão principal histórica usa
+`%APPDATA%\PescaIdle\save.json` no Windows; o Android histórico usa o diretório
+privado do aplicativo. Esses caminhos não são o perfil padrão deste piloto.
+
+## Saves, compatibilidade e backups
+
+- O formato atual é **schema 5**, identificado por `pilot_kind=tamanhos-v1`, com
+  clima versão 1. Save v5 sem `clima`, com clima inválido ou schema futuro é recusado.
+  Não se completa clima ausente com os defaults de outra inicialização.
+- A migração legítima de schemas 1–4 cria clima no instante da migração e mantém
+  o período anterior neutro. Progresso, RNG, resultados pendentes e extensões
+  desconhecidas são preservados conforme os contratos de cada versão.
+- Antes da migração, guarda os bytes originais em `save.pre-expansao-v1.json` ou
+  `save.pre-schema-N.json`. Se houver backup diferente, cria outro nome exclusivo.
+  Cada gravação mantém o snapshot anterior em `save.json.bak` e usa substituição
+  atômica. Há um escritor por perfil.
+- Um save rejeitado não é substituído automaticamente. A recuperação exige escolha
+  explícita e um backup válido; conserva o rejeitado em `save.rejeitado-*.json`.
+- **Downgrade não é automático:** executáveis anteriores ao schema 5 recusam esse
+  formato. Para voltar, feche o jogo e restaure uma cópia do backup anterior à
+  migração em um perfil separado e compatível. O backup rotativo `.bak` pode já ser
+  v5; não substitui o backup anterior à migração.
+
+[Contrato de save e migração](docs/MIGRACAO_SAVE.md) · [Clima e contexto legado](docs/CLIMA.md).
+Nenhum save pessoal é fixture ou entrada dos testes.
+
+## Verificar a fonte
+
+Pillow é dependência de QA (`Pillow==12.3.0`); o jogo requer somente as dependências
+de `requirements.txt`. Use diretórios novos em `qa/`, ignorado pelo Git:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-build.txt
-.\.venv\Scripts\python.exe -m PyInstaller --noconfirm PescaIdle.spec
+.\.venv\Scripts\python.exe -m pip install Pillow==12.3.0
+.\.venv\Scripts\python.exe -X utf8 -B tools/validate_climate.py --out qa/clima-minha-rodada
+.\.venv\Scripts\python.exe -X utf8 -B tools/validate_conquistas.py --out qa/regressao-minha-rodada
+.\.venv\Scripts\python.exe -X utf8 -B tools/run_climate_smoke.py --out qa/smoke-fonte-minha-rodada
 ```
 
-Gera `dist/PescaIdle.exe`. O spec inclui PNG/JSON de produção recursivamente, preservando caminhos relativos; exclui masters de `assets/source`. Não inclui fontes, saves, ZIP, .git ou QA. Módulos e recursos são resolvidos pelo módulo/`sys._MEIPASS`, sem depender do cwd.
+Os runners configuram perfis sintéticos, APPDATA e LOCALAPPDATA antes de importar
+o jogo. O primeiro cobre schema 5, migrações 1–4, backups/recuperação, pendências,
+clima, probabilidades e widgets. O segundo cobre conquistas, tamanhos/pendências,
+auditoria, museu, expansão, cosméticos e balanceamento. O terceiro abre três
+processos da fonte: pendência, entrega e reabertura sem duplicação.
 
-```powershell
-$env:PESCA_IDLE_QA_DIR = Join-Path $env:TEMP ('pesca-qa-' + [guid]::NewGuid())
-.\.venv\Scripts\python.exe tools\validate_game.py
-.\.venv\Scripts\python.exe tools\smoke_exe.py dist\PescaIdle.exe
-```
+Comandos e resultados **realmente executados nesta preparação**, incluindo falhas
+iniciais e itens não testados: [relatório de integração](docs/INTEGRACAO_MAIN.md).
+Relatórios históricos mantêm as datas e o escopo das respectivas entregas.
 
-Os testes criam saves sintéticos e isolam APPDATA/LOCALAPPDATA antes de importar o jogo. O smoke usa plugin Windows, cwd estrangeiro e migra uma fixture v1. `validate_game` executa auditoria, matriz da expansão, regressão cosmética e balanceamento. `tools/test_windows_close.py <exe> --output <qa>` verifica saída nativa do processo e liberação do lock. `tools/validate_mobile.py` é uma prévia desktop, distinta do teste real do APK. Relatórios e imagens usam a pasta de QA, sem sobrescrever referências.
+## Binários históricos e documentação
 
-Resultados observados: **5.920** verificações da matriz e **1.359** de cosméticos; 56 cenas inspecionadas; 168 pools matemáticos e 7 inícios ×30 sementes de progressão. [Detalhes e limites](docs/VALIDACAO_EXPANSAO.md). O conjunto global antigo foi preservado como fixture de comparação, com seus 337 checks executados antes da expansão.
+**Não foi gerado nem publicado EXE/APK nesta preparação.** O EXE de clima de
+23/10/2026 foi compilado de `d1bcd5b` e publicado em `a352061`; antecede a correção
+atual de save. Tem 50.561.165 bytes e SHA-256
+`ba481e9a42d2e992406aaa6380575499274cff3e541e160efd32ea5cf352c0ee`.
+[Arquivo histórico fixado no commit](https://github.com/BernardoJ/PescaIdle/raw/a352061bfb97692ff54934e4992406d16c9628b1/PescaIdle-Clima.exe).
 
-## Arquitetura e referências
+`PescaIdle.exe`, `PescaIdle-Tamanhos-Piloto.exe` e `PescaIdle-Aquario-Demo.exe`
+permanecem como artefatos históricos de escopos diferentes; não são builds da
+correção atual. A demonstração do aquário é um visualizador sem progressão/save.
+O spec e o workflow existentes não foram alterados ou executados nesta preparação;
+novos builds e publicação são uma etapa separada.
 
-- `pesca_catalogo.py` / `assets/catalogo_expansao.json`: única fonte de conteúdo no runtime, IDs e ocorrências regionais.
-- `pesca_tempo.py`, `pesca_pescaria.py`, `pesca_offline.py`: relógio central, resultado pendente, RNG e replay histórico.
-- `pesca_save.py`, `pesca_conquistas.py`: migração, persistência exclusiva/atômica, metas e recompensa.
-- `pesca_idle.py`, `pesca_viagens_ui.py`, `pesca_ui.py`: janela, loja, coleção, viagem, expedição e diálogos.
-- `pesca_visual.py`, `pesca_luz.py`, `pesca_regional_visual.py`, `pesca_efeitos.py`, `pesca_especies_visual.py`: composição, máscaras, iluminação, cosméticos e espécies.
-- `assets/source/mapas`: masters inéditos do imagegen e prompts. `tools/prepare_maps.py --records <prompts.json>` prepara PNGs/máscaras finais; Pillow é só dependência de desenvolvimento.
-
-[Expansão e arte](docs/EXPANSAO_MAPAS.md) · [Save e offline](docs/MIGRACAO_SAVE.md) · [Balanceamento](docs/BALANCEAMENTO_EXPANSAO.md) · [Fontes das 39 novas identidades](docs/FONTES_ESPECIES.md) · [Critérios antigos](CRITERIOS_RARIDADE.md).
-
-A arte é própria, com personagem e barco existentes preservados e linguagem de RPG em pixels. Horários/ambientes são convenções do jogo; não representam coocorrência ou abundância científica exata. Curiosidades novas usam fatos taxonômicos verificados; as antigas foram preservadas e identificadas como legado.
-
-</details>
+- [Expansão de mapas/períodos](docs/EXPANSAO_MAPAS.md) · [Balanceamento](docs/BALANCEAMENTO_EXPANSAO.md).
+- [Museu](docs/MUSEU_PRIMEIRA_ENTREGA.md) · [Piloto de tamanhos](docs/piloto-tamanhos/README.md) · [Demo isolada](docs/piloto-tamanhos/demo/README.md).
+- [Arte do aquário](docs/aquario-especies/README.md) · [Movimento](docs/aquario-especies/movimento/README.md) · [Decorações](docs/aquario-decoracoes/README.md).
+- [Conquistas](docs/conquistas-etapa1/README.md) · [Clima](docs/CLIMA.md) · [Relatório histórico do clima](docs/clima/RELATORIO.md).
+- [Direção de arte](assets/ART_DIRECTION.md) · [Fontes das espécies](docs/FONTES_ESPECIES.md) · [Critérios de raridade](CRITERIOS_RARIDADE.md).

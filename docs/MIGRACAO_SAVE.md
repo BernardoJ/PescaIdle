@@ -1,4 +1,29 @@
-# Save v3 e ausência
+# Save atual: schema 5 do candidato
+
+O candidato de integração usa `perfil-piloto/save.json` dentro do checkout (ou
+ao lado do EXE histórico do piloto/clima), com `pilot_kind=tamanhos-v1`.
+O perfil é isolado: não importa o save pessoal de APPDATA e recusa caminhos fora
+da pasta do candidato. A descrição v3 abaixo documenta a base histórica.
+
+Schemas 1–4 válidos continuam migrando para v5, com backup byte a byte antes da
+substituição. O clima é criado no instante da migração; capturas e ausência
+anteriores permanecem neutras, sem rerrolar pendências. A migração é idempotente.
+
+**Schema 5 exige `clima` no próprio arquivo.** Ausência ou conteúdo inválido
+provoca `SaveError` antes de qualquer backup de migração ou substituição do save.
+Os defaults expandidos do runtime não podem reparar esse campo. A mesma regra
+vale para validar e recuperar `save.json.bak`: um backup v5 incompleto é recusado.
+Uma recuperação explícita de backup válido preserva o rejeitado em arquivo novo.
+
+O backup anterior é `save.pre-expansao-v1.json` (v1) ou
+`save.pre-schema-N.json` (v2–v4). Colisões com bytes diferentes usam nome exclusivo,
+sem sobrescrever o backup existente. `save.json.bak` é rotativo e pode já conter
+v5. Para voltar a um executável antigo, use uma cópia do backup anterior à
+migração em perfil separado; os leitores antigos recusam schema 5.
+
+[Contrato climático](CLIMA.md) · [Testes e riscos da integração](INTEGRACAO_MAIN.md).
+
+## Base histórica: save v3 e ausência
 
 O caminho normal permanece `%APPDATA%\PescaIdle\save.json`. Nenhum conteúdo do
 perfil pessoal foi lido ou usado nesta tarefa. Todos os testes utilizaram dados
