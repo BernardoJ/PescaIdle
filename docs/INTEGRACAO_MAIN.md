@@ -30,7 +30,7 @@ foi usado. Perfis pessoais e seus backups não foram lidos, copiados ou migrados
 | Expansão | main | `b4c81121bddff8416fcfa4cbd5b2542f9d8b8f34` | #2 para main; 2 commits |
 | Auditoria/Android e museu | expansão | `2a0353ff7c1cae2dca69d08c222b0660770d4385` | #3 para expansão; 19 commits |
 | Piloto, aquário, conquistas e clima | auditoria/museu | `a352061bfb97692ff54934e4992406d16c9628b1` | #5 em rascunho para `codex/android-auditoria`; 13 commits |
-| Preparação atual | piloto publicado | `fbd10e1` + commit documental desta revisão | Novo PR em rascunho para main |
+| Preparação atual | piloto publicado | `fbd10e1` + commits documentais desta revisão | Novo PR em rascunho para main |
 
 Os três heads formam uma cadeia de ancestralidade, sem divergência entre as
 etapas. O merge-base main/piloto é `6b29b4a`; o merge-base auditoria/piloto é
@@ -61,7 +61,7 @@ comprimentos de quatro espécies, arte/movimento do aquário, 21 decorações,
 `output/pdf/`, masters e quatro arquivos EXE no diff também vêm dos commits
 anteriores. **Esses binários são históricos, não foram recompilados nesta tarefa.**
 
-O range publicado main → `a352061` tem 433 arquivos alterados, 210.918 linhas
+O range publicado main → `a352061` tem 433 arquivos alterados, 207.881 linhas
 adicionadas e 923 removidas: 42 de fonte/configuração, 53 ferramentas, 51 assets,
 279 documentos/evidências, 4 PDFs e 4 binários. A maior parte das linhas é dado
 e evidência histórica. A preparação muda somente cinco caminhos:
@@ -153,7 +153,7 @@ não equivalem a esses estudos de progressão completos.
 
 ## Riscos para a aprovação
 
-1. O diff para main agrega **34 commits anteriores mais os dois desta preparação**,
+1. O diff para main agrega **34 commits anteriores mais os commits desta preparação**,
    incluindo alterações amplas de jogo e os binários históricos. Aprovar apenas a
    correção de quatro linhas não aprova a integração completa.
 2. Saves do piloto v5 não abrem em leitores antigos. Backups foram validados com
@@ -188,7 +188,7 @@ publicação, deploy ou mudança de permissões por consequência do merge.
 ## Commits publicados que compõem a versão desejada
 
 A lista abaixo contém exatamente os 34 commits de `6b29b4a..a352061`.
-A correção `fbd10e1` e o commit documental deste relatório são acrescentados no PR.
+A correção `fbd10e1` e os commits documentais desta revisão são acrescentados no PR.
 
 - `86f3b2a4740aeefa8533d980d76a6084b7c61bc1` — Implementa expansao de oito mapas, periodos e colecao regional
 - `b4c81121bddff8416fcfa4cbd5b2542f9d8b8f34` — Publica executavel Windows da expansao e guia atualizado
