@@ -1,0 +1,68 @@
+{
+  "source_commit": "5a2ac60af5d8e093d550a073d763ead082782591",
+  "source_branch": "codex/builds-main-20261027",
+  "bypass_reproduced_before_fix": true,
+  "synthetic_only": true,
+  "cause": "An existing SaveStore auxiliary .bak symlink could load a different context even when its direct main path was rejected.",
+  "prerequisites": "A preexisting symlink created by an actor with same-UID/private-directory access; ordinary other applications cannot create it, and the game never creates it.",
+  "fixed_paths": [
+    "main save",
+    "backup",
+    "migration backup",
+    "lock",
+    "rejected archive",
+    "atomic replacement"
+  ],
+  "profiles": {
+    "tests": 24,
+    "failures": 0,
+    "errors": 0,
+    "synthetic_only": true,
+    "native_android": false,
+    "scope": "QStandardPaths simulated; SaveStore real; native APK must also pass emulator checks."
+  },
+  "optimized_profiles": {
+    "tests": 24,
+    "failures": 0,
+    "errors": 0,
+    "synthetic_only": true,
+    "native_android": false,
+    "scope": "QStandardPaths simulated; SaveStore real; native APK must also pass emulator checks."
+  },
+  "climate": {
+    "python": "3.12.14",
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "profile_isolated": true
+  },
+  "full_regression_success": true,
+  "full_regression_unit_tests": 83,
+  "matrices": {
+    "expansion": 5920,
+    "cosmetics": 1359,
+    "balance_pools": 168,
+    "balance_progressions": 210
+  },
+  "aquarium_tests": {
+    "run": 10,
+    "failures": 0,
+    "errors": 0
+  },
+  "host_reopen_harness_tests": 7,
+  "total_unique_green_source_tests": 143,
+  "native_case": {
+    "passed": true,
+    "run_id": 40567485121,
+    "job_id": 122420510137,
+    "check": "Native private backup symlink rejected without cross-context recovery",
+    "synthetic_only": true,
+    "platform": "Android 15 / API 35 x86_64 / QPA android / optimize=2",
+    "native_processes": [
+      "3145",
+      "3789"
+    ],
+    "reopen_snapshot_sha256": "f155cabf9ff4033f6fe4ab16d450382205abde22410b8e70dc5810e09093bc01"
+  },
+  "windows_main_exe_unchanged": true
+}

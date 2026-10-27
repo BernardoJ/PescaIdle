@@ -1,0 +1,56 @@
+name: Coletar metadados dos builds sem recompilar
+on:
+  push:
+    branches: [codex/builds-main-20261027]
+    paths: ['.github/workflows/collect-build-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  metadata:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Aguardar somente o workflow de build ja iniciado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 180); do
+            state=$(gh api repos/BernardoJ/PescaIdle/actions/runs/40567485121 --jq .status)
+            if test "$state" = completed; then exit 0; fi
+            sleep 10
+          done
+          echo 'Build ainda nao terminou; nenhum artefato foi declarado aprovado.'
+          exit 1
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40567485121
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/build-inputs
+      - name: Separar somente metadados publicaveis, sem saves ou chaves
+        env:
+          BUILD_INPUTS: ${{ runner.temp }}/build-inputs
+          BUILD_METADATA: ${{ runner.temp }}/build-metadata
+        run: |
+          python - <<'PY'
+          import json,os,shutil
+          from pathlib import Path
+          src=Path(os.environ['BUILD_INPUTS']);out=Path(os.environ['BUILD_METADATA']);out.mkdir()
+          allowed={'BUILD.json','VALIDATION.json','ARCHIVE.json','BUILD-FINAL.json','build.json',
+                   'signature.txt','distribution.txt','package.txt','alignment.txt','sha256.txt',
+                   'SHA256SUMS.txt','result.json','first-process.json','reopened-process.json'}
+          copied=[]
+          for p in sorted(src.rglob('*')):
+              if p.is_file() and p.name in allowed:
+                  relative=p.relative_to(src);dest=out/relative;dest.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copyfile(p,dest);copied.append(str(relative))
+          if not copied:raise RuntimeError('No build metadata found')
+          (out/'inventory.json').write_text(json.dumps({'source_run':40567485121,'files':copied},indent=2)+'\n')
+          print(json.dumps({'copied_files':len(copied)}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Metadados-verificaveis-builds-40567485121
+          path: ${{ runner.temp }}/build-metadata/
+          if-no-files-found: error

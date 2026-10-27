@@ -1,13 +1,36 @@
 """On-device checks, included only in the disposable Android QA package."""
-import copy,json,os,sys,traceback
+import copy,hashlib,json,os,sys,traceback
 from pathlib import Path
 from PySide6.QtCore import QTimer,Qt,QEvent,QPoint
 from PySide6.QtWidgets import QWidget,QComboBox,QScrollArea,QLabel
 from PySide6.QtTest import QTest
 
 
-def schedule(app,game,lifecycle):
-    QTimer.singleShot(1800,lambda:run(app,game,lifecycle))
+def schedule(app,game,lifecycle,reopen_snapshot=None):
+    QTimer.singleShot(1800,lambda:run(app,game,lifecycle,reopen_snapshot))
+
+
+def snapshot_digest(state):
+    payload=copy.deepcopy(state)
+    for key in ('ultimo_salvo','ultimo_processado_utc','moedas','inventario','android_qa_reopen'):
+        payload.pop(key,None)
+    return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+
+
+def read_reopen_snapshot(defaults):
+    # Runs after the private QA boundary is configured, BEFORE JogoPesca can
+    # advance its watermark or save. It cannot import a production profile.
+    from pesca_save import SaveStore
+    path=Path(os.environ['PESCA_IDLE_SAVE_PATH'])
+    if not path.exists():return None
+    with SaveStore(path) as store:
+        state=store.load(defaults)
+    marker=state.get('android_qa_reopen')
+    if marker is None:return None
+    check(state['schema_version']==5,'Reopen schema mismatch')
+    check(marker.get('version')==1,'Reopen marker version mismatch')
+    check(marker.get('sha256')==snapshot_digest(state),'Persisted snapshot changed before process restart')
+    return state
 
 
 def check(value,message):
@@ -15,11 +38,12 @@ def check(value,message):
     if not value:raise RuntimeError(message)
 
 
-def run(app,g,lifecycle):
+def run(app,g,lifecycle,reopen_snapshot=None):
     out=Path(os.environ['PESCA_IDLE_QA_DIR']).resolve();checks=[]
     report={'passed':False,'checks':checks,'platform':app.platformName(),
             'profile':os.environ['PESCA_IDLE_SAVE_PATH'],'window':[g.width(),g.height()],
-            'ratio':g.devicePixelRatioF(),'python_optimize_flag':sys.flags.optimize}
+            'ratio':g.devicePixelRatioF(),'python_optimize_flag':sys.flags.optimize,
+            'schema':g.estado['schema_version'],'reopened_process':reopen_snapshot is not None}
     try:
         from pesca_catalogo import LOCAIS,ESPECIES,desbloquear
         from pesca_idle import LojaDialog,ESTADO_PADRAO
@@ -31,8 +55,22 @@ def run(app,g,lifecycle):
         from pesca_loja import CAT,SLOTS,sold_items
         from pesca_conquistas import grant,RECOMPENSA_LIVRO
         check(app.platformName()=='android','Expected Android QPA')
-        check(out.name.startswith('qa-') and out/'save.json'==g._store.path,'Profile not isolated')
-        checks.append('Android Qt and disposable private profile')
+        check(out.name=='qa-tamanhos-v1' and out/'save.json'==g._store.path,'Profile not isolated')
+        checks.append('Android Qt and separate QA package private context')
+        check(g.estado['schema_version']==5,'Schema 5 missing')
+        if reopen_snapshot is not None:
+            for key in ('perfil_id','clima','moedas_centavos','inventario_por_id','medidas_peixes',
+                        'pesca_pendente','contador_eventos','ultimo_evento_aplicado','museu',
+                        'conquistas','pausado','rng_state'):
+                check(json.dumps(g.estado[key],sort_keys=True)==json.dumps(reopen_snapshot[key],sort_keys=True),
+                      'Process-reopen snapshot mismatch: '+key)
+            report['reopen_snapshot_sha256']=reopen_snapshot['android_qa_reopen']['sha256']
+            checks.extend(['Schema 5 snapshot verified before game initialization',
+                           'Profile money inventory RNG climate and pending preserved across process restart'])
+            report['passed']=True
+            (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+            print('PESCA_QA_RESULT='+json.dumps(report),flush=True)
+            return
         g.relogio.stop();g.timer_save.stop();g.pausado=True
         state=copy.deepcopy(g.estado);state['barco']=10;state['vara']=10;state['pausado']=True
         set_balance(state,100000);desbloquear(state)
@@ -111,6 +149,43 @@ def run(app,g,lifecycle):
         check(g.pausado and g.estado['inventario_por_id']==before,'Intentional pause lost')
         checks.append('historical resume once and intentional pause')
         check(g.salvar(),'Final save failed');check(len(ESPECIES)==88,'Catalogue mismatch')
+        # Reproduce the current schema-5 fix through the native packaged modules.
+        from pesca_save import SaveError
+        rejected=out/'schema5-sem-clima.json';invalid=copy.deepcopy(g.estado);invalid.pop('clima')
+        original=json.dumps(invalid).encode();rejected.write_bytes(original)
+        with SaveStore(rejected) as store:
+            try:store.load(ESTADO_PADRAO,g._wall())
+            except SaveError:pass
+            else:raise RuntimeError('Schema 5 without climate unexpectedly accepted')
+        check(rejected.read_bytes()==original,'Rejected native save overwritten')
+        check(not rejected.with_suffix('.json.bak').exists(),'Rejected native save created backup')
+        checks.append('Native schema 5 missing climate rejected without overwrite')
+        # The QA package may construct fixtures directly, but SaveStore must
+        # refuse a backup alias into a sibling private context of the same UID.
+        other=out.parent/'qa-other-synthetic';other.mkdir(exist_ok=True)
+        foreign=other/'save.json';foreign.write_text(json.dumps(g.estado),encoding='utf-8')
+        foreign_bytes=foreign.read_bytes()
+        probe=out/'auxiliary-isolation'/'save.json';probe.parent.mkdir()
+        probe.write_bytes(b'{synthetic current-profile rejection')
+        original=probe.read_bytes()
+        with SaveStore(probe) as store:
+            store.backup_path.symlink_to(foreign)
+            check(not store.backup_available(ESTADO_PADRAO,g._wall()),'Foreign backup alias accepted')
+            try:store.recover(ESTADO_PADRAO,g._wall())
+            except SaveError:pass
+            else:raise RuntimeError('Cross-context backup recovery unexpectedly succeeded')
+        check(probe.read_bytes()==original,'Rejected QA main overwritten via foreign backup')
+        check(probe.with_suffix('.json.bak').is_symlink(),'Foreign backup alias was removed or replaced')
+        check(foreign.read_bytes()==foreign_bytes,'Foreign synthetic profile modified')
+        check(not list(probe.parent.glob('save.rejeitado-*.json')),'Invalid recovery archived a save')
+        checks.append('Native private backup symlink rejected without cross-context recovery')
+        # A fixed private QA context survives force-stop/relaunch. This marker is
+        # checked before any game initialization on the next Android process.
+        state=copy.deepcopy(g.estado)
+        fingerprint=snapshot_digest(state)
+        state['android_qa_reopen']={'version':1,'sha256':fingerprint}
+        check(g._commit(state),'Reopen marker commit failed')
+        report['reopen_snapshot_sha256']=fingerprint
         report['passed']=True
     except Exception:
         report['error']=traceback.format_exc()

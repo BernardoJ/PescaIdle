@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-27",
+  "environment": "Linux x86_64 / Python 3.12.14 / PySide6 6.11.2 / Pillow 12.3.0 / Qt offscreen",
+  "build_tooling_commit": "f8962fe0f28e9403e685f5197ed38eb2b2c51609",
+  "tests": {
+    "climate": 19,
+    "achievements": 44,
+    "sizes_pending": 17,
+    "audit": 11,
+    "museum": 11,
+    "aquarium": 10,
+    "android_profiles": 19,
+    "native_host_harness": 7,
+    "total_unique_green_tests": 138
+  },
+  "regression_success": true,
+  "climate_success": true,
+  "contexts": {
+    "climate_pools": 3080,
+    "economic_contexts": 33880,
+    "expansion_checks": 5920,
+    "cosmetic_checks": 1359,
+    "balance_pools": 168,
+    "balance_progressions": 210
+  },
+  "visual": {
+    "climate_scenes": 280,
+    "climate_animation_frames": 1120,
+    "aquarium_species": 68
+  },
+  "personal_save_used": false,
+  "legacy_demo": {
+    "tests": 10,
+    "failures": 6,
+    "baseline_same_failures": true
+  },
+  "scope": "Source tests with synthetic profiles only; native build results are separate.",
+  "source_commit": "f8962fe0f28e9403e685f5197ed38eb2b2c51609",
+  "source_runtime_change_commit": "1416b8b592c263321d2c7a1c3c7bdf3dff0c249c",
+  "source_branch": "codex/builds-main-20261027",
+  "preliminary_before_auxiliary_guard": true,
+  "final_hardening_results": "aux-isolation.json"
+}

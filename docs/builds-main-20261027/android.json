@@ -1,0 +1,122 @@
+{
+  "source_commit": "5a2ac60af5d8e093d550a073d763ead082782591",
+  "source_branch": "codex/builds-main-20261027",
+  "main_base": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+  "android_save_fix": "concluida",
+  "isolation_contract_tests": 24,
+  "host_reopen_harness_tests": 7,
+  "qa": {
+    "apk": "PescaIdle-x86_64.apk",
+    "bytes": 159742333,
+    "sha256": "ed49d05cca032e7dd8b45aa4a477b0aaacc4052c746d77933f667fefbc29eec2",
+    "generated_utc": "2026-10-27T19:22:44.874672+00:00",
+    "generated_sao_paulo": "2026-10-27T16:22:44.874672-03:00",
+    "package": "br.com.bernardoj.pescaidle.qa",
+    "certificate_type": "ephemeral debug test certificate",
+    "artifact_id": 12765575251,
+    "artifact_url": "https://github.com/BernardoJ/PescaIdle/actions/runs/40567485121/artifacts/12765575251",
+    "native_result": {
+      "passed": true,
+      "checks": [
+        "Android Qt and separate QA package private context",
+        "Schema 5 snapshot verified before game initialization",
+        "Profile money inventory RNG climate and pending preserved across process restart"
+      ],
+      "platform": "android",
+      "window": [
+        731,
+        411
+      ],
+      "ratio": 2.625,
+      "python_optimize_flag": 2,
+      "schema": 5,
+      "reopened_process": true,
+      "reopen_snapshot_sha256": "f155cabf9ff4033f6fe4ab16d450382205abde22410b8e70dc5810e09093bc01",
+      "first_process_checks": [
+        "Android Qt and separate QA package private context",
+        "8 packaged map assets rendered",
+        "touch-sized shop purchase and preview lifecycle",
+        "collection travel expedition scrollable dialogs",
+        "fishing reward and unlocked travel",
+        "Fashionista excludes encyclopedia reward",
+        "atomic save reload and profile lock release",
+        "historical resume once and intentional pause",
+        "Native schema 5 missing climate rejected without overwrite",
+        "Native private backup symlink rejected without cross-context recovery"
+      ],
+      "native_processes": [
+        "3145",
+        "3789"
+      ],
+      "host_checks": [
+        "APK installed",
+        "portrait/landscape display",
+        "real background/resume process alive",
+        "force-stop terminated process",
+        "new process reopened same profile and durable snapshot"
+      ],
+      "android_api": "35"
+    },
+    "first_process_checks": [
+      "Android Qt and separate QA package private context",
+      "8 packaged map assets rendered",
+      "touch-sized shop purchase and preview lifecycle",
+      "collection travel expedition scrollable dialogs",
+      "fishing reward and unlocked travel",
+      "Fashionista excludes encyclopedia reward",
+      "atomic save reload and profile lock release",
+      "historical resume once and intentional pause",
+      "Native schema 5 missing climate rejected without overwrite",
+      "Native private backup symlink rejected without cross-context recovery"
+    ],
+    "artifact_zip_sha256": "fa997927533497c5a5f6e39c6baf3db2423b8ebdc419dc2b4c7b0858eed3036e"
+  },
+  "arm64": {
+    "apk": "PescaIdle-aarch64.apk",
+    "bytes": 151292960,
+    "sha256": "b229e725a8fb8a307750499b9100274e406dec8efc0ac0baef81edf22cf7bf3b",
+    "generated_utc": "2026-10-27T19:30:22.085369+00:00",
+    "generated_sao_paulo": "2026-10-27T16:30:22.085369-03:00",
+    "package": "br.com.bernardoj.pescaidle",
+    "official_existing_signature_verified": true,
+    "certificate_sha256": "3b0c2615f5b32c0a05b8eca81a95c1c282f00639d8fdb40264c3d20613310e31",
+    "artifact_id": 12765141557,
+    "artifact_url": "https://github.com/BernardoJ/PescaIdle/actions/runs/40567485121/artifacts/12765141557",
+    "directly_executed": false,
+    "artifact_zip_sha256": "b238750a97526102807dad64f82ada5c17dc9757109e3607c50b9b2b6ca37a43"
+  },
+  "tools": {
+    "host_python": "3.11.17",
+    "qt": "6.11.2",
+    "ndk": "27.2.12479018",
+    "p4a_commit": "94ffd5f31d816414ad1fe66c0fe587c61daac757",
+    "app_version": "2.1.0",
+    "version_code": 21000
+  },
+  "signature_scheme_v3_verified": true,
+  "unnecessary_android_permissions_found": false,
+  "evidence_artifact_id": 12765565281,
+  "metadata_artifact_id": 12765332051,
+  "limits": [
+    "ARM64 APK not executed on physical ARM64 hardware.",
+    "No 16 KB page device or Play Store validation.",
+    "QA native uses separate debug package and CacheLocation; production namespace path contracts are tested with QStandardPaths simulation.",
+    "Production APK remains a signed candidate; no stable release replaced.",
+    "Old root private save preserved without automatic import into new pilot context.",
+    "zipalign check was on aligned APK before signing; apksigner verified final signed APK.",
+    "Emulator launcher ANR observed during host rotation; incomplete log coverage prevents determining cause or certifying uninterrupted visual interaction.",
+    "Production APK upgrade over an old installed version was not executed; legacy-root preservation and stable-context update are source contracts."
+  ],
+  "run_id": 40567485121,
+  "metadata_run_id": 40567850107,
+  "supersedes_source_commit": "f8962fe0f28e9403e685f5197ed38eb2b2c51609",
+  "metadata_zip_sha256": "bf7bd2ee5a9854bc016e2d29a6ee9c57d4084d709503b067f635abc077902f84",
+  "native_ui_anomaly": {
+    "observed": "System modal Pixel Launcher is not responding overlays portrait and landscape screenshots. Resume screenshot is clear.",
+    "game_anr_confirmed": false,
+    "exact_cause_established": false,
+    "system_log_gap_utc": "2026-10-27 19:33:15 to 19:33:27",
+    "log_gap_cause": "Host harness clears logcat before relaunch without archiving rotation/background interval.",
+    "scope": "Dimensions prove rotation; unobstructed UI during host actions is not certified. Persisted state and process-reopen checks passed."
+  }
+}

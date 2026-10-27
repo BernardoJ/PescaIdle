@@ -1,0 +1,104 @@
+{
+  "run_id": 40563588483,
+  "job_id": 122398812171,
+  "status": "success",
+  "source_commit": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+  "tooling_commit": "f8962fe0f28e9403e685f5197ed38eb2b2c51609",
+  "python": "3.12.10",
+  "target": "Windows x64",
+  "runner": "windows-2025",
+  "versions": {
+    "PyInstaller": "6.22.3",
+    "PySide6": "6.11.2",
+    "Pillow": "12.3.0"
+  },
+  "exe": "PescaIdle-Windows-f8190f5.exe",
+  "bytes": 48793907,
+  "exe_sha256": "e77e80d3da9aaf3b2cd8d8fce3c38c612cb8a8315d406fe496db608e3571feae",
+  "artifact_id": 12760794913,
+  "artifact_url": "https://github.com/BernardoJ/PescaIdle/actions/runs/40563588483/artifacts/12760794913",
+  "artifact_zip_sha256": "e5b141a478f5cdc002b642b3b35ef644274a2820acd621219e8d87f698d49542",
+  "evidence_artifact_id": 12762870174,
+  "modules_verified": 39,
+  "assets_verified": 66,
+  "validation": {
+    "success": true,
+    "platform": "native Windows / Qt windows plugin",
+    "profile_isolated": true,
+    "foreign_cwd": true,
+    "python_environment_removed_from_exe": true,
+    "tests": [
+      {
+        "test": "native-startup-assets-and-v1-migration",
+        "scale": "1",
+        "passed": true
+      },
+      {
+        "test": "native-startup-assets-and-v1-migration",
+        "scale": "1.25",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-pending",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-deliver",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-reopen",
+        "passed": true
+      },
+      {
+        "test": "native-exe-missing-climate-rejected",
+        "valid_backup": false,
+        "passed": true,
+        "exit_code": 1,
+        "recovery_prompt_seen": false,
+        "owned_bootloader_error_dialog_closed": true
+      },
+      {
+        "test": "native-exe-missing-climate-rejected",
+        "valid_backup": true,
+        "passed": true,
+        "exit_code": 1,
+        "recovery_prompt_seen": true,
+        "owned_bootloader_error_dialog_closed": true
+      },
+      {
+        "test": "windows-store-migration-and-reopen",
+        "input_schema": 4,
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      },
+      {
+        "test": "windows-store-migration-and-reopen",
+        "input_schema": 5,
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      },
+      {
+        "test": "windows-explicit-backup-recovery",
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      }
+    ],
+    "real_save_used": false,
+    "limits": [
+      "Not a clean Windows installation or physical-device/human session.",
+      "Positive backup recovery uses source SaveStore with packaged bytecode identity; EXE recovery cancellation is tested."
+    ]
+  },
+  "authenticode_signed": false,
+  "distribution_classification": "NÃO APTO PARA DISTRIBUIÇÃO FINAL: native functional validation passed, but exact-main EXE lacks the auxiliary-path isolation fix in unmerged PR7.",
+  "generated_utc": "2026-10-27T18:52:19.757086+00:00",
+  "generated_sao_paulo": "2026-10-27T15:52:19.757086-03:00",
+  "auxiliary_guard_included": false,
+  "known_save_isolation_limitation": {
+    "preexisting_auxiliary_symlink_can_cross_desktop_boundary": true,
+    "precondition": "An auxiliary symlink created beforehand by an actor with same-user/private-directory access; normal game does not create it.",
+    "fixed_in_branch_commit": "5a2ac60af5d8e093d550a073d763ead082782591",
+    "next_step": "Review and merge PR7 with explicit user approval, then clean-build new official main and run native Windows auxiliary-link regression."
+  }
+}
