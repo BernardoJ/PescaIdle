@@ -2,10 +2,12 @@
 
 ## Estado da atualização derivada da main — 27/10/2026
 
-A base oficial desta preparação é a main em `f8190f5`. A correção de caminho privado está em
-`codex/builds-main-20261027`, ainda em revisão: os APKs dessa preparação são
-identificados pelo commit da branch efetivamente compilado, não como builds
-exclusivos da main. [Resultados, hashes e artefatos atuais](docs/BUILDS_MAIN_20261027.md).
+O [PR #7](https://github.com/BernardoJ/PescaIdle/pull/7) integrou o caminho
+privado e a proteção auxiliar dos saves na main em `0108882`. Os APKs disponíveis
+foram gerados de `5a2ac60`, originalmente na branch `codex/builds-main-20261027`
+e agora ancestral da main. Não foram recompilados após o merge; seus hashes e
+limites continuam os mesmos. [Estado após o merge](docs/VALIDACAO_MAIN_0108882.md)
+· [Ensaios Android e hashes originais](docs/BUILDS_MAIN_20261027.md#c-android).
 
 O bootstrap configura o contexto **antes de importar o jogo**:
 

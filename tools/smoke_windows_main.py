@@ -168,6 +168,37 @@ def run(source, exe, out):
         results.append(dict(test='native-exe-missing-climate-rejected',valid_backup=valid_backup,
                             passed=True,**execution))
 
+    # Exercise the frozen SaveStore and native Windows file-link semantics. The
+    # foreign profile is synthetic and deliberately OUTSIDE the EXE boundary;
+    # its valid contents must never become a recoverable backup for this pilot.
+    case=out/'auxiliary-backup-link';case.mkdir()
+    path=case/'save.json'
+    original=json.dumps(invalid,ensure_ascii=False,indent=3).encode('utf-8')
+    path.write_bytes(original)
+    foreign_dir=exe.parent.parent/'foreign-backup-profile-synthetic'
+    foreign_dir.mkdir(exist_ok=False)
+    foreign=foreign_dir/'save.json';foreign_bytes=json.dumps(valid).encode('utf-8')
+    foreign.write_bytes(foreign_bytes)
+    require(not foreign.resolve().is_relative_to(exe.parent), 'Foreign fixture must be outside the EXE boundary')
+    alias=path.with_suffix('.json.bak')
+    try:
+        alias.symlink_to(foreign)
+    except OSError as exc:
+        raise RuntimeError('Native Windows file-symlink creation unavailable; auxiliary isolation is NOT validated. No permissions were changed.') from exc
+    require(alias.is_symlink(), 'Native Windows backup link was not created')
+    link_target=os.readlink(alias)
+    current=dict(env,PESCA_IDLE_SAVE_PATH=str(path),PESCA_IDLE_SMOKE_DIR=str(case/'evidence'))
+    execution=run_exe(exe,['--smoke-test'],current,out/'foreign-cwd',case/'process.log',helpers,
+                      reject=True,cancel_recovery=True)
+    require(execution['exit_code']!=0, 'EXE accepted a rejected save with a foreign backup link')
+    require(not execution['recovery_prompt_seen'], 'EXE offered recovery from a foreign-context backup link')
+    require(path.read_bytes()==original, 'EXE overwrote the rejected main through a foreign backup link')
+    require(alias.is_symlink() and os.readlink(alias)==link_target, 'EXE removed or replaced the foreign backup link')
+    require(foreign.read_bytes()==foreign_bytes, 'EXE modified the foreign synthetic profile')
+    require(not list(case.glob('save.rejeitado-*.json')), 'EXE archived a save for a foreign backup recovery')
+    results.append(dict(test='native-exe-foreign-backup-link-rejected',passed=True,
+                        foreign_fixture_outside_exe_boundary=True,synthetic_only=True,**execution))
+
     source_qa = source/'qa'/('windows-frozen-store-'+str(os.getpid()))
     source_qa.mkdir(parents=True,exist_ok=False)
     for version in (4,5):
