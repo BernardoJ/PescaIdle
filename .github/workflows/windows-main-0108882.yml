@@ -1,0 +1,52 @@
+name: Windows da main apos PR7 com regressao de backup
+on:
+  push:
+    branches: [codex/windows-main-0108882]
+    paths:
+      - '.github/workflows/windows-main-0108882.yml'
+      - 'tools/smoke_windows_main.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-main:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: tooling
+      - uses: actions/checkout@v5
+        with:
+          ref: 0108882dcf9a6f65b1a4bafeb5bd71cf507e044c
+          path: source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencias oficiais fixadas, sem reaproveitar build
+        run: python -m pip install -r source/requirements-build.txt
+      - name: Build limpo e validacao Windows nativa da main integrada
+        run: python tooling/tools/build_windows_main.py --source source --expected-commit 0108882dcf9a6f65b1a4bafeb5bd71cf507e044c --out "${{ runner.temp }}/windows-main-pr7"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PescaIdle-Windows-main-0108882-validado
+          if-no-files-found: error
+          path: ${{ runner.temp }}/windows-main-pr7/deliverables/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Evidencias-Windows-main-0108882
+          path: |
+            ${{ runner.temp }}/windows-main-pr7/qa/*.json
+            ${{ runner.temp }}/windows-main-pr7/qa/*.log
+            ${{ runner.temp }}/windows-main-pr7/package/qa/**/*.json
+            ${{ runner.temp }}/windows-main-pr7/package/qa/**/*.png
+            ${{ runner.temp }}/windows-main-pr7/package/qa/**/*.log
+            ${{ runner.temp }}/windows-main-pr7/package/qa/**/*.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Metadados-Windows-main-0108882
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/windows-main-pr7/deliverables/*.json
+            ${{ runner.temp }}/windows-main-pr7/deliverables/*.txt
