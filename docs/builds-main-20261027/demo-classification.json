@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-27",
+  "environment": "Linux x86_64 / Python3.12.14 / PySide6 6.11.2 / Qt offscreen",
+  "synthetic_only": true,
+  "personal_save_accessed": false,
+  "runs": [
+    {
+      "label": "main-demo",
+      "source_commit": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/test_demo_tamanhos.py",
+        "--out",
+        "qa/distribuicao-demo-main-20261027"
+      ],
+      "exit_code": 1,
+      "seconds": 4.595,
+      "qa_relative": "qa/distribuicao-demo-main-20261027",
+      "report": {
+        "tests": 10,
+        "failures": 6,
+        "errors": 0,
+        "identification": {
+          "source_commit": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+          "source_snapshot": "05f1ac8020a35d507f5977039ec8e42b8493ec2db00c492769eb64e3e1f4bd8a"
+        },
+        "qt_platform": "offscreen",
+        "input": "QTest injected, hidden Qt widgets; not physical input/Android"
+      },
+      "log_sha256": "022c48cca353eddb1d47b4125696b9ac02b392d2bef0eaa84bb9d82d0a044c06",
+      "failed_cases": [
+        "test_02_capture_record_flow_and_evidence",
+        "test_03_exhibit_choices_autosave_close_reopen",
+        "test_04_interrupted_pending_resumes_without_reroll",
+        "test_05_save_failure_restores_choice_and_shows_error",
+        "test_06_empty_legacy_and_supported_viewports",
+        "test_07_three_fish_bounds_separation_and_art_unchanged"
+      ],
+      "same_expected_failures": true
+    },
+    {
+      "label": "published-demo",
+      "source_commit": "a352061bfb97692ff54934e4992406d16c9628b1",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/test_demo_tamanhos.py",
+        "--out",
+        "qa/distribuicao-demo-published-20261027"
+      ],
+      "exit_code": 1,
+      "seconds": 4.553,
+      "qa_relative": "qa/distribuicao-demo-published-20261027",
+      "report": {
+        "tests": 10,
+        "failures": 6,
+        "errors": 0,
+        "identification": {
+          "source_commit": "a352061bfb97692ff54934e4992406d16c9628b1",
+          "source_snapshot": "87c45a061c6100125865e16b767b5968b83356a1b08dea65eef5099cc53cbbc2"
+        },
+        "qt_platform": "offscreen",
+        "input": "QTest injected, hidden Qt widgets; not physical input/Android"
+      },
+      "log_sha256": "763b94790be771b2104b4c40413332882b12c54da096226b81bceb01ccd13015",
+      "failed_cases": [
+        "test_02_capture_record_flow_and_evidence",
+        "test_03_exhibit_choices_autosave_close_reopen",
+        "test_04_interrupted_pending_resumes_without_reroll",
+        "test_05_save_failure_restores_choice_and_shows_error",
+        "test_06_empty_legacy_and_supported_viewports",
+        "test_07_three_fish_bounds_separation_and_art_unchanged"
+      ],
+      "same_expected_failures": true
+    },
+    {
+      "label": "main-normal-smoke",
+      "source_commit": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/run_climate_smoke.py",
+        "--out",
+        "qa/distribuicao-smoke-main-20261027"
+      ],
+      "exit_code": 0,
+      "seconds": 3.538,
+      "qa_relative": "qa/distribuicao-smoke-main-20261027",
+      "report": {
+        "steps": [
+          {
+            "mode": "pending",
+            "exit_code": 0,
+            "seconds": 1.2919634190002398,
+            "frozen": false
+          },
+          {
+            "mode": "deliver",
+            "exit_code": 0,
+            "seconds": 1.3030134740001813,
+            "frozen": false
+          },
+          {
+            "mode": "reopen",
+            "exit_code": 0,
+            "seconds": 0.8489374909986509,
+            "frozen": false
+          }
+        ],
+        "success": true,
+        "profile_isolated": true
+      },
+      "log_sha256": "dd0b0a2edd76337f7d733e16ccf35ae1d18d3b917c62869692fb2071b1a3c6e4"
+    }
+  ],
+  "identical_demo_sources": [
+    {
+      "path": "tools/demo_tamanhos.py",
+      "identical": true,
+      "sha256": "e773281eea9887bb2367c3d8aa3d70dc8e2e843363128678db05caf5d5e46045"
+    },
+    {
+      "path": "tools/demo_tamanhos_ui.py",
+      "identical": true,
+      "sha256": "674cd6d951b85e3e426ffdcd0b47759e6f4eaa74598ac80ab9bb228c756e1f05"
+    },
+    {
+      "path": "tools/test_demo_tamanhos.py",
+      "identical": true,
+      "sha256": "00bafc55271d2ed1ef28ec32d6d0df761bf2af20a911b95a98407e2fbade9bf3"
+    }
+  ],
+  "findings": [
+    {
+      "id": "DEMO-CLIMA-01",
+      "classification": "preexisting functional issue",
+      "priority": "P2",
+      "scope": "Optional --demo size demonstration",
+      "cause": "DemoGame.next_capture constructs pending context without clima; schema 5 SaveStore.validate_state rejects it before durable commit.",
+      "first_known_commit": "a352061bfb97692ff54934e4992406d16c9628b1",
+      "reproduced_on": "f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34",
+      "failed_cases": [
+        "test_02_capture_record_flow_and_evidence",
+        "test_03_exhibit_choices_autosave_close_reopen",
+        "test_04_interrupted_pending_resumes_without_reroll",
+        "test_05_save_failure_restores_choice_and_shows_error",
+        "test_06_empty_legacy_and_supported_viewports",
+        "test_07_three_fish_bounds_separation_and_art_unchanged"
+      ],
+      "impact": "Demo capture sequence cannot progress. Blocks approval of --demo, not the passed normal game climate smoke.",
+      "fix_applied": false
+    },
+    {
+      "id": "TOOL-EXE-01",
+      "classification": "preexisting validation tooling mismatch",
+      "priority": "P1 before native validation",
+      "scope": "tools/smoke_exe.py",
+      "cause": "Requires schema==3 and selects TEMP profile outside frozen root; incompatible with current schema5/root isolation.",
+      "impact": "Legacy smoke cannot certify new EXE; use new harness without relaxing validation.",
+      "fix_applied": false
+    },
+    {
+      "id": "TOOL-CLIMATE-01",
+      "classification": "preexisting validation tooling mismatch",
+      "priority": "P1 before native validation",
+      "scope": "tools/run_climate_smoke.py --exe",
+      "cause": "Requires QA under source ROOT while frozen app requires profile inside exe parent; also forces Qt offscreen.",
+      "impact": "Different dist/source roots fail path validation and offscreen does not establish Windows QPA.",
+      "fix_applied": false
+    },
+    {
+      "id": "ANDROID-REOPEN-01",
+      "classification": "preexisting native validation coverage gap",
+      "priority": "P1 before distribution",
+      "scope": "tools/test_android_emulator.py + QA bootstrap",
+      "cause": "Existing host checks only same-process SaveStore reload and background/resume; QA uuid changes each launch.",
+      "impact": "Does not prove close/relaunch persistence. Android agent and baseline agent coordinating new two-process proof.",
+      "fix_applied": false
+    }
+  ],
+  "production_or_demo_changes": false
+}
