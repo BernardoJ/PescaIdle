@@ -20,6 +20,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   windows-main:
+    # The fixed main EXE is already validated; Android-only fixes do not change it.
+    if: "!contains(github.event.head_commit.message, '[android-only]')"
     runs-on: windows-2025
     timeout-minutes: 30
     steps:

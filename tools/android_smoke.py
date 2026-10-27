@@ -160,6 +160,25 @@ def run(app,g,lifecycle,reopen_snapshot=None):
         check(rejected.read_bytes()==original,'Rejected native save overwritten')
         check(not rejected.with_suffix('.json.bak').exists(),'Rejected native save created backup')
         checks.append('Native schema 5 missing climate rejected without overwrite')
+        # The QA package may construct fixtures directly, but SaveStore must
+        # refuse a backup alias into a sibling private context of the same UID.
+        other=out.parent/'qa-other-synthetic';other.mkdir(exist_ok=True)
+        foreign=other/'save.json';foreign.write_text(json.dumps(g.estado),encoding='utf-8')
+        foreign_bytes=foreign.read_bytes()
+        probe=out/'auxiliary-isolation'/'save.json';probe.parent.mkdir()
+        probe.write_bytes(b'{synthetic current-profile rejection')
+        original=probe.read_bytes()
+        with SaveStore(probe) as store:
+            store.backup_path.symlink_to(foreign)
+            check(not store.backup_available(ESTADO_PADRAO,g._wall()),'Foreign backup alias accepted')
+            try:store.recover(ESTADO_PADRAO,g._wall())
+            except SaveError:pass
+            else:raise RuntimeError('Cross-context backup recovery unexpectedly succeeded')
+        check(probe.read_bytes()==original,'Rejected QA main overwritten via foreign backup')
+        check(probe.with_suffix('.json.bak').is_symlink(),'Foreign backup alias was removed or replaced')
+        check(foreign.read_bytes()==foreign_bytes,'Foreign synthetic profile modified')
+        check(not list(probe.parent.glob('save.rejeitado-*.json')),'Invalid recovery archived a save')
+        checks.append('Native private backup symlink rejected without cross-context recovery')
         # A fixed private QA context survives force-stop/relaunch. This marker is
         # checked before any game initialization on the next Android process.
         state=copy.deepcopy(g.estado)

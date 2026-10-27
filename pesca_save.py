@@ -223,7 +223,8 @@ class SaveStore:
         self.lock = None
         try:
             self.path.parent.mkdir(parents=True, exist_ok=True)
-            self.lock = open(self.path.with_suffix(self.path.suffix+'.lock'), 'a+b')
+            lock_path = self._checked_path(self.path.with_suffix(self.path.suffix+'.lock'))
+            self.lock = open(lock_path, 'a+b')
             self.lock.seek(0)
             if not self.lock.read(1):
                 self.lock.write(b'0'); self.lock.flush()
@@ -241,10 +242,23 @@ class SaveStore:
         self.last_bytes = None
         self.backup_path = self.path.with_suffix(self.path.suffix+'.bak')
 
+    def _checked_path(self, path):
+        # Auxiliary names belong to the same profile context as the main save.
+        # Check their resolved target before any I/O: a .bak/.pre/.lock symlink
+        # must not cross the active Android context or desktop candidate boundary.
+        # Keep the original pathname for atomic replace semantics (replace a
+        # local alias itself, never silently redirect writes to its target).
+        try:
+            validate_profile_path(path)
+        except (ValueError, OSError, RuntimeError) as exc:
+            raise SaveError('Caminho de save fora do contexto ou redirecionado; original preservado.') from exc
+        return Path(path)
+
     def load(self, defaults, now=None):
         now = time.time() if now is None else now
         try:
-            raw_bytes = self.path.read_bytes() if self.path.exists() else None
+            path = self._checked_path(self.path)
+            raw_bytes = path.read_bytes() if path.exists() else None
             raw = json.loads(raw_bytes.decode('utf-8-sig')) if raw_bytes else {}
             if raw_bytes == b'':
                 raise ValueError('arquivo vazio')
@@ -254,9 +268,9 @@ class SaveStore:
             if raw_bytes and raw.get('schema_version', 1) < SCHEMA:
                 version=raw.get('schema_version',1)
                 suffix='.pre-expansao-v1.json' if version==1 else '.pre-schema-'+str(version)+'.json'
-                backup = self.path.with_name(self.path.stem+suffix)
+                backup = self._checked_path(self.path.with_name(self.path.stem+suffix))
                 if backup.exists() and backup.read_bytes() != raw_bytes:
-                    backup = self.path.with_name(self.path.stem+'.pre-expansao-'+uuid.uuid4().hex+'.json')
+                    backup = self._checked_path(self.path.with_name(self.path.stem+'.pre-expansao-'+uuid.uuid4().hex+'.json'))
                 if not backup.exists():
                     with open(backup, 'xb') as file:
                         file.write(raw_bytes); file.flush(); os.fsync(file.fileno())
@@ -285,6 +299,7 @@ class SaveStore:
             raise SaveError(f'Gravação não confirmada; o save anterior foi preservado: {exc}') from exc
 
     def _atomic_write(self, destination, data):
+        destination = self._checked_path(destination)
         temp = None
         try:
             with tempfile.NamedTemporaryFile(mode='wb',
@@ -300,18 +315,19 @@ class SaveStore:
 
     def backup_available(self, defaults, now=None):
         try:
-            migrate(json.loads(self.backup_path.read_text(encoding='utf-8-sig')),defaults,time.time() if now is None else now)
+            migrate(json.loads(self._checked_path(self.backup_path).read_text(encoding='utf-8-sig')),defaults,time.time() if now is None else now)
             return True
         except (OSError,ValueError,TypeError,KeyError,SaveError):return False
 
     def recover(self, defaults, now=None):
         """Explicit recovery: keep rejected bytes in a new file before replacing."""
         try:
-            restored=migrate(json.loads(self.backup_path.read_text(encoding='utf-8-sig')),defaults,time.time() if now is None else now)
-            rejected=self.path.with_name(self.path.stem+'.rejeitado-'+uuid.uuid4().hex+'.json')
-            if self.path.exists():
+            restored=migrate(json.loads(self._checked_path(self.backup_path).read_text(encoding='utf-8-sig')),defaults,time.time() if now is None else now)
+            path=self._checked_path(self.path)
+            rejected=self._checked_path(self.path.with_name(self.path.stem+'.rejeitado-'+uuid.uuid4().hex+'.json'))
+            if path.exists():
                 with open(rejected,'xb') as file:
-                    file.write(self.path.read_bytes());file.flush();os.fsync(file.fileno())
+                    file.write(path.read_bytes());file.flush();os.fsync(file.fileno())
             self.last_bytes=None
             self.save(restored)
             return restored

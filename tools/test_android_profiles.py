@@ -210,6 +210,70 @@ class AndroidProfiles(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError,'snapshot'):read_reopen_snapshot(DEFAULTS)
         self.assertEqual(path.read_bytes(),original)
 
+    def foreign_profile(self):
+        foreign=self.private/'pilotos'/'other-synthetic'/'save.json'
+        foreign.parent.mkdir(parents=True,exist_ok=True)
+        foreign.write_text(json.dumps(self.state()),encoding='utf-8')
+        return foreign
+
+    def test_auxiliary_backup_cannot_import_another_private_context(self):
+        path=self.bootstrap();foreign=self.foreign_profile();foreign_bytes=foreign.read_bytes()
+        path.write_bytes(b'{synthetic rejected current save')
+        original=path.read_bytes()
+        with SaveStore(path) as store:
+            store.backup_path.symlink_to(foreign)
+            self.assertFalse(store.backup_available(DEFAULTS,NOW))
+            with self.assertRaisesRegex(SaveError,'contexto'):store.recover(DEFAULTS,NOW)
+            self.assertTrue(store.backup_path.is_symlink())
+        self.assertEqual(path.read_bytes(),original)
+        self.assertEqual(foreign.read_bytes(),foreign_bytes)
+        self.assertFalse(list(path.parent.glob('save.rejeitado-*.json')))
+
+    def test_migration_backup_symlinks_rejected_without_cross_context_read(self):
+        path=self.bootstrap();foreign=self.foreign_profile();foreign_bytes=foreign.read_bytes()
+        for version in (1,2,3,4):
+            with self.subTest(version=version):
+                current=path.parent/('version-'+str(version))/'save.json';current.parent.mkdir()
+                state=self.state();state['schema_version']=version
+                if version<4:state.pop('pilot_kind');state.pop('medidas_peixes')
+                state.pop('clima');payload=json.dumps(state).encode();current.write_bytes(payload)
+                suffix='.pre-expansao-v1.json' if version==1 else '.pre-schema-'+str(version)+'.json'
+                backup=current.with_name(current.stem+suffix);backup.symlink_to(foreign)
+                with SaveStore(current) as store:
+                    with self.assertRaisesRegex(SaveError,'contexto'):store.load(DEFAULTS,NOW)
+                self.assertEqual(current.read_bytes(),payload)
+                self.assertTrue(backup.is_symlink())
+                self.assertEqual(foreign.read_bytes(),foreign_bytes)
+                self.assertFalse(current.with_suffix('.json.bak').exists())
+                self.assertFalse(list(current.parent.glob('*.tmp')))
+
+    def test_atomic_backup_destination_escape_is_rejected_before_replace(self):
+        path=self.bootstrap();foreign=self.foreign_profile();foreign_bytes=foreign.read_bytes()
+        with SaveStore(path) as store:
+            state=store.load(DEFAULTS,NOW);store.save(state);original=path.read_bytes()
+            store.backup_path.symlink_to(foreign)
+            changed=copy.deepcopy(state);set_cents(changed,98765)
+            with self.assertRaisesRegex(SaveError,'contexto'):store.save(changed)
+            self.assertTrue(store.backup_path.is_symlink())
+            self.assertEqual(path.read_bytes(),original)
+        self.assertEqual(foreign.read_bytes(),foreign_bytes)
+        self.assertFalse(list(path.parent.glob('*.tmp')))
+
+    def test_lock_symlink_cannot_touch_another_private_context(self):
+        path=self.bootstrap();foreign=self.foreign_profile();foreign_bytes=foreign.read_bytes()
+        path.with_suffix('.json.lock').symlink_to(foreign)
+        with self.assertRaisesRegex(SaveError,'contexto'):SaveStore(path)
+        self.assertEqual(foreign.read_bytes(),foreign_bytes)
+        self.assertFalse(path.exists())
+
+    def test_main_path_redirect_after_lock_is_rejected_on_load(self):
+        path=self.bootstrap();foreign=self.foreign_profile();foreign_bytes=foreign.read_bytes()
+        with SaveStore(path) as store:
+            path.symlink_to(foreign)
+            with self.assertRaisesRegex(SaveError,'contexto'):store.load(DEFAULTS,NOW)
+        self.assertTrue(path.is_symlink())
+        self.assertEqual(foreign.read_bytes(),foreign_bytes)
+
     def test_pending_capture_preserved_across_private_save_reload(self):
         path=self.bootstrap();engine=FishingEngine(self.state());pending=copy.deepcopy(engine.begin_strike(NOW,0))
         state=engine.advance(0,NOW,0)
