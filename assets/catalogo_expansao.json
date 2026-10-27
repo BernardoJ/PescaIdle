@@ -1,0 +1,5072 @@
+{
+  "version": 1,
+  "proposal_sha256": "2f79b96d51d5b2760ff98a9124353f41b9337f5527b52807d71895d78151b721",
+  "species": [
+    {
+      "id": "tubarao_lagarto",
+      "nome": "Tubarão-lagarto",
+      "aliases": [
+        "Tubarão-lagarto"
+      ],
+      "cientifico": "Chlamydoselachus anguineus",
+      "categoria": "peixe",
+      "valor": 250,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Seu corpo alongado e as seis fendas branquiais lembram fósseis de antigos tubarões.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shark",
+        "palette": [
+          83,
+          41,
+          160
+        ],
+        "variant": 0
+      }
+    },
+    {
+      "id": "vaquita",
+      "nome": "Vaquita",
+      "aliases": [
+        "Vaquita"
+      ],
+      "cientifico": "Phocoena sinus",
+      "categoria": "especial",
+      "valor": 5000,
+      "raridade": "Lendário",
+      "rod_bonus": true,
+      "curiosidade": "Vive somente no norte do Golfo da Califórnia. É uma pequena toninha e costuma evitar barcos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "dolphin",
+        "palette": [
+          139,
+          81,
+          173
+        ],
+        "variant": 1
+      }
+    },
+    {
+      "id": "celacanto_comorense",
+      "nome": "Celacanto-comorense",
+      "aliases": [
+        "Celacanto-comorense"
+      ],
+      "cientifico": "Latimeria chalumnae",
+      "categoria": "peixe",
+      "valor": 2000,
+      "raridade": "Lendário",
+      "rod_bonus": true,
+      "curiosidade": "Suas nadadeiras lobadas se movem alternadamente, como membros durante um nado lento.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "coelacanth",
+        "palette": [
+          223,
+          246,
+          162
+        ],
+        "variant": 2
+      }
+    },
+    {
+      "id": "peixe_mao_vermelho",
+      "nome": "Peixe-mão-vermelho",
+      "aliases": [
+        "Peixe-mão-vermelho"
+      ],
+      "cientifico": "Thymichthys politus",
+      "categoria": "peixe",
+      "valor": 5000,
+      "raridade": "Lendário",
+      "rod_bonus": true,
+      "curiosidade": "Usa as nadadeiras peitorais parecidas com mãos para caminhar pelo fundo do mar.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "handfish",
+        "palette": [
+          44,
+          44,
+          79
+        ],
+        "variant": 3
+      }
+    },
+    {
+      "id": "cavalinho_do_mar_pigmeu",
+      "nome": "Cavalinho-do-mar-pigmeu",
+      "aliases": [
+        "Cavalinho-do-mar-pigmeu"
+      ],
+      "cientifico": "Hippocampus bargibanti",
+      "categoria": "peixe",
+      "valor": 120,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Camufla-se em corais gorgônias; sua coloração pode combinar com o coral que o abriga.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "seahorse",
+        "palette": [
+          124,
+          96,
+          117
+        ],
+        "variant": 4
+      }
+    },
+    {
+      "id": "lula_magnapinna",
+      "nome": "Lula-magnapinna",
+      "aliases": [
+        "Lula-magnapinna"
+      ],
+      "cientifico": "Magnapinna spp.",
+      "categoria": "especial",
+      "valor": 1800,
+      "raridade": "Lendário",
+      "rod_bonus": true,
+      "curiosidade": "Seus braços e tentáculos muito longos criam uma silhueta incomum nas filmagens de águas profundas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "squid",
+        "palette": [
+          97,
+          254,
+          154
+        ],
+        "variant": 5
+      }
+    },
+    {
+      "id": "tubarao_boca_grande",
+      "nome": "Tubarão-boca-grande",
+      "aliases": [
+        "Tubarão-boca-grande"
+      ],
+      "cientifico": "Megachasma pelagios",
+      "categoria": "peixe",
+      "valor": 800,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "É um tubarão filtrador: nada com a boca aberta para capturar pequenos organismos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shark",
+        "palette": [
+          20,
+          49,
+          188
+        ],
+        "variant": 6
+      }
+    },
+    {
+      "id": "peixe_ogro",
+      "nome": "Peixe-ogro",
+      "aliases": [
+        "Peixe-ogro"
+      ],
+      "cientifico": "Anoplogaster cornuta",
+      "categoria": "peixe",
+      "valor": 80,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Seus dentes grandes ajudam a capturar presas num ambiente profundo onde alimento é escasso.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "fang",
+        "palette": [
+          237,
+          183,
+          35
+        ],
+        "variant": 7
+      }
+    },
+    {
+      "id": "narval",
+      "nome": "Narval",
+      "aliases": [
+        "Narval"
+      ],
+      "cientifico": "Monodon monoceros",
+      "categoria": "especial",
+      "valor": 700,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "A famosa “presa” é, na verdade, um dente que pode crescer vários metros para fora da mandíbula.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "narwhal",
+        "palette": [
+          125,
+          164,
+          214
+        ],
+        "variant": 8
+      }
+    },
+    {
+      "id": "baleia_azul",
+      "nome": "Baleia-azul",
+      "aliases": [
+        "Baleia-azul"
+      ],
+      "cientifico": "Balaenoptera musculus",
+      "categoria": "especial",
+      "valor": 1000,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "É o maior animal conhecido; alimenta-se principalmente de krill, filtrado com placas de barbas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "whale",
+        "palette": [
+          250,
+          150,
+          67
+        ],
+        "variant": 9
+      }
+    },
+    {
+      "id": "tubarao_branco",
+      "nome": "Tubarão-branco",
+      "aliases": [
+        "Tubarão-branco"
+      ],
+      "cientifico": "Carcharodon carcharias",
+      "categoria": "peixe",
+      "valor": 250,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Seu dorso escuro e ventre claro ajudam a camuflá-lo quando visto de cima ou de baixo.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shark",
+        "palette": [
+          215,
+          170,
+          185
+        ],
+        "variant": 10
+      }
+    },
+    {
+      "id": "manta_gigante",
+      "nome": "Manta-gigante",
+      "aliases": [
+        "Manta-gigante"
+      ],
+      "cientifico": "Mobula birostris",
+      "categoria": "especial",
+      "valor": 180,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Apesar do tamanho, alimenta-se filtrando zooplâncton da água.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "ray",
+        "palette": [
+          146,
+          192,
+          178
+        ],
+        "variant": 11
+      }
+    },
+    {
+      "id": "peixe_lua",
+      "nome": "Peixe-lua",
+      "aliases": [
+        "Peixe-lua"
+      ],
+      "cientifico": "Mola mola",
+      "categoria": "peixe",
+      "valor": 80,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Seu corpo alto e achatado termina numa estrutura curta no lugar de uma cauda típica.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "moonfish",
+        "palette": [
+          95,
+          147,
+          13
+        ],
+        "variant": 12
+      }
+    },
+    {
+      "id": "garoupa_verdadeira",
+      "nome": "Garoupa-verdadeira",
+      "aliases": [
+        "Garoupa-verdadeira"
+      ],
+      "cientifico": "Epinephelus marginatus",
+      "categoria": "peixe",
+      "valor": 35,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Como várias garoupas, pode mudar de sexo ao longo da vida; em geral, fêmeas tornam-se machos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          59,
+          176,
+          115
+        ],
+        "variant": 13
+      }
+    },
+    {
+      "id": "tartaruga_verde",
+      "nome": "Tartaruga-verde",
+      "aliases": [
+        "Tartaruga-verde"
+      ],
+      "cientifico": "Chelonia mydas",
+      "categoria": "especial",
+      "valor": 500,
+      "raridade": "Lendário",
+      "rod_bonus": true,
+      "curiosidade": "Adultos comem principalmente algas e capim-marinho; o nome vem da gordura esverdeada, não do casco.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "turtle",
+        "palette": [
+          106,
+          72,
+          115
+        ],
+        "variant": 14
+      }
+    },
+    {
+      "id": "mero_preto",
+      "nome": "Mero-preto",
+      "aliases": [
+        "Mero-preto"
+      ],
+      "cientifico": "Epinephelus itajara",
+      "categoria": "peixe",
+      "valor": 90,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Juvenis costumam usar manguezais e estuários como abrigo antes de viverem em recifes e naufrágios.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          228,
+          56,
+          245
+        ],
+        "variant": 15
+      }
+    },
+    {
+      "id": "orca",
+      "nome": "Orca",
+      "aliases": [
+        "Orca"
+      ],
+      "cientifico": "Orcinus orca",
+      "categoria": "especial",
+      "valor": 650,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "É o maior membro da família dos golfinhos, e diferentes grupos têm vocalizações e hábitos próprios.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "orca",
+        "palette": [
+          224,
+          113,
+          70
+        ],
+        "variant": 16
+      }
+    },
+    {
+      "id": "peixe_papagaio_azul",
+      "nome": "Peixe-papagaio-azul",
+      "aliases": [
+        "Peixe-papagaio-azul"
+      ],
+      "cientifico": "Scarus coeruleus",
+      "categoria": "peixe",
+      "valor": 8,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Seu bico raspa algas da superfície dos recifes; peixes-papagaio também ajudam a produzir areia.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "parrot",
+        "palette": [
+          158,
+          255,
+          126
+        ],
+        "variant": 17
+      }
+    },
+    {
+      "id": "polvo_comum",
+      "nome": "Polvo-comum",
+      "aliases": [
+        "Polvo-comum"
+      ],
+      "cientifico": "Octopus vulgaris",
+      "categoria": "especial",
+      "valor": 5,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Tem três corações e sangue azulado, adaptados à circulação de oxigênio no corpo e nas brânquias.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "octopus",
+        "palette": [
+          145,
+          35,
+          13
+        ],
+        "variant": 18
+      }
+    },
+    {
+      "id": "linguado_comum",
+      "nome": "Linguado-comum",
+      "aliases": [
+        "Linguado-comum"
+      ],
+      "cientifico": "Solea solea",
+      "categoria": "peixe",
+      "valor": 4,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Quando adulto, repousa de lado no fundo e mantém os dois olhos voltados para cima.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "flatfish",
+        "palette": [
+          63,
+          90,
+          181
+        ],
+        "variant": 19
+      }
+    },
+    {
+      "id": "golfinho_nariz_de_garrafa",
+      "nome": "Golfinho-nariz-de-garrafa",
+      "aliases": [
+        "Golfinho-nariz-de-garrafa"
+      ],
+      "cientifico": "Tursiops truncatus",
+      "categoria": "especial",
+      "valor": 150,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "Produz assobios característicos que ajudam indivíduos a reconhecer e localizar uns aos outros.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "dolphin",
+        "palette": [
+          2,
+          9,
+          183
+        ],
+        "variant": 20
+      }
+    },
+    {
+      "id": "barracuda_grande",
+      "nome": "Barracuda-grande",
+      "aliases": [
+        "Barracuda-grande"
+      ],
+      "cientifico": "Sphyraena barracuda",
+      "categoria": "peixe",
+      "valor": 10,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Seus dentes afiados e corpo hidrodinâmico favorecem ataques rápidos contra peixes menores.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          233,
+          158,
+          183
+        ],
+        "variant": 21
+      }
+    },
+    {
+      "id": "atum_azul",
+      "nome": "Atum-azul",
+      "aliases": [
+        "Atum-azul"
+      ],
+      "cientifico": "Thunnus thynnus",
+      "categoria": "peixe",
+      "valor": 100,
+      "raridade": "Épico",
+      "rod_bonus": true,
+      "curiosidade": "É altamente migratório e pode cruzar grandes trechos do Atlântico durante suas viagens.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "tuna",
+        "palette": [
+          98,
+          46,
+          255
+        ],
+        "variant": 22
+      }
+    },
+    {
+      "id": "peixe_palhaco",
+      "nome": "Peixe-palhaço",
+      "aliases": [
+        "Peixe-palhaço"
+      ],
+      "cientifico": "Amphiprion ocellaris",
+      "categoria": "peixe",
+      "valor": 2,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Vive entre os tentáculos de anêmonas; uma camada de muco ajuda a evitar suas ferroadas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "clownfish",
+        "palette": [
+          137,
+          40,
+          53
+        ],
+        "variant": 23
+      }
+    },
+    {
+      "id": "lagosta_americana",
+      "nome": "Lagosta-americana",
+      "aliases": [
+        "Lagosta-americana"
+      ],
+      "cientifico": "Homarus americanus",
+      "categoria": "especial",
+      "valor": 3,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Usa suas antenas para explorar o ambiente e detectar sinais químicos na água.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "lobster",
+        "palette": [
+          103,
+          107,
+          128
+        ],
+        "variant": 24
+      }
+    },
+    {
+      "id": "agua_viva_juba_de_leao",
+      "nome": "Água-viva-juba-de-leão",
+      "aliases": [
+        "Água-viva-juba-de-leão"
+      ],
+      "cientifico": "Cyanea capillata",
+      "categoria": "especial",
+      "valor": 1,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Seus tentáculos finos ficam suspensos sob o sino e capturam pequenas presas à deriva.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "jelly",
+        "palette": [
+          98,
+          160,
+          30
+        ],
+        "variant": 25
+      }
+    },
+    {
+      "id": "lula_de_humboldt",
+      "nome": "Lula-de-humboldt",
+      "aliases": [
+        "Lula-de-humboldt"
+      ],
+      "cientifico": "Dosidicus gigas",
+      "categoria": "especial",
+      "valor": 2,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Muda rapidamente de cor com células pigmentares, usando padrões para sinalizar a outras lulas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "squid",
+        "palette": [
+          13,
+          48,
+          144
+        ],
+        "variant": 26
+      }
+    },
+    {
+      "id": "salmao_rosa",
+      "nome": "Salmão-rosa",
+      "aliases": [
+        "Salmão-rosa"
+      ],
+      "cientifico": "Oncorhynchus gorbuscha",
+      "categoria": "peixe",
+      "valor": 1.5,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Seu ciclo de vida costuma durar dois anos; muitos adultos retornam juntos aos rios para desovar.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          152,
+          219,
+          119
+        ],
+        "variant": 27
+      }
+    },
+    {
+      "id": "bacalhau_do_atlantico",
+      "nome": "Bacalhau-do-atlântico",
+      "aliases": [
+        "Bacalhau-do-atlântico"
+      ],
+      "cientifico": "Gadus morhua",
+      "categoria": "peixe",
+      "valor": 2,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Uma fêmea pode liberar milhões de ovos, embora apenas uma pequena parte chegue à fase adulta.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          255,
+          208,
+          189
+        ],
+        "variant": 28
+      }
+    },
+    {
+      "id": "cavala",
+      "nome": "Cavala",
+      "aliases": [
+        "Cavala"
+      ],
+      "cientifico": "Scomber scombrus",
+      "categoria": "peixe",
+      "valor": 1,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Forma cardumes velozes e costuma migrar conforme a temperatura e a disponibilidade de alimento.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          173,
+          91,
+          10
+        ],
+        "variant": 29
+      }
+    },
+    {
+      "id": "sardinha_do_pacifico",
+      "nome": "Sardinha-do-pacífico",
+      "aliases": [
+        "Sardinha-do-pacífico"
+      ],
+      "cientifico": "Sardinops sagax",
+      "categoria": "peixe",
+      "valor": 0.5,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Seus grandes cardumes podem se deslocar e mudar de tamanho conforme as condições do oceano.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          113,
+          22,
+          237
+        ],
+        "variant": 30
+      }
+    },
+    {
+      "id": "anchoveta_peruana",
+      "nome": "Anchoveta-peruana",
+      "aliases": [
+        "Anchoveta-peruana"
+      ],
+      "cientifico": "Engraulis ringens",
+      "categoria": "peixe",
+      "valor": 0.25,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "A corrente fria e rica em nutrientes de Humboldt sustenta uma das maiores pescarias de uma única espécie.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          139,
+          76,
+          238
+        ],
+        "variant": 31
+      }
+    },
+    {
+      "id": "arenque_atlantico",
+      "nome": "Arenque-atlântico",
+      "aliases": [
+        "Arenque-atlântico"
+      ],
+      "cientifico": "Clupea harengus",
+      "categoria": "peixe",
+      "valor": 0.25,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Seus ovos pegajosos aderem a algas, pedras e outras superfícies submersas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          12,
+          52,
+          140
+        ],
+        "variant": 32
+      }
+    },
+    {
+      "id": "polaca_do_alasca",
+      "nome": "Polaca-do-alasca",
+      "aliases": [
+        "Polaca-do-alasca"
+      ],
+      "cientifico": "Gadus chalcogrammus",
+      "categoria": "peixe",
+      "valor": 0.3,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Vive em cardumes no Pacífico Norte e sustenta uma das maiores pescarias comerciais do mundo.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          29,
+          101,
+          187
+        ],
+        "variant": 33
+      }
+    },
+    {
+      "id": "camarao_cinza",
+      "nome": "Camarão-cinza",
+      "aliases": [
+        "Camarão-cinza"
+      ],
+      "cientifico": "Crangon crangon",
+      "categoria": "especial",
+      "valor": 0.2,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Pode variar a coloração e se enterrar na areia, o que ajuda a escapar de predadores.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shrimp",
+        "palette": [
+          224,
+          145,
+          126
+        ],
+        "variant": 34
+      }
+    },
+    {
+      "id": "mexilhao_azul",
+      "nome": "Mexilhão-azul",
+      "aliases": [
+        "Mexilhão-azul"
+      ],
+      "cientifico": "Mytilus edulis",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Prende-se a rochas e outras superfícies com fios resistentes chamados bissos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shell",
+        "palette": [
+          135,
+          73,
+          118
+        ],
+        "variant": 35
+      }
+    },
+    {
+      "id": "caranguejo_falso",
+      "nome": "Caranguejo-falso",
+      "aliases": [
+        "Caranguejo-falso"
+      ],
+      "cientifico": "Munida gregaria",
+      "categoria": "especial",
+      "valor": 0.15,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Apesar do nome, é um crustáceo aparentado às lagostas e pode formar enormes concentrações.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "crab",
+        "palette": [
+          187,
+          6,
+          226
+        ],
+        "variant": 36
+      }
+    },
+    {
+      "id": "calano",
+      "nome": "Calano",
+      "aliases": [
+        "Calano"
+      ],
+      "cientifico": "Calanus finmarchicus",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Este copépode acumula reservas de energia e é alimento importante para peixes e baleias em mares frios.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "copepod",
+        "palette": [
+          124,
+          78,
+          71
+        ],
+        "variant": 37
+      }
+    },
+    {
+      "id": "salpa_antartica",
+      "nome": "Salpa-antártica",
+      "aliases": [
+        "Salpa-antártica"
+      ],
+      "cientifico": "Salpa thompsoni",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Pode formar longas cadeias de indivíduos clonados que filtram partículas da água.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "salp",
+        "palette": [
+          146,
+          175,
+          0
+        ],
+        "variant": 38
+      }
+    },
+    {
+      "id": "peixe_lanterna_glaciar",
+      "nome": "Peixe-lanterna-glaciar",
+      "aliases": [
+        "Peixe-lanterna-glaciar"
+      ],
+      "cientifico": "Benthosema glaciale",
+      "categoria": "peixe",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Faz parte do grupo de peixes que sobe à superfície à noite para se alimentar e desce de dia.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "lantern",
+        "palette": [
+          8,
+          143,
+          249
+        ],
+        "variant": 39
+      }
+    },
+    {
+      "id": "peixe_lanterna_de_muller",
+      "nome": "Peixe-lanterna-de-müller",
+      "aliases": [
+        "Peixe-lanterna-de-müller"
+      ],
+      "cientifico": "Maurolicus muelleri",
+      "categoria": "peixe",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Pequeno e mesopelágico, ajuda a transferir energia do plâncton para predadores maiores.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "lantern",
+        "palette": [
+          57,
+          110,
+          85
+        ],
+        "variant": 40
+      }
+    },
+    {
+      "id": "krill_do_pacifico",
+      "nome": "Krill-do-pacífico",
+      "aliases": [
+        "Krill-do-pacífico"
+      ],
+      "cientifico": "Euphausia pacifica",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Forma enxames e é uma fonte essencial de alimento para peixes, aves e mamíferos marinhos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shrimp",
+        "palette": [
+          190,
+          48,
+          8
+        ],
+        "variant": 41
+      }
+    },
+    {
+      "id": "krill_antartico",
+      "nome": "Krill-antártico",
+      "aliases": [
+        "Krill-antártico"
+      ],
+      "cientifico": "Euphausia superba",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "Esses pequenos crustáceos vivem em grandes enxames e são a base alimentar de muitos animais antárticos.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "shrimp",
+        "palette": [
+          90,
+          129,
+          209
+        ],
+        "variant": 42
+      }
+    },
+    {
+      "id": "copepode_comum",
+      "nome": "Copépode-comum",
+      "aliases": [
+        "Copépode-comum"
+      ],
+      "cientifico": "Acartia tonsa",
+      "categoria": "especial",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "É minúsculo, mas serve de alimento a larvas de peixes e participa da base das cadeias marinhas.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "copepod",
+        "palette": [
+          153,
+          123,
+          55
+        ],
+        "variant": 43
+      }
+    },
+    {
+      "id": "peixe_lanterna_comum",
+      "nome": "Peixe-lanterna-comum",
+      "aliases": [
+        "Peixe-lanterna-comum"
+      ],
+      "cientifico": "Symbolophorus barnardi",
+      "categoria": "peixe",
+      "valor": 0.1,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Os fotóforos do corpo produzem luz e ajudam a quebrar sua silhueta na penumbra oceânica.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "lantern",
+        "palette": [
+          242,
+          89,
+          236
+        ],
+        "variant": 44
+      }
+    },
+    {
+      "id": "lambari",
+      "nome": "Lambari",
+      "aliases": [
+        "Lambari"
+      ],
+      "cientifico": "Astyanax lacustris",
+      "categoria": "peixe",
+      "valor": 0.1,
+      "raridade": "Comum",
+      "rod_bonus": false,
+      "curiosidade": "O nome reúne pequenos peixes de água doce; muitos vivem em cardumes e são importantes para predadores locais.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          253,
+          75,
+          235
+        ],
+        "variant": 45
+      }
+    },
+    {
+      "id": "tilapia_do_nilo",
+      "nome": "Tilápia-do-nilo",
+      "aliases": [
+        "Tilápia-do-nilo"
+      ],
+      "cientifico": "Oreochromis niloticus",
+      "categoria": "peixe",
+      "valor": 0.2,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "A fêmea protege ovos e filhotes na boca, comportamento conhecido como incubação bucal.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          88,
+          141,
+          47
+        ],
+        "variant": 46
+      }
+    },
+    {
+      "id": "tambaqui",
+      "nome": "Tambaqui",
+      "aliases": [
+        "Tambaqui"
+      ],
+      "cientifico": "Colossoma macropomum",
+      "categoria": "peixe",
+      "valor": 0.8,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Seus dentes fortes conseguem triturar frutos e sementes que caem na água durante a cheia.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          239,
+          249,
+          214
+        ],
+        "variant": 47
+      }
+    },
+    {
+      "id": "pacu",
+      "nome": "Pacu",
+      "aliases": [
+        "Pacu"
+      ],
+      "cientifico": "Piaractus mesopotamicus",
+      "categoria": "peixe",
+      "valor": 0.5,
+      "raridade": "Raro",
+      "rod_bonus": false,
+      "curiosidade": "Seus dentes achatados lembram os humanos e ajudam a quebrar sementes e frutos duros.",
+      "verification": {
+        "status": "legado_preservado"
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          45,
+          81,
+          4
+        ],
+        "variant": 48
+      }
+    },
+    {
+      "id": "carpa_comum",
+      "nome": "Carpa-comum",
+      "aliases": [
+        "Carpa-comum"
+      ],
+      "cientifico": "Cyprinus carpio",
+      "categoria": "peixe",
+      "valor": 12,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Cyprinidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Cyprinus carpio",
+        "matched_name": "Cyprinus carpio Linnaeus, 1758",
+        "family": "Cyprinidae",
+        "gbif_key": 4286975,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Cyprinus+carpio&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Cyprinus carpio",
+        "consulted_utc": "2026-10-07T03:08:54.132690+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 4286975,
+          "scientificName": "Cyprinus carpio Linnaeus, 1758",
+          "canonicalName": "Cyprinus carpio",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Cypriniformes",
+          "family": "Cyprinidae",
+          "genus": "Cyprinus",
+          "species": "Cyprinus carpio",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1153,
+          "familyKey": 7336,
+          "genusKey": 2347697,
+          "speciesKey": 4286975
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          11,
+          46,
+          71
+        ],
+        "variant": 49
+      }
+    },
+    {
+      "id": "carpa_capim",
+      "nome": "Carpa-capim",
+      "aliases": [
+        "Carpa-capim"
+      ],
+      "cientifico": "Ctenopharyngodon idella",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Cyprinidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Ctenopharyngodon idella",
+        "matched_name": "Ctenopharyngodon idella (Valenciennes, 1844)",
+        "family": "Cyprinidae",
+        "gbif_key": 2362030,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Ctenopharyngodon+idella&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Ctenopharyngodon idella",
+        "consulted_utc": "2026-10-07T03:08:54.156870+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2362030,
+          "scientificName": "Ctenopharyngodon idella (Valenciennes, 1844)",
+          "canonicalName": "Ctenopharyngodon idella",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Cypriniformes",
+          "family": "Cyprinidae",
+          "genus": "Ctenopharyngodon",
+          "species": "Ctenopharyngodon idella",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1153,
+          "familyKey": 7336,
+          "genusKey": 2362029,
+          "speciesKey": 2362030
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          141,
+          252,
+          190
+        ],
+        "variant": 50
+      }
+    },
+    {
+      "id": "acara",
+      "nome": "Acará",
+      "aliases": [
+        "Acará"
+      ],
+      "cientifico": "Geophagus brasiliensis",
+      "categoria": "peixe",
+      "valor": 10,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Cichlidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Geophagus brasiliensis",
+        "matched_name": "Geophagus brasiliensis (Quoy & Gaimard, 1824)",
+        "family": "Cichlidae",
+        "gbif_key": 7769592,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Geophagus+brasiliensis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Geophagus brasiliensis",
+        "consulted_utc": "2026-10-07T03:08:54.140104+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 7769592,
+          "scientificName": "Geophagus brasiliensis (Quoy & Gaimard, 1824)",
+          "canonicalName": "Geophagus brasiliensis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Cichlidae",
+          "genus": "Geophagus",
+          "species": "Geophagus brasiliensis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 8522,
+          "genusKey": 2372429,
+          "speciesKey": 7769592
+        }
+      },
+      "sprite": {
+        "family": "disk",
+        "palette": [
+          156,
+          34,
+          11
+        ],
+        "variant": 51
+      }
+    },
+    {
+      "id": "traira",
+      "nome": "Traíra",
+      "aliases": [
+        "Traíra"
+      ],
+      "cientifico": "Hoplias malabaricus",
+      "categoria": "peixe",
+      "valor": 24,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Erythrinidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Hoplias malabaricus",
+        "matched_name": "Hoplias malabaricus (Bloch, 1794)",
+        "family": "Erythrinidae",
+        "gbif_key": 2352230,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Hoplias+malabaricus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Hoplias malabaricus",
+        "consulted_utc": "2026-10-07T03:08:54.146972+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2352230,
+          "scientificName": "Hoplias malabaricus (Bloch, 1794)",
+          "canonicalName": "Hoplias malabaricus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Erythrinidae",
+          "genus": "Hoplias",
+          "species": "Hoplias malabaricus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 7205,
+          "genusKey": 2352224,
+          "speciesKey": 2352230
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          139,
+          186,
+          141
+        ],
+        "variant": 52
+      }
+    },
+    {
+      "id": "jundia",
+      "nome": "Jundiá",
+      "aliases": [
+        "Jundiá"
+      ],
+      "cientifico": "Rhamdia quelen",
+      "categoria": "peixe",
+      "valor": 28,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Heptapteridae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Rhamdia quelen",
+        "matched_name": "Rhamdia quelen (Quoy & Gaimard, 1824)",
+        "family": "Heptapteridae",
+        "gbif_key": 2343735,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Rhamdia+quelen&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Rhamdia quelen",
+        "consulted_utc": "2026-10-07T03:08:54.132188+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2343735,
+          "scientificName": "Rhamdia quelen (Quoy & Gaimard, 1824)",
+          "canonicalName": "Rhamdia quelen",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Siluriformes",
+          "family": "Heptapteridae",
+          "genus": "Rhamdia",
+          "species": "Rhamdia quelen",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 708,
+          "familyKey": 9226,
+          "genusKey": 2338759,
+          "speciesKey": 2343735
+        }
+      },
+      "sprite": {
+        "family": "catfish",
+        "palette": [
+          16,
+          6,
+          25
+        ],
+        "variant": 53
+      }
+    },
+    {
+      "id": "curimbata",
+      "nome": "Curimbatá",
+      "aliases": [
+        "Curimbatá"
+      ],
+      "cientifico": "Prochilodus lineatus",
+      "categoria": "peixe",
+      "valor": 12,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Prochilodontidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Prochilodus lineatus",
+        "matched_name": "Prochilodus lineatus (Valenciennes, 1837)",
+        "family": "Prochilodontidae",
+        "gbif_key": 2352154,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Prochilodus+lineatus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Prochilodus lineatus",
+        "consulted_utc": "2026-10-07T03:08:54.179854+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2352154,
+          "scientificName": "Prochilodus lineatus (Valenciennes, 1837)",
+          "canonicalName": "Prochilodus lineatus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Prochilodontidae",
+          "genus": "Prochilodus",
+          "species": "Prochilodus lineatus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 7331,
+          "genusKey": 2352148,
+          "speciesKey": 2352154
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          202,
+          51,
+          140
+        ],
+        "variant": 54
+      }
+    },
+    {
+      "id": "matrinxa",
+      "nome": "Matrinxã",
+      "aliases": [
+        "Matrinxã"
+      ],
+      "cientifico": "Brycon amazonicus",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Bryconidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Brycon amazonicus",
+        "matched_name": "Brycon amazonicus (Spix & Agassiz, 1829)",
+        "family": "Bryconidae",
+        "gbif_key": 2353493,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Brycon+amazonicus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Brycon amazonicus",
+        "consulted_utc": "2026-10-07T03:08:54.778436+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2353493,
+          "scientificName": "Brycon amazonicus (Spix & Agassiz, 1829)",
+          "canonicalName": "Brycon amazonicus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Bryconidae",
+          "genus": "Brycon",
+          "species": "Brycon amazonicus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 6880497,
+          "genusKey": 2353451,
+          "speciesKey": 2353493
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          62,
+          215,
+          33
+        ],
+        "variant": 55
+      }
+    },
+    {
+      "id": "piabanha",
+      "nome": "Piabanha",
+      "aliases": [
+        "Piabanha"
+      ],
+      "cientifico": "Brycon insignis",
+      "categoria": "peixe",
+      "valor": 22,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Bryconidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Brycon insignis",
+        "matched_name": "Brycon insignis Steindachner, 1877",
+        "family": "Bryconidae",
+        "gbif_key": 2353515,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Brycon+insignis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Brycon insignis",
+        "consulted_utc": "2026-10-07T03:08:54.776748+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2353515,
+          "scientificName": "Brycon insignis Steindachner, 1877",
+          "canonicalName": "Brycon insignis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Bryconidae",
+          "genus": "Brycon",
+          "species": "Brycon insignis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 6880497,
+          "genusKey": 2353451,
+          "speciesKey": 2353515
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          242,
+          85,
+          47
+        ],
+        "variant": 56
+      }
+    },
+    {
+      "id": "piraputanga",
+      "nome": "Piraputanga",
+      "aliases": [
+        "Piraputanga"
+      ],
+      "cientifico": "Brycon hilarii",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Bryconidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Brycon hilarii",
+        "matched_name": "Brycon hilarii (Valenciennes, 1850)",
+        "family": "Bryconidae",
+        "gbif_key": 2353507,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Brycon+hilarii&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Brycon hilarii",
+        "consulted_utc": "2026-10-07T03:08:54.737360+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2353507,
+          "scientificName": "Brycon hilarii (Valenciennes, 1850)",
+          "canonicalName": "Brycon hilarii",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Bryconidae",
+          "genus": "Brycon",
+          "species": "Brycon hilarii",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 6880497,
+          "genusKey": 2353451,
+          "speciesKey": 2353507
+        }
+      },
+      "sprite": {
+        "family": "carp",
+        "palette": [
+          30,
+          227,
+          191
+        ],
+        "variant": 57
+      }
+    },
+    {
+      "id": "piapara",
+      "nome": "Piapara",
+      "aliases": [
+        "Piapara"
+      ],
+      "cientifico": "Megaleporinus obtusidens",
+      "categoria": "peixe",
+      "valor": 16,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Anostomidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Megaleporinus obtusidens",
+        "matched_name": "Megaleporinus obtusidens (Valenciennes, 1837)",
+        "family": "Anostomidae",
+        "gbif_key": 10510467,
+        "accepted_key": 2355367,
+        "url": "https://api.gbif.org/v1/species/match?name=Megaleporinus+obtusidens&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Megaleporinus obtusidens",
+        "consulted_utc": "2026-10-07T03:08:54.791544+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 10510467,
+          "acceptedUsageKey": 2355367,
+          "scientificName": "Megaleporinus obtusidens (Valenciennes, 1837)",
+          "canonicalName": "Megaleporinus obtusidens",
+          "rank": "SPECIES",
+          "status": "SYNONYM",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Anostomidae",
+          "genus": "Leporinus",
+          "species": "Leporinus obtusidens",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 7200,
+          "genusKey": 2352324,
+          "speciesKey": 2355367
+        }
+      },
+      "sprite": {
+        "family": "striped",
+        "palette": [
+          183,
+          189,
+          196
+        ],
+        "variant": 58
+      }
+    },
+    {
+      "id": "dourado",
+      "nome": "Dourado",
+      "aliases": [
+        "Dourado"
+      ],
+      "cientifico": "Salminus brasiliensis",
+      "categoria": "peixe",
+      "valor": 35,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Bryconidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Salminus brasiliensis",
+        "matched_name": "Salminus brasiliensis (Cuvier, 1816)",
+        "family": "Bryconidae",
+        "gbif_key": 2354769,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Salminus+brasiliensis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Salminus brasiliensis",
+        "consulted_utc": "2026-10-07T03:08:54.790760+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2354769,
+          "scientificName": "Salminus brasiliensis (Cuvier, 1816)",
+          "canonicalName": "Salminus brasiliensis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Characiformes",
+          "family": "Bryconidae",
+          "genus": "Salminus",
+          "species": "Salminus brasiliensis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 537,
+          "familyKey": 6880497,
+          "genusKey": 2354767,
+          "speciesKey": 2354769
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          196,
+          222,
+          220
+        ],
+        "variant": 59
+      }
+    },
+    {
+      "id": "pintado",
+      "nome": "Pintado",
+      "aliases": [
+        "Pintado"
+      ],
+      "cientifico": "Pseudoplatystoma corruscans",
+      "categoria": "peixe",
+      "valor": 40,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Pimelodidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Pseudoplatystoma corruscans",
+        "matched_name": "Pseudoplatystoma corruscans (Spix & Agassiz, 1829)",
+        "family": "Pimelodidae",
+        "gbif_key": 2338660,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Pseudoplatystoma+corruscans&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Pseudoplatystoma corruscans",
+        "consulted_utc": "2026-10-07T03:08:54.771510+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2338660,
+          "scientificName": "Pseudoplatystoma corruscans (Spix & Agassiz, 1829)",
+          "canonicalName": "Pseudoplatystoma corruscans",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Siluriformes",
+          "family": "Pimelodidae",
+          "genus": "Pseudoplatystoma",
+          "species": "Pseudoplatystoma corruscans",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 708,
+          "familyKey": 5163,
+          "genusKey": 2338658,
+          "speciesKey": 2338660
+        }
+      },
+      "sprite": {
+        "family": "catfish",
+        "palette": [
+          12,
+          144,
+          243
+        ],
+        "variant": 60
+      }
+    },
+    {
+      "id": "pirarara",
+      "nome": "Pirarara",
+      "aliases": [
+        "Pirarara"
+      ],
+      "cientifico": "Phractocephalus hemioliopterus",
+      "categoria": "peixe",
+      "valor": 45,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Pimelodidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Phractocephalus hemioliopterus",
+        "matched_name": "Phractocephalus hemioliopterus (Bloch & Schneider, 1801)",
+        "family": "Pimelodidae",
+        "gbif_key": 2338793,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Phractocephalus+hemioliopterus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Phractocephalus hemioliopterus",
+        "consulted_utc": "2026-10-07T03:08:55.332467+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2338793,
+          "scientificName": "Phractocephalus hemioliopterus (Bloch & Schneider, 1801)",
+          "canonicalName": "Phractocephalus hemioliopterus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Siluriformes",
+          "family": "Pimelodidae",
+          "genus": "Phractocephalus",
+          "species": "Phractocephalus hemioliopterus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 708,
+          "familyKey": 5163,
+          "genusKey": 2338455,
+          "speciesKey": 2338793
+        }
+      },
+      "sprite": {
+        "family": "catfish",
+        "palette": [
+          240,
+          205,
+          48
+        ],
+        "variant": 61
+      }
+    },
+    {
+      "id": "jau",
+      "nome": "Jaú",
+      "aliases": [
+        "Jaú"
+      ],
+      "cientifico": "Zungaro jahu",
+      "categoria": "peixe",
+      "valor": 50,
+      "raridade": "Raro",
+      "rod_bonus": true,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Pimelodidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Zungaro jahu",
+        "matched_name": "Zungaro jahu (Ihering, 1898)",
+        "family": "Pimelodidae",
+        "gbif_key": 2338786,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Zungaro+jahu&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Zungaro jahu",
+        "consulted_utc": "2026-10-07T03:08:55.402116+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2338786,
+          "scientificName": "Zungaro jahu (Ihering, 1898)",
+          "canonicalName": "Zungaro jahu",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Siluriformes",
+          "family": "Pimelodidae",
+          "genus": "Zungaro",
+          "species": "Zungaro jahu",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 708,
+          "familyKey": 5163,
+          "genusKey": 2338769,
+          "speciesKey": 2338786
+        }
+      },
+      "sprite": {
+        "family": "catfish",
+        "palette": [
+          100,
+          147,
+          247
+        ],
+        "variant": 62
+      }
+    },
+    {
+      "id": "tainha",
+      "nome": "Tainha",
+      "aliases": [
+        "Tainha"
+      ],
+      "cientifico": "Mugil liza",
+      "categoria": "peixe",
+      "valor": 6,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Mugilidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Mugil liza",
+        "matched_name": "Mugil liza Valenciennes, 1836",
+        "family": "Mugilidae",
+        "gbif_key": 2400654,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Mugil+liza&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Mugil liza",
+        "consulted_utc": "2026-10-07T03:08:55.408558+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2400654,
+          "scientificName": "Mugil liza Valenciennes, 1836",
+          "canonicalName": "Mugil liza",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Mugiliformes",
+          "family": "Mugilidae",
+          "genus": "Mugil",
+          "species": "Mugil liza",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1067,
+          "familyKey": 8473,
+          "genusKey": 7822511,
+          "speciesKey": 2400654
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          122,
+          46,
+          189
+        ],
+        "variant": 63
+      }
+    },
+    {
+      "id": "carapeba",
+      "nome": "Carapeba",
+      "aliases": [
+        "Carapeba"
+      ],
+      "cientifico": "Diapterus rhombeus",
+      "categoria": "peixe",
+      "valor": 7,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Gerreidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Diapterus rhombeus",
+        "matched_name": "Diapterus rhombeus (Cuvier, 1829)",
+        "family": "Gerreidae",
+        "gbif_key": 2369323,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Diapterus+rhombeus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Diapterus rhombeus",
+        "consulted_utc": "2026-10-07T03:08:55.371266+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2369323,
+          "scientificName": "Diapterus rhombeus (Cuvier, 1829)",
+          "canonicalName": "Diapterus rhombeus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Gerreidae",
+          "genus": "Diapterus",
+          "species": "Diapterus rhombeus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4273,
+          "genusKey": 2369322,
+          "speciesKey": 2369323
+        }
+      },
+      "sprite": {
+        "family": "disk",
+        "palette": [
+          140,
+          73,
+          240
+        ],
+        "variant": 64
+      }
+    },
+    {
+      "id": "robalo_flecha",
+      "nome": "Robalo-flecha",
+      "aliases": [
+        "Robalo-flecha"
+      ],
+      "cientifico": "Centropomus undecimalis",
+      "categoria": "peixe",
+      "valor": 24,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Centropomidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Centropomus undecimalis",
+        "matched_name": "Centropomus undecimalis (Bloch, 1792)",
+        "family": "Centropomidae",
+        "gbif_key": 2369643,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Centropomus+undecimalis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Centropomus undecimalis",
+        "consulted_utc": "2026-10-07T03:08:55.381581+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2369643,
+          "scientificName": "Centropomus undecimalis (Bloch, 1792)",
+          "canonicalName": "Centropomus undecimalis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Centropomidae",
+          "genus": "Centropomus",
+          "species": "Centropomus undecimalis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4256,
+          "genusKey": 2356959,
+          "speciesKey": 2369643
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          10,
+          132,
+          97
+        ],
+        "variant": 65
+      }
+    },
+    {
+      "id": "robalo_peva",
+      "nome": "Robalo-peva",
+      "aliases": [
+        "Robalo-peva"
+      ],
+      "cientifico": "Centropomus parallelus",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Centropomidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Centropomus parallelus",
+        "matched_name": "Centropomus parallelus Poey, 1860",
+        "family": "Centropomidae",
+        "gbif_key": 2369640,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Centropomus+parallelus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Centropomus parallelus",
+        "consulted_utc": "2026-10-07T03:08:55.426480+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2369640,
+          "scientificName": "Centropomus parallelus Poey, 1860",
+          "canonicalName": "Centropomus parallelus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Centropomidae",
+          "genus": "Centropomus",
+          "species": "Centropomus parallelus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4256,
+          "genusKey": 2356959,
+          "speciesKey": 2369640
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          110,
+          192,
+          222
+        ],
+        "variant": 66
+      }
+    },
+    {
+      "id": "parati",
+      "nome": "Parati",
+      "aliases": [
+        "Parati"
+      ],
+      "cientifico": "Mugil curema",
+      "categoria": "peixe",
+      "valor": 5,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Mugilidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Mugil curema",
+        "matched_name": "Mugil curema Valenciennes, 1836",
+        "family": "Mugilidae",
+        "gbif_key": 2400641,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Mugil+curema&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Mugil curema",
+        "consulted_utc": "2026-10-07T03:08:55.965189+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2400641,
+          "scientificName": "Mugil curema Valenciennes, 1836",
+          "canonicalName": "Mugil curema",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Mugiliformes",
+          "family": "Mugilidae",
+          "genus": "Mugil",
+          "species": "Mugil curema",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1067,
+          "familyKey": 8473,
+          "genusKey": 7822511,
+          "speciesKey": 2400641
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          70,
+          168,
+          175
+        ],
+        "variant": 67
+      }
+    },
+    {
+      "id": "corvina",
+      "nome": "Corvina",
+      "aliases": [
+        "Corvina"
+      ],
+      "cientifico": "Micropogonias furnieri",
+      "categoria": "peixe",
+      "valor": 12,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Sciaenidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Micropogonias furnieri",
+        "matched_name": "Micropogonias furnieri (Desmarest, 1823)",
+        "family": "Sciaenidae",
+        "gbif_key": 2399855,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Micropogonias+furnieri&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Micropogonias furnieri",
+        "consulted_utc": "2026-10-07T03:08:56.001156+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2399855,
+          "scientificName": "Micropogonias furnieri (Desmarest, 1823)",
+          "canonicalName": "Micropogonias furnieri",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Sciaenidae",
+          "genus": "Micropogonias",
+          "species": "Micropogonias furnieri",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 5062,
+          "genusKey": 2399854,
+          "speciesKey": 2399855
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          242,
+          207,
+          240
+        ],
+        "variant": 68
+      }
+    },
+    {
+      "id": "bagre_amarelo",
+      "nome": "Bagre-amarelo",
+      "aliases": [
+        "Bagre-amarelo"
+      ],
+      "cientifico": "Cathorops spixii",
+      "categoria": "peixe",
+      "valor": 14,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Ariidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Cathorops spixii",
+        "matched_name": "Cathorops spixii (Agassiz, 1829)",
+        "family": "Ariidae",
+        "gbif_key": 2345143,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Cathorops+spixii&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Cathorops spixii",
+        "consulted_utc": "2026-10-07T03:08:56.032408+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2345143,
+          "scientificName": "Cathorops spixii (Agassiz, 1829)",
+          "canonicalName": "Cathorops spixii",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Siluriformes",
+          "family": "Ariidae",
+          "genus": "Cathorops",
+          "species": "Cathorops spixii",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 708,
+          "familyKey": 4512,
+          "genusKey": 2345131,
+          "speciesKey": 2345143
+        }
+      },
+      "sprite": {
+        "family": "catfish",
+        "palette": [
+          194,
+          138,
+          123
+        ],
+        "variant": 69
+      }
+    },
+    {
+      "id": "peixe_rei",
+      "nome": "Peixe-rei",
+      "aliases": [
+        "Peixe-rei"
+      ],
+      "cientifico": "Atherinella brasiliensis",
+      "categoria": "peixe",
+      "valor": 3,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Atherinopsidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Atherinella brasiliensis",
+        "matched_name": "Atherinella brasiliensis (Quoy & Gaimard, 1825)",
+        "family": "Atherinopsidae",
+        "gbif_key": 2412202,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Atherinella+brasiliensis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Atherinella brasiliensis",
+        "consulted_utc": "2026-10-07T03:08:56.031652+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2412202,
+          "scientificName": "Atherinella brasiliensis (Quoy & Gaimard, 1825)",
+          "canonicalName": "Atherinella brasiliensis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Atheriniformes",
+          "family": "Atherinopsidae",
+          "genus": "Atherinella",
+          "species": "Atherinella brasiliensis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 496,
+          "familyKey": 2957,
+          "genusKey": 2412134,
+          "speciesKey": 2412202
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          158,
+          92,
+          46
+        ],
+        "variant": 70
+      }
+    },
+    {
+      "id": "peixe_agulha",
+      "nome": "Peixe-agulha",
+      "aliases": [
+        "Peixe-agulha"
+      ],
+      "cientifico": "Strongylura marina",
+      "categoria": "peixe",
+      "valor": 10,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Belonidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Strongylura marina",
+        "matched_name": "Strongylura marina (Walbaum, 1792)",
+        "family": "Belonidae",
+        "gbif_key": 5208028,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Strongylura+marina&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Strongylura marina",
+        "consulted_utc": "2026-10-07T03:08:56.038358+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 5208028,
+          "scientificName": "Strongylura marina (Walbaum, 1792)",
+          "canonicalName": "Strongylura marina",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Beloniformes",
+          "family": "Belonidae",
+          "genus": "Strongylura",
+          "species": "Strongylura marina",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 498,
+          "familyKey": 7190,
+          "genusKey": 2369083,
+          "speciesKey": 5208028
+        }
+      },
+      "sprite": {
+        "family": "needle",
+        "palette": [
+          249,
+          83,
+          118
+        ],
+        "variant": 71
+      }
+    },
+    {
+      "id": "betara",
+      "nome": "Betara",
+      "aliases": [
+        "Betara"
+      ],
+      "cientifico": "Menticirrhus americanus",
+      "categoria": "peixe",
+      "valor": 8,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Sciaenidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Menticirrhus americanus",
+        "matched_name": "Menticirrhus americanus (Linnaeus, 1758)",
+        "family": "Sciaenidae",
+        "gbif_key": 2400093,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Menticirrhus+americanus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Menticirrhus americanus",
+        "consulted_utc": "2026-10-07T03:08:56.055479+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2400093,
+          "scientificName": "Menticirrhus americanus (Linnaeus, 1758)",
+          "canonicalName": "Menticirrhus americanus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Sciaenidae",
+          "genus": "Menticirrhus",
+          "species": "Menticirrhus americanus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 5062,
+          "genusKey": 2400075,
+          "speciesKey": 2400093
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          165,
+          145,
+          98
+        ],
+        "variant": 72
+      }
+    },
+    {
+      "id": "sargo",
+      "nome": "Sargo",
+      "aliases": [
+        "Sargo"
+      ],
+      "cientifico": "Diplodus argenteus",
+      "categoria": "peixe",
+      "valor": 6,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Sparidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Diplodus argenteus",
+        "matched_name": "Diplodus argenteus (Valenciennes, 1830)",
+        "family": "Sparidae",
+        "gbif_key": 5712109,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Diplodus+argenteus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Diplodus argenteus",
+        "consulted_utc": "2026-10-07T03:08:56.591276+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 5712109,
+          "scientificName": "Diplodus argenteus (Valenciennes, 1830)",
+          "canonicalName": "Diplodus argenteus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Sparidae",
+          "genus": "Diplodus",
+          "species": "Diplodus argenteus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 5068,
+          "genusKey": 2392461,
+          "speciesKey": 5712109
+        }
+      },
+      "sprite": {
+        "family": "disk",
+        "palette": [
+          254,
+          107,
+          174
+        ],
+        "variant": 73
+      }
+    },
+    {
+      "id": "sargentinho",
+      "nome": "Sargentinho",
+      "aliases": [
+        "Sargentinho"
+      ],
+      "cientifico": "Abudefduf saxatilis",
+      "categoria": "peixe",
+      "valor": 3,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Pomacentridae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Abudefduf saxatilis",
+        "matched_name": "Abudefduf saxatilis (Linnaeus, 1758)",
+        "family": "Pomacentridae",
+        "gbif_key": 2398623,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Abudefduf+saxatilis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Abudefduf saxatilis",
+        "consulted_utc": "2026-10-07T03:08:56.655996+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2398623,
+          "scientificName": "Abudefduf saxatilis (Linnaeus, 1758)",
+          "canonicalName": "Abudefduf saxatilis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Pomacentridae",
+          "genus": "Abudefduf",
+          "species": "Abudefduf saxatilis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4499,
+          "genusKey": 2398621,
+          "speciesKey": 2398623
+        }
+      },
+      "sprite": {
+        "family": "striped",
+        "palette": [
+          190,
+          144,
+          228
+        ],
+        "variant": 74
+      }
+    },
+    {
+      "id": "peixe_borboleta",
+      "nome": "Peixe-borboleta",
+      "aliases": [
+        "Peixe-borboleta"
+      ],
+      "cientifico": "Chaetodon striatus",
+      "categoria": "peixe",
+      "valor": 12,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Chaetodontidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Chaetodon striatus",
+        "matched_name": "Chaetodon striatus Linnaeus, 1758",
+        "family": "Chaetodontidae",
+        "gbif_key": 7906686,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Chaetodon+striatus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Chaetodon striatus",
+        "consulted_utc": "2026-10-07T03:08:56.636439+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 7906686,
+          "scientificName": "Chaetodon striatus Linnaeus, 1758",
+          "canonicalName": "Chaetodon striatus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Chaetodontidae",
+          "genus": "Chaetodon",
+          "species": "Chaetodon striatus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 8517,
+          "genusKey": 2369550,
+          "speciesKey": 7906686
+        }
+      },
+      "sprite": {
+        "family": "striped",
+        "palette": [
+          251,
+          102,
+          48
+        ],
+        "variant": 75
+      }
+    },
+    {
+      "id": "cirurgiao_patela",
+      "nome": "Cirurgião-patela",
+      "aliases": [
+        "Cirurgião-patela"
+      ],
+      "cientifico": "Paracanthurus hepatus",
+      "categoria": "peixe",
+      "valor": 15,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Acanthuridae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Paracanthurus hepatus",
+        "matched_name": "Paracanthurus hepatus (Linnaeus, 1766)",
+        "family": "Acanthuridae",
+        "gbif_key": 2379534,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Paracanthurus+hepatus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Paracanthurus hepatus",
+        "consulted_utc": "2026-10-07T03:08:56.651599+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2379534,
+          "scientificName": "Paracanthurus hepatus (Linnaeus, 1766)",
+          "canonicalName": "Paracanthurus hepatus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Acanthuridae",
+          "genus": "Paracanthurus",
+          "species": "Paracanthurus hepatus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4233,
+          "genusKey": 2379533,
+          "speciesKey": 2379534
+        }
+      },
+      "sprite": {
+        "family": "disk",
+        "palette": [
+          47,
+          136,
+          69
+        ],
+        "variant": 76
+      }
+    },
+    {
+      "id": "moreia_verde",
+      "nome": "Moreia-verde",
+      "aliases": [
+        "Moreia-verde"
+      ],
+      "cientifico": "Gymnothorax funebris",
+      "categoria": "peixe",
+      "valor": 24,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Muraenidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Gymnothorax funebris",
+        "matched_name": "Gymnothorax funebris Ranzani, 1839",
+        "family": "Muraenidae",
+        "gbif_key": 2403964,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Gymnothorax+funebris&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Gymnothorax funebris",
+        "consulted_utc": "2026-10-07T03:08:56.649940+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2403964,
+          "scientificName": "Gymnothorax funebris Ranzani, 1839",
+          "canonicalName": "Gymnothorax funebris",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Anguilliformes",
+          "family": "Muraenidae",
+          "genus": "Gymnothorax",
+          "species": "Gymnothorax funebris",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 495,
+          "familyKey": 2953,
+          "genusKey": 2403463,
+          "speciesKey": 2403964
+        }
+      },
+      "sprite": {
+        "family": "eel",
+        "palette": [
+          95,
+          136,
+          29
+        ],
+        "variant": 77
+      }
+    },
+    {
+      "id": "albacora_laje",
+      "nome": "Albacora-laje",
+      "aliases": [
+        "Albacora-laje"
+      ],
+      "cientifico": "Thunnus albacares",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Scombridae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Thunnus albacares",
+        "matched_name": "Thunnus albacares (Bonnaterre, 1788)",
+        "family": "Scombridae",
+        "gbif_key": 2374013,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Thunnus+albacares&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Thunnus albacares",
+        "consulted_utc": "2026-10-07T03:08:56.654084+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2374013,
+          "scientificName": "Thunnus albacares (Bonnaterre, 1788)",
+          "canonicalName": "Thunnus albacares",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Scombridae",
+          "genus": "Thunnus",
+          "species": "Thunnus albacares",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 8596,
+          "genusKey": 2373932,
+          "speciesKey": 2374013
+        }
+      },
+      "sprite": {
+        "family": "tuna",
+        "palette": [
+          248,
+          109,
+          201
+        ],
+        "variant": 78
+      }
+    },
+    {
+      "id": "peixe_voador",
+      "nome": "Peixe-voador",
+      "aliases": [
+        "Peixe-voador"
+      ],
+      "cientifico": "Hirundichthys affinis",
+      "categoria": "peixe",
+      "valor": 8,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Exocoetidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Hirundichthys affinis",
+        "matched_name": "Hirundichthys affinis (Günther, 1866)",
+        "family": "Exocoetidae",
+        "gbif_key": 2368680,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Hirundichthys+affinis&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Hirundichthys affinis",
+        "consulted_utc": "2026-10-07T03:08:57.250147+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2368680,
+          "scientificName": "Hirundichthys affinis (Günther, 1866)",
+          "canonicalName": "Hirundichthys affinis",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Beloniformes",
+          "family": "Exocoetidae",
+          "genus": "Hirundichthys",
+          "species": "Hirundichthys affinis",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 498,
+          "familyKey": 2968,
+          "genusKey": 2368676,
+          "speciesKey": 2368680
+        }
+      },
+      "sprite": {
+        "family": "flying",
+        "palette": [
+          241,
+          210,
+          202
+        ],
+        "variant": 79
+      }
+    },
+    {
+      "id": "dourado_do_mar",
+      "nome": "Dourado-do-mar",
+      "aliases": [
+        "Dourado-do-mar"
+      ],
+      "cientifico": "Coryphaena hippurus",
+      "categoria": "peixe",
+      "valor": 24,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Coryphaenidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Coryphaena hippurus",
+        "matched_name": "Coryphaena hippurus Linnaeus, 1758",
+        "family": "Coryphaenidae",
+        "gbif_key": 2381939,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Coryphaena+hippurus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Coryphaena hippurus",
+        "consulted_utc": "2026-10-07T03:08:57.251932+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2381939,
+          "scientificName": "Coryphaena hippurus Linnaeus, 1758",
+          "canonicalName": "Coryphaena hippurus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Coryphaenidae",
+          "genus": "Coryphaena",
+          "species": "Coryphaena hippurus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 4262,
+          "genusKey": 2369535,
+          "speciesKey": 2381939
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          52,
+          215,
+          188
+        ],
+        "variant": 80
+      }
+    },
+    {
+      "id": "peixe_vela",
+      "nome": "Peixe-vela",
+      "aliases": [
+        "Peixe-vela"
+      ],
+      "cientifico": "Istiophorus platypterus",
+      "categoria": "peixe",
+      "valor": 60,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Istiophoridae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Istiophorus platypterus",
+        "matched_name": "Istiophorus platypterus (Shaw, 1792)",
+        "family": "Istiophoridae",
+        "gbif_key": 5211984,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Istiophorus+platypterus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Istiophorus platypterus",
+        "consulted_utc": "2026-10-07T03:08:57.244929+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 5211984,
+          "scientificName": "Istiophorus platypterus (Shaw, 1792)",
+          "canonicalName": "Istiophorus platypterus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Istiophoridae",
+          "genus": "Istiophorus",
+          "species": "Istiophorus platypterus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 9670,
+          "genusKey": 2397970,
+          "speciesKey": 5211984
+        }
+      },
+      "sprite": {
+        "family": "sailfish",
+        "palette": [
+          15,
+          139,
+          98
+        ],
+        "variant": 81
+      }
+    },
+    {
+      "id": "bacalhau_polar",
+      "nome": "Bacalhau-polar",
+      "aliases": [
+        "Bacalhau-polar"
+      ],
+      "cientifico": "Boreogadus saida",
+      "categoria": "peixe",
+      "valor": 2,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Gadidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Boreogadus saida",
+        "matched_name": "Boreogadus saida (Lepechin, 1774)",
+        "family": "Gadidae",
+        "gbif_key": 2415752,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Boreogadus+saida&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Boreogadus saida",
+        "consulted_utc": "2026-10-07T03:08:57.289012+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2415752,
+          "scientificName": "Boreogadus saida (Lepechin, 1774)",
+          "canonicalName": "Boreogadus saida",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Gadiformes",
+          "family": "Gadidae",
+          "genus": "Boreogadus",
+          "species": "Boreogadus saida",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 549,
+          "familyKey": 3701,
+          "genusKey": 2415751,
+          "speciesKey": 2415752
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          8,
+          222,
+          189
+        ],
+        "variant": 82
+      }
+    },
+    {
+      "id": "halibute_do_atlantico",
+      "nome": "Halibute-do-atlântico",
+      "aliases": [
+        "Halibute-do-atlântico"
+      ],
+      "cientifico": "Hippoglossus hippoglossus",
+      "categoria": "peixe",
+      "valor": 12,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Pleuronectidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Hippoglossus hippoglossus",
+        "matched_name": "Hippoglossus hippoglossus (Linnaeus, 1758)",
+        "family": "Pleuronectidae",
+        "gbif_key": 2409218,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Hippoglossus+hippoglossus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Hippoglossus hippoglossus",
+        "consulted_utc": "2026-10-07T03:08:57.287049+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2409218,
+          "scientificName": "Hippoglossus hippoglossus (Linnaeus, 1758)",
+          "canonicalName": "Hippoglossus hippoglossus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Pleuronectiformes",
+          "family": "Pleuronectidae",
+          "genus": "Hippoglossus",
+          "species": "Hippoglossus hippoglossus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 588,
+          "familyKey": 8611,
+          "genusKey": 2408796,
+          "speciesKey": 2409218
+        }
+      },
+      "sprite": {
+        "family": "flatfish",
+        "palette": [
+          222,
+          134,
+          180
+        ],
+        "variant": 83
+      }
+    },
+    {
+      "id": "peixe_lobo",
+      "nome": "Peixe-lobo",
+      "aliases": [
+        "Peixe-lobo"
+      ],
+      "cientifico": "Anarhichas lupus",
+      "categoria": "peixe",
+      "valor": 18,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Anarhichadidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Anarhichas lupus",
+        "matched_name": "Anarhichas lupus Linnaeus, 1758",
+        "family": "Anarhichadidae",
+        "gbif_key": 8006460,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Anarhichas+lupus&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Anarhichas lupus",
+        "consulted_utc": "2026-10-07T03:08:57.302247+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 8006460,
+          "scientificName": "Anarhichas lupus Linnaeus, 1758",
+          "canonicalName": "Anarhichas lupus",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Perciformes",
+          "family": "Anarhichadidae",
+          "genus": "Anarhichas",
+          "species": "Anarhichas lupus",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 587,
+          "familyKey": 8489,
+          "genusKey": 2392193,
+          "speciesKey": 8006460
+        }
+      },
+      "sprite": {
+        "family": "long",
+        "palette": [
+          133,
+          235,
+          47
+        ],
+        "variant": 84
+      }
+    },
+    {
+      "id": "peixe_pescador_abissal",
+      "nome": "Peixe-pescador-abissal",
+      "aliases": [
+        "Peixe-pescador-abissal"
+      ],
+      "cientifico": "Melanocetus johnsonii",
+      "categoria": "peixe",
+      "valor": 80,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Melanocetidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Melanocetus johnsonii",
+        "matched_name": "Melanocetus johnsonii Günther, 1864",
+        "family": "Melanocetidae",
+        "gbif_key": 2414318,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Melanocetus+johnsonii&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Melanocetus johnsonii",
+        "consulted_utc": "2026-10-07T03:08:57.878769+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2414318,
+          "scientificName": "Melanocetus johnsonii Günther, 1864",
+          "canonicalName": "Melanocetus johnsonii",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Lophiiformes",
+          "family": "Melanocetidae",
+          "genus": "Melanocetus",
+          "species": "Melanocetus johnsonii",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1305,
+          "familyKey": 3877,
+          "genusKey": 2414302,
+          "speciesKey": 2414318
+        }
+      },
+      "sprite": {
+        "family": "angler",
+        "palette": [
+          86,
+          57,
+          49
+        ],
+        "variant": 85
+      }
+    },
+    {
+      "id": "peixe_vibora",
+      "nome": "Peixe-víbora",
+      "aliases": [
+        "Peixe-víbora"
+      ],
+      "cientifico": "Chauliodus sloani",
+      "categoria": "peixe",
+      "valor": 40,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Stomiidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Chauliodus sloani",
+        "matched_name": "Chauliodus sloani Bloch & Schneider, 1801",
+        "family": "Stomiidae",
+        "gbif_key": 5203203,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Chauliodus+sloani&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Chauliodus sloani",
+        "consulted_utc": "2026-10-07T03:08:57.865205+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 5203203,
+          "scientificName": "Chauliodus sloani Bloch & Schneider, 1801",
+          "canonicalName": "Chauliodus sloani",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Stomiiformes",
+          "family": "Stomiidae",
+          "genus": "Chauliodus",
+          "species": "Chauliodus sloani",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 774,
+          "familyKey": 2225,
+          "genusKey": 2347175,
+          "speciesKey": 5203203
+        }
+      },
+      "sprite": {
+        "family": "fang",
+        "palette": [
+          92,
+          91,
+          209
+        ],
+        "variant": 86
+      }
+    },
+    {
+      "id": "enguia_pelicano",
+      "nome": "Enguia-pelicano",
+      "aliases": [
+        "Enguia-pelicano"
+      ],
+      "cientifico": "Eurypharynx pelecanoides",
+      "categoria": "peixe",
+      "valor": 60,
+      "raridade": "Incomum",
+      "rod_bonus": false,
+      "curiosidade": "Na classificação taxonômica verificada, pertence à família Eurypharyngidae.",
+      "verification": {
+        "status": "verificado",
+        "chosen_taxon": "Eurypharynx pelecanoides",
+        "matched_name": "Eurypharynx pelecanoides Vaillant, 1882",
+        "family": "Eurypharyngidae",
+        "gbif_key": 2415381,
+        "accepted_key": null,
+        "url": "https://api.gbif.org/v1/species/match?name=Eurypharynx+pelecanoides&kingdom=Animalia&strict=true",
+        "title": "GBIF Taxonomic Backbone — Eurypharynx pelecanoides",
+        "consulted_utc": "2026-10-07T03:08:57.879516+00:00",
+        "claim": "Nome científico e família taxonômica; não certifica horário ou distribuição fictícia.",
+        "response": {
+          "usageKey": 2415381,
+          "scientificName": "Eurypharynx pelecanoides Vaillant, 1882",
+          "canonicalName": "Eurypharynx pelecanoides",
+          "rank": "SPECIES",
+          "status": "ACCEPTED",
+          "confidence": 100,
+          "matchType": "EXACT",
+          "kingdom": "Animalia",
+          "phylum": "Chordata",
+          "order": "Saccopharyngiformes",
+          "family": "Eurypharyngidae",
+          "genus": "Eurypharynx",
+          "species": "Eurypharynx pelecanoides",
+          "kingdomKey": 1,
+          "phylumKey": 44,
+          "orderKey": 1312,
+          "familyKey": 8613,
+          "genusKey": 2415380,
+          "speciesKey": 2415381
+        }
+      },
+      "sprite": {
+        "family": "eel",
+        "palette": [
+          221,
+          206,
+          167
+        ],
+        "variant": 87
+      }
+    }
+  ],
+  "maps": [
+    {
+      "id": "enseada_do_poente",
+      "nome": "Enseada do Poente",
+      "nivel_barco": 0,
+      "descricao": "Lago acolhedor com floresta, cabana e vaga-lumes; preserva o cenário atual.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "rio_das_vitorias",
+      "nome": "Rio das Vitórias",
+      "nivel_barco": 1,
+      "descricao": "Rio largo com correnteza suave, mata, troncos e vitórias-régias.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "mangue_das_raizes",
+      "nome": "Mangue das Raízes",
+      "nivel_barco": 2,
+      "descricao": "Canais de mangue, raízes aparentes, passarela de madeira e reflexos sombreados.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "pier_da_brisa",
+      "nome": "Píer da Brisa",
+      "nivel_barco": 3,
+      "descricao": "Píer costeiro, espuma suave, gaivotas e pequenas embarcações distantes.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "recife_das_cores",
+      "nome": "Recife das Cores",
+      "nivel_barco": 4,
+      "descricao": "Água transparente, recifes coloridos e cardumes visíveis sob a superfície.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "mar_dos_ventos",
+      "nome": "Mar dos Ventos",
+      "nivel_barco": 6,
+      "descricao": "Horizonte aberto, ondas longas, nuvens e embarcações distantes.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "mar_das_auroras",
+      "nome": "Mar das Auroras",
+      "nivel_barco": 8,
+      "descricao": "Rota fictícia de águas frias e costas temperadas, com auroras e diferentes pontos de observação.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    },
+    {
+      "id": "fossa_das_lanternas",
+      "nome": "Fossa das Lanternas",
+      "nivel_barco": 10,
+      "descricao": "Plataforma sobre águas profundas, silhuetas abissais e bioluminescência; a superfície ainda acompanha o relógio.",
+      "trash_probability": 0.04,
+      "special_probability": 0.1
+    }
+  ],
+  "occurrences": [
+    {
+      "species_id": "lambari",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 8,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "tilapia_do_nilo",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "pacu",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 1.5,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "carpa_comum",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "carpa_capim",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 2,
+      "preferences": {
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "acara",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 3,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "traira",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 2,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "jundia",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "noite"
+      ],
+      "weight": 2,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "lambari",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 8,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "pacu",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 1.5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "tambaqui",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 1.5,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "curimbata",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ],
+      "weight": 3,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "matrinxa",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0
+      }
+    },
+    {
+      "species_id": "piabanha",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0
+      }
+    },
+    {
+      "species_id": "piraputanga",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha"
+      ],
+      "weight": 3,
+      "preferences": {
+        "manha": 1.0
+      }
+    },
+    {
+      "species_id": "piapara",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "tarde"
+      ],
+      "weight": 3,
+      "preferences": {
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "dourado",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ],
+      "weight": 2,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "pintado",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 2,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "pirarara",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "noite"
+      ],
+      "weight": 2,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "jau",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "anoitecer"
+      ],
+      "weight": 2,
+      "preferences": {
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "tainha",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "carapeba",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "robalo_flecha",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "robalo_peva",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde",
+        "anoitecer"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "parati",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 4,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "corvina",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 3,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "bagre_amarelo",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "noite"
+      ],
+      "weight": 3,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "mero_preto",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "manha",
+        "tarde"
+      ],
+      "weight": 0.4,
+      "preferences": {
+        "manha": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "sardinha_do_pacifico",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 7,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "cavala",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4.5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "anchoveta_peruana",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia"
+      ],
+      "weight": 12,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0
+      }
+    },
+    {
+      "species_id": "linguado_comum",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 2.0,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_rei",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 4,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_agulha",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "dia",
+        "meio_dia"
+      ],
+      "weight": 3,
+      "preferences": {
+        "dia": 1.0,
+        "meio_dia": 1.0
+      }
+    },
+    {
+      "species_id": "betara",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "tarde",
+        "anoitecer"
+      ],
+      "weight": 3,
+      "preferences": {
+        "amanhecer": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "sargo",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "camarao_cinza",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 9,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "mexilhao_azul",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 10,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "copepode_comum",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 12,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "vaquita",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ],
+      "weight": 0.04,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_palhaco",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 3.0,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "sargentinho",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_papagaio_azul",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 2.0,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "cavalinho_do_mar_pigmeu",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ],
+      "weight": 0.35,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "garoupa_verdadeira",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 1.0,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "barracuda_grande",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ],
+      "weight": 1.7,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_borboleta",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "dia"
+      ],
+      "weight": 3,
+      "preferences": {
+        "dia": 1.0
+      }
+    },
+    {
+      "species_id": "cirurgiao_patela",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "meio_dia"
+      ],
+      "weight": 3,
+      "preferences": {
+        "meio_dia": 1.0
+      }
+    },
+    {
+      "species_id": "moreia_verde",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "noite"
+      ],
+      "weight": 3,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "polvo_comum",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 2.5,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "tartaruga_verde",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 0.08,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "manta_gigante",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 0.3,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "albacora_laje",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_voador",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "atum_azul",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ],
+      "weight": 0.2,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_lua",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "dia",
+        "meio_dia"
+      ],
+      "weight": 0.6,
+      "preferences": {
+        "dia": 1.0,
+        "meio_dia": 1.0
+      }
+    },
+    {
+      "species_id": "dourado_do_mar",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 4,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_vela",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ],
+      "weight": 3,
+      "preferences": {
+        "manha": 1.0,
+        "dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "tubarao_branco",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ],
+      "weight": 0.2,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0
+      }
+    },
+    {
+      "species_id": "tubarao_boca_grande",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "noite"
+      ],
+      "weight": 0.1,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "baleia_azul",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ],
+      "weight": 0.1,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "golfinho_nariz_de_garrafa",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "tarde"
+      ],
+      "weight": 0.2,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "lula_de_humboldt",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 1.8,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "krill_do_pacifico",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 9,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "arenque_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 9,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "polaca_do_alasca",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 10,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "bacalhau_polar",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "bacalhau_do_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "manha",
+        "tarde",
+        "noite"
+      ],
+      "weight": 0.8,
+      "preferences": {
+        "manha": 1.0,
+        "tarde": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "salmao_rosa",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ],
+      "weight": 3.0,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "halibute_do_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_lobo",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "noite"
+      ],
+      "weight": 3,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_lanterna_glaciar",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 9,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_mao_vermelho",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "dia",
+        "meio_dia",
+        "tarde"
+      ],
+      "weight": 0.025,
+      "preferences": {
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "narval",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ],
+      "weight": 0.12,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0
+      }
+    },
+    {
+      "species_id": "orca",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "tarde"
+      ],
+      "weight": 0.1,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "tarde": 1.0
+      }
+    },
+    {
+      "species_id": "lagosta_americana",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 2.4,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "agua_viva_juba_de_leao",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 1.0,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "caranguejo_falso",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 7,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "calano",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 10,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "salpa_antartica",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 8,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "krill_antartico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 12,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_lanterna_de_muller",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 10,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_lanterna_comum",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 7,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_ogro",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 0.5,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_pescador_abissal",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "amanhecer": 1.0,
+        "manha": 1.0,
+        "dia": 1.0,
+        "meio_dia": 1.0,
+        "tarde": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "tubarao_lagarto",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 0.18,
+      "preferences": {
+        "amanhecer": 1.0,
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "peixe_vibora",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "anoitecer": 1.0,
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "enguia_pelicano",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ],
+      "weight": 4,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "celacanto_comorense",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ],
+      "weight": 0.08,
+      "preferences": {
+        "noite": 1.0
+      }
+    },
+    {
+      "species_id": "lula_magnapinna",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ],
+      "weight": 0.05,
+      "preferences": {
+        "noite": 1.0
+      }
+    }
+  ],
+  "legacy_collection": [
+    "lambari",
+    "tilapia_do_nilo",
+    "pacu",
+    "tambaqui",
+    "mero_preto",
+    "sardinha_do_pacifico",
+    "cavala",
+    "anchoveta_peruana",
+    "linguado_comum",
+    "peixe_palhaco",
+    "peixe_papagaio_azul",
+    "cavalinho_do_mar_pigmeu",
+    "garoupa_verdadeira",
+    "barracuda_grande",
+    "atum_azul",
+    "peixe_lua",
+    "tubarao_branco",
+    "tubarao_boca_grande",
+    "arenque_atlantico",
+    "polaca_do_alasca",
+    "bacalhau_do_atlantico",
+    "salmao_rosa",
+    "peixe_lanterna_glaciar",
+    "peixe_mao_vermelho",
+    "peixe_lanterna_de_muller",
+    "peixe_lanterna_comum",
+    "peixe_ogro",
+    "tubarao_lagarto",
+    "celacanto_comorense",
+    "camarao_cinza",
+    "mexilhao_azul",
+    "copepode_comum",
+    "vaquita",
+    "polvo_comum",
+    "tartaruga_verde",
+    "manta_gigante",
+    "baleia_azul",
+    "golfinho_nariz_de_garrafa",
+    "lula_de_humboldt",
+    "krill_do_pacifico",
+    "narval",
+    "orca",
+    "lagosta_americana",
+    "agua_viva_juba_de_leao",
+    "caranguejo_falso",
+    "calano",
+    "salpa_antartica",
+    "krill_antartico",
+    "lula_magnapinna"
+  ],
+  "expansion_collection": [
+    "lambari",
+    "tilapia_do_nilo",
+    "pacu",
+    "carpa_comum",
+    "carpa_capim",
+    "acara",
+    "traira",
+    "jundia",
+    "tambaqui",
+    "curimbata",
+    "matrinxa",
+    "piabanha",
+    "piraputanga",
+    "piapara",
+    "dourado",
+    "pintado",
+    "pirarara",
+    "jau",
+    "tainha",
+    "carapeba",
+    "robalo_flecha",
+    "robalo_peva",
+    "parati",
+    "corvina",
+    "bagre_amarelo",
+    "mero_preto",
+    "sardinha_do_pacifico",
+    "cavala",
+    "anchoveta_peruana",
+    "linguado_comum",
+    "peixe_rei",
+    "peixe_agulha",
+    "betara",
+    "sargo",
+    "peixe_palhaco",
+    "sargentinho",
+    "peixe_papagaio_azul",
+    "cavalinho_do_mar_pigmeu",
+    "garoupa_verdadeira",
+    "barracuda_grande",
+    "peixe_borboleta",
+    "cirurgiao_patela",
+    "moreia_verde",
+    "albacora_laje",
+    "peixe_voador",
+    "atum_azul",
+    "peixe_lua",
+    "dourado_do_mar",
+    "peixe_vela",
+    "tubarao_branco",
+    "tubarao_boca_grande",
+    "arenque_atlantico",
+    "polaca_do_alasca",
+    "bacalhau_polar",
+    "bacalhau_do_atlantico",
+    "salmao_rosa",
+    "halibute_do_atlantico",
+    "peixe_lobo",
+    "peixe_lanterna_glaciar",
+    "peixe_mao_vermelho",
+    "peixe_lanterna_de_muller",
+    "peixe_lanterna_comum",
+    "peixe_ogro",
+    "peixe_pescador_abissal",
+    "tubarao_lagarto",
+    "peixe_vibora",
+    "enguia_pelicano",
+    "celacanto_comorense",
+    "camarao_cinza",
+    "mexilhao_azul",
+    "copepode_comum",
+    "vaquita",
+    "polvo_comum",
+    "tartaruga_verde",
+    "manta_gigante",
+    "baleia_azul",
+    "golfinho_nariz_de_garrafa",
+    "lula_de_humboldt",
+    "krill_do_pacifico",
+    "narval",
+    "orca",
+    "lagosta_americana",
+    "agua_viva_juba_de_leao",
+    "caranguejo_falso",
+    "calano",
+    "salpa_antartica",
+    "krill_antartico",
+    "lula_magnapinna"
+  ]
+}

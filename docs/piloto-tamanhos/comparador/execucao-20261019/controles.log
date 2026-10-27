@@ -1,0 +1,18 @@
+test_01_independent_same_revision_positive_cli (__main__.ComparatorControls.test_01_independent_same_revision_positive_cli) ... ok
+test_02_species_negative_cli (__main__.ComparatorControls.test_02_species_negative_cli) ... ok
+test_03_balance_negative_cli (__main__.ComparatorControls.test_03_balance_negative_cli) ... ok
+test_04_order_negative_cli (__main__.ComparatorControls.test_04_order_negative_cli) ... ok
+test_05_incomplete_both_must_error_cli (__main__.ComparatorControls.test_05_incomplete_both_must_error_cli) ... ok
+test_06_incomplete_timeline_both_must_error (__main__.ComparatorControls.test_06_incomplete_timeline_both_must_error) ... ok
+test_07_no_silent_unknown_metadata (__main__.ComparatorControls.test_07_no_silent_unknown_metadata) ... ok
+test_08_event_length_and_type_strict (__main__.ComparatorControls.test_08_event_length_and_type_strict) ... ok
+test_09_additions_are_classified (__main__.ComparatorControls.test_09_additions_are_classified) ... ok
+test_10_price_and_time_not_normalized (__main__.ComparatorControls.test_10_price_and_time_not_normalized) ... ok
+test_11_existing_out_not_overwritten (__main__.ComparatorControls.test_11_existing_out_not_overwritten) ... ok
+test_12_bad_config_cli_returns_2 (__main__.ComparatorControls.test_12_bad_config_cli_returns_2) ... ok
+test_13_empty_matrix_cannot_be_equivalence (__main__.ComparatorControls.test_13_empty_matrix_cannot_be_equivalence) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 51.006s
+
+OK

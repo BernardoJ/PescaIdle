@@ -4,3 +4,15 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+.buildozer/
+deployment/
+*.p12
+*.jks
+*.keystore
+signing-private/
+
+# Disposable size-pilot profiles and QA output
+qa/
+perfil-piloto/
+perfil-demo-tamanhos/
+qa-smoke-*/

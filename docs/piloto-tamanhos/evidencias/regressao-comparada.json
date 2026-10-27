@@ -1,0 +1,26 @@
+{
+  "identical": true,
+  "cases": 48,
+  "events": 16010,
+  "hours_per_case": 1,
+  "seeds": 8,
+  "levels": [
+    0,
+    3,
+    10
+  ],
+  "starts_hour_offset0": [
+    7,
+    20
+  ],
+  "fields": [
+    "species/order",
+    "strike time/context",
+    "gain_cents",
+    "inventory",
+    "balance",
+    "phase/time remaining",
+    "RNG state"
+  ],
+  "sha256": "674c75e744a877d4e136d39425bd7560253ef16c78e863573b2b11b3de6f8aaf"
+}

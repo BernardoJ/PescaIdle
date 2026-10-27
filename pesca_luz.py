@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from collections import deque
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor, QImage, QPainter
+from pesca_tempo import periodo, LABELS
+from types import SimpleNamespace
 
 FRAME_COUNT=96
 
@@ -39,9 +41,9 @@ def local_position(moment=None):
 
 
 def phase_label(position):
-    hour=position*24
-    return ('AMANHECER' if 5<=hour<8 else 'MEIO-DIA' if 11<=hour<14
-            else 'DIA' if 8<=hour<17 else 'ENTARDECER' if 17<=hour<20 else 'NOITE')
+    seconds=min(86399,int((position%1)*86400+.000001))
+    moment=SimpleNamespace(hour=seconds//3600)
+    return LABELS[periodo(moment)].upper()
 
 
 def palette_rgb(rgb,material,kind):
@@ -73,7 +75,7 @@ def palette_rgb(rgb,material,kind):
 
 
 class Lighting:
-    def __init__(self,background,foreground):
+    def __init__(self,background,foreground,material_mask=None):
         w,h=background.width(),background.height()
         source=background.convertToFormat(QImage.Format_RGBA8888)
         rgba=bytes(source.constBits())
@@ -99,6 +101,10 @@ class Lighting:
                 elif y>63 and r<g*.97 and b>g*.65:material='water'
                 elif y>63 and 170<x<225 and r>g*1.05 and g>85:material='reflection'
                 materials.append(material)
+        if material_mask is not None:
+            materials=['water' if material_mask.pixelColor(x,y).red()>128
+                       else 'sky' if material_mask.pixelColor(x,y).green()>128 else 'land'
+                       for y in range(h) for x in range(w)]
         plates={}
         lookup={}
         for kind in ('night','dawn','day','noon','dusk'):

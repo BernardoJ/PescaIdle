@@ -1,0 +1,10 @@
+{
+  "git": "git version 2.53.0.windows.3",
+  "files": {
+    "tools/comparar_fluxo_base.py": "bb8bf7fcf9c8e0a9154d6aeca7c82b96a0ccad7260ef4eb17ea9dceaa101d3e4",
+    "tools/comparacao_worker.py": "13bfd932a61ad3d4c9d8363c23ec462ccf2e80da41d3e56e373fb663cbb2af1e",
+    "tools/test_comparar_fluxo_base.py": "1f981031a75a6c6b9c96798cb473225f69beee4936826e49c21b1f0caa6b3888",
+    "tools/relatorio_comparacao.py": "4404eca690200f0d81ec3c2da99b8f1933a3e9df491ce9e381c55256757e55f1",
+    "tools/fixtures/comparacao_tamanhos.json": "50debfa17a68fe1663e9411112446dabb53e17fbbce29ca88f54b94ea04e37a6"
+  }
+}

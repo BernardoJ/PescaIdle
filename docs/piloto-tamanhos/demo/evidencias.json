@@ -1,0 +1,259 @@
+{
+  "date_local": "2026-10-19",
+  "source_commit": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+  "source_snapshot": "dba0729bc80f5c8ab04efd03f4d1598732a568387cb230a69d4f2dc19a0a848d",
+  "initial_pr_head": "9d57a465ad418f885af46d11590def0753007e78",
+  "environment": {
+    "python": "3.14.8",
+    "PyInstaller": "6.22.3",
+    "PySide6": "6.11.2",
+    "qt_platform": "windows"
+  },
+  "pending_regression": {
+    "before": {
+      "revision": "9d57a465ad418f885af46d11590def0753007e78",
+      "test": "test_nonnumeric_suffix_reproduced",
+      "observed": "FAIL: SaveError not raised"
+    },
+    "after": {
+      "focused_save_tests": 5,
+      "existing_size_tests": 12,
+      "failures": 0,
+      "bytes_and_backup_preserved_on_load_failure": true
+    }
+  },
+  "qt": {
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "identification": {
+      "source_commit": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+      "source_snapshot": "dba0729bc80f5c8ab04efd03f4d1598732a568387cb230a69d4f2dc19a0a848d"
+    },
+    "qt_platform": "windows",
+    "input": "QTest injected, hidden Qt widgets; not physical input/Android",
+    "observed": {
+      "isolation": {
+        "synthetic_personal_sentinel_unchanged": true,
+        "autosave_close": true
+      },
+      "fixture": {
+        "captures": 10,
+        "measured": 10,
+        "record_sequence": [
+          "Primeiro registro",
+          "Novo menor pessoal",
+          "Novo maior pessoal",
+          "Sem novo recorde"
+        ],
+        "source_seed": 20261019
+      },
+      "reopen": {
+        "choices_preserved": true,
+        "records_preserved": true,
+        "no_extra_reward": true
+      },
+      "qt_viewports": [
+        [
+          320,
+          568
+        ],
+        [
+          360,
+          800
+        ],
+        [
+          512,
+          288
+        ],
+        [
+          640,
+          700
+        ]
+      ],
+      "tank": {
+        "bounds_and_separation_checks": 72,
+        "uniform_scale_unchanged": true,
+        "shared_art_unchanged": true
+      }
+    }
+  },
+  "differential": {
+    "base_sha": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+    "candidate_sha": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+    "exit_code": 0,
+    "first_difference": null,
+    "versions": {
+      "base": {
+        "python": "3.14.8",
+        "pyside6": "6.11.2"
+      },
+      "candidate": {
+        "python": "3.14.8",
+        "pyside6": "6.11.2"
+      },
+      "self": {
+        "python": "3.14.8",
+        "pyside6": "6.11.2"
+      }
+    },
+    "positive_control": {
+      "left_sha": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+      "right_sha": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+      "equivalent": true,
+      "raw_first_difference": null
+    },
+    "negative_controls": [
+      {
+        "mutation": "species",
+        "expected_exit": 1,
+        "observed_exit": 1,
+        "first_difference": {
+          "path": "$.scenarios.historico-s0-h7-n0.timeline[0].events[0].species_id",
+          "left": "carpa_comum",
+          "right": "synthetic_negative_species",
+          "reason": "value"
+        }
+      },
+      {
+        "mutation": "balance",
+        "expected_exit": 1,
+        "observed_exit": 1,
+        "first_difference": {
+          "path": "$.scenarios.historico-s0-h7-n0.timeline[0].state.moedas_centavos",
+          "left": 65280,
+          "right": 65281,
+          "reason": "value"
+        }
+      },
+      {
+        "mutation": "order",
+        "expected_exit": 1,
+        "observed_exit": 1,
+        "first_difference": {
+          "path": "$.scenarios.historico-s0-h7-n0.timeline[0].events[0].id",
+          "left": "paired-0:1",
+          "right": "paired-0:2",
+          "reason": "value"
+        }
+      }
+    ],
+    "historical_reproduction": {
+      "base": {
+        "matches_recovered_artifact": true,
+        "sha256": "674c75e744a877d4e136d39425bd7560253ef16c78e863573b2b11b3de6f8aaf",
+        "cases": 48,
+        "events": 16010,
+        "first_difference": null
+      },
+      "candidate": {
+        "matches_recovered_artifact": true,
+        "sha256": "674c75e744a877d4e136d39425bd7560253ef16c78e863573b2b11b3de6f8aaf",
+        "cases": 48,
+        "events": 16010,
+        "first_difference": null
+      }
+    },
+    "pools_compared": 168,
+    "elapsed_seconds": 33.661002500000905,
+    "scenarios": 82,
+    "events_per_revision": 27276,
+    "rng_calls_per_revision": 54649,
+    "groups": {
+      "historical": {
+        "cases": 48,
+        "base_events": 16010,
+        "candidate_events": 16010,
+        "divergences": 0
+      },
+      "transition": {
+        "cases": 14,
+        "base_events": 28,
+        "candidate_events": 28,
+        "divergences": 0
+      },
+      "pending": {
+        "cases": 2,
+        "base_events": 2,
+        "candidate_events": 2,
+        "divergences": 0
+      },
+      "paused": {
+        "cases": 2,
+        "base_events": 0,
+        "candidate_events": 0,
+        "divergences": 0
+      },
+      "expedition": {
+        "cases": 2,
+        "base_events": 432,
+        "candidate_events": 432,
+        "divergences": 0
+      },
+      "migration": {
+        "cases": 2,
+        "base_events": 0,
+        "candidate_events": 0,
+        "divergences": 0
+      },
+      "progression": {
+        "cases": 4,
+        "base_events": 1104,
+        "candidate_events": 1104,
+        "divergences": 0
+      },
+      "offline": {
+        "cases": 8,
+        "base_events": 9700,
+        "candidate_events": 9700,
+        "divergences": 0
+      }
+    },
+    "full_local_result": "qa/regressao-demo-final/resultado.json",
+    "full_result_sha256": "ff76f31f13059450bf3d5ec17b8ee6f0589121fb329191908587b40e4948da0b"
+  },
+  "build": {
+    "source_commit": "5a6efb6d7b849702f6ced5c62ddde071fceb620a",
+    "source_snapshot": "dba0729bc80f5c8ab04efd03f4d1598732a568387cb230a69d4f2dc19a0a848d",
+    "python": "3.14.8",
+    "versions": {
+      "PyInstaller": "6.22.3",
+      "PySide6": "6.11.2"
+    },
+    "kind": "demo-tamanhos-v1",
+    "executable": "PescaIdle-Tamanhos-Demo-5a6efb6d.exe",
+    "bytes": 50465500,
+    "sha256": "d40a09abd7f860e25f60375ff65a6801d40652b2466948416a9782c171aaa3d4"
+  },
+  "native_smoke": {
+    "ok": true,
+    "frozen": true,
+    "same_records_choices_inventory_money_awards": true,
+    "count": 10,
+    "choices": [
+      "menor",
+      "maior",
+      "menor"
+    ]
+  },
+  "historical_executables_unchanged": {
+    "PescaIdle.exe": "be4143ddea790ef76fe2045d149d0456969bd44e4f468e5eb9d43fdc06ecd4a9",
+    "PescaIdle-Tamanhos-Piloto.exe": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27"
+  },
+  "images": {
+    "5a6efb6d-exe-museu-reaberto.png": "a652f52cdfec00f13395f501c128e95d2389144189a5ba57adf2c309fefbe90a",
+    "capturas-primeiro-menor-maior-sem-recorde.png": "e37f0e84eb489d1279850f4babc3e531fcbaf7204279881b0d7f22b018cef045",
+    "erro-selecao-320.png": "8e6a9f6789297b6f40ed84803905caa2c4f288a0246f58d2b1ce0bf817d67bc1",
+    "museu-escolhas-320.png": "dc087046843afe0184061813296243771e80c5f833817de5ae07ab7191126a61",
+    "museu-maiores.png": "b006fb63d507265b4e889bd52bbadb64d0f550894dc77be6b962c9caf73bf7f3",
+    "museu-menor-selecionado.png": "b8e1f24ef3b8ae982ff946de1d76da17973ab2ca7937a4074d2f1c42ef2f0462",
+    "museu-vazio-320.png": "0f52e7ec01d923672e65ba710d80724f9a936acaf75f5ce30d9b5f3a8d038916",
+    "roteiro.png": "ec477a3fd853b7efcc2fa07e89a251083fee82ae896d9489254c5225947cf724"
+  },
+  "limitations": [
+    "QTest injected hidden Windows Qt widgets, not physical input",
+    "Desktop viewports, not native Android",
+    "No long-term retention/progression inference",
+    "No release, merge or deploy"
+  ]
+}

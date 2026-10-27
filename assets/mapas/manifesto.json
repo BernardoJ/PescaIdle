@@ -1,0 +1,55 @@
+{
+  "rio_das_vitorias": {
+    "lights": [],
+    "horizon": 48,
+    "foreground_empty": false
+  },
+  "mangue_das_raizes": {
+    "lights": [],
+    "horizon": 57,
+    "foreground_empty": true
+  },
+  "pier_da_brisa": {
+    "lights": [
+      [
+        26,
+        37
+      ]
+    ],
+    "horizon": 51,
+    "foreground_empty": false
+  },
+  "recife_das_cores": {
+    "lights": [],
+    "horizon": 35,
+    "foreground_empty": false
+  },
+  "mar_dos_ventos": {
+    "lights": [],
+    "horizon": 69,
+    "foreground_empty": true
+  },
+  "mar_das_auroras": {
+    "lights": [],
+    "horizon": 61,
+    "foreground_empty": true
+  },
+  "fossa_das_lanternas": {
+    "lights": [
+      [
+        29,
+        5
+      ],
+      [
+        51,
+        44
+      ],
+      [
+        55,
+        61
+      ]
+    ],
+    "horizon": 46,
+    "foreground_empty": false
+  }
+}

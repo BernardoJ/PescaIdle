@@ -1,0 +1,1777 @@
+{
+  "python": "3.14.8",
+  "tests": 14,
+  "failures": 0,
+  "errors": 0,
+  "profile_isolated": true,
+  "source_base": "c545ca652386d74372307bd6d52a91f84d1ed4a0",
+  "contexts": 3080,
+  "economic_contexts": 33880,
+  "direction_errors": [],
+  "canceled_by_normalization": [],
+  "min_expected_income_change_percent": -13.929450725032366,
+  "max_expected_income_change_percent": 11.781770946092252,
+  "rendered_scenes": 280,
+  "additional_animation_frames": 1120,
+  "ui_filter_cases": 45,
+  "click_and_keyboard": true,
+  "mobile_viewport": [
+    320,
+    568
+  ],
+  "native_android_tested": false,
+  "timings": {
+    "chuva": {
+      "median_ms": 1.7229999975825194,
+      "p95_ms": 2.398399999947287,
+      "max_ms": 2.589700001408346
+    },
+    "sol_forte": {
+      "median_ms": 1.5701000011176802,
+      "p95_ms": 2.2016000002622604,
+      "max_ms": 2.3937000005389564
+    },
+    "neve": {
+      "median_ms": 1.7112500026996713,
+      "p95_ms": 2.63950000226032,
+      "max_ms": 3.276999996160157
+    },
+    "ventania": {
+      "median_ms": 1.5605500011588447,
+      "p95_ms": 2.093299997795839,
+      "max_ms": 2.4609999964013696
+    },
+    "ameno": {
+      "median_ms": 1.3426000041363295,
+      "p95_ms": 1.6117999984999187,
+      "max_ms": 1.9243999995524064
+    }
+  },
+  "pixel_differences": [
+    {
+      "map": "enseada_do_poente",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 22191
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 20963
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 12385
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 30397
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 12762
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 12434
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 31851
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 36721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 34793
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "amanhecer",
+      "weather": "chuva",
+      "changed_pixels": 8427
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "amanhecer",
+      "weather": "sol_forte",
+      "changed_pixels": 27201
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "amanhecer",
+      "weather": "neve",
+      "changed_pixels": 8726
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "amanhecer",
+      "weather": "ventania",
+      "changed_pixels": 8457
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "amanhecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 12385
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 30406
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 12762
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 12434
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "manha",
+      "weather": "chuva",
+      "changed_pixels": 8427
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "manha",
+      "weather": "sol_forte",
+      "changed_pixels": 27210
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "manha",
+      "weather": "neve",
+      "changed_pixels": 8726
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "manha",
+      "weather": "ventania",
+      "changed_pixels": 8457
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "manha",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 12385
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 30406
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 12762
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 12434
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "dia",
+      "weather": "chuva",
+      "changed_pixels": 8427
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "dia",
+      "weather": "sol_forte",
+      "changed_pixels": 27210
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "dia",
+      "weather": "neve",
+      "changed_pixels": 8726
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "dia",
+      "weather": "ventania",
+      "changed_pixels": 8457
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 12385
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 30406
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 12762
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 12434
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "meio_dia",
+      "weather": "chuva",
+      "changed_pixels": 8427
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "meio_dia",
+      "weather": "sol_forte",
+      "changed_pixels": 27210
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "meio_dia",
+      "weather": "neve",
+      "changed_pixels": 8726
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "meio_dia",
+      "weather": "ventania",
+      "changed_pixels": 8457
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "meio_dia",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 12385
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 30406
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 12762
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 12434
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "tarde",
+      "weather": "chuva",
+      "changed_pixels": 8427
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "tarde",
+      "weather": "sol_forte",
+      "changed_pixels": 27210
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "tarde",
+      "weather": "neve",
+      "changed_pixels": 8726
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "tarde",
+      "weather": "ventania",
+      "changed_pixels": 8457
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "tarde",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 12381
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 30402
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 12758
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 12430
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "anoitecer",
+      "weather": "chuva",
+      "changed_pixels": 8421
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "anoitecer",
+      "weather": "sol_forte",
+      "changed_pixels": 27204
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "anoitecer",
+      "weather": "neve",
+      "changed_pixels": 8720
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "anoitecer",
+      "weather": "ventania",
+      "changed_pixels": 8451
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "anoitecer",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 5860
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 13244
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 6052
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 6061
+    },
+    {
+      "map": "enseada_do_poente",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 3627
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 22200
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 4019
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 3676
+    },
+    {
+      "map": "rio_das_vitorias",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 2938
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 20972
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 3298
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 3002
+    },
+    {
+      "map": "mangue_das_raizes",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 12381
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 30402
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 12758
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 12430
+    },
+    {
+      "map": "pier_da_brisa",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 8060
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 31860
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 8472
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 8225
+    },
+    {
+      "map": "recife_das_cores",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 17721
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 36728
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 18280
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 17907
+    },
+    {
+      "map": "mar_dos_ventos",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 14379
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 34802
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 14205
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 14582
+    },
+    {
+      "map": "mar_das_auroras",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "noite",
+      "weather": "chuva",
+      "changed_pixels": 8421
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "noite",
+      "weather": "sol_forte",
+      "changed_pixels": 27204
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "noite",
+      "weather": "neve",
+      "changed_pixels": 8720
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "noite",
+      "weather": "ventania",
+      "changed_pixels": 8451
+    },
+    {
+      "map": "fossa_das_lanternas",
+      "period": "noite",
+      "weather": "ameno",
+      "changed_pixels": 0
+    }
+  ],
+  "success": true,
+  "source_sha256": {
+    "assets/clima_especies.json": "8b6a93a476c9adf3683f314cece45049214fe83d74ec27f064dc5bb53f0c2682",
+    "pesca_ambiente.py": "19743e22beb5df0c72aa575eb94d6fb9801d7974a70e8dfe9d11e0e440bd7b02",
+    "pesca_android.py": "40e985ea782d314b7c7f3917f9cf1c1e10218acbc067838a56cb3b34447a1bbe",
+    "pesca_aquario_decor.py": "42fab2c63082ea31cd538f63872972a6b9adce598f93f509e0eb81fcc9408c68",
+    "pesca_aquario_decor_ui.py": "dea04b2b8f05930602de9af147d99af9a49f5bada99af965abb4b53375a59968",
+    "pesca_aquario_decor_visual.py": "d7115a4066d01ec709ca3f2fb94d385b47ed5534854081dd48d369232cb544cd",
+    "pesca_catalogo.py": "45480dd174a9c7f9ad8fd2412ca4fcd2f69a8537521a9b78e15e1ad7b52818df",
+    "pesca_clima.py": "6e932641f82ae8c7f13e3f02422f76173e188df989553521cda4a046632af44d",
+    "pesca_clima_ui.py": "8c03a07bf1b38f60e40c0e17392aff23cdfb98fe8257d9bd9022c0c77146f21a",
+    "pesca_clima_visual.py": "667be787e549a3005172dfc7b599b8756f9ea7b371268a7d26db4c2c2d49904b",
+    "pesca_conquistas.py": "23bb7793c1ea94319e675d48554774d3bca4bb5a505c2d1a1c01d06400b2cfcb",
+    "pesca_conquistas_etapa1.py": "9dfd7a4c0aa01adb3ec29e0f126d21fd00eb6411c979bae2516010d6d0dffb28",
+    "pesca_efeitos.py": "9eb98c9e10eca91ea7f1928304b3faa92a7a7c8383778f1288a669a8aefab237",
+    "pesca_equipamentos.py": "42d109e7aed81b6f8e6a3012c21a1246ef4c6de36781e266dd9976bae68c23ba",
+    "pesca_especies_visual.py": "7da544561c90ddb3a5ffe2b8f90616a0bc7416f1781144f9a52ebfba4277e988",
+    "pesca_idle.py": "66740d139ddea73be1bc924eba1f7dd7d6979561d28e4c8a2a89c2af78e45083",
+    "pesca_loja.py": "f89ef6136376c233eb35aeb86aa08ee60883a45678bac9bca92edfc913f46443",
+    "pesca_luz.py": "9072f1ea6e72ebfca8f1a76f7e3896c137af0854aee69af29a2a28783e4f1ab2",
+    "pesca_moedas.py": "bbe38e1b865716329f6ec1486fba65e510357b81540b6588725db4bddad1520c",
+    "pesca_museu.py": "4f91d7c65464f48ea2ac797850980dde8d914c2f18903b883e9d29e74c549eb3",
+    "pesca_museu_ui.py": "55eedd5d2e2578c9d9408308cdd59fc1403a705674707faea1b9e16169ece0b0",
+    "pesca_museu_visual.py": "3f248493b9085adfef8e3db42edc4fe4a7e00aeab10ea885cad0d6dd5006cf8f",
+    "pesca_offline.py": "448cd3dc6c40d1cb3ad3b82956722e346b4f220b09a65dd21ebf1283073f3a86",
+    "pesca_pescaria.py": "9436cdeeb4d0f8e880f8ef49299b7974364d12947f15ac6355ea2627f8e1e706",
+    "pesca_piloto.py": "7c76dbeab00dcd5feed08417010321e100dde83202d1e6fb1a44e5c9322e6101",
+    "pesca_plataforma.py": "b626fbaf3c9947b17062f041359ceecd7d74a96d34c7058b3b2a0849898f17ae",
+    "pesca_regional_visual.py": "a3eca8f6759ca021cdba07799a8567aa66c0fd8b711ef03e3368cea0acdb2467",
+    "pesca_save.py": "61d4508aa780d4805cf7ca580a8d9f4bf43bfd6fa884de0af1f286a37f173243",
+    "pesca_tamanho_visual.py": "abc977109537490da27910156f68b7476e6090b2d315d314a4d308658971704c",
+    "pesca_tamanhos.py": "4889de63bfc8f3d73bd1b7e8bfb4cbd558c86c0b3e06295f2ace9feec53ac2b8",
+    "pesca_tempo.py": "115d39367ef21d9b91b02c17f5c26c8f73ef7a00b62c335fda725baed8c0575b",
+    "pesca_ui.py": "09d53130da554dcd80791dcd7f91161dc0eeed21560ca9390b20b771c665c470",
+    "pesca_viagens_ui.py": "6936e8faca899ac915437c1f5ef622674765e05dcbf824260ab9ce86a5c3d0c3",
+    "pesca_visual.py": "4cafda3108b2fafcde7048fbe2dd2097299d0af1e51db6a8ac1b0991521be298",
+    "tools/climate_compare_worker.py": "0bc4101d076b79d747b3a01837a1cc48715bced78604fc4c1256974608abb9fc",
+    "tools/climate_smoke.py": "8898c60223fe5d009dd547636f25d8829371bb17d7bab793a1fa086ac4b2aff2",
+    "tools/compare_climate.py": "c2e83cb7d4d8893365a9de4790059785082ec6651e386bd1b7ae85d517ac6416",
+    "tools/run_climate_smoke.py": "097c89843cf5f2d0b1bca6f3fdd66551f3a31a1cb62d6ddc2401d7b3da305a27",
+    "tools/test_climate.py": "463b9051aaab2d9e191f9a1e141a8105b859b113558aa0040bbccabc7411967b",
+    "tools/validate_climate.py": "ee5b234358f96fcdcbed55d7327a02da1465b9424abfb7ba832f7a4ff6f43cdb",
+    "tools/validate_climate_interactions.py": "be6ef9c39955ebe2d71f9eeaff901743728ad4fac982ebc9eb105bd0b2d64cfc",
+    "tools/visual_climate_animation.py": "76be80ae365afe62e5152105f6b21564e944b6c78907e4b483939ea4759e43fd"
+  }
+}

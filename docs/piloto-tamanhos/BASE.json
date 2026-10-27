@@ -1,0 +1,1894 @@
+{
+  "repository": "BernardoJ/PescaIdle",
+  "remote": "https://github.com/BernardoJ/PescaIdle.git",
+  "branch": "codex/museu-aquario-inicial",
+  "head": "2a0353ff7c1cae2dca69d08c222b0660770d4385",
+  "clean_before_after_copy": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "547f59603028195ff9f8a87d04c4651551e8bd0d68f075257dfd549cd846b25b",
+      "bytes": 13
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "dae76681f43f569795425dd53713a1d3df097e5371eea5561a95a281d3f7e943",
+      "bytes": 125
+    },
+    {
+      "path": "ANDROID.md",
+      "sha256": "2d5758fc7ec367f030069962e3918d628c145b853d7b87c09b4f29b227f9421e",
+      "bytes": 3090
+    },
+    {
+      "path": "CRITERIOS_RARIDADE.md",
+      "sha256": "60f7e68bff07dc94bbca4750c5200842e2ebc7c7312388410c2316afb17cde26",
+      "bytes": 3577
+    },
+    {
+      "path": "PescaIdle.spec",
+      "sha256": "1962c1fb7420c8e066c9bfa417d2fa5137f8332852acc382febf329b4cc28b49",
+      "bytes": 1605
+    },
+    {
+      "path": "README.md",
+      "sha256": "59e6c1ca6d933a2ba44dfe36ff114c6c6215bde9ec4c8b0c214ca49589f07a9b",
+      "bytes": 9636
+    },
+    {
+      "path": "assets/ART_DIRECTION.md",
+      "sha256": "4964be92f31a6e4eb9d9a86b86847b940be7d30ce7b5683147699c603572200a",
+      "bytes": 13274
+    },
+    {
+      "path": "assets/barco.png",
+      "sha256": "992dfa85f2688a0c428dcbaf500c0dd6ee0240d23722c3e88ffb0763e150b28d",
+      "bytes": 2992
+    },
+    {
+      "path": "assets/boias.png",
+      "sha256": "d059a1f839168f7caafbc16cc5162370a315377a8dc6ea8ec9d16d22caa78989",
+      "bytes": 4102
+    },
+    {
+      "path": "assets/catalogo_expansao.json",
+      "sha256": "11cdbd185721a9f58b3ad33a893aee8ffc9695de5a8dc911fd34b51d0b95b0b5",
+      "bytes": 140221
+    },
+    {
+      "path": "assets/chapeus.png",
+      "sha256": "f60416a424ec3e23290f0d8c13bca26577561896e2f0bb64efbbe5515db9534a",
+      "bytes": 12851
+    },
+    {
+      "path": "assets/cosmeticos.json",
+      "sha256": "80d9019576fc6bfc0c9cea67ba0b2327963c0a8db78fffc03b59f8fbc141f0d4",
+      "bytes": 1041
+    },
+    {
+      "path": "assets/enseada.png",
+      "sha256": "4a1dc79dc4be8e445eeecde0bf3d8b2eea0078e235d631c9700da8442b5bc919",
+      "bytes": 52528
+    },
+    {
+      "path": "assets/icone-acessorio.png",
+      "sha256": "ee58a59cd15157cf72251de285bb35ce81f2a68f2f1f242dfb417190bd838a3f",
+      "bytes": 198
+    },
+    {
+      "path": "assets/icone-bandeira.png",
+      "sha256": "1d0bb73168b5caab70c2bbdbff922a7e1a163f687426600f6ea03cc56b464c31",
+      "bytes": 162
+    },
+    {
+      "path": "assets/icone-barco.png",
+      "sha256": "dc6d690e35d9df0a43193c4f02ab0e0e971dfa69da294da946cb44ad2c069b44",
+      "bytes": 182
+    },
+    {
+      "path": "assets/icone-boia.png",
+      "sha256": "7edef322240ac135d445ac759456202c8cb9dbc9e58d8800cf3cd356144b378b",
+      "bytes": 180
+    },
+    {
+      "path": "assets/icone-boneco.png",
+      "sha256": "2b6e0b8959ffb80143a38e3913c9a065ac53194d6c44768e39b5685d9f4d4c68",
+      "bytes": 204
+    },
+    {
+      "path": "assets/icone-chapeu.png",
+      "sha256": "2d7cd022f5022d379bb4cb331b1b3086f19cf9cef7d592dc43d908c294e27437",
+      "bytes": 165
+    },
+    {
+      "path": "assets/icone-conquistas.png",
+      "sha256": "31dea9a5b2e214a6dd487e1b929615b6e4feed99bbd729dfe8c4426f6b4cfe95",
+      "bytes": 199
+    },
+    {
+      "path": "assets/icone-livro.png",
+      "sha256": "d1b717fe82a81abcd87311a2d0ac808ddcd3727109fab43b81cf1ca8518f5b60",
+      "bytes": 200
+    },
+    {
+      "path": "assets/icone-loja.png",
+      "sha256": "e23d93d8a16b620c6008355d51b7212166ffb51fcdea7e55e200ecb738e6dd88",
+      "bytes": 175
+    },
+    {
+      "path": "assets/icone-pausa.png",
+      "sha256": "9557cd2b6ad8daa61eaac344bd0cc44710af6cf10e6eea3697542428b0940fda",
+      "bytes": 123
+    },
+    {
+      "path": "assets/icone-peixe.png",
+      "sha256": "d037d335a3f17a88ec90acc64744d1f85917ae5116a39ba5b3d66dbfd8363d13",
+      "bytes": 180
+    },
+    {
+      "path": "assets/icone-roupa.png",
+      "sha256": "95656e9d02b5623f1ca35c51b3e9437588934d2a778c37d139eb8e2e3cc4a375",
+      "bytes": 178
+    },
+    {
+      "path": "assets/icone-sair.png",
+      "sha256": "2a3ea0f5f5201441a7fe817c7863b51a702fc110824b9ed5227d8faca8e1568c",
+      "bytes": 141
+    },
+    {
+      "path": "assets/icone-vara.png",
+      "sha256": "0685569deb42424a2722ab849f348749697e0c9e5b1409f880f35ac2f639775f",
+      "bytes": 179
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-agua.png",
+      "sha256": "44a73be027170b5c4347d3095ad69acd81776d2514e61e95dcb56f8aae84896b",
+      "bytes": 427
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-ceu.png",
+      "sha256": "313d5831ccfe480eeb881c7e2e85c1eab8f2904166f594ebac3242ed894b5a15",
+      "bytes": 800
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-margem.png",
+      "sha256": "22165b23d1deab048c725c1df17467c16e436b4955242c4a16e55a36bdfec8d5",
+      "bytes": 2533
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas-materiais.png",
+      "sha256": "59c873e7f6f46f4b733c36244994be0973b2862cc3dbb39d799f5fde2123cb5c",
+      "bytes": 1441
+    },
+    {
+      "path": "assets/mapas/fossa_das_lanternas.png",
+      "sha256": "6a9f6f60e166daf62da6d4b1be00c65da4bf783557eabdc00b66b2b23dacc978",
+      "bytes": 36926
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-agua.png",
+      "sha256": "b006f213917e1a09a1ccb649b57da0cb38d4f746577ad1cff48df9c80438f1b3",
+      "bytes": 398
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-ceu.png",
+      "sha256": "a5b4679618ef29fabe610c5edf01f8b74c368c43ab9404cd1f455308e8ab3146",
+      "bytes": 1968
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes-materiais.png",
+      "sha256": "50e68ecceb05483f16c146ca8d994640e56b204ac210697207934946ad743348",
+      "bytes": 2859
+    },
+    {
+      "path": "assets/mapas/mangue_das_raizes.png",
+      "sha256": "8368af94afa9c12058bc18f91cf840400a543c69ecf08e018211178d4b31aea0",
+      "bytes": 64827
+    },
+    {
+      "path": "assets/mapas/manifesto.json",
+      "sha256": "6f591af0a81d1babe5c5def2e71233623bbe50bb018451cc7eafaeb4a5a8d243",
+      "bytes": 892
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-agua.png",
+      "sha256": "09c800f72f1a65d13358a66315609d8b0e1c315bc0f3d54f70a483fcf1dcf7d0",
+      "bytes": 312
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-ceu.png",
+      "sha256": "0607063e9956367b9aa3aed828eed7619722f8d72df9cdc4d0f20835b84438b3",
+      "bytes": 909
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras-materiais.png",
+      "sha256": "775ce01ae17f6372ad13d9204122348563818f0b207938cc4656d5018058389a",
+      "bytes": 1417
+    },
+    {
+      "path": "assets/mapas/mar_das_auroras.png",
+      "sha256": "929d2ab9ac0116fc4594a13b980884fdd1e9c37e6be7e2991cb7c6f1f228c9ce",
+      "bytes": 36942
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-agua.png",
+      "sha256": "6e779c63a07afbd617422da1bd37b6ed417ca88d2d1e436907a7dc022cc0cea7",
+      "bytes": 234
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-ceu.png",
+      "sha256": "0936163f98feecdd2cd8c741d8e8d2820430c76eaa58632ee1dd6258884299c5",
+      "bytes": 286
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-margem.png",
+      "sha256": "0d7f9a37c3832ed911390b308bebe56ab60e47a427dd888e80ecea47f796e9ed",
+      "bytes": 223
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos-materiais.png",
+      "sha256": "1586274f386d3f424122e493cbf2a6cf623f766a228e17c9cb39815c57e0e3d0",
+      "bytes": 552
+    },
+    {
+      "path": "assets/mapas/mar_dos_ventos.png",
+      "sha256": "948d643d157808b7fde49515d1ad2868aca5e464d071cd30fb503883bc2f1263",
+      "bytes": 40462
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-agua.png",
+      "sha256": "c0e4b41d292f0e0f00ee26af811d21c362a61bf18f0b9e226d7e21b52eaddce3",
+      "bytes": 367
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-ceu.png",
+      "sha256": "eda441f4f8025a3eb3b367e57c6b9f92144f6e50302ba85fe6ec8cc5a95a7aca",
+      "bytes": 624
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-margem.png",
+      "sha256": "ad2ef744faf6530112fdf8d85d1b8af87bf3d7ad7f787fe5ccdfc600569c3715",
+      "bytes": 1470
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa-materiais.png",
+      "sha256": "a151b38e89dc13f03b4f2638dfe55194cc7f3e2333c7e7c9777eb3c1f1f8da38",
+      "bytes": 1114
+    },
+    {
+      "path": "assets/mapas/pier_da_brisa.png",
+      "sha256": "847838eb3a38a722f49983fa9f2deecb37bd4fad5eef6fac497223439f4151df",
+      "bytes": 36281
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-agua.png",
+      "sha256": "a7cd9d2b0fe1154ad83645e5ea5c25967bb004b4f6fa6ff97ed41c52bb0604c4",
+      "bytes": 605
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-ceu.png",
+      "sha256": "4235a269d8a52c835d7b38d0c8ebc39ee9042286c0f6f3a603d029fc50dd95d8",
+      "bytes": 663
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-margem.png",
+      "sha256": "3961853bfdf6d430f45d009e04a3d7589c391cf8f58884a5d0e593ec20c7dfff",
+      "bytes": 3748
+    },
+    {
+      "path": "assets/mapas/recife_das_cores-materiais.png",
+      "sha256": "f785f08854e514c260c9ef1cff9320a5a199f218079a251d28376894632367ee",
+      "bytes": 1453
+    },
+    {
+      "path": "assets/mapas/recife_das_cores.png",
+      "sha256": "9b1311ac6229f79e4ab42e82a3cefb515b912227372f86ccd59f765e6a667c3a",
+      "bytes": 44265
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-agua.png",
+      "sha256": "6ad31ad39594ff77fd75936250eac4abf670c453a8001ff6102667630c6f757c",
+      "bytes": 511
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-ceu.png",
+      "sha256": "116d890d9f9da5b33b8d78c4c9dd7b4b2dab256fae3bf02bd2a4e37ed144ac1c",
+      "bytes": 888
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-margem.png",
+      "sha256": "d18856761f1fc4b82500ee0e8255671af362b759b03b55fd4a6d5b979bda1d4e",
+      "bytes": 4018
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias-materiais.png",
+      "sha256": "3be174b75d93a10b990ddb18cb3209c19c7e3e4d9786f76b7d61e13ea4b3c9ae",
+      "bytes": 1589
+    },
+    {
+      "path": "assets/mapas/rio_das_vitorias.png",
+      "sha256": "4081fb1a36fc71506658d30c3b56e7bc0b8baffe49cb00fad665ac026057d111",
+      "bytes": 47004
+    },
+    {
+      "path": "assets/margem.png",
+      "sha256": "873bbf2d40803ebd154175f6bc02d7d79060adda5ecadaa56732116524723a97",
+      "bytes": 4804
+    },
+    {
+      "path": "assets/mascotes.png",
+      "sha256": "89c78b89b0c4ea1ef44d2ef07f5b83b6bebeccb9eea736a3fcefb6de55f8b1d5",
+      "bytes": 7759
+    },
+    {
+      "path": "assets/painel.png",
+      "sha256": "7139ab15ed1aaec214bc19945caf6dbb9608eb8edf41c175af1fc2908653bc1b",
+      "bytes": 405
+    },
+    {
+      "path": "assets/pescador.png",
+      "sha256": "af60ab2a571377e43258d778612c57948fa30fbded73dbf150d625942094a9b7",
+      "bytes": 2322
+    },
+    {
+      "path": "docs/AUDITORIA_ANDROID.md",
+      "sha256": "ad6d73ea71743c546ce574b01fc82bf1b9497edcfba81fb2d838059f2b1fdd1b",
+      "bytes": 9683
+    },
+    {
+      "path": "docs/BALANCEAMENTO_EXPANSAO.md",
+      "sha256": "0e257915fd2663a518fa6b985ffe78b1a15f003d85beee032109a6ec7d02a3ac",
+      "bytes": 3252
+    },
+    {
+      "path": "docs/BUILD_EXPANSAO.md",
+      "sha256": "5ee157e62aba69fed038ad4e95a7d3d2e83123e6cbedcd139f670a9c8e0323f1",
+      "bytes": 1623
+    },
+    {
+      "path": "docs/EXPANSAO_MAPAS.md",
+      "sha256": "a17c994a898ebe7229a806c5b1bcae19cb4070914958960f8e4b501faba8a476",
+      "bytes": 4830
+    },
+    {
+      "path": "docs/FONTES_ESPECIES.md",
+      "sha256": "141ed0a4d4bdd832dacef2034c496997ae308e5bbcfa0d5ea222f3edbfb9d526",
+      "bytes": 10292
+    },
+    {
+      "path": "docs/MIGRACAO_SAVE.md",
+      "sha256": "4b727cc7e8a2820bc9d67696edbebc62a048914b5daffa2395b2b59a23eb3cc4",
+      "bytes": 5840
+    },
+    {
+      "path": "docs/MUSEU_PRIMEIRA_ENTREGA.md",
+      "sha256": "7aaeaae468ffde005a18f58a6296831797db48d33220d4bfae9a5c68a46ccdd6",
+      "bytes": 14370
+    },
+    {
+      "path": "docs/UPGRADE_AUDIT.md",
+      "sha256": "392490fbf4928390780574198c54deeb9fbeacae2a19d87395a263b8c02c235b",
+      "bytes": 4352
+    },
+    {
+      "path": "docs/VALIDACAO.md",
+      "sha256": "03b9fb8430efa3007b0cd9b1339882fd1b51f9baa92ab5a22bf20030d04ede74",
+      "bytes": 5445
+    },
+    {
+      "path": "docs/VALIDACAO_EXPANSAO.md",
+      "sha256": "db4c17d27c51eab4693fcb0b584a80829edf5af61314c432a0459bef8633eb09",
+      "bytes": 5291
+    },
+    {
+      "path": "docs/design/pesca_idle_base_6b29b4a.py.txt",
+      "sha256": "e53d1215fcdffd39c6ce7b10294750259c49142b50e9c24217f8f1107c4907a6",
+      "bytes": 71919
+    },
+    {
+      "path": "docs/design/pescaidle_expansao_catalogo.json",
+      "sha256": "42ac5ac0d18a4a56d63b7f05c81fe623c955e9a9d5a267636b7377bb0cad909d",
+      "bytes": 24268
+    },
+    {
+      "path": "docs/design/taxonomia_verificada.json",
+      "sha256": "6dae16e7f4305e3379441eb61c84b451769850ebce4701f4665eefc786a5bc5e",
+      "bytes": 47379
+    },
+    {
+      "path": "docs/design/validate_game_base_6b29b4a.py.txt",
+      "sha256": "af95f8e6e782bd577204e5efa3fe122227f36ec6e476ac136e6b3a0520d89071",
+      "bytes": 22943
+    },
+    {
+      "path": "docs/evidencias_android/apk/build-arm64.json",
+      "sha256": "b830d5e273d46a318102629d6eeb2f4c311066646a625f49f4bf1c38a4b22fc0",
+      "bytes": 582
+    },
+    {
+      "path": "docs/evidencias_android/apk/build-qa-x86_64.json",
+      "sha256": "ceccccb6f2dd3ffdbfccfda05f95711c9e2efe07b3a8ec80cf262e5528d0b87d",
+      "bytes": 576
+    },
+    {
+      "path": "docs/evidencias_android/apk/distribution.json",
+      "sha256": "9c0004577705cffaac8edb9007e2ce046aad651b10d3af2946aef30e19a3ccb9",
+      "bytes": 1154
+    },
+    {
+      "path": "docs/evidencias_android/apk/elf-arm64.json",
+      "sha256": "966199e2b11ffb641e0ee6b617e0d4451e548c02adb9e6dc676b6c4e0da7f506",
+      "bytes": 10091
+    },
+    {
+      "path": "docs/evidencias_android/apk/package-arm64.txt",
+      "sha256": "a49e702389f616b9541486f18b18db996b037ac49b33f953c3e1e8beba1df8a2",
+      "bytes": 816
+    },
+    {
+      "path": "docs/evidencias_android/apk/package-qa-x86_64.txt",
+      "sha256": "9b60418f0929fe679eeddfbde46788ca05ba40f22811bc343eeb0b8bcd1bf3e5",
+      "bytes": 858
+    },
+    {
+      "path": "docs/evidencias_android/apk/shared-runtime.json",
+      "sha256": "eb67280e595fcdb7f3311f14e9ad715d4fdea22bd5c12790d6fa3e28070b05dc",
+      "bytes": 1830
+    },
+    {
+      "path": "docs/evidencias_android/apk/signature-arm64.txt",
+      "sha256": "fd7f0402085aacf3158348dd17859ba432cea476540867e181e39d1949e21324",
+      "bytes": 972
+    },
+    {
+      "path": "docs/evidencias_android/apk/signature-qa-x86_64.txt",
+      "sha256": "fd7f0402085aacf3158348dd17859ba432cea476540867e181e39d1949e21324",
+      "bytes": 972
+    },
+    {
+      "path": "docs/evidencias_android/audit-windows.json",
+      "sha256": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+      "bytes": 195
+    },
+    {
+      "path": "docs/evidencias_android/build-windows.json",
+      "sha256": "019a3f9fb74a9e49d64d65d572429e6609426d8dc163200b439e2b8bb0ca2031",
+      "bytes": 567
+    },
+    {
+      "path": "docs/evidencias_android/emulator/collection.png",
+      "sha256": "a712eef14052cf508240b27f87cce2785d7d0b883b897bd82e9578ae781c4f02",
+      "bytes": 126644
+    },
+    {
+      "path": "docs/evidencias_android/emulator/expedition.png",
+      "sha256": "cc95099a651fcf2f06ec73e33a15b6d94227f5a58ce0bdef02ca515af8dcf7df",
+      "bytes": 145314
+    },
+    {
+      "path": "docs/evidencias_android/emulator/game.png",
+      "sha256": "48edd8463137d0aa6811e652c55bdf7181e8cd573eafc704434193b99b2d39d8",
+      "bytes": 128352
+    },
+    {
+      "path": "docs/evidencias_android/emulator/landscape-screen.png",
+      "sha256": "a4dde2d1b4205c16c2dc754451b6ba1f0a741f37b07218300e0770b81084f0bd",
+      "bytes": 153286
+    },
+    {
+      "path": "docs/evidencias_android/emulator/portrait-screen.png",
+      "sha256": "f89647bdc88ede65fe1576254d5f6093e0286a6a8e6efa91f61180bc20b9d57b",
+      "bytes": 144581
+    },
+    {
+      "path": "docs/evidencias_android/emulator/result.json",
+      "sha256": "19de9f7bff9124245fd775b791d01aef2bd7d668a5a35271181f3b59c37afb20",
+      "bytes": 3935
+    },
+    {
+      "path": "docs/evidencias_android/emulator/resume-screen.png",
+      "sha256": "5d0492b94275630c4342a67b415c84954835e96f4a0d3b884c43ab05c7ca98d0",
+      "bytes": 153035
+    },
+    {
+      "path": "docs/evidencias_android/emulator/shop.png",
+      "sha256": "c25e0b2f8b859aee0949c66ed048a6ef1843dc2375e9ee9068caaa85c9fab33d",
+      "bytes": 158898
+    },
+    {
+      "path": "docs/evidencias_android/emulator/travel.png",
+      "sha256": "cfc73bd5a41777ef9977f7e152f2aa943e666cd775ed6713c66f09792bcaa0f4",
+      "bytes": 476629
+    },
+    {
+      "path": "docs/evidencias_android/expansion-windows.json",
+      "sha256": "b7cfddc6d2cefd10bc28b6d768e54b1d7d08763980b8604c7922a8a0aadef838",
+      "bytes": 308371
+    },
+    {
+      "path": "docs/evidencias_android/landscape-desktop.png",
+      "sha256": "230b3028118fa372ceb33c5f05bc430293b4f00a2d2638db096493392679cbd2",
+      "bytes": 76036
+    },
+    {
+      "path": "docs/evidencias_android/mobile-desktop.json",
+      "sha256": "f950ddb74aca42a9d95ac84f7bf266a40b3675c643a0d4ccd504db8c80b8f22a",
+      "bytes": 481
+    },
+    {
+      "path": "docs/evidencias_android/native-close-windows.json",
+      "sha256": "dd6356655f3279e580cb9a9addd1ebcdd45362cb916dba66bd6c104dc910e459",
+      "bytes": 186
+    },
+    {
+      "path": "docs/evidencias_android/native-close.json",
+      "sha256": "dd6356655f3279e580cb9a9addd1ebcdd45362cb916dba66bd6c104dc910e459",
+      "bytes": 186
+    },
+    {
+      "path": "docs/evidencias_android/portrait-shop-desktop.png",
+      "sha256": "1a7d57d2bd9cfb8a818217f164328514d8e01a5ebadbcb8f4eeb5a35c9607606",
+      "bytes": 90600
+    },
+    {
+      "path": "docs/evidencias_expansao/balanceamento.json",
+      "sha256": "4ab7157ab4d58d248ff1c59484fea32a6a91b23d3442f398beeb5d1beef60709",
+      "bytes": 682773
+    },
+    {
+      "path": "docs/evidencias_expansao/baseline-render.json",
+      "sha256": "680abc2d98fc90e4ad512847922be85f60c11f6102a93bd9ffc1b8fe916f9c64",
+      "bytes": 178
+    },
+    {
+      "path": "docs/evidencias_expansao/build-windows.json",
+      "sha256": "b9e290d9b33cf4a6a731fa5af9c7186ba9d7b0a2e3376d535051136ce35a0530",
+      "bytes": 9418
+    },
+    {
+      "path": "docs/evidencias_expansao/build-windows.log",
+      "sha256": "442e1cc3d3324b6343fac6803e5332f4d4b8e665262a7fa6a355079a2aea4388",
+      "bytes": 9065
+    },
+    {
+      "path": "docs/evidencias_expansao/cosmetics-validation.json",
+      "sha256": "7133f8ab09840abd262c932d8c8b493e866a44ebb5ff0627363bd752b671b1d5",
+      "bytes": 91409
+    },
+    {
+      "path": "docs/evidencias_expansao/smoke-windows-125.json",
+      "sha256": "a58f02c6b53ede5e52871fd6629dffe8e2e81662dfdb1fd520b4fa79f2443ff6",
+      "bytes": 500
+    },
+    {
+      "path": "docs/evidencias_expansao/smoke-windows.json",
+      "sha256": "7a74f5cea2ac0c98089b360eb39be1c873921f3d2ec15d479bab48d20333e200",
+      "bytes": 500
+    },
+    {
+      "path": "docs/evidencias_expansao/validacao-expansao.json",
+      "sha256": "4eb93ced7052bac397a7429e6e5072b5486180a216305823683bff9ca1b9e26d",
+      "bytes": 308376
+    },
+    {
+      "path": "docs/evidencias_museu/aquario-animado.gif",
+      "sha256": "c18a3431fb4f2adeb807957e45f91069730d9044f6df8af8e6538e4c9766e058",
+      "bytes": 131581
+    },
+    {
+      "path": "docs/evidencias_museu/aquario-tres.png",
+      "sha256": "060c611c54ea88573eaee859df58fcf758484c3b61163d2a8f7ee2c33b392c42",
+      "bytes": 7584
+    },
+    {
+      "path": "docs/evidencias_museu/balanceamento.json",
+      "sha256": "4ab7157ab4d58d248ff1c59484fea32a6a91b23d3442f398beeb5d1beef60709",
+      "bytes": 682773
+    },
+    {
+      "path": "docs/evidencias_museu/baseline-audit.json",
+      "sha256": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+      "bytes": 195
+    },
+    {
+      "path": "docs/evidencias_museu/baseline-expansion.json",
+      "sha256": "7de095a0172dd7984cbdd23155097f0770d783c8c85ccf6a3255701a1f1f04ba",
+      "bytes": 308369
+    },
+    {
+      "path": "docs/evidencias_museu/final-audit.json",
+      "sha256": "790631f794b7116c455af3a5dca457428e917d5596079cc1ffb9e1594df80e65",
+      "bytes": 195
+    },
+    {
+      "path": "docs/evidencias_museu/final-cosmetics.json",
+      "sha256": "7133f8ab09840abd262c932d8c8b493e866a44ebb5ff0627363bd752b671b1d5",
+      "bytes": 91409
+    },
+    {
+      "path": "docs/evidencias_museu/final-expansion.json",
+      "sha256": "ebdc80d9e80705c775b5d30da8114718f9785d3e5d95de9b61b3f3b29f48b82e",
+      "bytes": 308372
+    },
+    {
+      "path": "docs/evidencias_museu/manifesto.json",
+      "sha256": "18bef86d455b71ffc890a0b977c7adda0181b2b21fee023fb0ae382484e48c45",
+      "bytes": 7898
+    },
+    {
+      "path": "docs/evidencias_museu/mobile-preview.json",
+      "sha256": "669015edb1da70b950c68db538857c2a2a05c41f7ea1aebb5de05106b9f87f6d",
+      "bytes": 530
+    },
+    {
+      "path": "docs/evidencias_museu/museu-catalogo-vazio.png",
+      "sha256": "4dccd578789615ebc930f877b0cbc06fde4a3799c19c6f134c51a98a03213019",
+      "bytes": 39624
+    },
+    {
+      "path": "docs/evidencias_museu/museu-inicio.png",
+      "sha256": "8cb5c74fcea7433f8d533422a8391b823326f1199a895dec8204cc6e428efa40",
+      "bytes": 35484
+    },
+    {
+      "path": "docs/evidencias_museu/museu-preview-320x568.png",
+      "sha256": "c5057fa8169903727623180218893baad6b5c727e5ddfda57c6c682f1f3b6a67",
+      "bytes": 29942
+    },
+    {
+      "path": "docs/evidencias_museu/museu-preview-360x800.png",
+      "sha256": "37cf18859703d4f3a4b5ac15fdaa30fa14455d74079d78017c30e0576024fe36",
+      "bytes": 43326
+    },
+    {
+      "path": "docs/evidencias_museu/museu-preview-512x288.png",
+      "sha256": "f1d5d2c70ebdddcd3c45a681cfcc667a42966573f73694a239c2e2982e69a4c6",
+      "bytes": 18685
+    },
+    {
+      "path": "docs/evidencias_museu/museu-preview-800x360.png",
+      "sha256": "94bd05227b6b7f6d8e60a13c82b29ca33d1754a3885d441811ff7c111cd5fffb",
+      "bytes": 18710
+    },
+    {
+      "path": "docs/evidencias_museu/museu-tres-125.png",
+      "sha256": "9e802e07732c670594fecfb2d6e61f0f6d822a36b8b605dce2835f94f9c93cb0",
+      "bytes": 50052
+    },
+    {
+      "path": "docs/evidencias_museu/museu-tres.png",
+      "sha256": "40f71435501c013539e60450f951860e666a9bf6c6c6e7a027b09127b9064d6f",
+      "bytes": 35530
+    },
+    {
+      "path": "docs/evidencias_museu/museu-um.png",
+      "sha256": "86bed300fa08cce980a31318c75d0c63509102f4cb9f2561003d0e766aa5c513",
+      "bytes": 34456
+    },
+    {
+      "path": "docs/evidencias_museu/museu-vazio.png",
+      "sha256": "8ffeb1b3dcef4be1950fc0918fbc0afbcf076e1150bd633a0b30755823795177",
+      "bytes": 34683
+    },
+    {
+      "path": "docs/evidencias_museu/museum.json",
+      "sha256": "9e23e5cfc050c9c28a809c9950179366af404355e6f0f94db081beda9dddcdf5",
+      "bytes": 258
+    },
+    {
+      "path": "docs/evidencias_museu/native100.json",
+      "sha256": "3a534148d2a0a9b748fa2551584839c2d4f4d36ec0a873a4895b1e9c8cbb24ca",
+      "bytes": 255
+    },
+    {
+      "path": "docs/evidencias_museu/native125.json",
+      "sha256": "3a534148d2a0a9b748fa2551584839c2d4f4d36ec0a873a4895b1e9c8cbb24ca",
+      "bytes": 255
+    },
+    {
+      "path": "docs/evidencias_museu/performance.json",
+      "sha256": "e8ffc173e52dd317c471947359ef1e5ee3aed63735aedc25c7039e9bd1ca16ca",
+      "bytes": 401
+    },
+    {
+      "path": "docs/evidencias_museu/ritmo.json",
+      "sha256": "7bc50a997d719da46d8ddfde57ecdb78d53491d0ca357adced3b7c262821b6f5",
+      "bytes": 1310637
+    },
+    {
+      "path": "docs/visual/ambiente-quadros.png",
+      "sha256": "260c1935ee45f13013cc638da6a23f0bfe1bbd315624987043ee6c185079f283",
+      "bytes": 197758
+    },
+    {
+      "path": "docs/visual/ambiente.gif",
+      "sha256": "8bdfbbde3875c0c611907f4c640d65bedd03492961c478bd6130081e6aa89a00",
+      "bytes": 1534798
+    },
+    {
+      "path": "docs/visual/animacao.gif",
+      "sha256": "4e77e0fc826e6f8165953b8c8b02aa0af91d715a1eb83ca08af4d04a34a2709f",
+      "bytes": 1021649
+    },
+    {
+      "path": "docs/visual/antes.png",
+      "sha256": "53f35eb8b7356d9c85e10e436fac4c75ce79f4b4cdd51af0032ea48fb4ff3cde",
+      "bytes": 3522
+    },
+    {
+      "path": "docs/visual/barcos.png",
+      "sha256": "922f83e00d24f9f2bfbd57a5b6efea269e5d27c741633b1251e5c5361e5b521c",
+      "bytes": 376560
+    },
+    {
+      "path": "docs/visual/captura.png",
+      "sha256": "b87f9d3f3c1e640d55c6c0b4035e4f0ad078b824e0400a233b4d1bae3fc08bed",
+      "bytes": 79153
+    },
+    {
+      "path": "docs/visual/catalogo-acessorio.png",
+      "sha256": "fe52ce8b44621415b9f0ffc848378fbc56407ee790b42443ba0127844490da35",
+      "bytes": 483243
+    },
+    {
+      "path": "docs/visual/catalogo-bandeira.png",
+      "sha256": "9b1352939a7c876122f6ee55b7a486eac8935eea8ee8ee77d1057857d4e13abd",
+      "bytes": 480235
+    },
+    {
+      "path": "docs/visual/catalogo-boia.png",
+      "sha256": "ba31b384d2bca29748d0836050603620e6eb549c87746b79ae546e99f31278ef",
+      "bytes": 477656
+    },
+    {
+      "path": "docs/visual/catalogo-boneco.png",
+      "sha256": "fe72dfb6e37110285910ba9e9609d1801516de832f0a837713dda3a6e875de94",
+      "bytes": 487025
+    },
+    {
+      "path": "docs/visual/catalogo-chapeu.png",
+      "sha256": "a9d8f0ee169e7f512e25c57440d5775db3cc3733bb3f9495bcdc26160b7fd04f",
+      "bytes": 589199
+    },
+    {
+      "path": "docs/visual/catalogo-roupa.png",
+      "sha256": "462b67a3c83c6198a20c62d720ba640057512d5117ea8f33c741d9954e3b0c89",
+      "bytes": 576012
+    },
+    {
+      "path": "docs/visual/ciclo-dia-noite.gif",
+      "sha256": "496e913b02c4ad1391bf1432b390e87d0e049f4d8b6054368579dc5b78569f94",
+      "bytes": 3549821
+    },
+    {
+      "path": "docs/visual/ciclo-horarios.png",
+      "sha256": "5cf825865c137967d2e7935f6fd871a42e562c0b8fe61059267ae7d1f260e588",
+      "bytes": 462290
+    },
+    {
+      "path": "docs/visual/comparacao.png",
+      "sha256": "ee6cadf0b4316e3942fdc71954204ce17133e6f9939e3413bb69db055dd8be31",
+      "bytes": 98850
+    },
+    {
+      "path": "docs/visual/conquista.png",
+      "sha256": "30b101b04f1e13d380431f528e45e06e857de672b0bb2ddf1e18f3d0d92d244f",
+      "bytes": 78277
+    },
+    {
+      "path": "docs/visual/conquistas-painel.png",
+      "sha256": "da878ec25bf58e1aa4b2b95e10a179d9a99c4d2d8ba0427c45f0a92fdb03ae7c",
+      "bytes": 25003
+    },
+    {
+      "path": "docs/visual/depois.png",
+      "sha256": "57bdf777d90bbd609bbae1911518cd6fe7b38041794570cbb2dc8b6526303912",
+      "bytes": 79147
+    },
+    {
+      "path": "docs/visual/dpi-1.25/ambiente-quadros.png",
+      "sha256": "195f11393602418d8f0b176cae34a3ae8d0d2b96f685d6d29e831aed9ce25026",
+      "bytes": 197067
+    },
+    {
+      "path": "docs/visual/dpi-1.25/barcos.png",
+      "sha256": "1997db7185f9def3ccf84261b89e4d65a87e3606add0181ec71ac811be105814",
+      "bytes": 375587
+    },
+    {
+      "path": "docs/visual/dpi-1.25/captura.png",
+      "sha256": "3b2cc35effb6f351a3716100f467cca11a2339432eda53127c3080cd331079de",
+      "bytes": 88497
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-acessorio.png",
+      "sha256": "b5ee33167500942431afd1db39ebbf2c77a1a4b54536be38e98c98874e269f3d",
+      "bytes": 484250
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-bandeira.png",
+      "sha256": "47dfbcd0708433f7333ed2eb090348b3c7d9202abf64dbf5428b1d4d2f61a300",
+      "bytes": 481984
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-boia.png",
+      "sha256": "59d12310428265cbfb49b41151c78f9d00fb4caeef6c5a2ab0d5157d69ac6cf1",
+      "bytes": 478114
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-boneco.png",
+      "sha256": "a03046109b4f48a3039e2a067061d2c72be3a04b9b7b5125efd49b149f50df7b",
+      "bytes": 488273
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-chapeu.png",
+      "sha256": "8aa98e01803ae8d70c9b1cd776259b04b92f3115d43a99c29960a37730edfa6c",
+      "bytes": 590511
+    },
+    {
+      "path": "docs/visual/dpi-1.25/catalogo-roupa.png",
+      "sha256": "496bc16123f701443a219c61069ecf911b24df2e1ee262e7537d30e8ba1f766d",
+      "bytes": 577119
+    },
+    {
+      "path": "docs/visual/dpi-1.25/ciclo-horarios.png",
+      "sha256": "f5242a52cedfacd01c7d16c548c72f2f31aab15dc53904faaa5a7b42bd370956",
+      "bytes": 462260
+    },
+    {
+      "path": "docs/visual/dpi-1.25/comparacao.png",
+      "sha256": "9b6155676895265a8908070d4721680b593164256429c4753b93c5084e6ac97e",
+      "bytes": 111250
+    },
+    {
+      "path": "docs/visual/dpi-1.25/conquista.png",
+      "sha256": "4b9878ad29665b1dc753e3433c89903caab5d3f69f3df7660c567f0e8e95ba44",
+      "bytes": 88451
+    },
+    {
+      "path": "docs/visual/dpi-1.25/conquistas-painel.png",
+      "sha256": "505ece830ff9c29324222adaca12280e76c830f80394f81eb545f12a376e9e99",
+      "bytes": 40340
+    },
+    {
+      "path": "docs/visual/dpi-1.25/depois.png",
+      "sha256": "f0dd2f64fd1cd5b00cdc78130ced472515b2a7f300942dfe5acc1707a16aeff0",
+      "bytes": 90088
+    },
+    {
+      "path": "docs/visual/dpi-1.25/encaixe-personagem.png",
+      "sha256": "d25be00575e4a9e077494330edcf2eb367d60a79374136a9e313192e560dfff7",
+      "bytes": 8950
+    },
+    {
+      "path": "docs/visual/dpi-1.25/enciclopedia-vazia.png",
+      "sha256": "15c0df0a565fd36cdb1e2ba31412500c69dcaa979b0cc299062405fced6ac815",
+      "bytes": 38142
+    },
+    {
+      "path": "docs/visual/dpi-1.25/enciclopedia.png",
+      "sha256": "a35a69b7fe68271832a0d5a96fbb96d060e4251b2ffc562a6f3f12a328390612",
+      "bytes": 57472
+    },
+    {
+      "path": "docs/visual/dpi-1.25/fisgada.png",
+      "sha256": "c982598d897b5d6339d2b0ebe9c8e43fbce6643e20ffe3415601b7cdca8fe904",
+      "bytes": 90659
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-00.png",
+      "sha256": "ff1659872ad947011a2add201bd68b81eeed029feb4164fbe4d5892d87668749",
+      "bytes": 67218
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-06.png",
+      "sha256": "9a2403927b85c1ab910018fe11f3cc441ca9e7848b5fe31e5fb6645c44b55f82",
+      "bytes": 72617
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-09.png",
+      "sha256": "302e28550cd579171fca72b9fe12e89510f5aa39eb7219c70ef0c907876bd0b7",
+      "bytes": 75210
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-12.png",
+      "sha256": "13b1e2c8cbf45f8a4db77b99f0d03a7eccdc43148d732ab3ebc79645fd9f6d6d",
+      "bytes": 74591
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-18.png",
+      "sha256": "2bdc376669b6b6457993e83145471d8624390f2abdd7f01741f8e4b21e6a4142",
+      "bytes": 74027
+    },
+    {
+      "path": "docs/visual/dpi-1.25/horario-22.png",
+      "sha256": "efee0f82d69eb1d5745f8d17cb90b416b352bf5bccd85ce0614e058da0b4c803",
+      "bytes": 67446
+    },
+    {
+      "path": "docs/visual/dpi-1.25/loja.png",
+      "sha256": "dddc8c9e4041f57b1cf58e928d19d9d59914d5d1dd2c82f78ba828460ba4aea9",
+      "bytes": 149669
+    },
+    {
+      "path": "docs/visual/dpi-1.25/mascotes-quadros.png",
+      "sha256": "659ca4845e0315593145ee0f10fa684d2d0342e6058b4a74542bbd1f86898acc",
+      "bytes": 36613
+    },
+    {
+      "path": "docs/visual/dpi-1.25/menu.png",
+      "sha256": "7f5b5889dfd518334671ebadfd0aa661973a2caeb6b46bf030404dd4056d352d",
+      "bytes": 10022
+    },
+    {
+      "path": "docs/visual/dpi-1.25/status-painel.png",
+      "sha256": "3e374362d32a01293f07e1d8919993d43cf1cfe01109dcfd2c6d37cf036e6f02",
+      "bytes": 42941
+    },
+    {
+      "path": "docs/visual/dpi-1.25/validation.json",
+      "sha256": "409cb8602e166c7e273855117be2c86074b3fa2cfce6b7d9a418c63ccecae1ba",
+      "bytes": 11270
+    },
+    {
+      "path": "docs/visual/dpi-1.25/varas.png",
+      "sha256": "db529d3ae0016fec9fecd93e5bdc178cfd2029e90bd13f80e2caba4ea05336b1",
+      "bytes": 365859
+    },
+    {
+      "path": "docs/visual/dpi-1.5/ambiente-quadros.png",
+      "sha256": "195f11393602418d8f0b176cae34a3ae8d0d2b96f685d6d29e831aed9ce25026",
+      "bytes": 197067
+    },
+    {
+      "path": "docs/visual/dpi-1.5/barcos.png",
+      "sha256": "1997db7185f9def3ccf84261b89e4d65a87e3606add0181ec71ac811be105814",
+      "bytes": 375587
+    },
+    {
+      "path": "docs/visual/dpi-1.5/captura.png",
+      "sha256": "0be6eb43633bfec7e69400de0aed72304405b13f89f99606277848a190ef36f2",
+      "bytes": 100538
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-acessorio.png",
+      "sha256": "b5ee33167500942431afd1db39ebbf2c77a1a4b54536be38e98c98874e269f3d",
+      "bytes": 484250
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-bandeira.png",
+      "sha256": "47dfbcd0708433f7333ed2eb090348b3c7d9202abf64dbf5428b1d4d2f61a300",
+      "bytes": 481984
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-boia.png",
+      "sha256": "59d12310428265cbfb49b41151c78f9d00fb4caeef6c5a2ab0d5157d69ac6cf1",
+      "bytes": 478114
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-boneco.png",
+      "sha256": "a03046109b4f48a3039e2a067061d2c72be3a04b9b7b5125efd49b149f50df7b",
+      "bytes": 488273
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-chapeu.png",
+      "sha256": "8aa98e01803ae8d70c9b1cd776259b04b92f3115d43a99c29960a37730edfa6c",
+      "bytes": 590511
+    },
+    {
+      "path": "docs/visual/dpi-1.5/catalogo-roupa.png",
+      "sha256": "496bc16123f701443a219c61069ecf911b24df2e1ee262e7537d30e8ba1f766d",
+      "bytes": 577119
+    },
+    {
+      "path": "docs/visual/dpi-1.5/ciclo-horarios.png",
+      "sha256": "f5242a52cedfacd01c7d16c548c72f2f31aab15dc53904faaa5a7b42bd370956",
+      "bytes": 462260
+    },
+    {
+      "path": "docs/visual/dpi-1.5/comparacao.png",
+      "sha256": "de161d06fad94d73608ce9c4a2292e3fbd98c300f5177ad10581cb635eb14880",
+      "bytes": 124179
+    },
+    {
+      "path": "docs/visual/dpi-1.5/conquista.png",
+      "sha256": "7222640028d018332b207e8238d2790f186fc67e20584fd9f4b88fb795f4d345",
+      "bytes": 100650
+    },
+    {
+      "path": "docs/visual/dpi-1.5/conquistas-painel.png",
+      "sha256": "81e5d7c75267029214f80776bb23c4d9bd1334f563f51e8611d2ec141efdae21",
+      "bytes": 48854
+    },
+    {
+      "path": "docs/visual/dpi-1.5/depois.png",
+      "sha256": "3d036fc6bb2a253bf24bd3764b913d26501026b98c675826698ae37de3d6117a",
+      "bytes": 100531
+    },
+    {
+      "path": "docs/visual/dpi-1.5/encaixe-personagem.png",
+      "sha256": "d25be00575e4a9e077494330edcf2eb367d60a79374136a9e313192e560dfff7",
+      "bytes": 8950
+    },
+    {
+      "path": "docs/visual/dpi-1.5/enciclopedia-vazia.png",
+      "sha256": "d037081768903da1d8fde95ca1fe75a2ff6a23e3016a0a8814cbe7f7d1ece7d9",
+      "bytes": 46151
+    },
+    {
+      "path": "docs/visual/dpi-1.5/enciclopedia.png",
+      "sha256": "ab684982917832a3120ca54d4c4ec3f3ac8eb6bbae604137a2ae1219731eca16",
+      "bytes": 68675
+    },
+    {
+      "path": "docs/visual/dpi-1.5/fisgada.png",
+      "sha256": "c6caae9e065894992aea4d026189f8afca28c0f350707a698c2bb60443c66f7a",
+      "bytes": 100829
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-00.png",
+      "sha256": "ff1659872ad947011a2add201bd68b81eeed029feb4164fbe4d5892d87668749",
+      "bytes": 67218
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-06.png",
+      "sha256": "9a2403927b85c1ab910018fe11f3cc441ca9e7848b5fe31e5fb6645c44b55f82",
+      "bytes": 72617
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-09.png",
+      "sha256": "302e28550cd579171fca72b9fe12e89510f5aa39eb7219c70ef0c907876bd0b7",
+      "bytes": 75210
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-12.png",
+      "sha256": "13b1e2c8cbf45f8a4db77b99f0d03a7eccdc43148d732ab3ebc79645fd9f6d6d",
+      "bytes": 74591
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-18.png",
+      "sha256": "2bdc376669b6b6457993e83145471d8624390f2abdd7f01741f8e4b21e6a4142",
+      "bytes": 74027
+    },
+    {
+      "path": "docs/visual/dpi-1.5/horario-22.png",
+      "sha256": "efee0f82d69eb1d5745f8d17cb90b416b352bf5bccd85ce0614e058da0b4c803",
+      "bytes": 67446
+    },
+    {
+      "path": "docs/visual/dpi-1.5/loja.png",
+      "sha256": "bb5d0da07e2af7db84a063eef95a824fa78f0195a62ca3cb4465b9700b977f7e",
+      "bytes": 154076
+    },
+    {
+      "path": "docs/visual/dpi-1.5/mascotes-quadros.png",
+      "sha256": "659ca4845e0315593145ee0f10fa684d2d0342e6058b4a74542bbd1f86898acc",
+      "bytes": 36613
+    },
+    {
+      "path": "docs/visual/dpi-1.5/menu.png",
+      "sha256": "1fdc2cbeb6811ed3b7632ddb38f2fe9ee7c6f17f1ee4e6a35134371e5e00ce4d",
+      "bytes": 12000
+    },
+    {
+      "path": "docs/visual/dpi-1.5/status-painel.png",
+      "sha256": "ef3d32b10b708b6029fdad1fefce439cfbecdaee780e1b7af345f4b3abcaa846",
+      "bytes": 50616
+    },
+    {
+      "path": "docs/visual/dpi-1.5/validation.json",
+      "sha256": "2d840bcbca3613479f1dc76590bc0a274ab8ba65c54ff591ea48e8511954e7d3",
+      "bytes": 11268
+    },
+    {
+      "path": "docs/visual/dpi-1.5/varas.png",
+      "sha256": "db529d3ae0016fec9fecd93e5bdc178cfd2029e90bd13f80e2caba4ea05336b1",
+      "bytes": 365859
+    },
+    {
+      "path": "docs/visual/dpi-2/ambiente-quadros.png",
+      "sha256": "195f11393602418d8f0b176cae34a3ae8d0d2b96f685d6d29e831aed9ce25026",
+      "bytes": 197067
+    },
+    {
+      "path": "docs/visual/dpi-2/barcos.png",
+      "sha256": "1997db7185f9def3ccf84261b89e4d65a87e3606add0181ec71ac811be105814",
+      "bytes": 375587
+    },
+    {
+      "path": "docs/visual/dpi-2/captura.png",
+      "sha256": "6d649f5d25b4dd55be7b7fdbce2638cf3fca379046dab8f85c0c376ee844e3f8",
+      "bytes": 108811
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-acessorio.png",
+      "sha256": "b5ee33167500942431afd1db39ebbf2c77a1a4b54536be38e98c98874e269f3d",
+      "bytes": 484250
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-bandeira.png",
+      "sha256": "47dfbcd0708433f7333ed2eb090348b3c7d9202abf64dbf5428b1d4d2f61a300",
+      "bytes": 481984
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-boia.png",
+      "sha256": "59d12310428265cbfb49b41151c78f9d00fb4caeef6c5a2ab0d5157d69ac6cf1",
+      "bytes": 478114
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-boneco.png",
+      "sha256": "a03046109b4f48a3039e2a067061d2c72be3a04b9b7b5125efd49b149f50df7b",
+      "bytes": 488273
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-chapeu.png",
+      "sha256": "8aa98e01803ae8d70c9b1cd776259b04b92f3115d43a99c29960a37730edfa6c",
+      "bytes": 590511
+    },
+    {
+      "path": "docs/visual/dpi-2/catalogo-roupa.png",
+      "sha256": "496bc16123f701443a219c61069ecf911b24df2e1ee262e7537d30e8ba1f766d",
+      "bytes": 577119
+    },
+    {
+      "path": "docs/visual/dpi-2/ciclo-horarios.png",
+      "sha256": "f5242a52cedfacd01c7d16c548c72f2f31aab15dc53904faaa5a7b42bd370956",
+      "bytes": 462260
+    },
+    {
+      "path": "docs/visual/dpi-2/comparacao.png",
+      "sha256": "7456a05d9ccf59c74369642db03f6ea45aaf6c5640592de2dd09fd3b4a233d48",
+      "bytes": 132382
+    },
+    {
+      "path": "docs/visual/dpi-2/conquista.png",
+      "sha256": "70f042dfab21a54228ad79463eb7872c4ac321d81a230a608e2a9f69eb2b4835",
+      "bytes": 108611
+    },
+    {
+      "path": "docs/visual/dpi-2/conquistas-painel.png",
+      "sha256": "1a16c077951de621d1e3796b296ebdcc84a33e52605f9360850eeff76b749e1c",
+      "bytes": 59113
+    },
+    {
+      "path": "docs/visual/dpi-2/depois.png",
+      "sha256": "cb1d7ffce92b211c9b4920831911e79b9aba97655c613944c66f5380946a589d",
+      "bytes": 107559
+    },
+    {
+      "path": "docs/visual/dpi-2/encaixe-personagem.png",
+      "sha256": "d25be00575e4a9e077494330edcf2eb367d60a79374136a9e313192e560dfff7",
+      "bytes": 8950
+    },
+    {
+      "path": "docs/visual/dpi-2/enciclopedia-vazia.png",
+      "sha256": "eb350d4ea1467cd074b1611bdca36a28e92b8ee7e79523ba81960f65a7897d57",
+      "bytes": 61846
+    },
+    {
+      "path": "docs/visual/dpi-2/enciclopedia.png",
+      "sha256": "dca04a9ce0b14e33fd1231b80226e546fb964959c5d4b9ebb2b250a5a379a57f",
+      "bytes": 76500
+    },
+    {
+      "path": "docs/visual/dpi-2/fisgada.png",
+      "sha256": "5229ae5d2560d80f758893de014704c8fa10b4d3769fc5babec39ca930e75f72",
+      "bytes": 108202
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-00.png",
+      "sha256": "ff1659872ad947011a2add201bd68b81eeed029feb4164fbe4d5892d87668749",
+      "bytes": 67218
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-06.png",
+      "sha256": "9a2403927b85c1ab910018fe11f3cc441ca9e7848b5fe31e5fb6645c44b55f82",
+      "bytes": 72617
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-09.png",
+      "sha256": "302e28550cd579171fca72b9fe12e89510f5aa39eb7219c70ef0c907876bd0b7",
+      "bytes": 75210
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-12.png",
+      "sha256": "13b1e2c8cbf45f8a4db77b99f0d03a7eccdc43148d732ab3ebc79645fd9f6d6d",
+      "bytes": 74591
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-18.png",
+      "sha256": "2bdc376669b6b6457993e83145471d8624390f2abdd7f01741f8e4b21e6a4142",
+      "bytes": 74027
+    },
+    {
+      "path": "docs/visual/dpi-2/horario-22.png",
+      "sha256": "efee0f82d69eb1d5745f8d17cb90b416b352bf5bccd85ce0614e058da0b4c803",
+      "bytes": 67446
+    },
+    {
+      "path": "docs/visual/dpi-2/loja.png",
+      "sha256": "704b188872d5565dfa432fdb0221452adca361411e3f589af25523a95600906a",
+      "bytes": 166652
+    },
+    {
+      "path": "docs/visual/dpi-2/mascotes-quadros.png",
+      "sha256": "659ca4845e0315593145ee0f10fa684d2d0342e6058b4a74542bbd1f86898acc",
+      "bytes": 36613
+    },
+    {
+      "path": "docs/visual/dpi-2/menu.png",
+      "sha256": "8abf97d4710744b12eb2ebe717634fa063146dfaa141c0bb3833548954777f5b",
+      "bytes": 17206
+    },
+    {
+      "path": "docs/visual/dpi-2/status-painel.png",
+      "sha256": "675f7442d05c611aff077862b3edcaf24dd02dab3c0d677cffcf38bc3dc2f7ca",
+      "bytes": 60646
+    },
+    {
+      "path": "docs/visual/dpi-2/validation.json",
+      "sha256": "7e4514a43dab596d169b21b952d4f5102c79c5ff96cc0419d6f9703f4200d05d",
+      "bytes": 11264
+    },
+    {
+      "path": "docs/visual/dpi-2/varas.png",
+      "sha256": "db529d3ae0016fec9fecd93e5bdc178cfd2029e90bd13f80e2caba4ea05336b1",
+      "bytes": 365859
+    },
+    {
+      "path": "docs/visual/dpi-native/ambiente-quadros.png",
+      "sha256": "195f11393602418d8f0b176cae34a3ae8d0d2b96f685d6d29e831aed9ce25026",
+      "bytes": 197067
+    },
+    {
+      "path": "docs/visual/dpi-native/barcos.png",
+      "sha256": "1997db7185f9def3ccf84261b89e4d65a87e3606add0181ec71ac811be105814",
+      "bytes": 375587
+    },
+    {
+      "path": "docs/visual/dpi-native/captura.png",
+      "sha256": "87c48dd6860732fd3d8e33a07a479af318175a60bf47f3465b2556235b295c58",
+      "bytes": 89801
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-acessorio.png",
+      "sha256": "b5ee33167500942431afd1db39ebbf2c77a1a4b54536be38e98c98874e269f3d",
+      "bytes": 484250
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-bandeira.png",
+      "sha256": "47dfbcd0708433f7333ed2eb090348b3c7d9202abf64dbf5428b1d4d2f61a300",
+      "bytes": 481984
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-boia.png",
+      "sha256": "59d12310428265cbfb49b41151c78f9d00fb4caeef6c5a2ab0d5157d69ac6cf1",
+      "bytes": 478114
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-boneco.png",
+      "sha256": "a03046109b4f48a3039e2a067061d2c72be3a04b9b7b5125efd49b149f50df7b",
+      "bytes": 488273
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-chapeu.png",
+      "sha256": "8aa98e01803ae8d70c9b1cd776259b04b92f3115d43a99c29960a37730edfa6c",
+      "bytes": 590511
+    },
+    {
+      "path": "docs/visual/dpi-native/catalogo-roupa.png",
+      "sha256": "496bc16123f701443a219c61069ecf911b24df2e1ee262e7537d30e8ba1f766d",
+      "bytes": 577119
+    },
+    {
+      "path": "docs/visual/dpi-native/ciclo-horarios.png",
+      "sha256": "f5242a52cedfacd01c7d16c548c72f2f31aab15dc53904faaa5a7b42bd370956",
+      "bytes": 462260
+    },
+    {
+      "path": "docs/visual/dpi-native/comparacao.png",
+      "sha256": "857b6a3071c66a0fa7177f13fde0e7784a44fb91e22bf20795da5e0b25d9c7f2",
+      "bytes": 110938
+    },
+    {
+      "path": "docs/visual/dpi-native/conquista.png",
+      "sha256": "e49b21222899b44989f1997fb59a55c7fd2f566b797c65ca32229cc015d51e7b",
+      "bytes": 89692
+    },
+    {
+      "path": "docs/visual/dpi-native/conquistas-painel.png",
+      "sha256": "55d491b86c2da8f1558fb37dbd241f334bb18b260c42caab73022a98c40827f5",
+      "bytes": 30499
+    },
+    {
+      "path": "docs/visual/dpi-native/depois.png",
+      "sha256": "a66fec4ff5bd4d248c45f16d10bac0d3175bcf2c2b2a181f72e107033cd86598",
+      "bytes": 89864
+    },
+    {
+      "path": "docs/visual/dpi-native/encaixe-personagem.png",
+      "sha256": "d25be00575e4a9e077494330edcf2eb367d60a79374136a9e313192e560dfff7",
+      "bytes": 8950
+    },
+    {
+      "path": "docs/visual/dpi-native/enciclopedia-vazia.png",
+      "sha256": "1c24e8551a8dcc60ae6aa0171d0f5b6f33d1006ae559e2899409795289c28481",
+      "bytes": 29707
+    },
+    {
+      "path": "docs/visual/dpi-native/enciclopedia.png",
+      "sha256": "9bea2c687ccf84138fafcbc4c877ead5aa0962974b7480c39c4c29360f4eb4af",
+      "bytes": 44100
+    },
+    {
+      "path": "docs/visual/dpi-native/fisgada.png",
+      "sha256": "470d327d3d765410ee7ef43260458bbf615d7dae576ad859f47b4c9c81522e76",
+      "bytes": 90344
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-00.png",
+      "sha256": "ff1659872ad947011a2add201bd68b81eeed029feb4164fbe4d5892d87668749",
+      "bytes": 67218
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-06.png",
+      "sha256": "9a2403927b85c1ab910018fe11f3cc441ca9e7848b5fe31e5fb6645c44b55f82",
+      "bytes": 72617
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-09.png",
+      "sha256": "302e28550cd579171fca72b9fe12e89510f5aa39eb7219c70ef0c907876bd0b7",
+      "bytes": 75210
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-12.png",
+      "sha256": "13b1e2c8cbf45f8a4db77b99f0d03a7eccdc43148d732ab3ebc79645fd9f6d6d",
+      "bytes": 74591
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-18.png",
+      "sha256": "2bdc376669b6b6457993e83145471d8624390f2abdd7f01741f8e4b21e6a4142",
+      "bytes": 74027
+    },
+    {
+      "path": "docs/visual/dpi-native/horario-22.png",
+      "sha256": "efee0f82d69eb1d5745f8d17cb90b416b352bf5bccd85ce0614e058da0b4c803",
+      "bytes": 67446
+    },
+    {
+      "path": "docs/visual/dpi-native/loja.png",
+      "sha256": "a509dd7ce881acfaa4cbb0418182c0cae58771073a63fd7a85888567af584a0a",
+      "bytes": 135516
+    },
+    {
+      "path": "docs/visual/dpi-native/mascotes-quadros.png",
+      "sha256": "659ca4845e0315593145ee0f10fa684d2d0342e6058b4a74542bbd1f86898acc",
+      "bytes": 36613
+    },
+    {
+      "path": "docs/visual/dpi-native/menu.png",
+      "sha256": "ae2b39a6dde1f7cf45fa135a307f434c75781f8b7bdb85a50ccbd2980cf26a46",
+      "bytes": 7071
+    },
+    {
+      "path": "docs/visual/dpi-native/status-painel.png",
+      "sha256": "d4ebd1bca6bd2b119ab3c5f89032a305980d7b59f5a0b871b1d253ba83ecda51",
+      "bytes": 32357
+    },
+    {
+      "path": "docs/visual/dpi-native/validation.json",
+      "sha256": "97b8145509606f352ff87e2881f82bf88a682ec17a6ec63a109e21a53210e9f8",
+      "bytes": 11265
+    },
+    {
+      "path": "docs/visual/dpi-native/varas.png",
+      "sha256": "db529d3ae0016fec9fecd93e5bdc178cfd2029e90bd13f80e2caba4ea05336b1",
+      "bytes": 365859
+    },
+    {
+      "path": "docs/visual/encaixe-personagem.png",
+      "sha256": "d25be00575e4a9e077494330edcf2eb367d60a79374136a9e313192e560dfff7",
+      "bytes": 8950
+    },
+    {
+      "path": "docs/visual/enciclopedia-vazia.png",
+      "sha256": "a15d9eb36a8091563e93047f449c4015cb54574aaaad6835849fce912ba8bf75",
+      "bytes": 22565
+    },
+    {
+      "path": "docs/visual/enciclopedia.png",
+      "sha256": "22817cf645bc4360a82c308de0b52b2b881ea4bb0f9e00e4125d879b25a93cf8",
+      "bytes": 37064
+    },
+    {
+      "path": "docs/visual/executavel/enciclopedia-executavel.png",
+      "sha256": "1c24e8551a8dcc60ae6aa0171d0f5b6f33d1006ae559e2899409795289c28481",
+      "bytes": 29707
+    },
+    {
+      "path": "docs/visual/executavel/executavel.png",
+      "sha256": "4dfc726101a32385145848dd3cfebae056c3f5ba164b787c6d3e6cc1043f9c4e",
+      "bytes": 81720
+    },
+    {
+      "path": "docs/visual/executavel/horario-00-executavel.png",
+      "sha256": "c0b1171e99d67c1ae7b6c84d1d9239ce2d8648714eac9c842344556590e1b1cb",
+      "bytes": 81677
+    },
+    {
+      "path": "docs/visual/executavel/horario-06-executavel.png",
+      "sha256": "0a5a9384d2ee51de344f0d8ed722fa9316f7a0b1ca64ea47bb9eacaf110fc206",
+      "bytes": 88790
+    },
+    {
+      "path": "docs/visual/executavel/horario-09-executavel.png",
+      "sha256": "d40c88cd26bf932daa04394c961feeb2aa5d1ce10925abe8ad1444a69320d37e",
+      "bytes": 89214
+    },
+    {
+      "path": "docs/visual/executavel/horario-12-executavel.png",
+      "sha256": "7b21d5fbf4c3810cb2a48e71f0d45a00de244d9159855dc89ce6c67b0222c68b",
+      "bytes": 89782
+    },
+    {
+      "path": "docs/visual/executavel/horario-18-executavel.png",
+      "sha256": "a66fec4ff5bd4d248c45f16d10bac0d3175bcf2c2b2a181f72e107033cd86598",
+      "bytes": 89864
+    },
+    {
+      "path": "docs/visual/executavel/horario-22-executavel.png",
+      "sha256": "ce2aa1cc6e98c428b6dda4091345b8590adc40feed76d0c94c2d774eeaf4a08d",
+      "bytes": 81901
+    },
+    {
+      "path": "docs/visual/executavel/loja-executavel.png",
+      "sha256": "02b890933c92cfd92abc2c448e9b82eeebaf9056d5a4b57797da82464fbc9e65",
+      "bytes": 117521
+    },
+    {
+      "path": "docs/visual/executavel/resultado.json",
+      "sha256": "4a59775dd245c11165f1532270d00476f9aa28e644b158440464787bdfdb09e6",
+      "bytes": 405
+    },
+    {
+      "path": "docs/visual/expansao/chapeu_raposa.png",
+      "sha256": "a3c8d12fd3a45411a5679ae54d65dd364e06d32103acd511638fb1bbca5fdc59",
+      "bytes": 4799
+    },
+    {
+      "path": "docs/visual/expansao/chapeu_samurai.png",
+      "sha256": "fb63946c0eda7c72e30b71dd059f87eab80810b95584a568cb45fab22b1c02b7",
+      "bytes": 4836
+    },
+    {
+      "path": "docs/visual/expansao/efeitos.png",
+      "sha256": "5e291ac8da38592a618ad373e3359cff2d9a5076e567ae8917b86058e9bcea2e",
+      "bytes": 359945
+    },
+    {
+      "path": "docs/visual/expansao/enciclopedia.png",
+      "sha256": "17dd6bbea5dd2d94b4e320fdb4453371ede61f49ea0b9de59913ae95d5fa0221",
+      "bytes": 33110
+    },
+    {
+      "path": "docs/visual/expansao/expedicao-windows.png",
+      "sha256": "50ffa883cf97201b08bcff3384fda7afeab52777e3eae3e83e1957da13f98b6e",
+      "bytes": 16306
+    },
+    {
+      "path": "docs/visual/expansao/expedicao.png",
+      "sha256": "5886fc8924e47b4b15784e9adae761e2579f1a2bfcadddfe33e863df31b6678c",
+      "bytes": 21857
+    },
+    {
+      "path": "docs/visual/expansao/janela.png",
+      "sha256": "68370b29d7f9483b999b37ad20b603f7dbcbea6bab997d5044b119edb83305bd",
+      "bytes": 81388
+    },
+    {
+      "path": "docs/visual/expansao/mapas-1.png",
+      "sha256": "e01b1525af211da365fbe9ad33099365715f3ec00e8c8c826e4a3b1e263bc8ab",
+      "bytes": 1359606
+    },
+    {
+      "path": "docs/visual/expansao/mapas-2.png",
+      "sha256": "a1e1ea713a8f82c70033ccff6bc84b722a2366e63b1c6866c1b202f5daeb7a31",
+      "bytes": 1050347
+    },
+    {
+      "path": "docs/visual/expansao/viajar.png",
+      "sha256": "2495734091777fda40af11b4162c5e999cd0a20f7890f1648379f9c7bd99a6c2",
+      "bytes": 87533
+    },
+    {
+      "path": "docs/visual/fisgada.png",
+      "sha256": "63cb4127fc46d3440f5718d535837efb4be965a9d862a8814683c443d7e28469",
+      "bytes": 79678
+    },
+    {
+      "path": "docs/visual/horario-00.png",
+      "sha256": "ff1659872ad947011a2add201bd68b81eeed029feb4164fbe4d5892d87668749",
+      "bytes": 67218
+    },
+    {
+      "path": "docs/visual/horario-06.png",
+      "sha256": "9a2403927b85c1ab910018fe11f3cc441ca9e7848b5fe31e5fb6645c44b55f82",
+      "bytes": 72617
+    },
+    {
+      "path": "docs/visual/horario-09.png",
+      "sha256": "302e28550cd579171fca72b9fe12e89510f5aa39eb7219c70ef0c907876bd0b7",
+      "bytes": 75210
+    },
+    {
+      "path": "docs/visual/horario-12.png",
+      "sha256": "13b1e2c8cbf45f8a4db77b99f0d03a7eccdc43148d732ab3ebc79645fd9f6d6d",
+      "bytes": 74591
+    },
+    {
+      "path": "docs/visual/horario-18.png",
+      "sha256": "2bdc376669b6b6457993e83145471d8624390f2abdd7f01741f8e4b21e6a4142",
+      "bytes": 74027
+    },
+    {
+      "path": "docs/visual/horario-22.png",
+      "sha256": "efee0f82d69eb1d5745f8d17cb90b416b352bf5bccd85ce0614e058da0b4c803",
+      "bytes": 67446
+    },
+    {
+      "path": "docs/visual/itens-boias.png",
+      "sha256": "733980bcdd7d82914cb59ab0bad01322245b6692aeacb8816d891a17465447cc",
+      "bytes": 8694
+    },
+    {
+      "path": "docs/visual/itens-chapeus.png",
+      "sha256": "f4a0745984aa2838970a7ecc7dd414bd0a03122e14c29c4ca2af240b732bc817",
+      "bytes": 22738
+    },
+    {
+      "path": "docs/visual/itens-mascotes.png",
+      "sha256": "137ae7b7b7f702a9496bd0b10bd50af5184e7694e948ac2a5021f524a14ce1c1",
+      "bytes": 14329
+    },
+    {
+      "path": "docs/visual/loja.png",
+      "sha256": "4c0e86851709f61dc1e9c698e0f9cbe18a5fe43677ef2660baa21117963038eb",
+      "bytes": 107077
+    },
+    {
+      "path": "docs/visual/mascotes-quadros.png",
+      "sha256": "470322fdca3b09edc8e662fae7e779f994f87aed7c087d51751131247ab4a729",
+      "bytes": 36941
+    },
+    {
+      "path": "docs/visual/menu.png",
+      "sha256": "44837ddc6a09ac54444af9de6a80d9dda44dea5291200b0d73f142aa30f8d3d7",
+      "bytes": 5436
+    },
+    {
+      "path": "docs/visual/noite-animada.gif",
+      "sha256": "aeb4c8c265eb247bd16bd100a067b0855f6b5142c9b47a5a6460c5b494e6231d",
+      "bytes": 620207
+    },
+    {
+      "path": "docs/visual/referencia-boias.png",
+      "sha256": "b5a0fed58334c1ff0b061e57581250ae8ab50e122bac73facb728de610fa6733",
+      "bytes": 4616
+    },
+    {
+      "path": "docs/visual/referencia-chapeus.png",
+      "sha256": "ed77207ccb81aec323a62f9744fe5d27bf0368f7e62ee856122b8a80ebac41cb",
+      "bytes": 5944
+    },
+    {
+      "path": "docs/visual/referencia-mascotes.png",
+      "sha256": "f90a0383224db23e90b8dcd9f773320e01b5851acbb953a3bffa3002eeab2e0d",
+      "bytes": 5587
+    },
+    {
+      "path": "docs/visual/status-painel.png",
+      "sha256": "a17ab2da4cd65452f34ae8dd9ad6cb2536cb337983103fb67ae4d2bf7edc8636",
+      "bytes": 23029
+    },
+    {
+      "path": "docs/visual/validation.json",
+      "sha256": "3fe0a890619103749306b647b616785e5d882357c094fd797738797357319625",
+      "bytes": 11263
+    },
+    {
+      "path": "docs/visual/varas.png",
+      "sha256": "a8b537a21a2f967ea4358cdf514a9a8f6f1786512605717475302dfc1765eac0",
+      "bytes": 366427
+    },
+    {
+      "path": "main.py",
+      "sha256": "acd62f44633cb4a810ca293e50168b0950d8fec055977b1adfeb2da246aeb88f",
+      "bytes": 136
+    },
+    {
+      "path": "pesca_ambiente.py",
+      "sha256": "19743e22beb5df0c72aa575eb94d6fb9801d7974a70e8dfe9d11e0e440bd7b02",
+      "bytes": 9156
+    },
+    {
+      "path": "pesca_android.py",
+      "sha256": "40e985ea782d314b7c7f3917f9cf1c1e10218acbc067838a56cb3b34447a1bbe",
+      "bytes": 2581
+    },
+    {
+      "path": "pesca_catalogo.py",
+      "sha256": "93ad3965dc650a367482eb55444b9cc4b83ffeabf6b13b21fad8977228632cd0",
+      "bytes": 4403
+    },
+    {
+      "path": "pesca_conquistas.py",
+      "sha256": "8e35f64841c55f4e81c6ca36162a4fb418dc63205e75824f65e19128112ab5b0",
+      "bytes": 2391
+    },
+    {
+      "path": "pesca_efeitos.py",
+      "sha256": "9eb98c9e10eca91ea7f1928304b3faa92a7a7c8383778f1288a669a8aefab237",
+      "bytes": 5045
+    },
+    {
+      "path": "pesca_equipamentos.py",
+      "sha256": "42d109e7aed81b6f8e6a3012c21a1246ef4c6de36781e266dd9976bae68c23ba",
+      "bytes": 2793
+    },
+    {
+      "path": "pesca_especies_visual.py",
+      "sha256": "7da544561c90ddb3a5ffe2b8f90616a0bc7416f1781144f9a52ebfba4277e988",
+      "bytes": 6084
+    },
+    {
+      "path": "pesca_idle.py",
+      "sha256": "f7d493a28c66e95deb2b38321b03b887a0e5949b7d5fadbe5a36ceebe902c3ed",
+      "bytes": 61176
+    },
+    {
+      "path": "pesca_loja.py",
+      "sha256": "f89ef6136376c233eb35aeb86aa08ee60883a45678bac9bca92edfc913f46443",
+      "bytes": 6710
+    },
+    {
+      "path": "pesca_luz.py",
+      "sha256": "9072f1ea6e72ebfca8f1a76f7e3896c137af0854aee69af29a2a28783e4f1ab2",
+      "bytes": 8273
+    },
+    {
+      "path": "pesca_moedas.py",
+      "sha256": "bbe38e1b865716329f6ec1486fba65e510357b81540b6588725db4bddad1520c",
+      "bytes": 1497
+    },
+    {
+      "path": "pesca_museu.py",
+      "sha256": "30b2f7b8cf3921230137e7a026426ae19e69d43b8e76fb10d0ffda8472aa4196",
+      "bytes": 2826
+    },
+    {
+      "path": "pesca_museu_ui.py",
+      "sha256": "79e67f400bad3543ef085e20183ac91e5fe0229309f505583a15b79261629630",
+      "bytes": 13350
+    },
+    {
+      "path": "pesca_offline.py",
+      "sha256": "448cd3dc6c40d1cb3ad3b82956722e346b4f220b09a65dd21ebf1283073f3a86",
+      "bytes": 2905
+    },
+    {
+      "path": "pesca_pescaria.py",
+      "sha256": "daadaeed87e73ced8cb5853cbee75ce178ee359dc99ea3c038403ef30d07d8cd",
+      "bytes": 4619
+    },
+    {
+      "path": "pesca_plataforma.py",
+      "sha256": "09f7228cc1b469193ced4d6db6dfede6ebd802b281fa58e0b4e84cdbc0d66899",
+      "bytes": 1957
+    },
+    {
+      "path": "pesca_regional_visual.py",
+      "sha256": "a3eca8f6759ca021cdba07799a8567aa66c0fd8b711ef03e3368cea0acdb2467",
+      "bytes": 3531
+    },
+    {
+      "path": "pesca_save.py",
+      "sha256": "563a5da311270726a0a1495dacb8b333eea8fc609ce15fd15a6362c1a9288660",
+      "bytes": 16227
+    },
+    {
+      "path": "pesca_tempo.py",
+      "sha256": "115d39367ef21d9b91b02c17f5c26c8f73ef7a00b62c335fda725baed8c0575b",
+      "bytes": 1420
+    },
+    {
+      "path": "pesca_ui.py",
+      "sha256": "4d38782e63b6652028b32c898d905704a3cea0cb0b63b499d1ca73a6ab6006c1",
+      "bytes": 10479
+    },
+    {
+      "path": "pesca_viagens_ui.py",
+      "sha256": "54d5d8a1068454e4272284cc52c302d17fc13539fc5fd4198b5215a5ad0a64e2",
+      "bytes": 11768
+    },
+    {
+      "path": "pesca_visual.py",
+      "sha256": "a46969c20f3ea31e6836e7d70b5f05c73b9fe44aa6040a64c5311f6c4512296b",
+      "bytes": 36177
+    },
+    {
+      "path": "requirements-build.txt",
+      "sha256": "8bb45a7653491b4f8474a7f1a73b23e20d149e6e38a8b40969b36fd7ddaf8952",
+      "bytes": 58
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "eefad810b920f107846a79e2b79c314409bb8ec787166db6847d74a9453a4a17",
+      "bytes": 17
+    },
+    {
+      "path": "tools/__init__.py",
+      "sha256": "e1a792900f3cc602ba6e4f6e1d807571a71daa6aad6c1be41fa2ddbd8d476897",
+      "bytes": 61
+    },
+    {
+      "path": "tools/android_icon.py",
+      "sha256": "f35a2691d091e9220f1335cce87bfdd0184bf311af4de63f1265c0e0ce3359bb",
+      "bytes": 1213
+    },
+    {
+      "path": "tools/android_smoke.py",
+      "sha256": "b3dc9ab7f4e66fd6bb4ed885d7cebdaab4914e396fe0d9fec81c587e321f77aa",
+      "bytes": 7948
+    },
+    {
+      "path": "tools/balance_expansion.py",
+      "sha256": "2b1492725a111c72271ea0557320d3604b0bc23a9831c1fa1735770c4b0384de",
+      "bytes": 5972
+    },
+    {
+      "path": "tools/build_android.py",
+      "sha256": "5dcb112c96cfa6ce4812926e8e29cf48efb58fce75984eb6d8f7f9f67c7f1437",
+      "bytes": 5757
+    },
+    {
+      "path": "tools/build_expansion_catalog.py",
+      "sha256": "edf95912a20d00fcf63e857f7fd36444560d5ab203982b2ad7d599f9fafd8ef1",
+      "bytes": 8713
+    },
+    {
+      "path": "tools/build_ui.py",
+      "sha256": "6340661384737b2cc189e1ae756dd18c7d6a2def4ccc937eb3a6d7f343a027a3",
+      "bytes": 3150
+    },
+    {
+      "path": "tools/capture_animation.py",
+      "sha256": "4446dacfc59b33715f5b3c88175c9f4b5495c56263a18d974cbc8e3c5f5b1857",
+      "bytes": 2945
+    },
+    {
+      "path": "tools/cosmetic_references.py",
+      "sha256": "31d05bb88999cf7bff6910a42b2ec79a1714a7009d20091d2a0cc440c303bbd8",
+      "bytes": 1025
+    },
+    {
+      "path": "tools/dev_access.py",
+      "sha256": "41f4b6e12e5cc05859f9dac2cb1526090f209143142476feb5ee2512e5870f71",
+      "bytes": 5516
+    },
+    {
+      "path": "tools/export_expansion_evidence.py",
+      "sha256": "922a04a24af8b9709addc3a62086605625750bc9b7a7192179f3f1b245b9c088",
+      "bytes": 1922
+    },
+    {
+      "path": "tools/measure_museum_baseline.py",
+      "sha256": "e418ba33c6edd684c5c4d183de27771061de99c1bae3360ba0e8559ba9c051cf",
+      "bytes": 10744
+    },
+    {
+      "path": "tools/prepare_art.py",
+      "sha256": "6903a7fb77385b1040e99b53a648ca0d5d5f195d5c0b6cb1370b8f59c5dc96db",
+      "bytes": 1633
+    },
+    {
+      "path": "tools/prepare_cosmetics.py",
+      "sha256": "a4b4b37d356ee80d023abf13eda68d42409587fbbdeed09a3c292189d685a563",
+      "bytes": 1908
+    },
+    {
+      "path": "tools/prepare_maps.py",
+      "sha256": "c628af7b2b741866529d7d0f25e7a1bdd4dc9d32f50c2f02f369028872b9b4cb",
+      "bytes": 4322
+    },
+    {
+      "path": "tools/preview_museum.py",
+      "sha256": "eb1395bbfeb871c8c3b012344916329fcd069bd3a22e13ab10491bc65b63b1b9",
+      "bytes": 2055
+    },
+    {
+      "path": "tools/research_species.py",
+      "sha256": "fa854c6b50da6cd85b87dc5f8119a493725e32a0f05e4e03f9a82f7c64297364",
+      "bytes": 1897
+    },
+    {
+      "path": "tools/smoke_exe.py",
+      "sha256": "f36596ab4fb75f200b083611e663ca837034d633a616b4c3fcb84614bfbeca0a",
+      "bytes": 2554
+    },
+    {
+      "path": "tools/test_android_emulator.py",
+      "sha256": "c4747bf346097425c153d16171263f192eea70c940abac5907a69a95a017d74e",
+      "bytes": 6181
+    },
+    {
+      "path": "tools/test_windows_close.py",
+      "sha256": "cad55ab261e15d7c72e561392dd33118c06a09b5a0ae106d39409b0feced1b8a",
+      "bytes": 4289
+    },
+    {
+      "path": "tools/validar_catalogo_proposta.py",
+      "sha256": "5f69f951de9e7eec2224e7ae0257b86a538a49e25936514720b7a24aaf97cd32",
+      "bytes": 12410
+    },
+    {
+      "path": "tools/validate_audit.py",
+      "sha256": "f16039521d89e18349f9bdbc038df9697679ad2bd9a0d7378f95a01c6310a4a1",
+      "bytes": 13961
+    },
+    {
+      "path": "tools/validate_cosmetics.py",
+      "sha256": "b1a45e048ddc0aa6ba5dc03a85fe19c225018522cd5159d578131b6ac6c3495e",
+      "bytes": 7435
+    },
+    {
+      "path": "tools/validate_expansion.py",
+      "sha256": "66b5e7af64e16db3abff166ec3e2c65aa201557de4718cdc733a67f9cbc734fd",
+      "bytes": 25902
+    },
+    {
+      "path": "tools/validate_game.py",
+      "sha256": "918672e935565d567c4d1230b3f7d92838a7507a77b522ca510a295fddf77257",
+      "bytes": 860
+    },
+    {
+      "path": "tools/validate_mobile.py",
+      "sha256": "f45a088dd68a609754454fa82acd1a1dc3961f11637bc33139cf1a2ac18b4fef",
+      "bytes": 3361
+    },
+    {
+      "path": "tools/validate_museum.py",
+      "sha256": "bc3cd00dd1a210df3bf353e67d4a74a3dc4ca208cb411ab22a07476165df1d1c",
+      "bytes": 21182
+    }
+  ],
+  "omitted_from_both_copies": [
+    ".github/workflows/android.yml",
+    "PescaIdle.exe",
+    "assets/source/barco-original.png",
+    "assets/source/boias-original.png",
+    "assets/source/chapeus-original.png",
+    "assets/source/enseada-original.png",
+    "assets/source/mapas/fossa_das_lanternas.png",
+    "assets/source/mapas/mangue_das_raizes.png",
+    "assets/source/mapas/mar_das_auroras.png",
+    "assets/source/mapas/mar_dos_ventos.png",
+    "assets/source/mapas/pier_da_brisa.png",
+    "assets/source/mapas/prompts.json",
+    "assets/source/mapas/recife_das_cores.png",
+    "assets/source/mapas/rio_das_vitorias.png",
+    "assets/source/mascotes-original.png",
+    "assets/source/pescador-original.png",
+    "output/pdf/PescaIdle_Relatorio_Museu_Primeira_Entrega.pdf"
+  ],
+  "note": "No original/untracked file changed; candidate has no .git or historical executable"
+}

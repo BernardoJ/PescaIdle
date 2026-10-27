@@ -1,0 +1,96 @@
+{
+  "base": "d8032d67142bd2e13e36933bcc2238a190aefada",
+  "python": "3.14.8",
+  "steps": [
+    {
+      "step": "individuais",
+      "exit_code": 0,
+      "seconds": 7.132,
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/test_conquistas_etapa1.py",
+        "--out",
+        "qa\\clima-regressao-publicacao\\individual"
+      ]
+    },
+    {
+      "step": "tamanhos-pendentes",
+      "exit_code": 0,
+      "seconds": 2.901,
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "tools.verificar_tamanhos",
+        "tools.test_save_pendente_piloto"
+      ]
+    },
+    {
+      "step": "regressao",
+      "exit_code": 0,
+      "seconds": 73.068,
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "tools/validate_game.py"
+      ]
+    }
+  ],
+  "successful": true,
+  "source_sha256": {
+    "assets/aquario_decoracoes.json": "711489906de4fcdfb700e85a65150e23f88b0f886701fdff66d71c5a8e2c10b0",
+    "assets/aquario_especies.json": "d67f8c6159e25d9d33bc604d9d943744150ba7515392da2dba6884036b837112",
+    "assets/aquario_movimento.json": "353bb487289cc78e9dacbe6659de0e293cf5304d9210f18de820eff65b3a2b3d",
+    "assets/catalogo_expansao.json": "11cdbd185721a9f58b3ad33a893aee8ffc9695de5a8dc911fd34b51d0b95b0b5",
+    "assets/clima_especies.json": "8b6a93a476c9adf3683f314cece45049214fe83d74ec27f064dc5bb53f0c2682",
+    "assets/conquistas_etapa1.json": "4ba02a8afc5404924ed3081c7c2a5c9a392106feea0192f8cb27c76007c85c38",
+    "assets/cosmeticos.json": "80d9019576fc6bfc0c9cea67ba0b2327963c0a8db78fffc03b59f8fbc141f0d4",
+    "assets/mapas/manifesto.json": "6f591af0a81d1babe5c5def2e71233623bbe50bb018451cc7eafaeb4a5a8d243",
+    "assets/source/mapas/prompts.json": "004387a0141054e812d8ac22a5ca99669598b90179db0e78233c3ea81296592f",
+    "assets/tamanhos_piloto.json": "7041e65d9932596ba6ffc5b7c8956e8f4ffeb7c7048817198c84267578349ecb",
+    "pesca_ambiente.py": "19743e22beb5df0c72aa575eb94d6fb9801d7974a70e8dfe9d11e0e440bd7b02",
+    "pesca_android.py": "40e985ea782d314b7c7f3917f9cf1c1e10218acbc067838a56cb3b34447a1bbe",
+    "pesca_aquario_decor.py": "42fab2c63082ea31cd538f63872972a6b9adce598f93f509e0eb81fcc9408c68",
+    "pesca_aquario_decor_ui.py": "dea04b2b8f05930602de9af147d99af9a49f5bada99af965abb4b53375a59968",
+    "pesca_aquario_decor_visual.py": "d7115a4066d01ec709ca3f2fb94d385b47ed5534854081dd48d369232cb544cd",
+    "pesca_catalogo.py": "45480dd174a9c7f9ad8fd2412ca4fcd2f69a8537521a9b78e15e1ad7b52818df",
+    "pesca_clima.py": "6e932641f82ae8c7f13e3f02422f76173e188df989553521cda4a046632af44d",
+    "pesca_clima_ui.py": "8c03a07bf1b38f60e40c0e17392aff23cdfb98fe8257d9bd9022c0c77146f21a",
+    "pesca_clima_visual.py": "667be787e549a3005172dfc7b599b8756f9ea7b371268a7d26db4c2c2d49904b",
+    "pesca_conquistas.py": "23bb7793c1ea94319e675d48554774d3bca4bb5a505c2d1a1c01d06400b2cfcb",
+    "pesca_conquistas_etapa1.py": "9dfd7a4c0aa01adb3ec29e0f126d21fd00eb6411c979bae2516010d6d0dffb28",
+    "pesca_efeitos.py": "9eb98c9e10eca91ea7f1928304b3faa92a7a7c8383778f1288a669a8aefab237",
+    "pesca_equipamentos.py": "42d109e7aed81b6f8e6a3012c21a1246ef4c6de36781e266dd9976bae68c23ba",
+    "pesca_especies_visual.py": "7da544561c90ddb3a5ffe2b8f90616a0bc7416f1781144f9a52ebfba4277e988",
+    "pesca_idle.py": "66740d139ddea73be1bc924eba1f7dd7d6979561d28e4c8a2a89c2af78e45083",
+    "pesca_loja.py": "f89ef6136376c233eb35aeb86aa08ee60883a45678bac9bca92edfc913f46443",
+    "pesca_luz.py": "9072f1ea6e72ebfca8f1a76f7e3896c137af0854aee69af29a2a28783e4f1ab2",
+    "pesca_moedas.py": "bbe38e1b865716329f6ec1486fba65e510357b81540b6588725db4bddad1520c",
+    "pesca_museu.py": "4f91d7c65464f48ea2ac797850980dde8d914c2f18903b883e9d29e74c549eb3",
+    "pesca_museu_ui.py": "55eedd5d2e2578c9d9408308cdd59fc1403a705674707faea1b9e16169ece0b0",
+    "pesca_museu_visual.py": "3f248493b9085adfef8e3db42edc4fe4a7e00aeab10ea885cad0d6dd5006cf8f",
+    "pesca_offline.py": "448cd3dc6c40d1cb3ad3b82956722e346b4f220b09a65dd21ebf1283073f3a86",
+    "pesca_pescaria.py": "9436cdeeb4d0f8e880f8ef49299b7974364d12947f15ac6355ea2627f8e1e706",
+    "pesca_piloto.py": "7c76dbeab00dcd5feed08417010321e100dde83202d1e6fb1a44e5c9322e6101",
+    "pesca_plataforma.py": "b626fbaf3c9947b17062f041359ceecd7d74a96d34c7058b3b2a0849898f17ae",
+    "pesca_regional_visual.py": "a3eca8f6759ca021cdba07799a8567aa66c0fd8b711ef03e3368cea0acdb2467",
+    "pesca_save.py": "61d4508aa780d4805cf7ca580a8d9f4bf43bfd6fa884de0af1f286a37f173243",
+    "pesca_tamanho_visual.py": "abc977109537490da27910156f68b7476e6090b2d315d314a4d308658971704c",
+    "pesca_tamanhos.py": "4889de63bfc8f3d73bd1b7e8bfb4cbd558c86c0b3e06295f2ace9feec53ac2b8",
+    "pesca_tempo.py": "115d39367ef21d9b91b02c17f5c26c8f73ef7a00b62c335fda725baed8c0575b",
+    "pesca_ui.py": "09d53130da554dcd80791dcd7f91161dc0eeed21560ca9390b20b771c665c470",
+    "pesca_viagens_ui.py": "6936e8faca899ac915437c1f5ef622674765e05dcbf824260ab9ce86a5c3d0c3",
+    "pesca_visual.py": "4cafda3108b2fafcde7048fbe2dd2097299d0af1e51db6a8ac1b0991521be298"
+  },
+  "limits": "Qt offscreen; sem EXE, Android nativo ou sessão humana prolongada.",
+  "profiles": "Somente fixtures sintéticas; ambiente definido antes de importar o jogo."
+}

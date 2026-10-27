@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "provenance": "Valores de design provisórios. Não são medidas biológicas verificadas.",
+  "tail_probability": 0.05,
+  "diversity_goal": 3,
+  "visual": {"minimum": 0.55, "typical": 0.9, "maximum": 1.2},
+  "species": {
+    "lambari": {"min_mm": 40, "typical_mm": 90, "max_mm": 180},
+    "tilapia_do_nilo": {"min_mm": 120, "typical_mm": 300, "max_mm": 600},
+    "carpa_comum": {"min_mm": 180, "typical_mm": 500, "max_mm": 1100},
+    "traira": {"min_mm": 100, "typical_mm": 350, "max_mm": 800}
+  }
+}

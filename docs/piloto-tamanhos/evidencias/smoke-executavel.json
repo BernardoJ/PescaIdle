@@ -1,0 +1,23 @@
+{
+  "exe": "<entrega-local>\\executavel\\PescaIdle-Tamanhos-Piloto.exe",
+  "bytes": 50200863,
+  "sha256": "4229707d91ed82b519178e18ea6143cc8a86b3e164f02aaf5826abce32eaff27",
+  "output": "<entrega-local>\\executavel\\qa-smoke-da0e51a3",
+  "phases": [
+    {
+      "mode": "pending",
+      "exit_code": 0
+    },
+    {
+      "mode": "deliver",
+      "exit_code": 0
+    },
+    {
+      "mode": "reopen",
+      "exit_code": 0
+    }
+  ],
+  "native_windows": true,
+  "physical_input": false,
+  "android": false
+}

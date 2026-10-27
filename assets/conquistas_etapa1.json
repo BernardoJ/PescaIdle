@@ -1,0 +1,1412 @@
+{
+  "version": 1,
+  "source_commit": "d8032d67142bd2e13e36933bcc2238a190aefada",
+  "scope": "24 conquistas aprovadas da primeira etapa; conjuntos fixados nesta revisão; sem recompensa econômica.",
+  "goals": [
+    {
+      "id": "etapa1_c01",
+      "code": "C01",
+      "title": "Primeiro cardume",
+      "difficulty": "Fácil",
+      "group": "Coleção",
+      "description": "Somar 25 capturas das 68 espécies da categoria peixe.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c02",
+      "code": "C02",
+      "title": "Primeiras páginas",
+      "difficulty": "Fácil",
+      "group": "Coleção",
+      "description": "Registrar pelo menos uma vez 10 espécies distintas das 88 atuais.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c03",
+      "code": "C03",
+      "title": "Álbum de muitas águas",
+      "difficulty": "Moderado",
+      "group": "Coleção",
+      "description": "Registrar pelo menos uma vez 25 espécies distintas das 88 atuais.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c04",
+      "code": "C04",
+      "title": "Curioso de carteirinha",
+      "difficulty": "Moderado",
+      "group": "Coleção",
+      "description": "Ter 20 espécies com pelo menos 5 registros cada, revelando suas raridades.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c05",
+      "code": "C05",
+      "title": "Conheço esses rostos",
+      "difficulty": "Difícil",
+      "group": "Coleção",
+      "description": "Ter 20 espécies com pelo menos 10 registros cada, revelando suas curiosidades.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c07",
+      "code": "C07",
+      "title": "Um encontro fora da curva",
+      "difficulty": "Difícil",
+      "group": "Coleção",
+      "description": "Registrar uma espécie classificada como Épico no catálogo atual.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c09",
+      "code": "C09",
+      "title": "Olhar de observador",
+      "difficulty": "Moderado",
+      "group": "Coleção",
+      "description": "Registrar cinco espécies distintas da categoria especial.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c10",
+      "code": "C10",
+      "title": "Cartão-postal",
+      "difficulty": "Fácil",
+      "group": "Exploração",
+      "description": "Registrar ao menos uma espécie em cada um de dois mapas diferentes.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c11",
+      "code": "C11",
+      "title": "Passaporte carimbado",
+      "difficulty": "Difícil",
+      "group": "Exploração",
+      "description": "Ter ao menos um registro de espécie em cada um dos oito mapas.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c12",
+      "code": "C12",
+      "title": "Três tons de água",
+      "difficulty": "Fácil",
+      "group": "Exploração",
+      "description": "Ter registros em três períodos diferentes do dia, em quaisquer mapas.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c13",
+      "code": "C13",
+      "title": "Sete luzes de uma jornada",
+      "difficulty": "Difícil",
+      "group": "Exploração",
+      "description": "Ter registros nos sete períodos do dia, acumulados entre sessões e dias.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c15",
+      "code": "C15",
+      "title": "Três margens, muitas histórias",
+      "difficulty": "Moderado",
+      "group": "Exploração",
+      "description": "Registrar três peixes distintos em cada um de três mapas diferentes.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c16",
+      "code": "C16",
+      "title": "Primeiro morador",
+      "difficulty": "Fácil",
+      "group": "Museu",
+      "description": "Exibir um peixe descoberto em um espaço válido do aquário.",
+      "proof": "E"
+    },
+    {
+      "id": "etapa1_c17",
+      "code": "C17",
+      "title": "Três é um cardume",
+      "difficulty": "Moderado",
+      "group": "Museu",
+      "description": "Manter os três espaços ocupados simultaneamente por espécies distintas e elegíveis.",
+      "proof": "E"
+    },
+    {
+      "id": "etapa1_c18",
+      "code": "C18",
+      "title": "Curadoria de contrastes",
+      "difficulty": "Difícil",
+      "group": "Museu",
+      "description": "Com três espécies expostas, exibir um registro diminuto e um excepcional, de espécies diferentes do piloto.",
+      "proof": "E"
+    },
+    {
+      "id": "etapa1_c19",
+      "code": "C19",
+      "title": "Lar, doce aquário",
+      "difficulty": "Fácil",
+      "group": "Decoração",
+      "description": "Comprar a primeira decoração do aquário.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c20",
+      "code": "C20",
+      "title": "Por dentro e por fora",
+      "difficulty": "Moderado",
+      "group": "Decoração",
+      "description": "Possuir ao menos uma decoração interna e uma externa.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c21",
+      "code": "C21",
+      "title": "Arquiteto das águas",
+      "difficulty": "Moderado",
+      "group": "Decoração",
+      "description": "Equipar simultaneamente uma decoração adquirida em cada um dos sete tipos.",
+      "proof": "E"
+    },
+    {
+      "id": "etapa1_c22",
+      "code": "C22",
+      "title": "Acervo de cenários",
+      "difficulty": "Difícil",
+      "group": "Decoração",
+      "description": "Comprar as 21 decorações do catálogo atual.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c23",
+      "code": "C23",
+      "title": "Primeiro estilo",
+      "difficulty": "Fácil",
+      "group": "Personalização",
+      "description": "Possuir três cosméticos vendidos, de pelo menos três categorias diferentes.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c24",
+      "code": "C24",
+      "title": "Armário versátil",
+      "difficulty": "Moderado",
+      "group": "Personalização",
+      "description": "Possuir dez cosméticos vendidos, distribuídos por pelo menos quatro categorias.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c25",
+      "code": "C25",
+      "title": "Dojo flutuante",
+      "difficulty": "Moderado",
+      "group": "Personalização",
+      "description": "Equipar simultaneamente Touca ninja e Traje de ninja.",
+      "proof": "E"
+    },
+    {
+      "id": "etapa1_c27",
+      "code": "C27",
+      "title": "Primeiro investimento",
+      "difficulty": "Fácil",
+      "group": "Melhorias",
+      "description": "Chegar ao nível 1 da vara ou do barco.",
+      "proof": "D"
+    },
+    {
+      "id": "etapa1_c28",
+      "code": "C28",
+      "title": "Ritmo de cruzeiro",
+      "difficulty": "Moderado",
+      "group": "Melhorias",
+      "description": "Ter vara e barco no nível 3 ou superior.",
+      "proof": "D"
+    }
+  ],
+  "species": {
+    "tubarao_lagarto": "peixe",
+    "vaquita": "especial",
+    "celacanto_comorense": "peixe",
+    "peixe_mao_vermelho": "peixe",
+    "cavalinho_do_mar_pigmeu": "peixe",
+    "lula_magnapinna": "especial",
+    "tubarao_boca_grande": "peixe",
+    "peixe_ogro": "peixe",
+    "narval": "especial",
+    "baleia_azul": "especial",
+    "tubarao_branco": "peixe",
+    "manta_gigante": "especial",
+    "peixe_lua": "peixe",
+    "garoupa_verdadeira": "peixe",
+    "tartaruga_verde": "especial",
+    "mero_preto": "peixe",
+    "orca": "especial",
+    "peixe_papagaio_azul": "peixe",
+    "polvo_comum": "especial",
+    "linguado_comum": "peixe",
+    "golfinho_nariz_de_garrafa": "especial",
+    "barracuda_grande": "peixe",
+    "atum_azul": "peixe",
+    "peixe_palhaco": "peixe",
+    "lagosta_americana": "especial",
+    "agua_viva_juba_de_leao": "especial",
+    "lula_de_humboldt": "especial",
+    "salmao_rosa": "peixe",
+    "bacalhau_do_atlantico": "peixe",
+    "cavala": "peixe",
+    "sardinha_do_pacifico": "peixe",
+    "anchoveta_peruana": "peixe",
+    "arenque_atlantico": "peixe",
+    "polaca_do_alasca": "peixe",
+    "camarao_cinza": "especial",
+    "mexilhao_azul": "especial",
+    "caranguejo_falso": "especial",
+    "calano": "especial",
+    "salpa_antartica": "especial",
+    "peixe_lanterna_glaciar": "peixe",
+    "peixe_lanterna_de_muller": "peixe",
+    "krill_do_pacifico": "especial",
+    "krill_antartico": "especial",
+    "copepode_comum": "especial",
+    "peixe_lanterna_comum": "peixe",
+    "lambari": "peixe",
+    "tilapia_do_nilo": "peixe",
+    "tambaqui": "peixe",
+    "pacu": "peixe",
+    "carpa_comum": "peixe",
+    "carpa_capim": "peixe",
+    "acara": "peixe",
+    "traira": "peixe",
+    "jundia": "peixe",
+    "curimbata": "peixe",
+    "matrinxa": "peixe",
+    "piabanha": "peixe",
+    "piraputanga": "peixe",
+    "piapara": "peixe",
+    "dourado": "peixe",
+    "pintado": "peixe",
+    "pirarara": "peixe",
+    "jau": "peixe",
+    "tainha": "peixe",
+    "carapeba": "peixe",
+    "robalo_flecha": "peixe",
+    "robalo_peva": "peixe",
+    "parati": "peixe",
+    "corvina": "peixe",
+    "bagre_amarelo": "peixe",
+    "peixe_rei": "peixe",
+    "peixe_agulha": "peixe",
+    "betara": "peixe",
+    "sargo": "peixe",
+    "sargentinho": "peixe",
+    "peixe_borboleta": "peixe",
+    "cirurgiao_patela": "peixe",
+    "moreia_verde": "peixe",
+    "albacora_laje": "peixe",
+    "peixe_voador": "peixe",
+    "dourado_do_mar": "peixe",
+    "peixe_vela": "peixe",
+    "bacalhau_polar": "peixe",
+    "halibute_do_atlantico": "peixe",
+    "peixe_lobo": "peixe",
+    "peixe_pescador_abissal": "peixe",
+    "peixe_vibora": "peixe",
+    "enguia_pelicano": "peixe"
+  },
+  "epic_ids": [
+    "tubarao_lagarto",
+    "cavalinho_do_mar_pigmeu",
+    "tubarao_boca_grande",
+    "narval",
+    "baleia_azul",
+    "tubarao_branco",
+    "manta_gigante",
+    "mero_preto",
+    "orca",
+    "golfinho_nariz_de_garrafa",
+    "atum_azul"
+  ],
+  "map_ids": [
+    "enseada_do_poente",
+    "rio_das_vitorias",
+    "mangue_das_raizes",
+    "pier_da_brisa",
+    "recife_das_cores",
+    "mar_dos_ventos",
+    "mar_das_auroras",
+    "fossa_das_lanternas"
+  ],
+  "period_ids": [
+    "amanhecer",
+    "manha",
+    "dia",
+    "meio_dia",
+    "tarde",
+    "anoitecer",
+    "noite"
+  ],
+  "occurrences": [
+    {
+      "species_id": "lambari",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "tilapia_do_nilo",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "pacu",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "carpa_comum",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "carpa_capim",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "acara",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "traira",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "jundia",
+      "map_id": "enseada_do_poente",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "lambari",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "pacu",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "tambaqui",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "curimbata",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "matrinxa",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ]
+    },
+    {
+      "species_id": "piabanha",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer"
+      ]
+    },
+    {
+      "species_id": "piraputanga",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "manha"
+      ]
+    },
+    {
+      "species_id": "piapara",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "dourado",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "pintado",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "pirarara",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "jau",
+      "map_id": "rio_das_vitorias",
+      "periods": [
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "tainha",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "carapeba",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "robalo_flecha",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "robalo_peva",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "parati",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "corvina",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "bagre_amarelo",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "mero_preto",
+      "map_id": "mangue_das_raizes",
+      "periods": [
+        "manha",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "sardinha_do_pacifico",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "cavala",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "anchoveta_peruana",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia"
+      ]
+    },
+    {
+      "species_id": "linguado_comum",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_rei",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "peixe_agulha",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "dia",
+        "meio_dia"
+      ]
+    },
+    {
+      "species_id": "betara",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "tarde",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "sargo",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "camarao_cinza",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "mexilhao_azul",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "copepode_comum",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "vaquita",
+      "map_id": "pier_da_brisa",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ]
+    },
+    {
+      "species_id": "peixe_palhaco",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "sargentinho",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_papagaio_azul",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "cavalinho_do_mar_pigmeu",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "garoupa_verdadeira",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "barracuda_grande",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "peixe_borboleta",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "dia"
+      ]
+    },
+    {
+      "species_id": "cirurgiao_patela",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "meio_dia"
+      ]
+    },
+    {
+      "species_id": "moreia_verde",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "polvo_comum",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "tartaruga_verde",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "manta_gigante",
+      "map_id": "recife_das_cores",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "albacora_laje",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_voador",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "atum_azul",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "peixe_lua",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "dia",
+        "meio_dia"
+      ]
+    },
+    {
+      "species_id": "dourado_do_mar",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "peixe_vela",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "manha",
+        "dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "tubarao_branco",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "anoitecer"
+      ]
+    },
+    {
+      "species_id": "tubarao_boca_grande",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "baleia_azul",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "golfinho_nariz_de_garrafa",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "lula_de_humboldt",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "krill_do_pacifico",
+      "map_id": "mar_dos_ventos",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "arenque_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "polaca_do_alasca",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "bacalhau_polar",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "bacalhau_do_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "manha",
+        "tarde",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "salmao_rosa",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "halibute_do_atlantico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "peixe_lobo",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_lanterna_glaciar",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_mao_vermelho",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "dia",
+        "meio_dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "narval",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha"
+      ]
+    },
+    {
+      "species_id": "orca",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "tarde"
+      ]
+    },
+    {
+      "species_id": "lagosta_americana",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "agua_viva_juba_de_leao",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "caranguejo_falso",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "calano",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "salpa_antartica",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "krill_antartico",
+      "map_id": "mar_das_auroras",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_lanterna_de_muller",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_lanterna_comum",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_ogro",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_pescador_abissal",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "manha",
+        "dia",
+        "meio_dia",
+        "tarde",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "tubarao_lagarto",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "amanhecer",
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "peixe_vibora",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "anoitecer",
+        "noite"
+      ]
+    },
+    {
+      "species_id": "enguia_pelicano",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "celacanto_comorense",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ]
+    },
+    {
+      "species_id": "lula_magnapinna",
+      "map_id": "fossa_das_lanternas",
+      "periods": [
+        "noite"
+      ]
+    }
+  ],
+  "sold_slots": {
+    "chapeu_bone": "chapeu",
+    "chapeu_gorro": "chapeu",
+    "chapeu_quepe": "chapeu",
+    "chapeu_pirata": "chapeu",
+    "chapeu_cartola": "chapeu",
+    "chapeu_coroa": "chapeu",
+    "chapeu_pikachu": "chapeu",
+    "chapeu_ninja": "chapeu",
+    "chapeu_samurai": "chapeu",
+    "chapeu_cowboy": "chapeu",
+    "chapeu_mago": "chapeu",
+    "chapeu_astronauta": "chapeu",
+    "chapeu_folhas": "chapeu",
+    "chapeu_marinheiro": "chapeu",
+    "chapeu_raposa": "chapeu",
+    "chapeu_corais": "chapeu",
+    "roupa_azul": "roupa",
+    "roupa_verde": "roupa",
+    "roupa_listrada": "roupa",
+    "roupa_capa": "roupa",
+    "roupa_capitao": "roupa",
+    "roupa_gala": "roupa",
+    "roupa_ninja": "roupa",
+    "roupa_astral": "roupa",
+    "roupa_mergulhador": "roupa",
+    "roupa_fenix": "roupa",
+    "roupa_cyber": "roupa",
+    "roupa_mago": "roupa",
+    "roupa_marinheiro": "roupa",
+    "roupa_aurora": "roupa",
+    "roupa_abisso": "roupa",
+    "bandeira_vermelha": "bandeira",
+    "bandeira_brasil": "bandeira",
+    "bandeira_arco": "bandeira",
+    "bandeira_pirata": "bandeira",
+    "bandeira_dragao": "bandeira",
+    "bandeira_nebulosa": "bandeira",
+    "bandeira_sol": "bandeira",
+    "bandeira_kraken": "bandeira",
+    "bandeira_galaxia": "bandeira",
+    "bandeira_folhas": "bandeira",
+    "bandeira_sakura": "bandeira",
+    "bandeira_tempestade": "bandeira",
+    "bandeira_compasso": "bandeira",
+    "boia_amarela": "boia",
+    "boia_listrada": "boia",
+    "boia_coracao": "boia",
+    "boia_estrela": "boia",
+    "boia_planeta": "boia",
+    "boia_bolha": "boia",
+    "boia_donut": "boia",
+    "boia_abacaxi": "boia",
+    "boia_kraken": "boia",
+    "boia_foguete": "boia",
+    "boia_lotus": "boia",
+    "boia_limao": "boia",
+    "boia_perola": "boia",
+    "boneco_pato": "boneco",
+    "boneco_caranguejo": "boneco",
+    "boneco_gato": "boneco",
+    "boneco_pinguim": "boneco",
+    "boneco_agumon": "boneco",
+    "boneco_robot": "boneco",
+    "boneco_slime": "boneco",
+    "boneco_raposa": "boneco",
+    "boneco_polvo": "boneco",
+    "boneco_capivara": "boneco",
+    "boneco_fantasma": "boneco",
+    "boneco_tartaruga": "boneco",
+    "boneco_axolote": "boneco",
+    "boneco_baleia": "boneco",
+    "anel_verde_esmeralda": "acessorio",
+    "martelo_pesado": "acessorio",
+    "teia_aracnidea": "acessorio",
+    "orbe_dragon": "acessorio",
+    "broche_lunar": "acessorio",
+    "sabre_energia": "acessorio",
+    "asas_fenix": "acessorio",
+    "aura_cyber": "acessorio",
+    "estrelas_orbitais": "acessorio",
+    "chama_yokai": "acessorio",
+    "cajado_tempestade": "acessorio",
+    "escudo_bolhas": "acessorio",
+    "asas_boreais": "acessorio"
+  },
+  "decorations": {
+    "aquario_substrato_cascalho": {
+      "slot": "substrato",
+      "area": "interna"
+    },
+    "aquario_substrato_areia": {
+      "slot": "substrato",
+      "area": "interna"
+    },
+    "aquario_substrato_jade": {
+      "slot": "substrato",
+      "area": "interna"
+    },
+    "aquario_plantas_elodeas": {
+      "slot": "plantas",
+      "area": "interna"
+    },
+    "aquario_plantas_samambaias": {
+      "slot": "plantas",
+      "area": "interna"
+    },
+    "aquario_plantas_lotus": {
+      "slot": "plantas",
+      "area": "interna"
+    },
+    "aquario_fundo_pedras": {
+      "slot": "fundo",
+      "area": "interna"
+    },
+    "aquario_fundo_algas": {
+      "slot": "fundo",
+      "area": "interna"
+    },
+    "aquario_fundo_ruinas": {
+      "slot": "fundo",
+      "area": "interna"
+    },
+    "aquario_ornamento_conchas": {
+      "slot": "ornamento",
+      "area": "interna"
+    },
+    "aquario_ornamento_bau": {
+      "slot": "ornamento",
+      "area": "interna"
+    },
+    "aquario_ornamento_coral": {
+      "slot": "ornamento",
+      "area": "interna"
+    },
+    "aquario_moldura_madeira": {
+      "slot": "moldura",
+      "area": "externa"
+    },
+    "aquario_moldura_cobre": {
+      "slot": "moldura",
+      "area": "externa"
+    },
+    "aquario_moldura_marmore": {
+      "slot": "moldura",
+      "area": "externa"
+    },
+    "aquario_base_carvalho": {
+      "slot": "base",
+      "area": "externa"
+    },
+    "aquario_base_navegador": {
+      "slot": "base",
+      "area": "externa"
+    },
+    "aquario_base_real": {
+      "slot": "base",
+      "area": "externa"
+    },
+    "aquario_luz_ambar": {
+      "slot": "luz",
+      "area": "externa"
+    },
+    "aquario_luz_safira": {
+      "slot": "luz",
+      "area": "externa"
+    },
+    "aquario_luz_aurora": {
+      "slot": "luz",
+      "area": "externa"
+    }
+  },
+  "decoration_slots": [
+    "substrato",
+    "plantas",
+    "fundo",
+    "ornamento",
+    "moldura",
+    "base",
+    "luz"
+  ],
+  "measured_species": [
+    "lambari",
+    "tilapia_do_nilo",
+    "carpa_comum",
+    "traira"
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "reference_sha": "9d5d7831752b79f5578007bb51b255329c15cfd0",
+  "catalogue": [
+    {
+      "id": "aquario_substrato_cascalho",
+      "slot": "substrato",
+      "area": "interna",
+      "style": "cascalho",
+      "nome": "Cascalho do rio",
+      "price": 150,
+      "description": "Pedrinhas em tons de areia, com granulação irregular."
+    },
+    {
+      "id": "aquario_plantas_elodeas",
+      "slot": "plantas",
+      "area": "interna",
+      "style": "elodeas",
+      "nome": "Ramos de elódea",
+      "price": 250,
+      "description": "Ramos verdes nas laterais, deixando o centro livre."
+    },
+    {
+      "id": "aquario_ornamento_conchas",
+      "slot": "ornamento",
+      "area": "interna",
+      "style": "conchas",
+      "nome": "Conchas polidas",
+      "price": 300,
+      "description": "Um conjunto de conchas claras junto ao substrato."
+    },
+    {
+      "id": "aquario_fundo_pedras",
+      "slot": "fundo",
+      "area": "interna",
+      "style": "pedras",
+      "nome": "Painel de pedras",
+      "price": 350,
+      "description": "Rochas azuladas discretas ao fundo do tanque."
+    },
+    {
+      "id": "aquario_substrato_areia",
+      "slot": "substrato",
+      "area": "interna",
+      "style": "areia",
+      "nome": "Areia clara",
+      "price": 400,
+      "description": "Fundo claro com pequenas conchas e reflexos suaves."
+    },
+    {
+      "id": "aquario_moldura_madeira",
+      "slot": "moldura",
+      "area": "externa",
+      "style": "madeira",
+      "nome": "Madeira de deriva",
+      "price": 400,
+      "description": "Bordas de madeira clara, com veios aparentes."
+    },
+    {
+      "id": "aquario_base_carvalho",
+      "slot": "base",
+      "area": "externa",
+      "style": "carvalho",
+      "nome": "Bancada de carvalho",
+      "price": 600,
+      "description": "Madeira de tom quente e painéis entalhados."
+    },
+    {
+      "id": "aquario_plantas_samambaias",
+      "slot": "plantas",
+      "area": "interna",
+      "style": "samambaias",
+      "nome": "Samambaias aquáticas",
+      "price": 650,
+      "description": "Folhas largas em dois pequenos jardins laterais."
+    },
+    {
+      "id": "aquario_luz_ambar",
+      "slot": "luz",
+      "area": "externa",
+      "style": "ambar",
+      "nome": "Luz âmbar",
+      "price": 700,
+      "description": "Luminárias de cobre e fachos quentes suaves."
+    },
+    {
+      "id": "aquario_substrato_jade",
+      "slot": "substrato",
+      "area": "interna",
+      "style": "jade",
+      "nome": "Seixos de jade",
+      "price": 1000,
+      "description": "Seixos verdes polidos espalhados pelo fundo."
+    },
+    {
+      "id": "aquario_fundo_algas",
+      "slot": "fundo",
+      "area": "interna",
+      "style": "algas",
+      "nome": "Floresta de algas",
+      "price": 1200,
+      "description": "Silhuetas de algas sobre o azul profundo."
+    },
+    {
+      "id": "aquario_moldura_cobre",
+      "slot": "moldura",
+      "area": "externa",
+      "style": "cobre",
+      "nome": "Cobre envelhecido",
+      "price": 1400,
+      "description": "Acabamento cobre com rebites e pequenas pátinas."
+    },
+    {
+      "id": "aquario_ornamento_bau",
+      "slot": "ornamento",
+      "area": "interna",
+      "style": "bau",
+      "nome": "Baú do explorador",
+      "price": 1500,
+      "description": "Baú de madeira com ferragens e moedas decorativas."
+    },
+    {
+      "id": "aquario_plantas_lotus",
+      "slot": "plantas",
+      "area": "interna",
+      "style": "lotus",
+      "nome": "Jardim de lótus",
+      "price": 1800,
+      "description": "Folhas arredondadas e flores rosadas nas bordas."
+    },
+    {
+      "id": "aquario_luz_safira",
+      "slot": "luz",
+      "area": "externa",
+      "style": "safira",
+      "nome": "Luz de safira",
+      "price": 2000,
+      "description": "Luminárias prateadas e fachos azulados discretos."
+    },
+    {
+      "id": "aquario_base_navegador",
+      "slot": "base",
+      "area": "externa",
+      "style": "navegador",
+      "nome": "Estante do navegador",
+      "price": 2200,
+      "description": "Uma estante com livros e objetos de navegação."
+    },
+    {
+      "id": "aquario_fundo_ruinas",
+      "slot": "fundo",
+      "area": "interna",
+      "style": "ruinas",
+      "nome": "Ruínas submersas",
+      "price": 3200,
+      "description": "Colunas e um arco antigo por trás dos moradores."
+    },
+    {
+      "id": "aquario_moldura_marmore",
+      "slot": "moldura",
+      "area": "externa",
+      "style": "marmore",
+      "nome": "Mármore azul",
+      "price": 3500,
+      "description": "Moldura azulada com veios claros e detalhes prateados."
+    },
+    {
+      "id": "aquario_ornamento_coral",
+      "slot": "ornamento",
+      "area": "interna",
+      "style": "coral",
+      "nome": "Portal de coral",
+      "price": 4500,
+      "description": "Arco de coral rosado junto a pequenas ramificações."
+    },
+    {
+      "id": "aquario_luz_aurora",
+      "slot": "luz",
+      "area": "externa",
+      "style": "aurora",
+      "nome": "Aurora boreal",
+      "price": 5500,
+      "description": "Três luminárias com fachos verdes, lilases e azuis."
+    },
+    {
+      "id": "aquario_base_real",
+      "slot": "base",
+      "area": "externa",
+      "style": "real",
+      "nome": "Pedestal real",
+      "price": 6000,
+      "description": "Base azul-escura com guarnições douradas."
+    }
+  ],
+  "current_shop": {
+    "count": 84,
+    "minimum": 100,
+    "maximum": 25000
+  },
+  "equipment": {
+    "first_level_total": 60,
+    "complete_one_equipment": 9450
+  },
+  "decoration_total": 37600,
+  "contexts": [
+    {
+      "rod": 0,
+      "boat": 0,
+      "periods": [
+        {
+          "period": "amanhecer",
+          "coins_per_cast": 4.833882352941176,
+          "reference_coins_per_hour": 1054.665240641711
+        },
+        {
+          "period": "manha",
+          "coins_per_cast": 3.364923076923077,
+          "reference_coins_per_hour": 734.165034965035
+        },
+        {
+          "period": "dia",
+          "coins_per_cast": 3.364923076923077,
+          "reference_coins_per_hour": 734.165034965035
+        },
+        {
+          "period": "meio_dia",
+          "coins_per_cast": 4.6593488372093015,
+          "reference_coins_per_hour": 1016.5852008456659
+        },
+        {
+          "period": "tarde",
+          "coins_per_cast": 4.6593488372093015,
+          "reference_coins_per_hour": 1016.5852008456659
+        },
+        {
+          "period": "anoitecer",
+          "coins_per_cast": 4.833882352941176,
+          "reference_coins_per_hour": 1054.665240641711
+        },
+        {
+          "period": "noite",
+          "coins_per_cast": 7.154526315789473,
+          "reference_coins_per_hour": 1560.9875598086123
+        }
+      ]
+    },
+    {
+      "rod": 3,
+      "boat": 3,
+      "periods": [
+        {
+          "period": "amanhecer",
+          "coins_per_cast": 9.198837988826817,
+          "reference_coins_per_hour": 2795.8040350320807
+        },
+        {
+          "period": "manha",
+          "coins_per_cast": 5.383876923076922,
+          "reference_coins_per_hour": 1636.3224185421561
+        },
+        {
+          "period": "dia",
+          "coins_per_cast": 5.383876923076922,
+          "reference_coins_per_hour": 1636.3224185421561
+        },
+        {
+          "period": "meio_dia",
+          "coins_per_cast": 8.266285714285715,
+          "reference_coins_per_hour": 2512.3733000623834
+        },
+        {
+          "period": "tarde",
+          "coins_per_cast": 8.266285714285715,
+          "reference_coins_per_hour": 2512.3733000623834
+        },
+        {
+          "period": "anoitecer",
+          "coins_per_cast": 9.198837988826817,
+          "reference_coins_per_hour": 2795.8040350320807
+        },
+        {
+          "period": "noite",
+          "coins_per_cast": 13.912615384615384,
+          "reference_coins_per_hour": 4228.463016459523
+        }
+      ]
+    },
+    {
+      "rod": 10,
+      "boat": 10,
+      "periods": [
+        {
+          "period": "amanhecer",
+          "coins_per_cast": 22.6944,
+          "reference_coins_per_hour": 10893.312000000002
+        },
+        {
+          "period": "manha",
+          "coins_per_cast": 10.094769230769229,
+          "reference_coins_per_hour": 4845.48923076923
+        },
+        {
+          "period": "dia",
+          "coins_per_cast": 10.094769230769229,
+          "reference_coins_per_hour": 4845.48923076923
+        },
+        {
+          "period": "meio_dia",
+          "coins_per_cast": 18.614204081632653,
+          "reference_coins_per_hour": 8934.817959183674
+        },
+        {
+          "period": "tarde",
+          "coins_per_cast": 18.614204081632653,
+          "reference_coins_per_hour": 8934.817959183674
+        },
+        {
+          "period": "anoitecer",
+          "coins_per_cast": 22.6944,
+          "reference_coins_per_hour": 10893.312000000002
+        },
+        {
+          "period": "noite",
+          "coins_per_cast": 34.28352,
+          "reference_coins_per_hour": 16456.0896
+        }
+      ]
+    }
+  ],
+  "method": "Analytical mean using real probabilities/reward and fixed map/period/equipment. No fishing, purchases, save or progression simulation.",
+  "capture_scope": "Actual Qt widgets, synthetic in-memory discovery/balance/owned fixtures. No automated interaction tests or persistence tests."
+}

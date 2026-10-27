@@ -72,6 +72,18 @@ class DevAccess:
             encyclopedia.show()
             encyclopedia.grab().save(str(output / "enciclopedia-executavel.png"))
             encyclopedia.accept()
+            from pesca_catalogo import LOCAIS
+            from pesca_viagens_ui import ViajarDialog,ExpedicaoDialog
+            from pesca_especies_visual import species_image
+            for map_id in LOCAIS:
+                image,_=game._render.render(game,map_id=map_id)
+                if image.isNull():raise RuntimeError('Mapa empacotado ausente: '+map_id)
+                image.save(str(output/(map_id+'-executavel.png')))
+            for cls,name in ((ViajarDialog,'viajar'),(ExpedicaoDialog,'expedicao')):
+                dialog=cls(game);dialog.setAttribute(Qt.WA_DontShowOnScreen,True)
+                dialog.show();dialog.grab().save(str(output/(name+'-executavel.png')))
+                dialog.accept();dialog.deleteLater()
+            game.salvar()
 
             (output / "resultado.json").write_text(json.dumps({
                 "assets": not game._render.background.isNull(),
@@ -86,6 +98,11 @@ class DevAccess:
                 "clock_source": "device_local",
                 "clock_position": current.position,
                 "clock_label": current.label,
+                "maps": len(LOCAIS),
+                "schema": game.estado['schema_version'],
+                "legacy_inventory": game.estado['inventario_por_id'].get('lambari',0),
+                "migration_backup": Path(self.environ['PESCA_IDLE_SAVE_PATH']).with_name('save.pre-expansao-v1.json').exists(),
+                "species_icons": species_image.cache_info().maxsize,
                 "light_plates": len(game._render.lighting.frames),
                 "animated_pets": sum(
                     game._render.pet(item, 0) != game._render.pet(item, 1)

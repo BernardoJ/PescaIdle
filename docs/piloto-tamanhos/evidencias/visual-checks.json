@@ -1,0 +1,63 @@
+{
+  "lambari": {
+    "scales": [
+      0.55,
+      0.9,
+      1.2
+    ],
+    "range_mm": [
+      40,
+      180
+    ]
+  },
+  "tilapia_do_nilo": {
+    "scales": [
+      0.55,
+      0.9,
+      1.2
+    ],
+    "range_mm": [
+      120,
+      600
+    ]
+  },
+  "carpa_comum": {
+    "scales": [
+      0.55,
+      0.9,
+      1.2
+    ],
+    "range_mm": [
+      180,
+      1100
+    ]
+  },
+  "traira": {
+    "scales": [
+      0.55,
+      0.9,
+      1.2
+    ],
+    "range_mm": [
+      100,
+      800
+    ]
+  },
+  "qt_input": {
+    "key_end_selected_smaller": true,
+    "mouse_click_removed_slot": true,
+    "kind": "QTest-injected events, not direct callback calls or physical OS input"
+  },
+  "filters": {
+    "local_period_now_valid": true,
+    "count_order_valid": true,
+    "kind": "programmatic widget selections"
+  },
+  "mobile_capture_sprite_regions_distinct": true,
+  "geometry_checks": 1800,
+  "cache_original_unchanged": true,
+  "native_qt_platform": "windows",
+  "android_native_test": false,
+  "viewport_mobile_only": true,
+  "frames_checked": 600
+}

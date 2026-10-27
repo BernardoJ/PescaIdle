@@ -1,0 +1,1859 @@
+{
+  "distribution": {
+    "lambari": {
+      "rule": {
+        "min_mm": 40,
+        "typical_mm": 90,
+        "max_mm": 180,
+        "version": 1,
+        "small_cut_mm": 58,
+        "large_cut_mm": 155
+      },
+      "samples": 100000,
+      "small": 4875,
+      "large": 5053,
+      "small_probability_exact": 0.04889285714285714,
+      "large_probability_exact": 0.05160714285714285
+    },
+    "tilapia_do_nilo": {
+      "rule": {
+        "min_mm": 120,
+        "typical_mm": 300,
+        "max_mm": 600,
+        "version": 1,
+        "small_cut_mm": 185,
+        "large_cut_mm": 516
+      },
+      "samples": 100000,
+      "small": 4953,
+      "large": 4866,
+      "small_probability_exact": 0.0496556712962963,
+      "large_probability_exact": 0.04958506944444441
+    },
+    "carpa_comum": {
+      "rule": {
+        "min_mm": 180,
+        "typical_mm": 500,
+        "max_mm": 1100,
+        "version": 1,
+        "small_cut_mm": 301,
+        "large_cut_mm": 934
+      },
+      "samples": 100000,
+      "small": 5006,
+      "large": 4921,
+      "small_probability_exact": 0.05014351222826087,
+      "large_probability_exact": 0.0502214673913044
+    },
+    "traira": {
+      "rule": {
+        "min_mm": 100,
+        "typical_mm": 350,
+        "max_mm": 800,
+        "version": 1,
+        "small_cut_mm": 193,
+        "large_cut_mm": 675
+      },
+      "samples": 100000,
+      "small": 4978,
+      "large": 4906,
+      "small_probability_exact": 0.049955714285714284,
+      "large_probability_exact": 0.050000793650793685
+    }
+  },
+  "effort": [
+    {
+      "seed": 0,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 19.944218515250483,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 71.60066742759275,
+          "measured_catches": 4
+        },
+        "med_diminuto": {
+          "seconds": 195.25094484466163,
+          "measured_catches": 9
+        },
+        "med_div_pequenos": {
+          "seconds": 1633.6228030715881,
+          "measured_catches": 68
+        },
+        "med_div_grandes": {
+          "seconds": 3130.7678331434945,
+          "measured_catches": 135
+        }
+      },
+      "measured_catches": 623
+    },
+    {
+      "seed": 0,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 19.944218515250483,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 71.60066742759275,
+          "measured_catches": 4
+        },
+        "med_diminuto": {
+          "seconds": 195.25094484466163,
+          "measured_catches": 9
+        },
+        "med_div_grandes": {
+          "seconds": 1256.2287328847062,
+          "measured_catches": 60
+        },
+        "med_div_pequenos": {
+          "seconds": 1553.4911361352001,
+          "measured_catches": 74
+        }
+      },
+      "measured_catches": 731
+    },
+    {
+      "seed": 1,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 12.843642441124013,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 133.8245889011057,
+          "measured_catches": 6
+        },
+        "med_diminuto": {
+          "seconds": 200.77243592764478,
+          "measured_catches": 8
+        },
+        "med_div_grandes": {
+          "seconds": 1155.0599248944989,
+          "measured_catches": 55
+        },
+        "med_div_pequenos": {
+          "seconds": 2942.046151609434,
+          "measured_catches": 125
+        }
+      },
+      "measured_catches": 642
+    },
+    {
+      "seed": 1,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 12.843642441124013,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 133.8245889011057,
+          "measured_catches": 6
+        },
+        "med_diminuto": {
+          "seconds": 200.77243592764478,
+          "measured_catches": 8
+        },
+        "med_div_pequenos": {
+          "seconds": 856.9430016979438,
+          "measured_catches": 42
+        },
+        "med_div_grandes": {
+          "seconds": 1155.0599248944989,
+          "measured_catches": 60
+        }
+      },
+      "measured_catches": 747
+    },
+    {
+      "seed": 2,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 33.12585639616058,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 877.919338691187,
+          "measured_catches": 37
+        },
+        "med_excepcional": {
+          "seconds": 1232.6164809539923,
+          "measured_catches": 56
+        },
+        "med_div_pequenos": {
+          "seconds": 2270.0561328446397,
+          "measured_catches": 105
+        },
+        "med_div_grandes": {
+          "seconds": 3697.9210994267805,
+          "measured_catches": 166
+        }
+      },
+      "measured_catches": 639
+    },
+    {
+      "seed": 2,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 33.12585639616058,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 877.919338691187,
+          "measured_catches": 41
+        },
+        "med_excepcional": {
+          "seconds": 1232.6164809539923,
+          "measured_catches": 62
+        },
+        "med_div_pequenos": {
+          "seconds": 2270.0561328446397,
+          "measured_catches": 117
+        },
+        "med_div_grandes": {
+          "seconds": 5229.50000671112,
+          "measured_catches": 271
+        }
+      },
+      "measured_catches": 761
+    },
+    {
+      "seed": 3,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.879646270918913,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 203.6502012128482,
+          "measured_catches": 11
+        },
+        "med_excepcional": {
+          "seconds": 640.5590793233505,
+          "measured_catches": 27
+        },
+        "med_div_grandes": {
+          "seconds": 1047.1220497569234,
+          "measured_catches": 45
+        },
+        "med_div_pequenos": {
+          "seconds": 5761.609556105691,
+          "measured_catches": 270
+        }
+      },
+      "measured_catches": 658
+    },
+    {
+      "seed": 3,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.879646270918913,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 203.6502012128482,
+          "measured_catches": 12
+        },
+        "med_excepcional": {
+          "seconds": 291.0973182945723,
+          "measured_catches": 15
+        },
+        "med_div_grandes": {
+          "seconds": 1029.3486386668137,
+          "measured_catches": 47
+        },
+        "med_div_pequenos": {
+          "seconds": 1547.955915064515,
+          "measured_catches": 76
+        }
+      },
+      "measured_catches": 749
+    },
+    {
+      "seed": 4,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.860480897374345,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 98.18419081795676,
+          "measured_catches": 6
+        },
+        "med_diminuto": {
+          "seconds": 606.8239165228033,
+          "measured_catches": 32
+        },
+        "med_div_pequenos": {
+          "seconds": 2097.3470684640292,
+          "measured_catches": 95
+        },
+        "med_div_grandes": {
+          "seconds": 4272.157805345891,
+          "measured_catches": 176
+        }
+      },
+      "measured_catches": 635
+    },
+    {
+      "seed": 4,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.860480897374345,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 98.18419081795676,
+          "measured_catches": 6
+        },
+        "med_diminuto": {
+          "seconds": 289.26629259436146,
+          "measured_catches": 16
+        },
+        "med_div_pequenos": {
+          "seconds": 1721.2425747383063,
+          "measured_catches": 88
+        },
+        "med_div_grandes": {
+          "seconds": 3894.5429029863935,
+          "measured_catches": 191
+        }
+      },
+      "measured_catches": 747
+    },
+    {
+      "seed": 5,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 17.72901694889702,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 397.3660276676348,
+          "measured_catches": 14
+        },
+        "med_excepcional": {
+          "seconds": 755.0709023593412,
+          "measured_catches": 29
+        },
+        "med_div_pequenos": {
+          "seconds": 1048.81279817895,
+          "measured_catches": 44
+        },
+        "med_div_grandes": {
+          "seconds": 2278.7921944749837,
+          "measured_catches": 97
+        }
+      },
+      "measured_catches": 660
+    },
+    {
+      "seed": 5,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 17.72901694889702,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 397.3660276676348,
+          "measured_catches": 18
+        },
+        "med_excepcional": {
+          "seconds": 755.0709023593412,
+          "measured_catches": 35
+        },
+        "med_div_pequenos": {
+          "seconds": 853.2253787063514,
+          "measured_catches": 40
+        },
+        "med_div_grandes": {
+          "seconds": 2278.7921944749837,
+          "measured_catches": 114
+        }
+      },
+      "measured_catches": 756
+    },
+    {
+      "seed": 6,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 19.43340083761663,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 720.8736826889534,
+          "measured_catches": 28
+        },
+        "med_excepcional": {
+          "seconds": 3794.695650897598,
+          "measured_catches": 169
+        },
+        "med_div_pequenos": {
+          "seconds": 5584.759511769087,
+          "measured_catches": 247
+        },
+        "med_div_grandes": {
+          "seconds": 8024.893727934129,
+          "measured_catches": 353
+        }
+      },
+      "measured_catches": 627
+    },
+    {
+      "seed": 6,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 19.43340083761663,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 720.8736826889534,
+          "measured_catches": 37
+        },
+        "med_excepcional": {
+          "seconds": 1909.6455283489036,
+          "measured_catches": 99
+        },
+        "med_div_pequenos": {
+          "seconds": 2145.562915673361,
+          "measured_catches": 111
+        },
+        "med_div_grandes": {
+          "seconds": 4002.839907512095,
+          "measured_catches": 207
+        }
+      },
+      "measured_catches": 747
+    },
+    {
+      "seed": 7,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 14.738327648331623,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 14.738327648331623,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 101.5051843811353,
+          "measured_catches": 7
+        },
+        "med_div_pequenos": {
+          "seconds": 1977.0919200362525,
+          "measured_catches": 89
+        },
+        "med_div_grandes": {
+          "seconds": 8915.974788674012,
+          "measured_catches": 397
+        }
+      },
+      "measured_catches": 640
+    },
+    {
+      "seed": 7,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 14.738327648331623,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 14.738327648331623,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 170.55111675879184,
+          "measured_catches": 10
+        },
+        "med_div_pequenos": {
+          "seconds": 1977.0919200362525,
+          "measured_catches": 108
+        },
+        "med_div_grandes": {
+          "seconds": 2235.749561201184,
+          "measured_catches": 121
+        }
+      },
+      "measured_catches": 748
+    },
+    {
+      "seed": 8,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 26.530367580319087,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 78.29219000317347,
+          "measured_catches": 4
+        },
+        "med_excepcional": {
+          "seconds": 985.9132871196482,
+          "measured_catches": 45
+        },
+        "med_div_pequenos": {
+          "seconds": 1668.740526090873,
+          "measured_catches": 76
+        },
+        "med_div_grandes": {
+          "seconds": 2584.329756370784,
+          "measured_catches": 115
+        }
+      },
+      "measured_catches": 633
+    },
+    {
+      "seed": 8,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 26.530367580319087,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 78.29219000317347,
+          "measured_catches": 4
+        },
+        "med_excepcional": {
+          "seconds": 219.07967595287514,
+          "measured_catches": 12
+        },
+        "med_div_grandes": {
+          "seconds": 2509.4034626160765,
+          "measured_catches": 126
+        },
+        "med_div_pequenos": {
+          "seconds": 3006.1672340094483,
+          "measured_catches": 150
+        }
+      },
+      "measured_catches": 744
+    },
+    {
+      "seed": 9,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.130073578150213,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 61.062797944425384,
+          "measured_catches": 3
+        },
+        "med_diminuto": {
+          "seconds": 141.18003991448126,
+          "measured_catches": 8
+        },
+        "med_div_grandes": {
+          "seconds": 1477.419960584149,
+          "measured_catches": 71
+        },
+        "med_div_pequenos": {
+          "seconds": 5501.7048442573405,
+          "measured_catches": 261
+        }
+      },
+      "measured_catches": 655
+    },
+    {
+      "seed": 9,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.130073578150213,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 29.015467703294767,
+          "measured_catches": 2
+        },
+        "med_diminuto": {
+          "seconds": 141.18003991448126,
+          "measured_catches": 9
+        },
+        "med_div_grandes": {
+          "seconds": 190.48366345105669,
+          "measured_catches": 11
+        },
+        "med_div_pequenos": {
+          "seconds": 1744.769924903491,
+          "measured_catches": 90
+        }
+      },
+      "measured_catches": 758
+    },
+    {
+      "seed": 10,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 17.214025946899135,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 72.16287681082879,
+          "measured_catches": 4
+        },
+        "med_diminuto": {
+          "seconds": 248.14822280033732,
+          "measured_catches": 11
+        },
+        "med_div_grandes": {
+          "seconds": 1303.3148253365346,
+          "measured_catches": 60
+        },
+        "med_div_pequenos": {
+          "seconds": 3133.774431484708,
+          "measured_catches": 144
+        }
+      },
+      "measured_catches": 637
+    },
+    {
+      "seed": 10,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 17.214025946899135,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 72.16287681082879,
+          "measured_catches": 4
+        },
+        "med_diminuto": {
+          "seconds": 248.14822280033732,
+          "measured_catches": 12
+        },
+        "med_div_grandes": {
+          "seconds": 1028.0062686436172,
+          "measured_catches": 56
+        },
+        "med_div_pequenos": {
+          "seconds": 2853.0445385057515,
+          "measured_catches": 150
+        }
+      },
+      "measured_catches": 756
+    },
+    {
+      "seed": 11,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.023795535098188,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 471.40525996054,
+          "measured_catches": 23
+        },
+        "med_excepcional": {
+          "seconds": 549.1128729292983,
+          "measured_catches": 28
+        },
+        "med_div_pequenos": {
+          "seconds": 2717.347865200646,
+          "measured_catches": 118
+        },
+        "med_div_grandes": {
+          "seconds": 4014.2122777005666,
+          "measured_catches": 177
+        }
+      },
+      "measured_catches": 658
+    },
+    {
+      "seed": 11,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.023795535098188,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 109.33768468388554,
+          "measured_catches": 7
+        },
+        "med_excepcional": {
+          "seconds": 549.1128729292983,
+          "measured_catches": 30
+        },
+        "med_div_grandes": {
+          "seconds": 1208.8051106811827,
+          "measured_catches": 68
+        },
+        "med_div_pequenos": {
+          "seconds": 1298.344389632772,
+          "measured_catches": 71
+        }
+      },
+      "measured_catches": 753
+    },
+    {
+      "seed": 12,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 34.40981149813386,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 338.85511416168083,
+          "measured_catches": 15
+        },
+        "med_diminuto": {
+          "seconds": 1133.105383842886,
+          "measured_catches": 42
+        },
+        "med_div_grandes": {
+          "seconds": 3027.640440767124,
+          "measured_catches": 132
+        },
+        "med_div_pequenos": {
+          "seconds": 8104.703580414891,
+          "measured_catches": 354
+        }
+      },
+      "measured_catches": 640
+    },
+    {
+      "seed": 12,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.24570678688548,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 16.24570678688548,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 338.85511416168083,
+          "measured_catches": 18
+        },
+        "med_div_pequenos": {
+          "seconds": 1302.3269958236717,
+          "measured_catches": 63
+        },
+        "med_div_grandes": {
+          "seconds": 3027.640440767124,
+          "measured_catches": 159
+        }
+      },
+      "measured_catches": 756
+    },
+    {
+      "seed": 13,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 32.43090409731584,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 32.43090409731584,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 128.7362612010019,
+          "measured_catches": 7
+        },
+        "med_div_pequenos": {
+          "seconds": 2289.0082887762383,
+          "measured_catches": 114
+        },
+        "med_div_grandes": {
+          "seconds": 3352.8179409836275,
+          "measured_catches": 167
+        }
+      },
+      "measured_catches": 653
+    },
+    {
+      "seed": 13,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 14.090084917154735,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 128.7362612010019,
+          "measured_catches": 8
+        },
+        "med_diminuto": {
+          "seconds": 977.7160309554334,
+          "measured_catches": 59
+        },
+        "med_div_grandes": {
+          "seconds": 1150.539255656516,
+          "measured_catches": 69
+        },
+        "med_div_pequenos": {
+          "seconds": 2233.0798637284843,
+          "measured_catches": 125
+        }
+      },
+      "measured_catches": 746
+    },
+    {
+      "seed": 14,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 44.799857845762546,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 768.3396509288583,
+          "measured_catches": 35
+        },
+        "med_diminuto": {
+          "seconds": 884.7956603925229,
+          "measured_catches": 42
+        },
+        "med_div_pequenos": {
+          "seconds": 2168.8281500804214,
+          "measured_catches": 91
+        },
+        "med_div_grandes": {
+          "seconds": 3872.2651751832323,
+          "measured_catches": 164
+        }
+      },
+      "measured_catches": 631
+    },
+    {
+      "seed": 14,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 12.568285377016556,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 310.00081997710157,
+          "measured_catches": 18
+        },
+        "med_diminuto": {
+          "seconds": 884.7956603925229,
+          "measured_catches": 50
+        },
+        "med_div_pequenos": {
+          "seconds": 1360.375008426016,
+          "measured_catches": 76
+        },
+        "med_div_grandes": {
+          "seconds": 2534.800310368132,
+          "measured_catches": 136
+        }
+      },
+      "measured_catches": 737
+    },
+    {
+      "seed": 15,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 40.01233761348999,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 384.68938917156737,
+          "measured_catches": 13
+        },
+        "med_diminuto": {
+          "seconds": 996.4495493349066,
+          "measured_catches": 41
+        },
+        "med_div_grandes": {
+          "seconds": 2044.4001281295664,
+          "measured_catches": 87
+        },
+        "med_div_pequenos": {
+          "seconds": 7836.255459046496,
+          "measured_catches": 348
+        }
+      },
+      "measured_catches": 638
+    },
+    {
+      "seed": 15,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 40.01233761348999,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 384.68938917156737,
+          "measured_catches": 15
+        },
+        "med_diminuto": {
+          "seconds": 996.4495493349066,
+          "measured_catches": 47
+        },
+        "med_div_grandes": {
+          "seconds": 2044.4001281295664,
+          "measured_catches": 102
+        },
+        "med_div_pequenos": {
+          "seconds": 5027.050001553289,
+          "measured_catches": 258
+        }
+      },
+      "measured_catches": 742
+    },
+    {
+      "seed": 16,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 15.11522774914075,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 500.06809744259573,
+          "measured_catches": 23
+        },
+        "med_diminuto": {
+          "seconds": 667.7371999440837,
+          "measured_catches": 32
+        },
+        "med_div_pequenos": {
+          "seconds": 3142.6075384446276,
+          "measured_catches": 146
+        },
+        "med_div_grandes": {
+          "seconds": 4914.146604721743,
+          "measured_catches": 226
+        }
+      },
+      "measured_catches": 622
+    },
+    {
+      "seed": 16,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 15.11522774914075,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 500.06809744259573,
+          "measured_catches": 28
+        },
+        "med_diminuto": {
+          "seconds": 667.7371999440837,
+          "measured_catches": 37
+        },
+        "med_div_pequenos": {
+          "seconds": 3142.6075384446276,
+          "measured_catches": 163
+        },
+        "med_div_grandes": {
+          "seconds": 3271.211643107209,
+          "measured_catches": 170
+        }
+      },
+      "measured_catches": 742
+    },
+    {
+      "seed": 17,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.719839097124932,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 169.95015361874638,
+          "measured_catches": 7
+        },
+        "med_div_grandes": {
+          "seconds": 511.8277904256864,
+          "measured_catches": 21
+        },
+        "med_diminuto": {
+          "seconds": 1166.6963130166369,
+          "measured_catches": 51
+        },
+        "med_div_pequenos": {
+          "seconds": 8036.157039499641,
+          "measured_catches": 368
+        }
+      },
+      "measured_catches": 657
+    },
+    {
+      "seed": 17,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.719839097124932,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 478.367638798176,
+          "measured_catches": 22
+        },
+        "med_diminuto": {
+          "seconds": 1166.6963130166369,
+          "measured_catches": 57
+        },
+        "med_div_grandes": {
+          "seconds": 1531.3522364464254,
+          "measured_catches": 79
+        },
+        "med_div_pequenos": {
+          "seconds": 3052.98076654318,
+          "measured_catches": 160
+        }
+      },
+      "measured_catches": 744
+    },
+    {
+      "seed": 18,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 28.158245665007215,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 44.55339905548837,
+          "measured_catches": 2
+        },
+        "med_diminuto": {
+          "seconds": 659.7169894607748,
+          "measured_catches": 30
+        },
+        "med_div_grandes": {
+          "seconds": 2976.912006233919,
+          "measured_catches": 135
+        },
+        "med_div_pequenos": {
+          "seconds": 4785.282538877016,
+          "measured_catches": 219
+        }
+      },
+      "measured_catches": 661
+    },
+    {
+      "seed": 18,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.312648633332213,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 44.55339905548837,
+          "measured_catches": 3
+        },
+        "med_diminuto": {
+          "seconds": 659.7169894607748,
+          "measured_catches": 37
+        },
+        "med_div_pequenos": {
+          "seconds": 2976.912006233919,
+          "measured_catches": 157
+        },
+        "med_div_grandes": {
+          "seconds": 4716.192884851729,
+          "measured_catches": 248
+        }
+      },
+      "measured_catches": 758
+    },
+    {
+      "seed": 19,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.271258268002704,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 18.271258268002704,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 232.4676135440456,
+          "measured_catches": 14
+        },
+        "med_div_grandes": {
+          "seconds": 2394.05570259748,
+          "measured_catches": 117
+        },
+        "med_div_pequenos": {
+          "seconds": 2933.8779895636344,
+          "measured_catches": 139
+        }
+      },
+      "measured_catches": 663
+    },
+    {
+      "seed": 19,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.271258268002704,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 18.271258268002704,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 232.4676135440456,
+          "measured_catches": 14
+        },
+        "med_div_grandes": {
+          "seconds": 2394.05570259748,
+          "measured_catches": 129
+        },
+        "med_div_pequenos": {
+          "seconds": 2933.8779895636344,
+          "measured_catches": 155
+        }
+      },
+      "measured_catches": 763
+    },
+    {
+      "seed": 20,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 91.59862743941842,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 369.3013158143151,
+          "measured_catches": 14
+        },
+        "med_diminuto": {
+          "seconds": 1573.2219070394099,
+          "measured_catches": 68
+        },
+        "med_div_grandes": {
+          "seconds": 4792.204846048586,
+          "measured_catches": 210
+        },
+        "med_div_pequenos": {
+          "seconds": 5951.194194568951,
+          "measured_catches": 258
+        }
+      },
+      "measured_catches": 642
+    },
+    {
+      "seed": 20,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 20.556396761745205,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 74.3692207469262,
+          "measured_catches": 3
+        },
+        "med_div_grandes": {
+          "seconds": 687.0913614005774,
+          "measured_catches": 35
+        },
+        "med_diminuto": {
+          "seconds": 1573.2219070394099,
+          "measured_catches": 83
+        },
+        "med_div_pequenos": {
+          "seconds": 4879.6503411720605,
+          "measured_catches": 258
+        }
+      },
+      "measured_catches": 750
+    },
+    {
+      "seed": 21,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 30.999494202379186,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 44.659637681318216,
+          "measured_catches": 2
+        },
+        "med_div_grandes": {
+          "seconds": 554.3256702362655,
+          "measured_catches": 27
+        },
+        "med_diminuto": {
+          "seconds": 1283.509328287921,
+          "measured_catches": 61
+        },
+        "med_div_pequenos": {
+          "seconds": 3696.1266563023437,
+          "measured_catches": 174
+        }
+      },
+      "measured_catches": 658
+    },
+    {
+      "seed": 21,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 13.149494798331979,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 44.659637681318216,
+          "measured_catches": 3
+        },
+        "med_div_grandes": {
+          "seconds": 554.3256702362655,
+          "measured_catches": 30
+        },
+        "med_diminuto": {
+          "seconds": 1283.509328287921,
+          "measured_catches": 66
+        },
+        "med_div_pequenos": {
+          "seconds": 2599.1329738220684,
+          "measured_catches": 137
+        }
+      },
+      "measured_catches": 751
+    },
+    {
+      "seed": 22,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 21.08209379817273,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 448.23072432162155,
+          "measured_catches": 19
+        },
+        "med_diminuto": {
+          "seconds": 891.2922482813943,
+          "measured_catches": 41
+        },
+        "med_div_grandes": {
+          "seconds": 2847.485748962966,
+          "measured_catches": 128
+        },
+        "med_div_pequenos": {
+          "seconds": 4421.90915702443,
+          "measured_catches": 207
+        }
+      },
+      "measured_catches": 643
+    },
+    {
+      "seed": 22,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 21.08209379817273,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 412.3283040405934,
+          "measured_catches": 19
+        },
+        "med_div_grandes": {
+          "seconds": 614.7830375169751,
+          "measured_catches": 29
+        },
+        "med_diminuto": {
+          "seconds": 891.2922482813943,
+          "measured_catches": 43
+        },
+        "med_div_pequenos": {
+          "seconds": 2103.2234838672794,
+          "measured_catches": 103
+        }
+      },
+      "measured_catches": 755
+    },
+    {
+      "seed": 23,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 41.17298595674525,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 75.39413832678267,
+          "measured_catches": 3
+        },
+        "med_excepcional": {
+          "seconds": 201.9987068154821,
+          "measured_catches": 11
+        },
+        "med_div_pequenos": {
+          "seconds": 1658.8815528323992,
+          "measured_catches": 78
+        },
+        "med_div_grandes": {
+          "seconds": 5175.59728771207,
+          "measured_catches": 243
+        }
+      },
+      "measured_catches": 662
+    },
+    {
+      "seed": 23,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 41.17298595674525,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 75.39413832678267,
+          "measured_catches": 3
+        },
+        "med_excepcional": {
+          "seconds": 201.9987068154821,
+          "measured_catches": 11
+        },
+        "med_div_grandes": {
+          "seconds": 835.4279094299185,
+          "measured_catches": 42
+        },
+        "med_div_pequenos": {
+          "seconds": 1658.8815528323992,
+          "measured_catches": 90
+        }
+      },
+      "measured_catches": 749
+    },
+    {
+      "seed": 24,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.623429878269185,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 18.623429878269185,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 956.4162367167149,
+          "measured_catches": 42
+        },
+        "med_div_pequenos": {
+          "seconds": 2473.5078060706055,
+          "measured_catches": 111
+        },
+        "med_div_grandes": {
+          "seconds": 3217.0680276693847,
+          "measured_catches": 138
+        }
+      },
+      "measured_catches": 637
+    },
+    {
+      "seed": 24,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.623429878269185,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 491.8528879067381,
+          "measured_catches": 23
+        },
+        "med_diminuto": {
+          "seconds": 956.4162367167149,
+          "measured_catches": 48
+        },
+        "med_div_pequenos": {
+          "seconds": 2473.5078060706055,
+          "measured_catches": 127
+        },
+        "med_div_grandes": {
+          "seconds": 5669.726866262658,
+          "measured_catches": 290
+        }
+      },
+      "measured_catches": 743
+    },
+    {
+      "seed": 25,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 35.20409041522628,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 129.7090527750941,
+          "measured_catches": 4
+        },
+        "med_excepcional": {
+          "seconds": 214.388696058799,
+          "measured_catches": 8
+        },
+        "med_div_grandes": {
+          "seconds": 1320.3949038822961,
+          "measured_catches": 64
+        },
+        "med_div_pequenos": {
+          "seconds": 1373.7151780314725,
+          "measured_catches": 67
+        }
+      },
+      "measured_catches": 628
+    },
+    {
+      "seed": 25,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 35.20409041522628,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 129.7090527750941,
+          "measured_catches": 6
+        },
+        "med_excepcional": {
+          "seconds": 214.388696058799,
+          "measured_catches": 10
+        },
+        "med_div_grandes": {
+          "seconds": 489.14600481917074,
+          "measured_catches": 28
+        },
+        "med_div_pequenos": {
+          "seconds": 1373.7151780314725,
+          "measured_catches": 76
+        }
+      },
+      "measured_catches": 731
+    },
+    {
+      "seed": 26,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.972912662232837,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 395.8014369894992,
+          "measured_catches": 19
+        },
+        "med_excepcional": {
+          "seconds": 540.1357928195954,
+          "measured_catches": 27
+        },
+        "med_div_pequenos": {
+          "seconds": 2280.8792321165433,
+          "measured_catches": 101
+        },
+        "med_div_grandes": {
+          "seconds": 3184.8451750470313,
+          "measured_catches": 144
+        }
+      },
+      "measured_catches": 645
+    },
+    {
+      "seed": 26,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 18.972912662232837,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 298.8295688215696,
+          "measured_catches": 14
+        },
+        "med_excepcional": {
+          "seconds": 540.1357928195954,
+          "measured_catches": 27
+        },
+        "med_div_pequenos": {
+          "seconds": 1427.3509240359078,
+          "measured_catches": 69
+        },
+        "med_div_grandes": {
+          "seconds": 4497.504212133967,
+          "measured_catches": 231
+        }
+      },
+      "measured_catches": 744
+    },
+    {
+      "seed": 27,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 39.05544222636951,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 51.20913458021451,
+          "measured_catches": 2
+        },
+        "med_excepcional": {
+          "seconds": 291.64540721422003,
+          "measured_catches": 11
+        },
+        "med_div_grandes": {
+          "seconds": 3779.1834588202955,
+          "measured_catches": 164
+        },
+        "med_div_pequenos": {
+          "seconds": 4164.268053006306,
+          "measured_catches": 181
+        }
+      },
+      "measured_catches": 643
+    },
+    {
+      "seed": 27,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 17.98497219978883,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 135.7286310866386,
+          "measured_catches": 7
+        },
+        "med_excepcional": {
+          "seconds": 291.64540721422003,
+          "measured_catches": 15
+        },
+        "med_div_grandes": {
+          "seconds": 1262.70372849903,
+          "measured_catches": 65
+        },
+        "med_div_pequenos": {
+          "seconds": 3478.6192836219925,
+          "measured_catches": 178
+        }
+      },
+      "measured_catches": 749
+    },
+    {
+      "seed": 28,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 12.62957170176163,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 42.927147797672454,
+          "measured_catches": 3
+        },
+        "med_excepcional": {
+          "seconds": 253.7356661918401,
+          "measured_catches": 10
+        },
+        "med_div_pequenos": {
+          "seconds": 2009.871433874424,
+          "measured_catches": 89
+        },
+        "med_div_grandes": {
+          "seconds": 12835.405378813366,
+          "measured_catches": 568
+        }
+      },
+      "measured_catches": 639
+    },
+    {
+      "seed": 28,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 12.62957170176163,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 42.927147797672454,
+          "measured_catches": 3
+        },
+        "med_excepcional": {
+          "seconds": 253.7356661918401,
+          "measured_catches": 13
+        },
+        "med_div_pequenos": {
+          "seconds": 825.4663846239318,
+          "measured_catches": 44
+        },
+        "med_div_grandes": {
+          "seconds": 6829.863779304882,
+          "measured_catches": 353
+        }
+      },
+      "measured_catches": 745
+    },
+    {
+      "seed": 29,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.98119053811699,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 36.92970142378327,
+          "measured_catches": 2
+        },
+        "med_diminuto": {
+          "seconds": 81.72541785800372,
+          "measured_catches": 4
+        },
+        "med_div_pequenos": {
+          "seconds": 249.71913747985116,
+          "measured_catches": 14
+        },
+        "med_div_grandes": {
+          "seconds": 2544.015342711469,
+          "measured_catches": 112
+        }
+      },
+      "measured_catches": 631
+    },
+    {
+      "seed": 29,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.98119053811699,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 36.92970142378327,
+          "measured_catches": 2
+        },
+        "med_diminuto": {
+          "seconds": 81.72541785800372,
+          "measured_catches": 4
+        },
+        "med_div_pequenos": {
+          "seconds": 249.71913747985116,
+          "measured_catches": 14
+        },
+        "med_div_grandes": {
+          "seconds": 1833.5018954123814,
+          "measured_catches": 99
+        }
+      },
+      "measured_catches": 749
+    },
+    {
+      "seed": 30,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.890815646058105,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 260.79731908183953,
+          "measured_catches": 9
+        },
+        "med_diminuto": {
+          "seconds": 307.96345425732153,
+          "measured_catches": 12
+        },
+        "med_div_grandes": {
+          "seconds": 520.6570436900269,
+          "measured_catches": 20
+        },
+        "med_div_pequenos": {
+          "seconds": 1401.8881687413777,
+          "measured_catches": 67
+        }
+      },
+      "measured_catches": 640
+    },
+    {
+      "seed": 30,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 16.890815646058105,
+          "measured_catches": 1
+        },
+        "med_excepcional": {
+          "seconds": 260.79731908183953,
+          "measured_catches": 14
+        },
+        "med_diminuto": {
+          "seconds": 307.96345425732153,
+          "measured_catches": 17
+        },
+        "med_div_grandes": {
+          "seconds": 520.6570436900269,
+          "measured_catches": 28
+        },
+        "med_div_pequenos": {
+          "seconds": 1128.3303253257386,
+          "measured_catches": 63
+        }
+      },
+      "measured_catches": 754
+    },
+    {
+      "seed": 31,
+      "start_hour": 7,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 11.622782473979754,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 101.70838523260629,
+          "measured_catches": 6
+        },
+        "med_excepcional": {
+          "seconds": 997.1751553083318,
+          "measured_catches": 46
+        },
+        "med_div_pequenos": {
+          "seconds": 1474.8540850772888,
+          "measured_catches": 71
+        },
+        "med_div_grandes": {
+          "seconds": 6846.857175067805,
+          "measured_catches": 312
+        }
+      },
+      "measured_catches": 647
+    },
+    {
+      "seed": 31,
+      "start_hour": 20,
+      "horizon_seconds": 14400,
+      "milestones": {
+        "med_primeira": {
+          "seconds": 11.622782473979754,
+          "measured_catches": 1
+        },
+        "med_diminuto": {
+          "seconds": 101.70838523260629,
+          "measured_catches": 7
+        },
+        "med_excepcional": {
+          "seconds": 997.1751553083318,
+          "measured_catches": 52
+        },
+        "med_div_pequenos": {
+          "seconds": 2234.8471050567805,
+          "measured_catches": 119
+        },
+        "med_div_grandes": {
+          "seconds": 4072.9749508189866,
+          "measured_catches": 218
+        }
+      },
+      "measured_catches": 751
+    }
+  ],
+  "scope": "32 paired seeds, starts 07/20h, level0 fixed, Enseada, 4h; not retention/global economy"
+}

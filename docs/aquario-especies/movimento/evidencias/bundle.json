@@ -1,0 +1,17 @@
+{
+  "source_commit": "0c29196ac261ed04faf153121a1f8a01b1869cfc",
+  "modules_verified": [
+    "pesca_museu_visual",
+    "pesca_museu_ui",
+    "pesca_tamanho_visual",
+    "pesca_especies_visual",
+    "pesca_catalogo",
+    "pesca_tamanhos",
+    "tools.aquarium_preview"
+  ],
+  "asset_count": 63,
+  "engine_and_persistence_modules_absent": true,
+  "executable": "PescaIdle-Aquario-Demo-0c29196a.exe",
+  "bytes": 50401961,
+  "sha256": "8d0bbd23dacd826cf2eede09b78fba470d76261527120205b417a43eaad8fffb"
+}

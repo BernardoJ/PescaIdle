@@ -1,0 +1,32 @@
+{
+  "tests": 13,
+  "failures": 0,
+  "errors": 0,
+  "cli_controls": [
+    {
+      "case": "positive-self",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "case": "negative-species",
+      "expected": 1,
+      "observed": 1
+    },
+    {
+      "case": "negative-balance",
+      "expected": 1,
+      "observed": 1
+    },
+    {
+      "case": "negative-order",
+      "expected": 1,
+      "observed": 1
+    },
+    {
+      "case": "incomplete",
+      "expected": 2,
+      "observed": 2
+    }
+  ]
+}

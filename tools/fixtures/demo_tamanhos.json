@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "kind": "demo-tamanhos-v1",
+  "local_time": "2026-10-19T12:00:00",
+  "seed": 20261019,
+  "steps": [
+    {"species_id": "lambari", "mm": 90, "expected_news": ["primeira"], "label": "Primeiro Lambari: 9 cm"},
+    {"species_id": "lambari", "mm": 40, "expected_news": ["menor"], "label": "Novo menor Lambari: 4 cm"},
+    {"species_id": "lambari", "mm": 180, "expected_news": ["maior"], "label": "Novo maior Lambari: 18 cm"},
+    {"species_id": "lambari", "mm": 110, "expected_news": [], "label": "Lambari de 11 cm: sem novo recorde"},
+    {"species_id": "tilapia_do_nilo", "mm": 300, "expected_news": ["primeira"], "label": "Primeira Tilápia-do-nilo: 30 cm"},
+    {"species_id": "tilapia_do_nilo", "mm": 120, "expected_news": ["menor"], "label": "Nova menor Tilápia-do-nilo: 12 cm"},
+    {"species_id": "tilapia_do_nilo", "mm": 600, "expected_news": ["maior"], "label": "Nova maior Tilápia-do-nilo: 60 cm"},
+    {"species_id": "carpa_comum", "mm": 500, "expected_news": ["primeira"], "label": "Primeira Carpa-comum: 50 cm"},
+    {"species_id": "carpa_comum", "mm": 180, "expected_news": ["menor"], "label": "Nova menor Carpa-comum: 18 cm"},
+    {"species_id": "carpa_comum", "mm": 1100, "expected_news": ["maior"], "label": "Nova maior Carpa-comum: 110 cm"}
+  ]
+}

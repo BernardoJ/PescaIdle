@@ -1,0 +1,28 @@
+"""Projected capture streams for differential size-pilot checks; synthetic only."""
+from pathlib import Path
+import os,sys,argparse,json,random,hashlib
+ROOT=Path(__file__).resolve().parent
+ap=argparse.ArgumentParser();ap.add_argument('source',choices=['base','candidato']);args=ap.parse_args()
+qa=ROOT/'candidato'/'qa';qa.mkdir(exist_ok=True)
+os.environ.update(PESCA_IDLE_SAVE_PATH=str(qa/'comparacao'/'never.json'),APPDATA=str(qa/'appdata'),
+                  LOCALAPPDATA=str(qa/'localappdata'),QT_QPA_PLATFORM='offscreen')
+sys.path.insert(0,str(ROOT/args.source))
+from pesca_save import migrate
+from pesca_idle import ESTADO_PADRAO
+from pesca_pescaria import FishingEngine
+NOW=1792332000
+rows=[]
+for seed in range(8):
+    for hour in (7,20):
+        for level in (0,3,10):
+            start=NOW-NOW%86400+hour*3600  # explicit synthetic local clock with offset=0
+            s=migrate({},ESTADO_PADRAO,start)
+            s.update(perfil_id=f'paired-{seed}',vara=level,barco=level,rng_state=random.Random(seed).getstate())
+            e=FishingEngine(s);e.advance(3600,start,0)
+            rows.append({'case':[seed,hour,level], 'events':[
+                {k:v for k,v in event.items() if k in ('id','species_id','context','gain_cents','categoria')}
+                for event in e.events], 'coins':e.state['moedas_centavos'],
+                'inventory':e.state['inventario_por_id'],'phase':e.state['pesca'],
+                'rng':hashlib.sha256(repr(e.rng.getstate()).encode()).hexdigest()})
+(qa/f'comparacao-{args.source}.json').write_text(json.dumps(rows,ensure_ascii=False),encoding='utf-8')
+print(args.source,len(rows),'projected streams')

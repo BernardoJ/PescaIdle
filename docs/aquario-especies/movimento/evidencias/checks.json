@@ -1,0 +1,289 @@
+{
+  "eligible_species": 68,
+  "unchanged_rest_masters": 68,
+  "distinct_frames_by_species_and_detail": {
+    "tubarao_lagarto": {
+      "1": 5,
+      "2": 5
+    },
+    "celacanto_comorense": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_mao_vermelho": {
+      "1": 5,
+      "2": 5
+    },
+    "cavalinho_do_mar_pigmeu": {
+      "1": 5,
+      "2": 5
+    },
+    "tubarao_boca_grande": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_ogro": {
+      "1": 5,
+      "2": 5
+    },
+    "tubarao_branco": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_lua": {
+      "1": 5,
+      "2": 5
+    },
+    "garoupa_verdadeira": {
+      "1": 5,
+      "2": 5
+    },
+    "mero_preto": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_papagaio_azul": {
+      "1": 5,
+      "2": 5
+    },
+    "linguado_comum": {
+      "1": 5,
+      "2": 5
+    },
+    "barracuda_grande": {
+      "1": 5,
+      "2": 5
+    },
+    "atum_azul": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_palhaco": {
+      "1": 5,
+      "2": 5
+    },
+    "salmao_rosa": {
+      "1": 5,
+      "2": 5
+    },
+    "bacalhau_do_atlantico": {
+      "1": 5,
+      "2": 5
+    },
+    "cavala": {
+      "1": 5,
+      "2": 5
+    },
+    "sardinha_do_pacifico": {
+      "1": 5,
+      "2": 5
+    },
+    "anchoveta_peruana": {
+      "1": 5,
+      "2": 5
+    },
+    "arenque_atlantico": {
+      "1": 5,
+      "2": 5
+    },
+    "polaca_do_alasca": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_lanterna_glaciar": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_lanterna_de_muller": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_lanterna_comum": {
+      "1": 5,
+      "2": 5
+    },
+    "lambari": {
+      "1": 5,
+      "2": 5
+    },
+    "tilapia_do_nilo": {
+      "1": 5,
+      "2": 5
+    },
+    "tambaqui": {
+      "1": 5,
+      "2": 5
+    },
+    "pacu": {
+      "1": 5,
+      "2": 5
+    },
+    "carpa_comum": {
+      "1": 5,
+      "2": 5
+    },
+    "carpa_capim": {
+      "1": 5,
+      "2": 5
+    },
+    "acara": {
+      "1": 5,
+      "2": 5
+    },
+    "traira": {
+      "1": 5,
+      "2": 5
+    },
+    "jundia": {
+      "1": 5,
+      "2": 5
+    },
+    "curimbata": {
+      "1": 5,
+      "2": 5
+    },
+    "matrinxa": {
+      "1": 5,
+      "2": 5
+    },
+    "piabanha": {
+      "1": 5,
+      "2": 5
+    },
+    "piraputanga": {
+      "1": 5,
+      "2": 5
+    },
+    "piapara": {
+      "1": 5,
+      "2": 5
+    },
+    "dourado": {
+      "1": 5,
+      "2": 5
+    },
+    "pintado": {
+      "1": 5,
+      "2": 5
+    },
+    "pirarara": {
+      "1": 5,
+      "2": 5
+    },
+    "jau": {
+      "1": 5,
+      "2": 5
+    },
+    "tainha": {
+      "1": 5,
+      "2": 5
+    },
+    "carapeba": {
+      "1": 5,
+      "2": 5
+    },
+    "robalo_flecha": {
+      "1": 5,
+      "2": 5
+    },
+    "robalo_peva": {
+      "1": 5,
+      "2": 5
+    },
+    "parati": {
+      "1": 5,
+      "2": 5
+    },
+    "corvina": {
+      "1": 5,
+      "2": 5
+    },
+    "bagre_amarelo": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_rei": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_agulha": {
+      "1": 5,
+      "2": 5
+    },
+    "betara": {
+      "1": 5,
+      "2": 5
+    },
+    "sargo": {
+      "1": 5,
+      "2": 5
+    },
+    "sargentinho": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_borboleta": {
+      "1": 5,
+      "2": 5
+    },
+    "cirurgiao_patela": {
+      "1": 5,
+      "2": 5
+    },
+    "moreia_verde": {
+      "1": 5,
+      "2": 5
+    },
+    "albacora_laje": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_voador": {
+      "1": 5,
+      "2": 5
+    },
+    "dourado_do_mar": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_vela": {
+      "1": 5,
+      "2": 5
+    },
+    "bacalhau_polar": {
+      "1": 5,
+      "2": 5
+    },
+    "halibute_do_atlantico": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_lobo": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_pescador_abissal": {
+      "1": 5,
+      "2": 5
+    },
+    "peixe_vibora": {
+      "1": 5,
+      "2": 5
+    },
+    "enguia_pelicano": {
+      "1": 5,
+      "2": 5
+    }
+  },
+  "unclipped_padded_masters": 1088,
+  "three_fish_position_samples": 122400,
+  "mixed_size_tank_renders": 144,
+  "state_unchanged": true,
+  "global_rng_unchanged": true,
+  "shared_fishing_art_unchanged": true,
+  "tests": {
+    "run": 10,
+    "failures": 0,
+    "errors": 0
+  }
+}

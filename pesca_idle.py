@@ -8,6 +8,19 @@ Requisitos:  pip install PySide6
 Executar:    python pesca_idle.py        (ou pythonw pesca_idle.py)
 """
 import sys
+from pesca_piloto import prepare_profile
+prepare_profile()  # refuse all personal/outside profiles before initialization
+import copy
+from datetime import datetime
+from pesca_catalogo import ESPECIES, LOCAIS, OCORRENCIAS, legacy_view, desbloquear
+from pesca_tempo import snapshot
+from pesca_save import SaveStore, SaveError, migrate
+from pesca_pescaria import FishingEngine, travel
+from pesca_offline import replay, schedule, cancel, expire_active
+from pesca_conquistas import definitions, grant, RECOMPENSA_LIVRO
+from pesca_moedas import can_buy, debit
+from pesca_plataforma import mobile, fit_dialog, safe_rect
+from pesca_tamanhos import fmt as fmt_length, offline_summary
 import os
 import json
 import random
@@ -18,7 +31,7 @@ from pathlib import Path
 from pesca_visual import SceneRenderer, WIDTH, HEIGHT, SCALE, integer_viewport
 from pesca_ui import configure_app, paint_overlay, rpg_icon, cosmetic_icon, InfoDialog
 
-from PySide6.QtCore import Qt, QTimer, QRect, QPoint, QSize, QEvent
+from PySide6.QtCore import Qt, QTimer, QRect, QRectF, QPoint, QSize, QEvent
 from PySide6.QtGui import QPainter
 
 from PySide6.QtWidgets import (
@@ -38,114 +51,12 @@ SAVE_PATH = (Path(os.environ["PESCA_IDLE_SAVE_PATH"]) if os.getenv("PESCA_IDLE_S
 # Tabela de capturas. O peso é relativo: maior peso significa encontro mais
 # frequente. Fauna protegida e organismos microscópicos são tratados como
 # encontros abstratos do jogo, não como orientação de pesca real.
-LOOT = [
-    {"nome": "Bota velha", "tipo": "lixo", "valor": 0, "peso": 8},
-    # Espécies raras, endêmicas, ameaçadas ou de observação excepcional.
-    {"nome": "Tubarão-lagarto", "cientifico": "Chlamydoselachus anguineus", "tipo": "peixe", "valor": 250, "peso": 0.18},
-    {"nome": "Vaquita", "cientifico": "Phocoena sinus", "tipo": "peixe", "valor": 5000, "peso": 0.04},
-    {"nome": "Celacanto-comorense", "cientifico": "Latimeria chalumnae", "tipo": "peixe", "valor": 2000, "peso": 0.08},
-    {"nome": "Peixe-mão-vermelho", "cientifico": "Thymichthys politus", "tipo": "peixe", "valor": 5000, "peso": 0.025},
-    {"nome": "Cavalinho-do-mar-pigmeu", "cientifico": "Hippocampus bargibanti", "tipo": "peixe", "valor": 120, "peso": 0.35},
-    {"nome": "Lula-magnapinna", "cientifico": "Magnapinna spp.", "tipo": "peixe", "valor": 1800, "peso": 0.05},
-    {"nome": "Tubarão-boca-grande", "cientifico": "Megachasma pelagios", "tipo": "peixe", "valor": 800, "peso": 0.10},
-    {"nome": "Peixe-ogro", "cientifico": "Anoplogaster cornuta", "tipo": "peixe", "valor": 80, "peso": 0.5},
-    {"nome": "Narval", "cientifico": "Monodon monoceros", "tipo": "peixe", "valor": 700, "peso": 0.12},
-    {"nome": "Baleia-azul", "cientifico": "Balaenoptera musculus", "tipo": "peixe", "valor": 1000, "peso": 0.10},
-    # Fauna de ocorrência moderada a alta, com capturabilidade reduzida.
-    {"nome": "Tubarão-branco", "cientifico": "Carcharodon carcharias", "tipo": "peixe", "valor": 250, "peso": 0.20},
-    {"nome": "Manta-gigante", "cientifico": "Mobula birostris", "tipo": "peixe", "valor": 180, "peso": 0.30},
-    {"nome": "Peixe-lua", "cientifico": "Mola mola", "tipo": "peixe", "valor": 80, "peso": 0.60},
-    {"nome": "Garoupa-verdadeira", "cientifico": "Epinephelus marginatus", "tipo": "peixe", "valor": 35, "peso": 1.0},
-    {"nome": "Tartaruga-verde", "cientifico": "Chelonia mydas", "tipo": "peixe", "valor": 500, "peso": 0.08},
-    {"nome": "Mero-preto", "cientifico": "Epinephelus itajara", "tipo": "peixe", "valor": 90, "peso": 0.40},
-    {"nome": "Orca", "cientifico": "Orcinus orca", "tipo": "peixe", "valor": 650, "peso": 0.10},
-    {"nome": "Peixe-papagaio-azul", "cientifico": "Scarus coeruleus", "tipo": "peixe", "valor": 8, "peso": 2.0},
-    {"nome": "Polvo-comum", "cientifico": "Octopus vulgaris", "tipo": "peixe", "valor": 5, "peso": 2.5},
-    {"nome": "Linguado-comum", "cientifico": "Solea solea", "tipo": "peixe", "valor": 4, "peso": 2.0},
-    {"nome": "Golfinho-nariz-de-garrafa", "cientifico": "Tursiops truncatus", "tipo": "peixe", "valor": 150, "peso": 0.20},
-    {"nome": "Barracuda-grande", "cientifico": "Sphyraena barracuda", "tipo": "peixe", "valor": 10, "peso": 1.7},
-    {"nome": "Atum-azul", "cientifico": "Thunnus thynnus", "tipo": "peixe", "valor": 100, "peso": 0.20},
-    {"nome": "Peixe-palhaço", "cientifico": "Amphiprion ocellaris", "tipo": "peixe", "valor": 2, "peso": 3.0},
-    {"nome": "Lagosta-americana", "cientifico": "Homarus americanus", "tipo": "peixe", "valor": 3, "peso": 2.4},
-    {"nome": "Água-viva-juba-de-leão", "cientifico": "Cyanea capillata", "tipo": "peixe", "valor": 1, "peso": 1.0},
-    {"nome": "Lula-de-humboldt", "cientifico": "Dosidicus gigas", "tipo": "peixe", "valor": 2, "peso": 1.8},
-    {"nome": "Salmão-rosa", "cientifico": "Oncorhynchus gorbuscha", "tipo": "peixe", "valor": 1.5, "peso": 3.0},
-    {"nome": "Bacalhau-do-atlântico", "cientifico": "Gadus morhua", "tipo": "peixe", "valor": 2, "peso": 0.8},
-    {"nome": "Cavala", "cientifico": "Scomber scombrus", "tipo": "peixe", "valor": 1, "peso": 4.5},
-    # Cardumes, espécies de alta biomassa e organismos planctônicos.
-    {"nome": "Sardinha-do-pacífico", "cientifico": "Sardinops sagax", "tipo": "peixe", "valor": 0.5, "peso": 7},
-    {"nome": "Anchoveta-peruana", "cientifico": "Engraulis ringens", "tipo": "peixe", "valor": 0.25, "peso": 12},
-    {"nome": "Arenque-atlântico", "cientifico": "Clupea harengus", "tipo": "peixe", "valor": 0.25, "peso": 9},
-    {"nome": "Polaca-do-alasca", "cientifico": "Gadus chalcogrammus", "tipo": "peixe", "valor": 0.3, "peso": 10},
-    {"nome": "Camarão-cinza", "cientifico": "Crangon crangon", "tipo": "peixe", "valor": 0.2, "peso": 9},
-    {"nome": "Mexilhão-azul", "cientifico": "Mytilus edulis", "tipo": "peixe", "valor": 0.1, "peso": 10},
-    {"nome": "Caranguejo-falso", "cientifico": "Munida gregaria", "tipo": "peixe", "valor": 0.15, "peso": 7},
-    {"nome": "Calano", "cientifico": "Calanus finmarchicus", "tipo": "peixe", "valor": 0.1, "peso": 10},
-    {"nome": "Salpa-antártica", "cientifico": "Salpa thompsoni", "tipo": "peixe", "valor": 0.1, "peso": 8},
-    {"nome": "Peixe-lanterna-glaciar", "cientifico": "Benthosema glaciale", "tipo": "peixe", "valor": 0.1, "peso": 9},
-    {"nome": "Peixe-lanterna-de-müller", "cientifico": "Maurolicus muelleri", "tipo": "peixe", "valor": 0.1, "peso": 10},
-    {"nome": "Krill-do-pacífico", "cientifico": "Euphausia pacifica", "tipo": "peixe", "valor": 0.1, "peso": 9},
-    {"nome": "Krill-antártico", "cientifico": "Euphausia superba", "tipo": "peixe", "valor": 0.1, "peso": 12},
-    {"nome": "Copépode-comum", "cientifico": "Acartia tonsa", "tipo": "peixe", "valor": 0.1, "peso": 12},
-    {"nome": "Peixe-lanterna-comum", "cientifico": "Symbolophorus barnardi", "tipo": "peixe", "valor": 0.1, "peso": 7},
-    # Espécies extras comuns em pescarias tropicais e de água doce.
-    {"nome": "Lambari", "cientifico": "Astyanax lacustris", "tipo": "peixe", "valor": 0.1, "peso": 8},
-    {"nome": "Tilápia-do-nilo", "cientifico": "Oreochromis niloticus", "tipo": "peixe", "valor": 0.2, "peso": 4},
-    {"nome": "Tambaqui", "cientifico": "Colossoma macropomum", "tipo": "peixe", "valor": 0.8, "peso": 1.5},
-    {"nome": "Pacu", "cientifico": "Piaractus mesopotamicus", "tipo": "peixe", "valor": 0.5, "peso": 1.5},
-]
+LOOT = [{'id': s['id'], 'nome': s['nome'], 'cientifico': s['cientifico'], 'tipo': 'peixe',
+         'valor': s['valor'], 'peso': next(o['weight'] for o in OCORRENCIAS if o['species_id']==s['id']),
+         'categoria': s['categoria'], 'raridade': s['raridade']} for s in ESPECIES.values()]
+LOOT.insert(0, {'id':'bota_velha','nome':'Bota velha','tipo':'lixo','valor':0,'peso':8})
 
-CURIOSIDADES = {
-    "Tubarão-lagarto": "Seu corpo alongado e as seis fendas branquiais lembram fósseis de antigos tubarões.",
-    "Vaquita": "Vive somente no norte do Golfo da Califórnia. É uma pequena toninha e costuma evitar barcos.",
-    "Celacanto-comorense": "Suas nadadeiras lobadas se movem alternadamente, como membros durante um nado lento.",
-    "Peixe-mão-vermelho": "Usa as nadadeiras peitorais parecidas com mãos para caminhar pelo fundo do mar.",
-    "Cavalinho-do-mar-pigmeu": "Camufla-se em corais gorgônias; sua coloração pode combinar com o coral que o abriga.",
-    "Lula-magnapinna": "Seus braços e tentáculos muito longos criam uma silhueta incomum nas filmagens de águas profundas.",
-    "Tubarão-boca-grande": "É um tubarão filtrador: nada com a boca aberta para capturar pequenos organismos.",
-    "Peixe-ogro": "Seus dentes grandes ajudam a capturar presas num ambiente profundo onde alimento é escasso.",
-    "Narval": "A famosa “presa” é, na verdade, um dente que pode crescer vários metros para fora da mandíbula.",
-    "Baleia-azul": "É o maior animal conhecido; alimenta-se principalmente de krill, filtrado com placas de barbas.",
-    "Tubarão-branco": "Seu dorso escuro e ventre claro ajudam a camuflá-lo quando visto de cima ou de baixo.",
-    "Manta-gigante": "Apesar do tamanho, alimenta-se filtrando zooplâncton da água.",
-    "Peixe-lua": "Seu corpo alto e achatado termina numa estrutura curta no lugar de uma cauda típica.",
-    "Garoupa-verdadeira": "Como várias garoupas, pode mudar de sexo ao longo da vida; em geral, fêmeas tornam-se machos.",
-    "Tartaruga-verde": "Adultos comem principalmente algas e capim-marinho; o nome vem da gordura esverdeada, não do casco.",
-    "Mero-preto": "Juvenis costumam usar manguezais e estuários como abrigo antes de viverem em recifes e naufrágios.",
-    "Orca": "É o maior membro da família dos golfinhos, e diferentes grupos têm vocalizações e hábitos próprios.",
-    "Peixe-papagaio-azul": "Seu bico raspa algas da superfície dos recifes; peixes-papagaio também ajudam a produzir areia.",
-    "Polvo-comum": "Tem três corações e sangue azulado, adaptados à circulação de oxigênio no corpo e nas brânquias.",
-    "Linguado-comum": "Quando adulto, repousa de lado no fundo e mantém os dois olhos voltados para cima.",
-    "Golfinho-nariz-de-garrafa": "Produz assobios característicos que ajudam indivíduos a reconhecer e localizar uns aos outros.",
-    "Barracuda-grande": "Seus dentes afiados e corpo hidrodinâmico favorecem ataques rápidos contra peixes menores.",
-    "Atum-azul": "É altamente migratório e pode cruzar grandes trechos do Atlântico durante suas viagens.",
-    "Peixe-palhaço": "Vive entre os tentáculos de anêmonas; uma camada de muco ajuda a evitar suas ferroadas.",
-    "Lagosta-americana": "Usa suas antenas para explorar o ambiente e detectar sinais químicos na água.",
-    "Água-viva-juba-de-leão": "Seus tentáculos finos ficam suspensos sob o sino e capturam pequenas presas à deriva.",
-    "Lula-de-humboldt": "Muda rapidamente de cor com células pigmentares, usando padrões para sinalizar a outras lulas.",
-    "Salmão-rosa": "Seu ciclo de vida costuma durar dois anos; muitos adultos retornam juntos aos rios para desovar.",
-    "Bacalhau-do-atlântico": "Uma fêmea pode liberar milhões de ovos, embora apenas uma pequena parte chegue à fase adulta.",
-    "Cavala": "Forma cardumes velozes e costuma migrar conforme a temperatura e a disponibilidade de alimento.",
-    "Sardinha-do-pacífico": "Seus grandes cardumes podem se deslocar e mudar de tamanho conforme as condições do oceano.",
-    "Anchoveta-peruana": "A corrente fria e rica em nutrientes de Humboldt sustenta uma das maiores pescarias de uma única espécie.",
-    "Arenque-atlântico": "Seus ovos pegajosos aderem a algas, pedras e outras superfícies submersas.",
-    "Polaca-do-alasca": "Vive em cardumes no Pacífico Norte e sustenta uma das maiores pescarias comerciais do mundo.",
-    "Camarão-cinza": "Pode variar a coloração e se enterrar na areia, o que ajuda a escapar de predadores.",
-    "Mexilhão-azul": "Prende-se a rochas e outras superfícies com fios resistentes chamados bissos.",
-    "Caranguejo-falso": "Apesar do nome, é um crustáceo aparentado às lagostas e pode formar enormes concentrações.",
-    "Calano": "Este copépode acumula reservas de energia e é alimento importante para peixes e baleias em mares frios.",
-    "Salpa-antártica": "Pode formar longas cadeias de indivíduos clonados que filtram partículas da água.",
-    "Peixe-lanterna-glaciar": "Faz parte do grupo de peixes que sobe à superfície à noite para se alimentar e desce de dia.",
-    "Peixe-lanterna-de-müller": "Pequeno e mesopelágico, ajuda a transferir energia do plâncton para predadores maiores.",
-    "Krill-do-pacífico": "Forma enxames e é uma fonte essencial de alimento para peixes, aves e mamíferos marinhos.",
-    "Krill-antártico": "Esses pequenos crustáceos vivem em grandes enxames e são a base alimentar de muitos animais antárticos.",
-    "Copépode-comum": "É minúsculo, mas serve de alimento a larvas de peixes e participa da base das cadeias marinhas.",
-    "Peixe-lanterna-comum": "Os fotóforos do corpo produzem luz e ajudam a quebrar sua silhueta na penumbra oceânica.",
-    "Lambari": "O nome reúne pequenos peixes de água doce; muitos vivem em cardumes e são importantes para predadores locais.",
-    "Tilápia-do-nilo": "A fêmea protege ovos e filhotes na boca, comportamento conhecido como incubação bucal.",
-    "Tambaqui": "Seus dentes fortes conseguem triturar frutos e sementes que caem na água durante a cheia.",
-    "Pacu": "Seus dentes achatados lembram os humanos e ajudam a quebrar sementes e frutos duros.",
-}
+CURIOSIDADES = {s['nome']: s['curiosidade'] for s in ESPECIES.values()}
 
 # Paleta viva de aventura em 16-bit; cada nível do barco ganha uma cor própria.
 CORES_BARCO = [
@@ -158,114 +69,7 @@ CORES_BARCO = [
 # Loja de cosméticos: (id, slot, nome, preço em moedas)
 # Os itens são apenas visuais e não alteram nada na pescaria.
 # ----------------------------------------------------------------------------
-SLOTS = {
-    "chapeu": "Chapéus",
-    "roupa": "Roupas",
-    "bandeira": "Bandeiras",
-    "boia": "Boias",
-    "boneco": "Bonecos",
-    "acessorio": "Acessórios",
-}
-
-CATALOGO = [
-    ("chapeu_palha",    "chapeu",   "Chapéu de palha",    0),
-    ("chapeu_nenhum",   "chapeu",   "Sem chapéu",         0),
-    ("chapeu_bone",     "chapeu",   "Boné azul",          150),
-    ("chapeu_gorro",    "chapeu",   "Gorro de lã",        200),
-    ("chapeu_quepe",    "chapeu",   "Quepe de capitão",   500),
-    ("chapeu_pirata",   "chapeu",   "Chapéu de pirata",   800),
-    ("chapeu_cartola",  "chapeu",   "Cartola",            1200),
-    ("chapeu_coroa",    "chapeu",   "Coroa dourada",      5000),
-    ("chapeu_pikachu",  "chapeu",   "Gorro do Pikachu",   9999),
-    ("chapeu_ninja",    "chapeu",   "Touca ninja",        1800),
-    ("chapeu_samurai",  "chapeu",   "Elmo de samurai",    2600),
-    ("chapeu_cowboy",   "chapeu",   "Chapéu de xerife",    950),
-    ("chapeu_mago",     "chapeu",   "Chapéu de arquimago", 3200),
-    ("chapeu_astronauta", "chapeu", "Capacete espacial",   4100),
-    ("chapeu_folhas",   "chapeu",   "Coroa de folhas",     750),
-    ("chapeu_marinheiro", "chapeu", "Boina de marinheiro", 650),
-    ("chapeu_raposa",   "chapeu",   "Capuz de raposa",    2100),
-    ("chapeu_corais",   "chapeu",   "Coroa de corais",    2900),
-
-    ("roupa_vermelha",  "roupa",    "Camisa vermelha",    0),
-    ("roupa_azul",      "roupa",    "Camisa azul",        100),
-    ("roupa_verde",     "roupa",    "Colete verde",       250),
-    ("roupa_listrada",  "roupa",    "Camisa listrada",    400),
-    ("roupa_capa",      "roupa",    "Capa de chuva",      700),
-    ("roupa_capitao",   "roupa",    "Casaco de capitão",  1500),
-    ("roupa_gala",      "roupa",    "Traje de gala",      3000),
-    ("roupa_ninja",     "roupa",    "Traje de ninja",     2200),
-    ("roupa_astral",    "roupa",    "Manto estelar",      3500),
-    ("roupa_mergulhador", "roupa",  "Traje de mergulho",   2800),
-    ("roupa_fenix",     "roupa",    "Manto da fênix",      5200),
-    ("roupa_cyber",     "roupa",    "Jaqueta cyberpunk",  4600),
-    ("roupa_mago",      "roupa",    "Túnica de arquimago", 3900),
-    ("roupa_marinheiro", "roupa",   "Uniforme de convés",  850),
-    ("roupa_aurora",    "roupa",    "Manto da aurora",    4800),
-    ("roupa_abisso",    "roupa",    "Armadura abissal",   6800),
-
-    ("bandeira_nenhum",   "bandeira", "Sem bandeira",       0),
-    ("bandeira_vermelha", "bandeira", "Bandeirinha vermelha", 100),
-    ("bandeira_brasil",   "bandeira", "Bandeira do Brasil", 300),
-    ("bandeira_arco",     "bandeira", "Bandeira arco-íris", 500),
-    ("bandeira_pirata",   "bandeira", "Bandeira pirata",    1000),
-    ("bandeira_dragao",   "bandeira", "Bandeira do dragão", 1300),
-    ("bandeira_nebulosa", "bandeira", "Bandeira nebulosa",  1700),
-    ("bandeira_sol",      "bandeira", "Bandeira do sol nascente", 1400),
-    ("bandeira_kraken",   "bandeira", "Bandeira do kraken", 2100),
-    ("bandeira_galaxia",  "bandeira", "Bandeira galáctica", 2400),
-    ("bandeira_folhas",   "bandeira", "Bandeira da floresta", 950),
-    ("bandeira_sakura", "bandeira", "Bandeira de sakura",  1150),
-    ("bandeira_tempestade", "bandeira", "Bandeira da tempestade", 1850),
-    ("bandeira_compasso", "bandeira", "Bandeira do explorador", 2750),
-
-    ("boia_vermelha",   "boia",     "Boia vermelha",      0),
-    ("boia_amarela",    "boia",     "Boia amarela",       100),
-    ("boia_listrada",   "boia",     "Boia listrada",      250),
-    ("boia_coracao",    "boia",     "Boia coração",       600),
-    ("boia_estrela",    "boia",     "Boia estrela",       1500),
-    ("boia_planeta",    "boia",     "Boia planeta",       2200),
-    ("boia_bolha",      "boia",     "Boia de bolha",      1200),
-    ("boia_donut",      "boia",     "Boia de rosquinha",   900),
-    ("boia_abacaxi",    "boia",     "Boia de abacaxi",    1300),
-    ("boia_kraken",     "boia",     "Boia do kraken",     2400),
-    ("boia_foguete",    "boia",     "Boia foguete",       1800),
-    ("boia_lotus",      "boia",     "Boia de lótus",       700),
-    ("boia_limao",      "boia",     "Boia de limão",       1050),
-    ("boia_perola",     "boia",     "Boia pérola lunar",   2800),
-
-    ("boneco_nenhum",     "boneco", "Sem boneco",         0),
-    ("boneco_pato",       "boneco", "Patinho de borracha", 300),
-    ("boneco_caranguejo", "boneco", "Caranguejo",         700),
-    ("boneco_gato",       "boneco", "Gatinho",            1500),
-    ("boneco_pinguim",    "boneco", "Pinguim",            3000),
-    ("boneco_agumon",     "boneco", "Agumon",             9999),
-    ("boneco_robot",      "boneco", "Robô explorador",    6000),
-    ("boneco_slime",      "boneco", "Mascote gelatinoso", 4500),
-    ("boneco_raposa",     "boneco", "Raposa mística",     3800),
-    ("boneco_polvo",      "boneco", "Polvo de pelúcia",   2600),
-    ("boneco_capivara",   "boneco", "Capivara aventureira", 3300),
-    ("boneco_fantasma",   "boneco", "Fantasma camarada",  2200),
-    ("boneco_tartaruga", "boneco", "Tartaruguinha",       1800),
-    ("boneco_axolote",   "boneco", "Axolote sorridente",  2700),
-    ("boneco_baleia",    "boneco", "Baleia viajante",     4100),
-
-    ("acessorio_nenhum", "acessorio", "Sem acessório",          0),
-    ("anel_verde_esmeralda", "acessorio", "Anel Verde-Esmeralda", 12000),
-    ("martelo_pesado", "acessorio", "Martelo Pesado",            15000),
-    ("teia_aracnidea", "acessorio", "Lançador de Teia",           10500),
-    ("orbe_dragon", "acessorio", "Orbe do Dragão",                14000),
-    ("broche_lunar", "acessorio", "Broche Lunar",                 11500),
-    ("sabre_energia", "acessorio", "Sabre de Energia",             16000),
-    ("asas_fenix", "acessorio", "Asas da Fênix",                    22000),
-    ("aura_cyber", "acessorio", "Aura Cyberpunk",                   18500),
-    ("estrelas_orbitais", "acessorio", "Constelação Orbital",       20000),
-    ("chama_yokai", "acessorio", "Chamas de Yokai",                 23500),
-    ("cajado_tempestade", "acessorio", "Cajado da Tempestade",       17000),
-    ("escudo_bolhas", "acessorio", "Escudo de Bolhas",               19000),
-    ("asas_boreais", "acessorio", "Asas Boreais",                     25000),
-]
-CAT = {c[0]: c for c in CATALOGO}
+from pesca_loja import SLOTS, CATALOGO, CAT, sold_items
 
 ESTADO_PADRAO = {
     "moedas": 0,
@@ -293,6 +97,9 @@ ESTADO_PADRAO = {
 }
 
 
+ESTADO_PADRAO = migrate({}, ESTADO_PADRAO, time.time())
+
+
 def fmt_tempo(seg):
     m = int(seg // 60)
     h, m = divmod(m, 60)
@@ -309,17 +116,7 @@ def fmt_moedas(valor):
 
 
 def raridade_da_especie(item):
-    """Converte o peso relativo de encontro em uma faixa para a enciclopédia."""
-    peso = item["peso"]
-    if peso >= 8:
-        return "Comum"
-    if peso >= 3:
-        return "Incomum"
-    if peso >= 1:
-        return "Raro"
-    if peso >= 0.1:
-        return "Muito raro"
-    return "Lendário"
+    return item['raridade']
 
 
 # ============================================================================
@@ -744,6 +541,7 @@ class EnciclopediaDialog(QDialog):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.atualizar_progresso)
         self.timer.start(750)
+        self.finished.connect(self.timer.stop)
 
     def atualizar_progresso(self):
         inventario = self.jogo.estado["inventario"]
@@ -834,7 +632,7 @@ class PreviaCena(QWidget):
 
 class LojaDialog(QDialog):
     def __init__(self, jogo):
-        super().__init__(None, Qt.Dialog | Qt.WindowStaysOnTopHint)
+        super().__init__(jogo if mobile() else None, Qt.Dialog | Qt.WindowStaysOnTopHint)
         self.jogo = jogo
         self.setWindowTitle("Loja")
         geo = QApplication.primaryScreen().availableGeometry()
@@ -849,7 +647,7 @@ class LojaDialog(QDialog):
         heading = QLabel("Armazém da enseada")
         heading.setProperty("heading", True)
         lay.addWidget(heading)
-        body = QHBoxLayout()
+        body = QVBoxLayout() if mobile() else QHBoxLayout()
         controls = QVBoxLayout()
         self.lbl_moedas = QLabel()
         self.lbl_moedas.setStyleSheet("font-weight: bold;")
@@ -861,6 +659,7 @@ class LojaDialog(QDialog):
         self.categoria.addItem(rpg_icon("vara"), "Equipamento")
         for slot, title in SLOTS.items():
             self.categoria.addItem(rpg_icon(slot), title)
+        self.categoria.addItem(rpg_icon('livro'), 'Decorações do aquário')
         self.categoria.currentIndexChanged.connect(self.abas.setCurrentIndex)
         self.abas.currentChanged.connect(self.categoria.setCurrentIndex)
         controls.addWidget(self.categoria)
@@ -897,7 +696,11 @@ class LojaDialog(QDialog):
             lista.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             lista.currentItemChanged.connect(self.ao_selecionar)
             self.listas[slot] = lista
+            if mobile():lista.setMinimumHeight(200)
             self.abas.addTab(lista, titulo)
+        from pesca_aquario_decor_ui import DecorationPanel
+        self.decoracoes=DecorationPanel(jogo,shop=True,parent=self)
+        self.abas.addTab(self.decoracoes,'Decorações do aquário')
         self.abas.currentChanged.connect(self.ao_selecionar)
         controls.addWidget(self.abas, 1)
 
@@ -910,7 +713,8 @@ class LojaDialog(QDialog):
         self.btn.clicked.connect(self.acao)
         controls.addWidget(self.btn)
         body.addLayout(controls, 1)
-        preview = QVBoxLayout()
+        self.preview_container=QWidget()
+        preview = QVBoxLayout(self.preview_container)
         preview_title = QLabel("Seu barco • prévia ao vivo")
         preview_title.setStyleSheet("color: #efc581; font-weight: 600;")
         preview.addWidget(preview_title)
@@ -923,16 +727,20 @@ class LojaDialog(QDialog):
         preview.addStretch(1)
         close = QPushButton("Voltar à pescaria")
         close.clicked.connect(self.accept)
-        preview.addWidget(close)
-        body.addLayout(preview)
+        body.addWidget(self.preview_container)
         lay.addLayout(body, 1)
+        lay.addWidget(close)
 
         self.preencher()
+        self.decoracoes.changed.connect(self.atualizar_moedas)
         self.atualizar_moedas()
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.atualizar_moedas)
         self.timer.start(500)
+        self.finished.connect(self.timer.stop)
+        self.finished.connect(self.decoracoes.aquarium.timer.stop)
+        self.finished.connect(self.preview_scene.timer.stop)
 
         geo = QApplication.primaryScreen().availableGeometry()
         x = max(geo.x(), jogo.x() - self.width() - 10)
@@ -960,12 +768,12 @@ class LojaDialog(QDialog):
                     f'(peças {e["pecas_" + tipo]}/{self.jogo.pecas_necessarias(tipo)})'
                     f'<br>{desc}')
                 btn.setText(f"{botao} ({custo} moedas)")
-                btn.setEnabled(e["moedas"] >= custo)
+                btn.setEnabled(can_buy(e, custo))
 
     # ---- cosméticos
     def slot_atual(self):
         idx = self.abas.currentIndex()
-        return None if idx == 0 else list(SLOTS)[idx - 1]
+        return list(SLOTS)[idx-1] if 1<=idx<=len(SLOTS) else None
 
     def id_atual(self):
         slot = self.slot_atual()
@@ -990,7 +798,7 @@ class LojaDialog(QDialog):
                 elif id_ in e["cosmeticos"]:
                     status = "comprado"
                 else:
-                    status = f"{fmt_moedas(preco)} moedas"
+                    status = 'Recompensa da Enciclopédia Viva' if id_==RECOMPENSA_LIVRO else f"{fmt_moedas(preco)} moedas"
                 it = QListWidgetItem(f"{nome}\n{status}")
                 it.setIcon(cosmetic_icon(self.jogo._render,slot,id_))
                 it.setSizeHint(QSize(0,54))
@@ -1001,6 +809,10 @@ class LojaDialog(QDialog):
         self.ao_selecionar()
 
     def ao_selecionar(self, *_):
+        if hasattr(self,'preview_container'):
+            self.preview_container.setVisible(self.abas.currentWidget() is not self.decoracoes)
+            if self.abas.currentWidget() is self.decoracoes:self.preview_scene.timer.stop()
+            else:self.preview_scene.timer.start(100)
         self.jogo.previa = {}
         id_ = self.id_atual()
         if id_:
@@ -1024,32 +836,42 @@ class LojaDialog(QDialog):
         elif id_ in e["cosmeticos"]:
             self.btn.setText("Equipar")
             self.btn.setEnabled(True)
+        elif id_ == RECOMPENSA_LIVRO:
+            self.btn.setText("Recompensa: Enciclopédia Viva")
+            self.btn.setEnabled(False)
         else:
             preco = CAT[id_][3]
             self.btn.setText(f"Comprar e equipar ({preco} moedas)")
-            self.btn.setEnabled(e["moedas"] >= preco)
+            self.btn.setEnabled(can_buy(e, preco))
 
     def atualizar_moedas(self):
         self.lbl_moedas.setText(
             f'Suas moedas: {fmt_moedas(self.jogo.estado["moedas"])}')
         self.atualizar_equipamento()
         self.atualizar_botao()
+        self.decoracoes.refresh()
 
     def acao(self):
-        e = self.jogo.estado
+        self.jogo.tick()
+        e = copy.deepcopy(self.jogo.estado)
         id_ = self.id_atual()
         if not id_:
             return
         slot = self.slot_atual()
+        if id_ == RECOMPENSA_LIVRO and id_ not in e["cosmeticos"]:
+            return
         if id_ not in e["cosmeticos"]:
             preco = CAT[id_][3]
-            if e["moedas"] < preco:
+            if not can_buy(e, preco):
                 return
-            e["moedas"] -= preco
+            debit(e, preco)
             e["cosmeticos"].append(id_)
-            self.jogo.verificar_conquistas()
         e["equipados"][slot] = id_
-        self.jogo.salvar()
+        awards = grant(e, CATALOGO)
+        if not self.jogo._commit(e):
+            return
+        for title in awards:
+            self.jogo.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
         self.jogo.atualizar_tooltip()
         self.preencher()
         self.atualizar_moedas()
@@ -1064,55 +886,72 @@ class JogoPesca(QWidget):
     DURACAO_POPUP = 3.5
     ICONE_X, ICONE_Y = ART_W * ESCALA - 44, 10
 
-    def __init__(self):
+    def __init__(self, wall_clock=None, monotonic_clock=None, recovery_decision=None):
         super().__init__()
-        self.setWindowFlags(
-            Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool
-        )
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self._wall = wall_clock or time.time
+        self._monotonic = monotonic_clock or time.monotonic
+        self._recovery_decision = recovery_decision
+        self.setWindowFlags(Qt.Window if mobile() else Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool)
+        self.setAttribute(Qt.WA_TranslucentBackground,not mobile())
         self.setMouseTracking(True)
         self.resize_viewport()
-
-        self.estado = self.carregar()
-        self.previa = {}             # itens em teste na loja (não comprados)
+        self._store = SaveStore(SAVE_PATH)
+        try:
+            self.estado = self.carregar()
+        except Exception:
+            self._store.close(); raise
+        self.previa = {}
         self.fase = 0.0
-        self.pausado = False
-        self.fisgando = 0.0
-        self.capturando = 0.0
-        self.popup = None            # [texto, cor, tempo_restante]
+        self.pausado = self.estado['pausado']
+        self.fisgando = self.capturando = 0.0
+        self.popup = None
+        self._popup_queue = []
+        self._last_result = None
         self.hover = False
         self._render = SceneRenderer(ROUPAS, HATS, BANDEIRAS, BONECOS, BOIAS, CORES_BARCO)
         self._arrastando = False
         self._offset_arraste = QPoint()
         self.setCursor(Qt.OpenHandCursor)
-
-        # Progresso offline: calculado antes de começar a pescar
+        self._closed = False
+        self._save_error = None
+        self._last_offline = None
         resumo = self.simular_offline()
+        engine = FishingEngine(self.estado)
+        candidate = engine.advance(0, self._wall(), snapshot()['offset_seconds'])
+        candidate['contexto_fuso'] = snapshot(self._wall())['offset_seconds']
+        self._commit(candidate)
         self.verificar_conquistas()
-        self.salvar()
-        self.espera = self.nova_espera()
-        self.ultimo_tick = time.monotonic()
-
+        self._sync_fishing()
+        self.ultimo_tick = self._monotonic()
+        self._ultimo_civil = self._wall()
+        self._clock_snapshot = snapshot(self._wall())
+        from PySide6.QtWidgets import QToolButton
+        self.botao_clima=QToolButton(self);self.botao_clima.setObjectName('botaoClima')
+        self.botao_clima.setCursor(Qt.PointingHandCursor);self.botao_clima.setFocusPolicy(Qt.StrongFocus)
+        self.botao_clima.setStyleSheet('QToolButton { background: #233449; border: 2px solid #c9ac78; padding: 2px; } QToolButton:hover,QToolButton:focus { background: #405965; border-color: #ffe1a0; }')
+        self.botao_clima.clicked.connect(self.abrir_clima);self._sync_climate_button()
         self.posicionar()
         self.atualizar_tooltip()
-
         self.relogio = QTimer(self)
-        self.relogio.timeout.connect(self.tick)
-        self.relogio.start(66)       # ~15 fps (visual pixel art, leve na CPU)
-
+        self.relogio.timeout.connect(self.tick); self.relogio.start(66)
         self.timer_save = QTimer(self)
-        self.timer_save.timeout.connect(self.salvar)
-        self.timer_save.start(30000)
-
+        self.timer_save.timeout.connect(self.salvar); self.timer_save.start(30000)
         if resumo:
-            QTimer.singleShot(800, lambda: self.caixa("Pesca Idle", resumo))
+            self.mostrar_popup(resumo, '#ffe3ac')
 
     def resize_viewport(self):
+        if mobile():
+            geo=QApplication.primaryScreen().availableGeometry()
+            self.setMinimumSize(0,0);self.resize(geo.size())
+            self._fit_mobile_viewport()
+            return
         self.scene_rect,self.physical_scale=integer_viewport(self.devicePixelRatioF())
         self.W,self.H=math.ceil(self.scene_rect.width()),math.ceil(self.scene_rect.height())
         self.ICONE_X=self.W-44
         self.rect_icone=QRect(self.ICONE_X,self.ICONE_Y,32,32)
+        self.rect_clima=QRect(self.ICONE_X-40,self.ICONE_Y,32,32)
         self.setFixedSize(self.W,self.H)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
 
     def event(self, event):
         result=super().event(event)
@@ -1120,33 +959,70 @@ class JogoPesca(QWidget):
             self.resize_viewport()
         return result
 
+    def resizeEvent(self,event):
+        if mobile():
+            self._fit_mobile_viewport()
+        super().resizeEvent(event)
+
+    def _fit_mobile_viewport(self,*_):
+        self.W,self.H=self.width(),self.height()
+        area=safe_rect(self);ratio=self.devicePixelRatioF()
+        self.physical_scale=max(1,int(min(area.width()*ratio/ART_W,area.height()*ratio/ART_H)))
+        sw,sh=ART_W*self.physical_scale/ratio,ART_H*self.physical_scale/ratio
+        self.scene_rect=QRectF(area.left()+(area.width()-sw)/2,area.top()+(area.height()-sh)/2,sw,sh)
+        self.rect_icone=QRect(area.right()-59,area.top()+10,48,48)
+        self.rect_clima=QRect(self.rect_icone.left()-56,area.top()+10,48,48)
+        if hasattr(self,'botao_clima'):self.botao_clima.setGeometry(self.rect_clima)
+        self.update()
+
+    def keyPressEvent(self,event):
+        if mobile() and event.key() in (Qt.Key_Back,Qt.Key_Escape):
+            self.abrir_menu();event.accept();return
+        super().keyPressEvent(event)
+
     # ------------------------------------------------------------------ save
     def carregar(self):
-        estado = json.loads(json.dumps(ESTADO_PADRAO))
         try:
-            with open(SAVE_PATH, "r", encoding="utf-8") as f:
-                estado.update(json.load(f))
-        except (FileNotFoundError, json.JSONDecodeError):
-            pass
-        for slot, padrao in ESTADO_PADRAO["equipados"].items():
-            estado["equipados"].setdefault(slot, padrao)
-        for id_ in ESTADO_PADRAO["cosmeticos"]:
-            if id_ not in estado["cosmeticos"]:
-                estado["cosmeticos"].append(id_)
-        estado.setdefault("conquistas", [])
-        return estado
+            return self._store.load(ESTADO_PADRAO, self._wall())
+        except SaveError:
+            if not self._store.backup_available(ESTADO_PADRAO, self._wall()):
+                raise
+            decision = (self._recovery_decision() if self._recovery_decision else
+                QMessageBox.question(self,'Recuperar progresso','O save não pôde ser lido. Há um backup válido. Restaurar? O arquivo rejeitado será preservado separadamente.',QMessageBox.Yes|QMessageBox.No)==QMessageBox.Yes)
+            if not decision:raise
+            return self._store.recover(ESTADO_PADRAO, self._wall())
 
     def salvar(self):
-        self.estado["ultimo_salvo"] = time.time()
+        if not self._closed:
+            self.estado['pausado'] = self.pausado
+            return self._commit(copy.deepcopy(self.estado))
+        return True
+
+    def _commit(self, candidate, durable=True):
         try:
-            SAVE_PATH.parent.mkdir(parents=True, exist_ok=True)
-            with open(SAVE_PATH, "w", encoding="utf-8") as f:
-                json.dump(self.estado, f, ensure_ascii=False, indent=2)
-        except OSError:
-            pass
+            if durable:
+                self._store.save(candidate)
+            self.estado = candidate
+            self._save_error = None
+            return True
+        except SaveError as exc:
+            if self._store.last_good is not None:
+                self.estado = copy.deepcopy(self._store.last_good)
+            self.pausado = True
+            self._save_error = str(exc)
+            if self.popup and ('Conquista' in self.popup[0]):
+                self._popup_queue.insert(0,self.popup)
+            self.popup = [str(exc), '#ffb08a', 12]
+            return False
+
+    def _sync_fishing(self):
+        phase = self.estado['pesca']
+        self.fisgando = phase['restante'] if phase['etapa']=='fisgando' else 0
+        self.espera = phase['restante'] if phase['etapa']=='aguardando' else 0
 
     # ------------------------------------------------------------- posição
     def posicionar(self):
+        if mobile():return
         geo = QApplication.primaryScreen().availableGeometry()
         x = geo.x() + geo.width() - self.width()
         y = geo.y() + geo.height() - self.height()
@@ -1155,42 +1031,86 @@ class JogoPesca(QWidget):
 
     # ---------------------------------------------------------- lógica do jogo
     def nova_espera(self):
-        lo, hi = INTERVALO_PESCA
-        base = random.uniform(lo, hi)
-        return base / (1 + 0.15 * self.estado["vara"])
+        # One isolated RNG stream; previews and particles never consume it.
+        engine = FishingEngine(self.estado)
+        engine.wait()
+        self.estado = engine.advance(0, self._wall(), self.estado['contexto_fuso'])
+        return self.estado['pesca']['restante']
 
     def tick(self):
-        agora = time.monotonic()
-        dt = min(agora - self.ultimo_tick, 0.5)
-        self.ultimo_tick = agora
+        mono = self._monotonic(); now = self._wall()
+        dt = max(0, mono-self.ultimo_tick)
+        self.ultimo_tick = mono
         self.fase += dt
-        if not self.pausado:
-            self.capturando = max(0.0, self.capturando - dt)
-
-        if not self.pausado:
-            if self.fisgando > 0:
-                self.fisgando -= dt
-                if self.fisgando <= 0:
-                    r = self.sortear()
-                    self.capturando = 1.2 if r["tipo"] == "peixe" else 0.0
-                    self.mostrar_popup(r["texto"], r["cor"])
-                    self.salvar()
-                    self.atualizar_tooltip()
-                    self.espera = self.nova_espera()
+        self._clock_snapshot = snapshot(now)
+        self._sync_climate_button()
+        if not self.pausado and not self._save_error:
+            self.capturando = max(0.0, self.capturando-dt)
+            if dt >= 30 and now-self._ultimo_civil >= 30:
+                self.simular_offline()  # Same first-four-hours policy for suspension.
+                self.estado['contexto_fuso'] = snapshot(now)['offset_seconds']
             else:
-                self.espera -= dt
-                if self.espera <= 0:
-                    self.fisgando = 1.5
-
+                engine = FishingEngine(self.estado)
+                candidate = engine.advance(dt, now-dt, snapshot(now)['offset_seconds'])
+                candidate['ultimo_processado_utc'] = max(candidate['ultimo_processado_utc'], now)
+                candidate['contexto_fuso'] = snapshot(now)['offset_seconds']
+                expire_active(candidate, now)
+                awards = grant(candidate, CATALOGO)
+                transition = (candidate['pesca_pendente'] != self.estado['pesca_pendente']
+                              or candidate.get('expedicao') != self.estado.get('expedicao')
+                              or bool(engine.events) or bool(awards))
+                if self._commit(candidate, transition):
+                    for event in engine.events:
+                        self._last_result = event
+                        self.capturando = 1.2 if event['categoria']!='lixo' else 0
+                        self.mostrar_popup(*self._describe(event))
+                    for title in awards:
+                        self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
+            self._sync_fishing()
+        else:
+            # Intentional pause advances only the watermark, never fish time.
+            self.estado['ultimo_processado_utc'] = max(self.estado['ultimo_processado_utc'], now)
+            old_plan=copy.deepcopy(self.estado.get('expedicao'))
+            expire_active(self.estado, now)
+            if old_plan!=self.estado.get('expedicao'):self.salvar()
+        self._ultimo_civil = now
         if self.popup:
             self.popup[2] -= dt
             if self.popup[2] <= 0:
-                self.popup = None
-
+                self.popup = self._popup_queue.pop(0) if self._popup_queue else None
         self.update()
 
-    def mostrar_popup(self, texto, cor="#ffffff"):
-        self.popup = [texto, cor, self.DURACAO_POPUP]
+    def _describe(self, event):
+        if event['categoria']=='lixo':
+            return 'Bota velha... nada de útil', '#b0b0b0'
+        s = ESPECIES[event['species_id']]
+        prefix = ('Avistamento' if s['sprite']['family'] in ('whale','orca','dolphin','narwhal','turtle','ray')
+                  else 'Amostra registrada' if s['sprite']['family'] in ('copepod','salp','shrimp','shell')
+                  else 'Encontro registrado') if event['categoria']=='especial' else 'Captura'
+        text = f"{prefix}: {s['nome']}  +{fmt_moedas(event['gain'])} moedas"
+        if 'measurement' in event:
+            text += '\n'+fmt_length(event['measurement']['mm'])+' · '+event['measurement']['band']
+            news = event.get('size_news', [])
+            if 'primeira' in news:
+                text += '\nPrimeiro registro · menor e maior iniciais'
+            elif news:
+                text += '\n' + ' · '.join('Novo '+kind+' pessoal' for kind in news)
+            else:
+                text += '\nSem novo recorde'
+        return text, '#ffe3ac'
+
+    def mostrar_popup(self, texto, cor='#ffffff'):
+        message = [texto, cor, self.DURACAO_POPUP]
+        if self.popup:
+            self._popup_queue.append(message)
+            # Achievements must survive catch bursts (including offline replay).
+            if len(self._popup_queue)>32:
+                for i,item in enumerate(self._popup_queue):
+                    if 'Conquista' not in item[0]:
+                        del self._popup_queue[i]
+                        break
+        else:
+            self.popup = message
 
     def pecas_necessarias(self, tipo):
         return 2 + self.estado[tipo]
@@ -1205,90 +1125,71 @@ class JogoPesca(QWidget):
             e[tipo] += 1
             subiu = True
         if subiu:
+            desbloquear(e)
             self.verificar_conquistas()
         return subiu
 
     def sortear(self):
-        """Faz uma pescaria, aplica o resultado no estado e descreve o que houve."""
-        e = self.estado
-        pesos = []
-        for item in LOOT:
-            p = item["peso"]
-            if item["valor"] >= 25:          # vara melhor => mais chance de raros
-                p *= 1 + 0.15 * e["vara"]
-            pesos.append(p)
-        item = random.choices(LOOT, weights=pesos)[0]
-
-        tipo = item["tipo"]
-        r = {"tipo": tipo, "texto": "", "cor": "#ffffff"}
-        if tipo == "peixe":
-            ganho = round(item["valor"] * (1 + 0.2 * e["barco"]), 2)
-            e["moedas"] += ganho
-            e["total_pescados"] += 1
-            e["inventario"][item["nome"]] = e["inventario"].get(item["nome"], 0) + 1
-            self.verificar_conquistas()
-            r["texto"] = f'{item["nome"]}  +{fmt_moedas(ganho)} moedas'
-            r["cor"] = "#ffd54f" if item["valor"] >= 25 else "#ffffff"
-        elif tipo == "lixo":
-            r["texto"] = f'{item["nome"]}... nada de útil'
-            r["cor"] = "#b0b0b0"
-        return r
+        """Compatibility helper: uses the same core and honors current eligibility."""
+        engine = FishingEngine(self.estado)
+        if engine.state['pesca_pendente'] is None:
+            engine.begin_strike(self._wall(), snapshot(self._wall())['offset_seconds'])
+        engine.finish_strike()
+        candidate = engine.advance(0, self._wall(), snapshot(self._wall())['offset_seconds'])
+        awards = grant(candidate, CATALOGO)
+        if not self._commit(candidate):
+            return {'tipo':'lixo','texto':self._save_error,'cor':'#ffb08a'}
+        for title in awards:
+            self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
+        event = engine.events[-1]; self._last_result = event; self._sync_fishing()
+        text,color = self._describe(event)
+        return {'tipo':'peixe' if event['categoria']!='lixo' else 'lixo','texto':text,'cor':color}
 
     def simular_offline(self):
-        """Simula as pescarias do tempo em que o jogo ficou fechado (máx. 4h).
-        Retorna o texto do resumo, ou None se não houver o que mostrar."""
-        e = self.estado
-        ultimo = e.get("ultimo_salvo", 0)
-        if not ultimo:
-            return None
-        ausente = time.time() - ultimo
-        if ausente < 60:
-            return None
-        tempo = min(ausente, LIMITE_OFFLINE)
-
-        vara0, barco0, moedas0 = e["vara"], e["barco"], e["moedas"]
-        pescas = 0
-        t = self.nova_espera() + 1.5
-        while t <= tempo:
-            self.sortear()
-            pescas += 1
-            t += self.nova_espera() + 1.5
-
-        linhas = ["Bem-vindo de volta!", ""]
-        contado = f"Tempo contado: {fmt_tempo(tempo)}"
-        if ausente > LIMITE_OFFLINE:
-            contado += f" (limite de {fmt_tempo(LIMITE_OFFLINE)})"
-        linhas.append(contado)
-        linhas.append(f"Pescarias: {pescas}")
-        linhas.append(f'Moedas ganhas: +{fmt_moedas(e["moedas"] - moedas0)}')
-        if e["vara"] > vara0:
-            linhas.append(f'Vara: Nv {vara0} → Nv {e["vara"]}')
-        if e["barco"] > barco0:
-            linhas.append(f'Barco: Nv {barco0} → Nv {e["barco"]}')
-        return "\n".join(linhas)
+        candidate, report = replay(self.estado, self._wall())
+        awards = grant(candidate, CATALOGO)
+        if not self._commit(candidate):
+            return self._save_error
+        self._last_offline = report
+        if not report['count']:
+            return 'Conquistas: '+', '.join(awards) if awards else None
+        messages = [f"Retorno: {report['count']} registros, +{fmt_moedas(report['gain'])} moedas.",
+                    f"Tempo contado: {fmt_tempo(report['paid_seconds'])} (limite de 4h)."]
+        if report['mode']=='expedicao': messages.append('Expedição: substituiu o offline normal.')
+        size_summary = offline_summary(report['events'])
+        if size_summary: messages.append(size_summary)
+        if awards: messages.append('Conquistas: '+', '.join(awards))
+        return '\n'.join(messages)
 
     def custo_peca(self, tipo):
         return 30 + 20 * self.estado[tipo]
 
     def comprar_peca(self, tipo):
-        e = self.estado
+        self.tick()
+        if self._save_error:return
+        e = copy.deepcopy(self.estado)
         nome = "Vara" if tipo == "vara" else "Barco"
         if e[tipo] >= NIVEL_MAX:
             self.mostrar_popup(f"{nome} já está no nível máximo", "#80d8ff")
             return
         custo = self.custo_peca(tipo)
-        if e["moedas"] < custo:
+        if not can_buy(e, custo):
             self.mostrar_popup("Moedas insuficientes", "#ff8080")
             return
-        e["moedas"] -= custo
+        debit(e, custo)
         e["pecas_" + tipo] += 1
-        if self.aplicar_upgrade(tipo):
+        subiu=False
+        while e['pecas_'+tipo]>=2+e[tipo] and e[tipo]<NIVEL_MAX:
+            e['pecas_'+tipo]-=2+e[tipo];e[tipo]+=1;subiu=True
+        desbloquear(e);awards=grant(e,CATALOGO)
+        if not self._commit(e):return
+        if subiu:
             self.mostrar_popup(f"{nome} melhorada! Nv {e[tipo]}", "#80ff80")
         else:
             self.mostrar_popup(
                 f'Peça comprada ({e["pecas_" + tipo]}/{self.pecas_necessarias(tipo)})',
                 "#80d8ff")
-        self.salvar()
+        for title in awards:self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
         self.atualizar_tooltip()
 
     def atualizar_tooltip(self):
@@ -1298,37 +1199,18 @@ class JogoPesca(QWidget):
         )
 
     def verificar_conquistas(self):
-        e = self.estado
-        definicoes = [
-            ("vestir_todos", "Temos que vestir todos!", "Compre o Gorro do Pikachu na loja.", "chapeu_pikachu" in e["cosmeticos"]),
-            ("criatura_digital", "Criatura Digital.", "Compre o Boneco Agumon na loja.", "boneco_agumon" in e["cosmeticos"]),
-            ("rei_pesca", "Rei da pesca.", "Registre todas as espécies aquáticas pelo menos uma vez.", all(e["inventario"].get(i["nome"], 0) > 0 for i in LOOT if i["tipo"] == "peixe")),
-            ("mestre_vara", "Mestre da vara.", "Coloque a vara de pesca no nível máximo.", e["vara"] >= NIVEL_MAX),
-            ("mestre_barco", "Mestre do barco.", "Coloque o barco de pesca no nível máximo.", e["barco"] >= NIVEL_MAX),
-            ("rei_piratas", "Rei dos piratas?", "Compre todos os itens de pirata na loja.", all(i[0] in e["cosmeticos"] for i in CATALOGO if "pirata" in i[0])),
-        ]
-        novos = []
-        for id_, titulo, descricao, concluiu in definicoes:
-            if concluiu and id_ not in e["conquistas"]:
-                e["conquistas"].append(id_)
-                novos.append(titulo)
-        if novos:
-            self.salvar()
-            self.mostrar_popup(f"Conquista desbloqueada: {novos[0]}", "#ffe27a")
+        candidate = copy.deepcopy(self.estado)
+        desbloquear(candidate)
+        awards = grant(candidate, CATALOGO)
+        if candidate != self.estado and self._commit(candidate):
+            for title in awards:
+                self.mostrar_popup('Conquista desbloqueada: '+title, '#ffe27a')
 
     def mostrar_conquistas(self):
         self.verificar_conquistas()
-        e = self.estado
-        definicoes = [
-            ("vestir_todos", "Temos que vestir todos!", "Compre o Gorro do Pikachu na loja."),
-            ("criatura_digital", "Criatura Digital.", "Compre o Boneco Agumon na loja."),
-            ("rei_pesca", "Rei da pesca.", "Registre todas as espécies aquáticas pelo menos uma vez."),
-            ("mestre_vara", "Mestre da vara.", "Coloque a vara de pesca no nível máximo."),
-            ("mestre_barco", "Mestre do barco.", "Coloque o barco de pesca no nível máximo."),
-            ("rei_piratas", "Rei dos piratas?", "Compre todos os itens de pirata na loja."),
-        ]
-        linhas = [f'{"🏆" if id_ in e["conquistas"] else "○"} {titulo}\n   {descricao}' for id_, titulo, descricao in definicoes]
-        self.caixa("Conquistas", "\n\n".join(linhas))
+        lines = [f"{'🏆' if id_ in self.estado['conquistas'] else '○'} {title}\n   {description}"
+                 for id_,title,description,_ in definitions(self.estado,CATALOGO)]
+        self.caixa('Conquistas', '\n\n'.join(lines))
 
     def equipado(self, slot):
         return self.previa.get(slot, self.estado["equipados"][slot])
@@ -1353,9 +1235,12 @@ class JogoPesca(QWidget):
 
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
-            if self.rect_icone.contains(ev.position().toPoint()):
+            if self.rect_clima.contains(ev.position().toPoint()):
+                self.abrir_clima();ev.accept()
+            elif self.rect_icone.contains(ev.position().toPoint()):
                 self.abrir_menu()
             else:
+                if mobile():ev.accept();return
                 self._arrastando = True
                 self._offset_arraste = ev.globalPosition().toPoint() - self.frameGeometry().topLeft()
                 self.setCursor(Qt.ClosedHandCursor)
@@ -1374,30 +1259,93 @@ class JogoPesca(QWidget):
                 f'Barco Nv {e["barco"]}  •  Arraste para mover')
 
     def abrir_menu(self):
+        if mobile():
+            dlg=QDialog(self);layout=QVBoxLayout(dlg)
+            for title,action in [('Loja',self.abrir_loja),('Status e inventário',self.mostrar_status),('Enciclopédia',self.abrir_enciclopedia),('Museu',self.abrir_museu),('Conquistas',self.mostrar_conquistas),('Viajar',self.abrir_viagens),('Clima de hoje',self.abrir_clima),('Expedição offline',self.abrir_expedicao),('Retomar' if self.pausado else 'Pausar',self.alternar_pausa)]:
+                button=QPushButton(title);button.clicked.connect(lambda checked=False,f=action:(dlg.accept(),QTimer.singleShot(0,f)));layout.addWidget(button)
+            button=QPushButton('Voltar à pescaria');button.clicked.connect(dlg.accept);layout.addWidget(button)
+            fit_dialog(dlg).exec();dlg.deleteLater();return
         m = QMenu(self)
         m.addAction(rpg_icon("loja"), "Loja", self.abrir_loja)
         m.addAction(rpg_icon("barco"), "Status e inventário", self.mostrar_status)
         m.addAction(rpg_icon("livro"), "Enciclopédia", self.abrir_enciclopedia)
+        m.addAction(rpg_icon("livro"), "Museu", self.abrir_museu)
         m.addAction(rpg_icon("conquistas"), "Conquistas", self.mostrar_conquistas)
+        m.addAction(rpg_icon("barco"), "Viajar", self.abrir_viagens)
+        m.addAction('Clima de hoje',self.abrir_clima)
+        m.addAction(rpg_icon("livro"), "Expedição offline", self.abrir_expedicao)
         m.addSeparator()
         m.addAction(rpg_icon("pausa"), "Retomar" if self.pausado else "Pausar", self.alternar_pausa)
         m.addAction(rpg_icon("sair"), "Sair", self.sair)
         m.exec(self.mapToGlobal(QPoint(self.rect_icone.left(), self.rect_icone.bottom())))
+        m.deleteLater()
 
     def alternar_pausa(self):
+        self.tick()  # Account for elapsed active time before recording pause intent.
         self.pausado = not self.pausado
+        self.estado['pausado'] = self.pausado
+        self.estado['ultimo_processado_utc'] = max(self.estado['ultimo_processado_utc'],self._wall())
+        self.salvar()
 
-    def abrir_loja(self):
+    def abrir_loja(self, decoracoes=False):
         dlg = LojaDialog(self)
+        if decoracoes:dlg.abas.setCurrentWidget(dlg.decoracoes)
+        fit_dialog(dlg)
         dlg.exec()
+        dlg.deleteLater()
         self.previa = {}
         self.update()
 
     def abrir_enciclopedia(self):
-        EnciclopediaDialog(self).exec()
+        from pesca_viagens_ui import ColecaoDialog
+        dlg = ColecaoDialog(self)
+        fit_dialog(dlg)
+        dlg.exec(); dlg.deleteLater()
+
+    def _sync_climate_button(self):
+        from pesca_clima_ui import current_weather
+        from pesca_clima_visual import weather_image
+        from PySide6.QtGui import QIcon,QPixmap
+        from PySide6.QtCore import QSize
+        weather=current_weather(self);signature=(weather['id'],weather['data'])
+        if getattr(self,'_weather_button_signature',None)==signature:return
+        self._weather_button_signature=signature
+        self.botao_clima.setGeometry(self.rect_clima)
+        self.botao_clima.setIcon(QIcon(QPixmap.fromImage(weather_image(weather['id'] if weather['id']!='legado' else 'ameno'))))
+        self.botao_clima.setIconSize(QSize(self.rect_clima.width()-8,self.rect_clima.height()-8))
+        description='Clima: '+weather['rotulo']+'. Clique para ver bônus e ônus. Muda às 00:00.'
+        self.botao_clima.setToolTip(description);self.botao_clima.setAccessibleName(description)
+
+    def abrir_clima(self):
+        from pesca_clima_ui import ClimateDialog
+        dlg=ClimateDialog(self);fit_dialog(dlg).exec();dlg.deleteLater()
+
+    def abrir_museu(self):
+        from pesca_museu_ui import MuseuDialog
+        dlg = MuseuDialog(self)
+        dlg.exec(); dlg.deleteLater()
+
+    def viajar(self, map_id):
+        self.tick()
+        candidate = copy.deepcopy(self.estado)
+        if not travel(candidate,map_id):
+            self.mostrar_popup('Este mapa ainda está bloqueado.', '#ffb08a'); return False
+        if self._commit(candidate):
+            self.mostrar_popup('Viagem após a fisgada.' if candidate['viagem_pendente'] else LOCAIS[map_id]['nome'])
+            return True
+        return False
+
+    def abrir_viagens(self):
+        from pesca_viagens_ui import ViajarDialog
+        dlg = ViajarDialog(self); fit_dialog(dlg).exec(); dlg.deleteLater()
+
+    def abrir_expedicao(self):
+        from pesca_viagens_ui import ExpedicaoDialog
+        dlg = ExpedicaoDialog(self); fit_dialog(dlg).exec(); dlg.deleteLater()
 
     def caixa(self, titulo, texto):
-        InfoDialog(self,titulo,texto).exec()
+        dlg = InfoDialog(self,titulo,texto)
+        fit_dialog(dlg).exec(); dlg.deleteLater()
 
     def mostrar_status(self):
         e = self.estado
@@ -1412,8 +1360,7 @@ class JogoPesca(QWidget):
         self.caixa("Pesca Idle", texto)
 
     def sair(self):
-        self.salvar()
-        QApplication.quit()
+        self.close()
 
     # Scene and effects are rendered at one logical pixel scale.
     fmt_currency = staticmethod(fmt_moedas)
@@ -1425,11 +1372,19 @@ class JogoPesca(QWidget):
         paint_overlay(self)
 
     def closeEvent(self, event):
-        self.salvar()
-        self.relogio.stop()
-        self.timer_save.stop()
+        if not self._closed:
+            self.tick()
+            if not self.salvar():
+                event.ignore()
+                QMessageBox.warning(self,'Progresso não salvo','Não foi possível confirmar a gravação. O jogo ficou aberto e pausado. Confira a pasta e tente sair novamente.\n'+str(self._save_error))
+                return
+            self.relogio.stop(); self.timer_save.stop()
+            self._store.close(); self._closed = True
         event.accept()
         QApplication.quit()
+
+
+from pesca_viagens_ui import ColecaoDialog as EnciclopediaDialog
 
 
 def main(dev_access):
@@ -1437,7 +1392,12 @@ def main(dev_access):
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
     configure_app(app)
-    jogo = JogoPesca()
+    try:
+        jogo = JogoPesca()
+    except SaveError as exc:
+        if dev_access.enabled:raise
+        QMessageBox.critical(None,'Não foi possível abrir o perfil',str(exc))
+        return
     dev_access.prepare_window(jogo)
     jogo.show()
     dev_access.schedule_smoke_test(
