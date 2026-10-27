@@ -174,3 +174,88 @@ class ClimateContracts(unittest.TestCase):
         for field,value in [('id','furacao'),('version',999),('data','2020-01-01'),('proxima_utc',START)]:
             modified=copy.deepcopy(e.state);modified['pesca_pendente']['context']['clima'][field]=value
             with self.assertRaises(SaveError):validate_state(modified)
+
+    def test_schema5_requires_climate_from_file_not_runtime_defaults(self):
+        # pesca_idle expands ESTADO_PADRAO through migrate at import time.
+        runtime_defaults=migrate({},DEFAULTS,START-1000)
+        for defaults in (DEFAULTS,runtime_defaults):
+            for missing in (True,False):
+                with self.subTest(expanded='clima' in defaults,missing=missing):
+                    raw=fresh();raw.pop('clima')
+                    if not missing:raw['clima']=None
+                    before=copy.deepcopy(raw);defaults_before=copy.deepcopy(defaults)
+                    with self.assertRaisesRegex(SaveError,'[Cc]lima'):
+                        migrate(raw,defaults,START+1000)
+                    self.assertEqual(raw,before)
+                    self.assertEqual(defaults,defaults_before)
+
+    def test_schema5_missing_climate_load_preserves_save_and_backups(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'qa') as folder:
+            path=Path(folder)/'save.json';raw=fresh();raw.pop('clima')
+            original=json.dumps(raw,ensure_ascii=False,indent=3).encode('utf-8')
+            path.write_bytes(original)
+            backup=path.with_suffix('.json.bak');backup.write_bytes(b'synthetic backup sentinel')
+            migration=path.with_name('save.pre-schema-4.json');migration.write_bytes(b'older synthetic sentinel')
+            with SaveStore(path) as store:
+                with self.assertRaisesRegex(SaveError,'[Cc]lima'):
+                    store.load(migrate({},DEFAULTS,START-1000),START)
+                self.assertIsNone(store.last_good);self.assertIsNone(store.last_bytes)
+            self.assertEqual(path.read_bytes(),original)
+            self.assertEqual(backup.read_bytes(),b'synthetic backup sentinel')
+            self.assertEqual(migration.read_bytes(),b'older synthetic sentinel')
+            self.assertEqual(sorted(p.name for p in path.parent.iterdir()),
+                ['save.json','save.json.bak','save.json.lock','save.pre-schema-4.json'])
+
+    def test_schema5_backup_without_climate_cannot_be_recovered(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'qa') as folder:
+            path=Path(folder)/'save.json';path.write_bytes(b'{synthetic rejected save')
+            raw=fresh();raw.pop('clima');backup=json.dumps(raw).encode('utf-8')
+            path.with_suffix('.json.bak').write_bytes(backup)
+            defaults=migrate({},DEFAULTS,START-1000)
+            with SaveStore(path) as store:
+                self.assertFalse(store.backup_available(defaults,START))
+                with self.assertRaisesRegex(SaveError,'[Cc]lima'):store.recover(defaults,START)
+            self.assertEqual(path.read_bytes(),b'{synthetic rejected save')
+            self.assertEqual(path.with_suffix('.json.bak').read_bytes(),backup)
+            self.assertFalse(list(path.parent.glob('save.rejeitado-*.json')))
+
+    def test_explicit_recovery_keeps_rejected_schema5_and_valid_climate(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'qa') as folder:
+            path=Path(folder)/'save.json';valid=fresh();raw=copy.deepcopy(valid);raw.pop('clima')
+            original=json.dumps(raw).encode('utf-8');path.write_bytes(original)
+            backup=json.dumps(valid).encode('utf-8');path.with_suffix('.json.bak').write_bytes(backup)
+            defaults=migrate({},DEFAULTS,START-1000)
+            with SaveStore(path) as store:
+                with self.assertRaises(SaveError):store.load(defaults,START+999)
+                self.assertTrue(store.backup_available(defaults,START+999))
+                restored=store.recover(defaults,START+999)
+                self.assertEqual(restored['clima'],valid['clima'])
+                self.assertEqual(store.load(defaults,START+2000)['clima'],valid['clima'])
+            self.assertEqual(next(path.parent.glob('save.rejeitado-*.json')).read_bytes(),original)
+            self.assertEqual(path.with_suffix('.json.bak').read_bytes(),backup)
+
+    def test_legacy_file_migrations_keep_exact_backups_with_expanded_defaults(self):
+        defaults=migrate({},DEFAULTS,START-1000)
+        for version in (1,2,3,4):
+            with self.subTest(version=version),tempfile.TemporaryDirectory(dir=ROOT/'qa') as folder:
+                path=Path(folder)/'save.json';raw=fresh();raw['schema_version']=version;raw.pop('clima')
+                raw['unknown_extension']={'preserve':'synthetic future content'}
+                if version<4:raw.pop('pilot_kind');raw.pop('medidas_peixes')
+                original=json.dumps(raw,ensure_ascii=False,indent=3).encode('utf-8')
+                path.write_bytes(original)
+                suffix='pre-expansao-v1' if version==1 else 'pre-schema-'+str(version)
+                prior=path.with_name('save.'+suffix+'.json')
+                prior.write_bytes(b'previous synthetic backup; keep unchanged')
+                with SaveStore(path) as store:
+                    state=store.load(defaults,START)
+                    self.assertEqual(state['clima'],new_climate(state['perfil_id'],START))
+                    self.assertNotEqual(state['clima'],defaults['clima'])
+                    self.assertEqual(state['unknown_extension'],raw['unknown_extension'])
+                    self.assertEqual(store.backup_path.read_bytes(),original)
+                    stable=path.read_bytes()
+                    self.assertEqual(store.load(defaults,START+1000)['clima'],state['clima'])
+                    self.assertEqual(path.read_bytes(),stable)
+                self.assertEqual(prior.read_bytes(),b'previous synthetic backup; keep unchanged')
+                preserved=[p for p in path.parent.glob('save.pre-*.json') if p!=prior]
+                self.assertEqual(len(preserved),1)
+                self.assertEqual(preserved[0].read_bytes(),original)

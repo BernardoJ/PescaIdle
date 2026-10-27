@@ -35,6 +35,10 @@ def migrate(raw, defaults, now):
         raise SaveError('Schema 4 pertence a outro candidato ou não tem identificação; original preservado.')
     if version >= 4 and 'medidas_peixes' not in raw:
         raise SaveError('Perfil do piloto sem o campo de medidas; original preservado.')
+    # Schema 5 must carry its own weather; expanded runtime defaults belong
+    # to another initialization and must never repair an incomplete save.
+    if version >= 5 and 'clima' not in raw:
+        raise SaveError('Schema 5 sem clima; original preservado.')
     for key in ('equipados', 'inventario', 'inventario_por_id', 'registros_regionais', 'registros_por_periodo'):
         if key in raw and not isinstance(raw[key], dict):
             raise SaveError('Campo inválido: '+key+'; original preservado.')
