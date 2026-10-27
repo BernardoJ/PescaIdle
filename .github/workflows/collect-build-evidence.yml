@@ -17,7 +17,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           for attempt in $(seq 1 180); do
-            state=$(gh api repos/BernardoJ/PescaIdle/actions/runs/40563588483 --jq .status)
+            state=$(gh api repos/BernardoJ/PescaIdle/actions/runs/40567485121 --jq .status)
             if test "$state" = completed; then exit 0; fi
             sleep 10
           done
@@ -25,7 +25,7 @@ jobs:
           exit 1
       - uses: actions/download-artifact@v4
         with:
-          run-id: 40563588483
+          run-id: 40567485121
           github-token: ${{ github.token }}
           path: ${{ runner.temp }}/build-inputs
       - name: Separar somente metadados publicaveis, sem saves ou chaves
@@ -46,11 +46,11 @@ jobs:
                   relative=p.relative_to(src);dest=out/relative;dest.parent.mkdir(parents=True,exist_ok=True)
                   shutil.copyfile(p,dest);copied.append(str(relative))
           if not copied:raise RuntimeError('No build metadata found')
-          (out/'inventory.json').write_text(json.dumps({'source_run':40563588483,'files':copied},indent=2)+'\n')
+          (out/'inventory.json').write_text(json.dumps({'source_run':40567485121,'files':copied},indent=2)+'\n')
           print(json.dumps({'copied_files':len(copied)}))
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: Metadados-verificaveis-builds-40563588483
+          name: Metadados-verificaveis-builds-40567485121
           path: ${{ runner.temp }}/build-metadata/
           if-no-files-found: error
