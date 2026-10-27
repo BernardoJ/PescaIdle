@@ -1,0 +1,122 @@
+{
+  "source_commit": "0108882dcf9a6f65b1a4bafeb5bd71cf507e044c",
+  "source_tree": "3975691d54b4c3fd392686617045b4c9720eeb60",
+  "source_branch_reference": "main",
+  "source_checkout_clean": true,
+  "tooling_commit": "6f8a885ac00192dbdb5c82046efacb8b28aa30b1",
+  "generated_utc": "2026-10-27T19:52:31.559158+00:00",
+  "generated_sao_paulo": "2026-10-27T16:52:31.559158-03:00",
+  "application_version": null,
+  "version_note": "Desktop source/spec has no explicit application version; no version number was invented.",
+  "target": "Windows x64",
+  "build_tool": "PyInstaller",
+  "versions": {
+    "PyInstaller": "6.22.3",
+    "PySide6": "6.11.2",
+    "Pillow": "12.3.0"
+  },
+  "python": "3.12.10",
+  "build_platform": "Windows-2025Server-10.0.26100-SP0",
+  "executable": "PescaIdle-Windows-0108882.exe",
+  "bytes": 48796094,
+  "sha256": "b00c08a85b48aeb7b50fe27d9fbe66ae06ea637a7c46e7ad9f40ffddf5030404",
+  "spec_unmodified": true,
+  "clean_build": true,
+  "archive_module_count": 39,
+  "archive_asset_count": 66,
+  "validation_success": true,
+  "real_save_used": false,
+  "authenticode_signed": false,
+  "limitations": [
+    "Not a clean Windows installation or physical-device/human session.",
+    "Positive backup recovery uses source SaveStore with packaged bytecode identity; EXE recovery cancellation is tested."
+  ],
+  "run_id": 40572649866,
+  "job_id": 122430660591,
+  "artifact_id": 12766630446,
+  "artifact_url": "https://github.com/BernardoJ/PescaIdle/actions/runs/40572649866/artifacts/12766630446",
+  "artifact_zip_sha256": "54a82ccf0d8774fb9da8adc0c3a1a059589d8d53dd874cdad1897853746b68ba",
+  "evidence_artifact_id": 12765831198,
+  "metadata_artifact_id": 12767160080,
+  "validation": {
+    "success": true,
+    "platform": "native Windows / Qt windows plugin",
+    "profile_isolated": true,
+    "foreign_cwd": true,
+    "python_environment_removed_from_exe": true,
+    "tests": [
+      {
+        "test": "native-startup-assets-and-v1-migration",
+        "scale": "1",
+        "passed": true
+      },
+      {
+        "test": "native-startup-assets-and-v1-migration",
+        "scale": "1.25",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-pending",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-deliver",
+        "passed": true
+      },
+      {
+        "test": "native-frozen-climate-reopen",
+        "passed": true
+      },
+      {
+        "test": "native-exe-missing-climate-rejected",
+        "valid_backup": false,
+        "passed": true,
+        "exit_code": 1,
+        "recovery_prompt_seen": false,
+        "owned_bootloader_error_dialog_closed": true
+      },
+      {
+        "test": "native-exe-missing-climate-rejected",
+        "valid_backup": true,
+        "passed": true,
+        "exit_code": 1,
+        "recovery_prompt_seen": true,
+        "owned_bootloader_error_dialog_closed": true
+      },
+      {
+        "test": "native-exe-foreign-backup-link-rejected",
+        "passed": true,
+        "foreign_fixture_outside_exe_boundary": true,
+        "synthetic_only": true,
+        "exit_code": 1,
+        "recovery_prompt_seen": false,
+        "owned_bootloader_error_dialog_closed": true
+      },
+      {
+        "test": "windows-store-migration-and-reopen",
+        "input_schema": 4,
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      },
+      {
+        "test": "windows-store-migration-and-reopen",
+        "input_schema": 5,
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      },
+      {
+        "test": "windows-explicit-backup-recovery",
+        "passed": true,
+        "execution": "source identical to verified packaged pesca_save bytecode"
+      }
+    ],
+    "real_save_used": false,
+    "limits": [
+      "Not a clean Windows installation or physical-device/human session.",
+      "Positive backup recovery uses source SaveStore with packaged bytecode identity; EXE recovery cancellation is tested."
+    ]
+  },
+  "distribution_classification": "APTO PARA DISTRIBUIÇÃO do jogo normal Windows x64, no escopo dos testes nativos e limites documentados.",
+  "auxiliary_guard_included": true,
+  "stable_release_replaced": false
+}

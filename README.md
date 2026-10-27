@@ -17,22 +17,29 @@ na main. O [relatório de integração](docs/INTEGRACAO_MAIN.md) é um registro 
 da revisão anterior ao merge; suas referências a aprovação pendente não descrevem
 o estado atual. A proposta Fluxo/Precisão do PR #4 permanece separada.
 
-A preparação de builds está em `codex/builds-main-20261027`. O Windows usa um
-checkout limpo da **main fixa `f8190f5`**, com ferramentas de build/QA separadas.
-O Android usa o commit derivado que acrescenta o caminho privado isolado; essa
-correção ainda requer revisão e integração. Um APK dessa branch não é anunciado
-como compilado exclusivamente da main.
+O [PR #7](https://github.com/BernardoJ/PescaIdle/pull/7) foi integrado na main
+em [`0108882`](https://github.com/BernardoJ/PescaIdle/commit/0108882dcf9a6f65b1a4bafeb5bd71cf507e044c).
+Ele acrescenta o caminho privado Android e a validação dos caminhos auxiliares
+usados em backups, migrações, lock e recuperação de saves.
 
-[Builds atuais: commits, hashes, testes, downloads e pendências](docs/BUILDS_MAIN_20261027.md).
+A rodada Windows posterior usa um checkout limpo dessa **main fixa `0108882`**,
+com ferramentas de build/QA separadas em `codex/windows-main-0108882`. Os APKs
+continuam sendo os gerados de `5a2ac60`, agora ancestral da main; não foram
+recompilados do commit de merge. A origem e os hashes de cada binário permanecem
+explícitos.
+
+[Estado após o merge: builds, hashes, testes e pendências](docs/VALIDACAO_MAIN_0108882.md).
+A [preparação anterior](docs/BUILDS_MAIN_20261027.md) mantém o parecer histórico
+anterior à integração e ao novo build Windows.
 Os quatro EXEs e o APK antigo abaixo são históricos; não são a nova distribuição.
 
 ## Plataformas e limites
 
 | Plataforma | Situação atual |
 | --- | --- |
-| Windows x64 | Novo EXE da main `f8190f5` gerado e validado funcionalmente em runner Windows nativo: pacote, assets, startup, save e clima. Ainda é candidato: falta incorporar e testar a guarda auxiliar de backups da branch. [Download validado](https://github.com/BernardoJ/PescaIdle/actions/runs/40563588483/artifacts/12760794913). Sem instalação Windows limpa, Authenticode ou sessão humana prolongada. |
+| Windows x64 | EXE da main `0108882` com guarda auxiliar, build limpo e 11 verificações nativas aprovadas, incluindo backup entre contextos. [Download](https://github.com/BernardoJ/PescaIdle/actions/runs/40572649866/artifacts/12766630446). Sem instalação Windows limpa, Authenticode ou sessão humana prolongada. |
 | Linux x86_64 | QA com Python 3.12.14 / PySide6 6.11.2 / Qt offscreen. Testes de lógica e widgets não certificam uma sessão gráfica prolongada ou um pacote distribuível. |
-| Android | Caminho privado corrigido nesta branch; 24 contratos e QA nativo x86_64 aprovados. APK ARM64 assinado gerado, sem execução direta; distribuição final pendente. Hashes/downloads no [relatório atual](docs/BUILDS_MAIN_20261027.md); não confundir APK da branch com a beta histórica ou main exclusiva. |
+| Android | Caminho privado integrado na main; 24 contratos e persistência/isolamento no QA nativo x86_64 aprovados. APK ARM64 assinado gerado de `5a2ac60`, sem execução direta; distribuição final pendente. [Hashes, origem e limites](docs/VALIDACAO_MAIN_0108882.md). |
 | macOS | Não validado. |
 
 A beta Android histórica é anterior ao museu, tamanhos, decorações, conquistas e
@@ -49,19 +56,17 @@ O roteiro antigo `piloto_entry.py --demo` tem seis falhas de teste herdadas por
 criar capturas sem contexto climático; não está validado para schema 5. O jogo
 normal e o smoke climático da fonte passaram. [Falhas e escopo](docs/INTEGRACAO_MAIN.md).
 
-## Baixar o candidato Windows testado
+## Baixar o Windows testado da main integrada
 
-[Baixar o pacote Windows validado da main `f8190f5`](https://github.com/BernardoJ/PescaIdle/actions/runs/40563588483/artifacts/12760794913).
-Extraia o ZIP em uma pasta gravável e abra `PescaIdle-Windows-f8190f5.exe`.
+[Baixar o pacote Windows da main `0108882`](https://github.com/BernardoJ/PescaIdle/actions/runs/40572649866/artifacts/12766630446).
+Extraia o ZIP em uma pasta gravável e abra `PescaIdle-Windows-0108882.exe`.
 Ele inclui runtime e recursos; não exige instalar Python. O pacote acompanha
 BUILD/VALIDATION/ARCHIVE JSON e SHA256SUMS, sem saves ou perfis de QA.
 
-SHA-256 do EXE: `e77e80d3da9aaf3b2cd8d8fce3c38c612cb8a8315d406fe496db608e3571feae`.
+SHA-256 do EXE: `b00c08a85b48aeb7b50fe27d9fbe66ae06ea637a7c46e7ad9f40ffddf5030404`.
 São artefatos de CI sujeitos à retenção do GitHub; a release estável histórica
-não foi substituída. A assinatura Authenticode não foi aplicada. **Não é aprovação de distribuição
-final:** este EXE da main ainda não inclui a proteção adicional de backups da
-branch; é necessário integrar a correção e repetir build/QA Windows. Veja o
-[achado e os limites](docs/BUILDS_MAIN_20261027.md#e-problemas-conhecidos-e-regressão).
+não foi substituída. A assinatura Authenticode não foi aplicada. O build e a regressão nativa de
+backup entre contextos estão detalhados no [relatório atual](docs/VALIDACAO_MAIN_0108882.md).
 
 ## Executar pelo código
 
@@ -76,8 +81,8 @@ py -3.12 -m venv .venv
 Pelo código, o perfil padrão é `perfil-piloto/save.json` **dentro deste checkout**.
 No novo EXE Windows e nos executáveis históricos do piloto/clima, fica em
 `perfil-piloto/save.json` ao lado do EXE. O desktop
-recusa caminhos fora da sua pasta e não importa o save pessoal de APPDATA. Na
-correção Android desta branch, o perfil usa o diretório privado Qt
+recusa caminhos fora da sua pasta e não importa o save pessoal de APPDATA. No
+Android da main integrada, o perfil usa o diretório privado Qt
 `AppDataLocation/pilotos/tamanhos-v1/save.json`; o pacote QA separado usa
 `CacheLocation/qa-tamanhos-v1/save.json`. O save Android legado da raiz privada
 não é importado nem modificado automaticamente.
@@ -146,7 +151,7 @@ Esses contratos simulam os diretórios Qt; o APK precisa passar também pelo
 emulador nativo.
 
 Comandos e resultados **realmente executados na preparação atual**:
-[relatório de builds](docs/BUILDS_MAIN_20261027.md). A
+[relatório após o merge](docs/VALIDACAO_MAIN_0108882.md). A
 [integração anterior](docs/INTEGRACAO_MAIN.md) e os demais relatórios históricos
 mantêm suas datas, falhas e escopos.
 
@@ -157,10 +162,10 @@ revisão mantêm o código oficial num checkout separado e verificam módulos/as
 empacotados contra o commit antes do smoke nativo:
 
 ```powershell
-git worktree add --detach ../PescaIdle-main-build f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34
+git worktree add --detach ../PescaIdle-main-build 0108882dcf9a6f65b1a4bafeb5bd71cf507e044c
 .\.venv\Scripts\python.exe -m pip install -r ../PescaIdle-main-build/requirements-build.txt
 $buildOut = Join-Path $env:TEMP ('pesca-main-build-' + [guid]::NewGuid())
-.\.venv\Scripts\python.exe -X utf8 -B tools/build_windows_main.py --source ../PescaIdle-main-build --expected-commit f8190f5e6a7b2690a6d00eb8f1ef727cfe0bba34 --out $buildOut
+.\.venv\Scripts\python.exe -X utf8 -B tools/build_windows_main.py --source ../PescaIdle-main-build --expected-commit 0108882dcf9a6f65b1a4bafeb5bd71cf507e044c --out $buildOut
 ```
 
 A saída `deliverables/` só é criada após build limpo, conferência do pacote e
@@ -170,7 +175,7 @@ O procedimento Android e os limites de assinatura estão em [ANDROID.md](ANDROID
 
 ## Binários históricos e documentação
 
-O estado dos novos EXE/APK está no [relatório atual](docs/BUILDS_MAIN_20261027.md).
+O estado dos novos EXE/APK está no [relatório atual](docs/VALIDACAO_MAIN_0108882.md).
 Os arquivos desta seção são **históricos**. O EXE de clima de
 23/10/2026 foi compilado de `d1bcd5b` e publicado em `a352061`; antecede a correção
 atual de save. Tem 50.561.165 bytes e SHA-256
