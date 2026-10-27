@@ -1,10 +1,44 @@
 """Install the QA APK on a disposable AVD; collect on-device results and pixels."""
-import argparse,getpass,json,os,struct,subprocess,time,uuid
+import argparse,getpass,json,os,re,struct,subprocess,time,uuid
 from pathlib import Path
 
 
 def call(*args,timeout=60):
     return subprocess.check_output(args,timeout=timeout,text=True,stderr=subprocess.STDOUT)
+
+
+def require(value,message):
+    if not value:raise RuntimeError(message)
+
+
+def wait_for_report(adb,out,log_name,timeout=180):
+    deadline=time.monotonic()+timeout
+    while time.monotonic()<deadline:
+        logs=call(adb,'logcat','-d')
+        (out/log_name).write_text(logs,encoding='utf-8')
+        for line in logs.splitlines():
+            if 'PESCA_QA_RESULT=' not in line:continue
+            try:report=json.loads(line.split('PESCA_QA_RESULT=',1)[1])
+            except json.JSONDecodeError:continue  # Wait for the complete log record.
+            if isinstance(report,dict):return report
+        time.sleep(3)
+    raise RuntimeError('Android QA did not return a complete result; see '+log_name)
+
+
+def verify_reopened_report(first,reopened):
+    """A new process must preserve the exact first process's durable snapshot."""
+    for report in (first,reopened):
+        require(report.get('passed') is True,report.get('error','Android QA failed'))
+        require(report.get('platform')=='android','Expected native Android QPA')
+        require(type(report.get('schema')) is int and report['schema']==5,'Expected save schema 5')
+    require(first.get('reopened_process') is False,'First launch was not a fresh QA process')
+    require(reopened.get('reopened_process') is True,'Second launch did not prove persisted reopen')
+    require(isinstance(first.get('profile'),str) and first['profile'], 'First profile path missing')
+    require(reopened.get('profile')==first['profile'],'Relaunch selected a different profile')
+    fingerprint=first.get('reopen_snapshot_sha256')
+    require(isinstance(fingerprint,str) and re.fullmatch(r'[0-9a-f]{64}',fingerprint),
+            'First durable snapshot fingerprint missing or malformed')
+    require(reopened.get('reopen_snapshot_sha256')==fingerprint,'Relaunch changed the durable snapshot')
 
 
 def test(apk,out):
@@ -25,7 +59,7 @@ def test(apk,out):
     call(str(sdk/'cmdline-tools/latest/bin/sdkmanager'),'--install','emulator',image,timeout=300)
     avd='pesca-'+uuid.uuid4().hex
     subprocess.run([str(sdk/'cmdline-tools/latest/bin/avdmanager'),'create','avd','-n',avd,'-k',image,'--device','pixel_2'],input='no\n',text=True,check=True,timeout=60)
-    assert avd in call(str(sdk/'emulator/emulator'),'-list-avds')
+    require(avd in call(str(sdk/'emulator/emulator'),'-list-avds'),'Disposable AVD was not found')
     log=(out/'emulator.log').open('w')
     command=[str(sdk/'emulator/emulator'),'-avd',avd,'-no-window','-no-audio','-no-boot-anim','-no-snapshot','-no-metrics','-gpu','swiftshader_indirect']
     if not os.access('/dev/kvm',os.R_OK|os.W_OK):
@@ -52,18 +86,9 @@ def test(apk,out):
         call(adb,'install','-r',str(Path(apk).resolve()),timeout=120)
         call(adb,'logcat','-c')
         call(adb,'shell','am','start','-W','-n',package+'/org.kivy.android.PythonActivity',timeout=60)
-        deadline=time.monotonic()+180;report=None
-        while time.monotonic()<deadline:
-            logs=call(adb,'logcat','-d')
-            (out/'logcat.txt').write_text(logs,encoding='utf-8')
-            for line in logs.splitlines():
-                if 'PESCA_QA_RESULT=' in line:
-                    report=json.loads(line.split('PESCA_QA_RESULT=',1)[1]);break
-            if report:break
-            time.sleep(3)
-        if not report:raise RuntimeError('Android QA did not return a result; see logcat.txt')
+        report=wait_for_report(adb,out,'logcat.txt')
         (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
-        assert report['passed'],report.get('error',report)
+        require(report.get('passed') is True,report.get('error','Android QA failed'))
         profile=Path(report['profile']);private=str(profile.parent)
         for filename in ('game.png','shop.png','collection.png','travel.png','expedition.png'):
             with (out/filename).open('wb') as f:subprocess.run([adb,'exec-out','run-as',package,'cat',private+'/'+filename],stdout=f,check=True,timeout=30)
@@ -81,9 +106,27 @@ def test(apk,out):
         # A real Android background transition and return, not just a Qt signal.
         call(adb,'shell','input','keyevent','3');time.sleep(2)
         call(adb,'shell','am','start','-W','-n',package+'/org.kivy.android.PythonActivity');time.sleep(2)
-        assert call(adb,'shell','pidof',package).strip()
+        require(call(adb,'shell','pidof',package).strip(),'Application did not survive background/resume')
         with (out/'resume-screen.png').open('wb') as f:subprocess.run([adb,'exec-out','screencap','-p'],stdout=f,check=True,timeout=30)
-        report['host_checks']=['APK installed','portrait/landscape display','real background/resume process alive']
+        # A new Python process must reopen the same private QA profile. The
+        # second launch validates its snapshot before constructing a game window.
+        first=report;first_pid=call(adb,'shell','pidof',package).strip()
+        (out/'first-process.json').write_text(json.dumps(first,indent=2),encoding='utf-8')
+        call(adb,'shell','am','force-stop',package)
+        stopped=subprocess.run([adb,'shell','pidof',package],text=True,capture_output=True,timeout=30)
+        require(not stopped.stdout.strip(),'Application process remained after force-stop')
+        call(adb,'logcat','-c')
+        call(adb,'shell','am','start','-W','-n',package+'/org.kivy.android.PythonActivity',timeout=60)
+        reopened=wait_for_report(adb,out,'reopen-logcat.txt')
+        (out/'reopened-process.json').write_text(json.dumps(reopened,indent=2),encoding='utf-8')
+        verify_reopened_report(first,reopened)
+        second_pid=call(adb,'shell','pidof',package).strip()
+        require(second_pid and second_pid!=first_pid,'Relaunch did not create a different process')
+        report=dict(reopened)
+        report['first_process_checks']=first.get('checks',[])
+        report['native_processes']=[first_pid,second_pid]
+        report['host_checks']=['APK installed','portrait/landscape display','real background/resume process alive',
+                               'force-stop terminated process','new process reopened same profile and durable snapshot']
         report['android_api']=call(adb,'shell','getprop','ro.build.version.sdk').strip()
         (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
         print('On-device Android checks passed:',len(report['checks']),'+',len(report['host_checks']))
